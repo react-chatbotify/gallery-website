@@ -1,7 +1,15 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier', 'react-hooks'],
-  extends: ['airbnb', 'eslint:recommended', 'plugin:@typescript-eslint/recommended', 'eslint-config-prettier'],
+  plugins: ['@typescript-eslint', 'react-hooks'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'eslint-config-prettier',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
+  ],
   rules: {
     'linebreak-style': ['error', 'unix'],
     '@typescript-eslint/camelcase': 'off',

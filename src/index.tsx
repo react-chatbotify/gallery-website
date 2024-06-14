@@ -48,7 +48,7 @@ const routes = [
   },
 ];
 
-function NavbarWrapper() {
+const NavbarWrapper = () => {
   return (
     <div>
       <NavigationBar />
