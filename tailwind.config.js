@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "dark",
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'dark',
   theme: {
     container: {
       center: true,
@@ -13,15 +13,15 @@ export default {
           '50%': { transform: 'rotate(3deg)' },
         },
         pulse: {
-        '50%': {
-            opacity: .1
-        }
-      }
+          '50%': {
+            opacity: 0.1,
+          },
+        },
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
         pulse: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
+      },
       // colors: {},
     },
   },

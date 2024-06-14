@@ -1,3 +1,3 @@
 export const siteConfig = {
-    siteName: "React ChatBotify Gallery",
-}
+  siteName: 'React ChatBotify Gallery',
+};
