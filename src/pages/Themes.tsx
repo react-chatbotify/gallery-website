@@ -9,6 +9,7 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import useFetchData from '../hooks/useFetchThemes';
 import { Theme } from '../interfaces/Theme';
 import { Endpoints } from '../constants/Endpoints';
+import { useSearchParams } from 'react-router-dom';
 
 /**
  * Displays themes for users to search, browse and rate.
@@ -16,13 +17,16 @@ import { Endpoints } from '../constants/Endpoints';
  */
 const Themes: React.FC = () => {
 	// search query for filtering themes to show
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchParams , setSearchParams] = useSearchParams()
+	const [searchQuery, setSearchQuery] = useState(() => searchParams.get('searchQuery') || ""
+	);
 
 	// id of themes being selected to be preview (and applied to the interactive chatbot)
 	const [previewIds, setPreviewIds] = useState<string[]>([]);
 
 	// theme data fetched from backend
 	// todo: consider parsing and including search query directly from query params here as well
+
 	const { themes, loading, error } = useFetchData(Endpoints.fetchApiThemes, 30, 1, searchQuery);
 	/**
 	 * Handles setting of search query when user hits enter.
@@ -30,6 +34,13 @@ const Themes: React.FC = () => {
 	 * @param query query user inputted
 	 */
 	const handleSearch = (query: string) => {
+		if(query === ""){
+			searchParams.delete('searchQuery')
+		}
+		else {
+			searchParams.set('searchQuery',query);
+		}
+		setSearchParams(searchParams);
 		setSearchQuery(query);
 	}
 
