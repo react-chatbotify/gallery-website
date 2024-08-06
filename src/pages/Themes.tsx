@@ -104,14 +104,14 @@ const Themes: React.FC = () => {
 			{/* Main content area */}
 			<div className="order-1 md:order-0 lg:w-3/4 overflow-y-auto bg-gray-900 p-8 hide-scrollbar">
 				<div
-					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3
+					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 pb-8
 						gap-6 justify-items-center w-full"
 					style={{transform: "translateY(8vh)"}}
 				>
 					{/* todo: this no longer seems to be working, not observing loading animation */}
 					{loading
 						? Array.from({ length: 9 }).map((_, index) => (
-							<Skeleton key={`skeleton-${index}`} width="100%" height={400} />
+							<Skeleton key={`skeleton-${index}`} width="100%" containerClassName='w-full' height={400} />
 						))
 						: themes.map((theme: Theme) => (
 							<ThemeCard
