@@ -1,0 +1,12 @@
+name: Prettier Workflow
+run-name: ${{ github.actor }} running the job
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        run: npm install
+      - name: Run prettier check
+        run: npm run format:check
