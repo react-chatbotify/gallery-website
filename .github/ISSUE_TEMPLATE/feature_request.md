@@ -4,7 +4,6 @@ about: Suggest an idea to improve the gallery website!
 title: "[Feat]"
 labels: enhancement
 assignees: tjtanjin
-
 ---
 
 **Is Your Feature Request Related to a Problem? Please describe.**

@@ -11,34 +11,36 @@ import { galleryApiFetch } from "../services/apiService";
  * @param key identifies the user uniquely
  */
 const useLoginUser = (url: string, provider: string, key: string) => {
-	const [data, setData] = useState<UserData>();
-	const [loading, setLoading] = useState<boolean>(true);
-	const [error, setError] = useState<Error | null>(null);
-	const fetchInitiated = useRef<boolean>(false);
+  const [data, setData] = useState<UserData>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
+  const fetchInitiated = useRef<boolean>(false);
 
-	useEffect(() => {
-		// prevents duplicate fetching (todo: check is it due to strict mode?)
-		if (fetchInitiated.current) {
-			return;
-		}
+  useEffect(() => {
+    // prevents duplicate fetching (todo: check is it due to strict mode?)
+    if (fetchInitiated.current) {
+      return;
+    }
 
-		const fetchData = async () => {
-			try {
-				const response = await galleryApiFetch(`${url}?provider=${provider}&key=${key}`);
-				const result = await response.json();
-				setData(result);
-			} catch (err: unknown) {
-				setError(err as Error);
-			} finally {
-				setLoading(false);
-			}
-		};
+    const fetchData = async () => {
+      try {
+        const response = await galleryApiFetch(
+          `${url}?provider=${provider}&key=${key}`,
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (err: unknown) {
+        setError(err as Error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-		fetchData();
-		fetchInitiated.current = true;
-	}, [url, provider, key]);
+    fetchData();
+    fetchInitiated.current = true;
+  }, [url, provider, key]);
 
-	return { data, loading, error };
+  return { data, loading, error };
 };
 
 export default useLoginUser;

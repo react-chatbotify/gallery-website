@@ -2,7 +2,6 @@
 name: Task
 about: Create a task to track work to be done for the gallery website (internal use)!
 title: "[Task]"
-
 ---
 
 **Task Description:**
@@ -15,6 +14,7 @@ State the expected deliverable(s) for this task (e.g. lint.yml file, configured 
 Add any other context about the task here.
 
 **Reminders:**
+
 - Assign task to a project (required)
 - Assign task to a sprint (required)
 - Assign task to a developer (optional)

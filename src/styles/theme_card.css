@@ -1,62 +1,62 @@
 /* todo: consider co-locating this file with where theme card component is */
 .theme-card-info {
-    @apply p-4 pb-0 flex flex-col justify-between h-[145px] rounded-lg border-slate-500 border-slate-400 -translate-y-10 bg-white;
-    box-shadow: var(--smooth-shadow);
+  @apply p-4 pb-0 flex flex-col justify-between h-[145px] rounded-lg border-slate-500 border-slate-400 -translate-y-10 bg-white;
+  box-shadow: var(--smooth-shadow);
 }
 
 .theme-card-author {
-    @apply text-sm font-medium mb-0 rounded-xl px-3 text-white -translate-x-6 translate-y-2 flex items-center;
-    box-shadow: var(--smooth-shadow);
-    background-color: var(--main-color);
+  @apply text-sm font-medium mb-0 rounded-xl px-3 text-white -translate-x-6 translate-y-2 flex items-center;
+  box-shadow: var(--smooth-shadow);
+  background-color: var(--main-color);
 }
 
 .theme-card-title {
-    @apply text-sm font-medium mb-2 rounded-r-xl px-3 py-2 text-white -translate-x-6 inline-flex items-center;
-    box-shadow: var(--smooth-shadow);
-    background-color: var(--main-color);
+  @apply text-sm font-medium mb-2 rounded-r-xl px-3 py-2 text-white -translate-x-6 inline-flex items-center;
+  box-shadow: var(--smooth-shadow);
+  background-color: var(--main-color);
 }
 
 .theme-card-fav {
-    @apply rounded-l-xl px-3 py-2 translate-x-6 w-[50px] h-[36px] inline-flex items-center;
-    box-shadow: var(--smooth-shadow);
-    border: 0.5px solid var(--main-color);
-    background-color: white;
-    transition: all 0.4s ease;
+  @apply rounded-l-xl px-3 py-2 translate-x-6 w-[50px] h-[36px] inline-flex items-center;
+  box-shadow: var(--smooth-shadow);
+  border: 0.5px solid var(--main-color);
+  background-color: white;
+  transition: all 0.4s ease;
 }
 
 .theme-card-fav.active {
-    background-color: var(--main-color);
+  background-color: var(--main-color);
 }
 
 .theme-card-fav.active > svg {
-    scale: 1.2;
+  scale: 1.2;
 }
 
 .theme-card-github {
-    @apply rounded-xl translate-x-6 flex items-center p-1 w-[25px] h-[25px] self-end;
-    box-shadow: var(--smooth-shadow);
-    background-color: var(--main-color);
+  @apply rounded-xl translate-x-6 flex items-center p-1 w-[25px] h-[25px] self-end;
+  box-shadow: var(--smooth-shadow);
+  background-color: var(--main-color);
 }
 
 .theme-card-details {
-    @apply opacity-0 z-30 absolute top-1/2 w-full transition ease-in-out group-hover:opacity-100 text-sm font-medium mb-2 px-3 py-2 text-white;
-    background-color: var(--main-color);
-    backdrop-filter: 15px;
+  @apply opacity-0 z-30 absolute top-1/2 w-full transition ease-in-out group-hover:opacity-100 text-sm font-medium mb-2 px-3 py-2 text-white;
+  background-color: var(--main-color);
+  backdrop-filter: 15px;
 }
 
 .theme-card-download {
-    @apply text-sm font-medium mb-2 px-3 py-2 text-white;
-    background-color: var(--main-color);
+  @apply text-sm font-medium mb-2 px-3 py-2 text-white;
+  background-color: var(--main-color);
 }
 
 .theme-card-preview {
-    @apply text-sm font-medium mb-0 rounded-xl px-3 text-white translate-x-6 translate-y-2 flex items-center self-end bg-white transition ease-in-out;
-    box-shadow: var(--smooth-shadow);
-    color: var(--main-color);
-    border: 0.5px solid var(--main-color);
+  @apply text-sm font-medium mb-0 rounded-xl px-3 text-white translate-x-6 translate-y-2 flex items-center self-end bg-white transition ease-in-out;
+  box-shadow: var(--smooth-shadow);
+  color: var(--main-color);
+  border: 0.5px solid var(--main-color);
 }
 
 .theme-card-preview.active {
-    @apply text-white;
-    background-color: var(--main-color);
+  @apply text-white;
+  background-color: var(--main-color);
 }

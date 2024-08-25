@@ -1,83 +1,83 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
-import { handleLogin } from '../services/authService';
-import { useAuth } from '../context/AuthContext';
-import { SiteConfig } from '../constants/SiteConfig';
+import { handleLogin } from "../services/authService";
+import { useAuth } from "../context/AuthContext";
+import { SiteConfig } from "../constants/SiteConfig";
 import logo from "../assets/images/logo.png";
 
 /**
  * Greets user as they visit the home (landing) page.
  */
 const HomePage = () => {
-	// used to render different text if user is logged in
-	const { isLoggedIn, userData } = useAuth()
+  // used to render different text if user is logged in
+  const { isLoggedIn, userData } = useAuth();
 
-	// handles navigation
-	const navigate = useNavigate()
+  // handles navigation
+  const navigate = useNavigate();
 
-	return (
-		<div className="relative bg-black text-white min-h-screen flex">
-			<div className="md:w-1/2 flex flex-col justify-center items-center p-10 fade-down">
-				<h1
-					id="title"
-					className="text-6xl font-bold text-center leading-tight mb-4"
-				>
-					Welcome to <br className="md:hidden" /> {SiteConfig.siteName}
-				</h1>
-				{isLoggedIn ? (
-					<p id="subtitle" className="text-lg text-center mb-8">
-						It&apos;s good to see you, {userData?.name}!
-					</p>
-				) : (
-					<p id="subtitle" className="text-lg text-center mb-8">
-						Browse, rate and share themes for your chatbot today!
-					</p>
-				)}
-				<div className="flex justify-center">
-					{!isLoggedIn && (
-						<button
-							type="button"
-							className="bg-white text-black px-6 py-3 rounded-md mr-4
+  return (
+    <div className="relative bg-black text-white min-h-screen flex">
+      <div className="md:w-1/2 flex flex-col justify-center items-center p-10 fade-down">
+        <h1
+          id="title"
+          className="text-6xl font-bold text-center leading-tight mb-4"
+        >
+          Welcome to <br className="md:hidden" /> {SiteConfig.siteName}
+        </h1>
+        {isLoggedIn ? (
+          <p id="subtitle" className="text-lg text-center mb-8">
+            It&apos;s good to see you, {userData?.name}!
+          </p>
+        ) : (
+          <p id="subtitle" className="text-lg text-center mb-8">
+            Browse, rate and share themes for your chatbot today!
+          </p>
+        )}
+        <div className="flex justify-center">
+          {!isLoggedIn && (
+            <button
+              type="button"
+              className="bg-white text-black px-6 py-3 rounded-md mr-4
 								hover:bg-blue-500 transition-colors duration-300"
-							onClick={() => {
-								handleLogin('/themes')
-							}}
-						>
-							Login
-						</button>
-					)}
-					<button
-						type="button"
-						className="border border-white px-6 py-3 rounded-md
+              onClick={() => {
+                handleLogin("/themes");
+              }}
+            >
+              Login
+            </button>
+          )}
+          <button
+            type="button"
+            className="border border-white px-6 py-3 rounded-md
 							hover:bg-purple-800 transition-colors duration-300"
-						onClick={() => navigate('/themes')}
-					>
-						Browse Themes
-					</button>
-				</div>
-				{/* todo: add logos to link to documentation, github, discord etc */}
+            onClick={() => navigate("/themes")}
+          >
+            Browse Themes
+          </button>
+        </div>
+        {/* todo: add logos to link to documentation, github, discord etc */}
 
-				<div className="mt-5 w-40 h-16 flex items-center flex-row gap-4 justify-center">
-					<Link to="https://github.com/tjtanjin/react-chatbotify">
-						<svg
-							className="fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
-							width="35px"
-							height="35px"
-							viewBox="0 0 24.00 24.00"
-							fill="#fff"
-							xmlns="http://www.w3.org/2000/svg"
-							stroke="#fff"
-						>
-							<g id="SVGRepo_bgCarrier" strokeWidth="0" />
-							<g
-								id="SVGRepo_tracerCarrier"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<g id="SVGRepo_iconCarrier">
-								{' '}
-								<path
-									d="M9.29183 21V18.4407L9.3255 16.6219C9.36595 16.0561 9.58639 15.5228 9.94907
+        <div className="mt-5 w-40 h-16 flex items-center flex-row gap-4 justify-center">
+          <Link to="https://github.com/tjtanjin/react-chatbotify">
+            <svg
+              className="fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
+              width="35px"
+              height="35px"
+              viewBox="0 0 24.00 24.00"
+              fill="#fff"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#fff"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M9.29183 21V18.4407L9.3255 16.6219C9.36595 16.0561 9.58639 15.5228 9.94907
 										15.11C9.95438 15.1039 9.95972 15.0979 9.9651 15.0919C9.9791 15.0763 9.96988
 										15.0511 9.94907 15.0485V15.0485C7.52554 14.746 5.0005 13.7227 5.0005
 										9.26749C4.9847 8.17021 5.3427 7.10648 6.00437 6.27215C6.02752 6.24297
@@ -101,40 +101,41 @@ const HomePage = () => {
 										15.015V15.015C14.0073 15.0165 14.001 15.0334 14.0105 15.0439C14.0141 15.0479
 										14.0178 15.0519 14.0214 15.0559C14.2671 15.3296 14.4577 15.6544 14.5811
 										16.0103C14.7101 16.3824	14.7626 16.7797 14.7351 17.1754V21"
-									stroke="#323232"
-									strokeWidth="0.8640000000000001"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-								<path
-									d="M4 17C4.36915 17.0523 4.72159 17.1883 5.03065 17.3975C5.3397 17.6068 5.59726
+                  stroke="#323232"
+                  strokeWidth="0.8640000000000001"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+                <path
+                  d="M4 17C4.36915 17.0523 4.72159 17.1883 5.03065 17.3975C5.3397 17.6068 5.59726
 										17.8838 5.7838 18.2078C5.94231 18.4962 6.15601 18.7504 6.41264 18.9557C6.66927
 										19.161 6.96379 19.3135 7.27929 19.4043C7.59478 19.4952 7.92504 19.5226 8.25112
 										19.485C8.5772 19.4475 8.89268 19.3457 9.17946 19.1855"
-									stroke="#323232"
-									strokeWidth="0.8640000000000001"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-							</g>
-						</svg>
-					</Link>
+                  stroke="#323232"
+                  strokeWidth="0.8640000000000001"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+              </g>
+            </svg>
+          </Link>
 
-					<Link to="https://discord.gg/6R4DK4G5Zh">
-						<svg
-							className=" fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
-							fill="#000000"
-							viewBox="0 0 24 24"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g id="SVGRepo_bgCarrier" strokeWidth="0" />
-							<g
-								id="SVGRepo_tracerCarrier"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<g id="SVGRepo_iconCarrier">
-								<path d="M18.942 5.556a16.299 16.299 0 0 0-4.126-1.297c-.178.321-.385.754-.529
+          <Link to="https://discord.gg/6R4DK4G5Zh">
+            <svg
+              className=" fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
+              fill="#000000"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M18.942 5.556a16.299 16.299 0 0 0-4.126-1.297c-.178.321-.385.754-.529
 									1.097a15.175 15.175 0 0 0-4.573 0 11.583 11.583 0 0 0-.535-1.097 16.274 16.274
 									0 0 0-4.129 1.3c-2.611 3.946-3.319 7.794-2.965 11.587a16.494 16.494 0 0 0 5.061
 									2.593 12.65 12.65 0 0 0 1.084-1.785 10.689 10.689 0 0
@@ -144,80 +145,80 @@ const HomePage = () => {
 									0-1.798-.922-1.798-2.045s.793-2.047 1.798-2.047 1.815.922 1.798 2.047c.001
 									1.123-.793 2.045-1.798 2.045zm6.644 0c-.988 0-1.798-.922-1.798-2.045s.793-2.047
 									1.798-2.047	1.815.922 1.798 2.047c0 1.123-.793 2.045-1.798 2.045z"
-								/>
-							</g>
-						</svg>
-					</Link>
+                />
+              </g>
+            </svg>
+          </Link>
 
-					<Link to="https://react-chatbotify.com/docs/introduction/quickstart">
-						<svg
-							className=" fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
-							width="35px"
-							height="35px"
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<g id="SVGRepo_bgCarrier" strokeWidth="0" />
-							<g
-								id="SVGRepo_tracerCarrier"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							/>
-							<g id="SVGRepo_iconCarrier">
-								{' '}
-								<path
-									d="M4 4C4 3.44772 4.44772 3 5 3H14H14.5858C14.851 3 15.1054 3.10536 15.2929
+          <Link to="https://react-chatbotify.com/docs/introduction/quickstart">
+            <svg
+              className=" fill-white w-8 hover:fill-blue-500 transition-colors duration-300"
+              width="35px"
+              height="35px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth="0" />
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M4 4C4 3.44772 4.44772 3 5 3H14H14.5858C14.851 3 15.1054 3.10536 15.2929
 										3.29289L19.7071 7.70711C19.8946 7.89464 20 8.149 20 8.41421V20C20 20.5523
 										19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V4Z"
-									stroke="#200E32"
-									strokeWidth="1.2"
-									strokeLinecap="round"
-								/>{' '}
-								<path
-									d="M20 8H15V3"
-									stroke="#200E32"
-									strokeWidth="1.2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-								<path
-									d="M7.5 13H7V17H7.5C8.60457 17 9.5 16.1046 9.5 15C9.5 13.8954 8.60457 13 7.5 13Z"
-									stroke="#200E32"
-									strokeWidth="1.2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-								<path
-									d="M17.5 13L17 13C16.4477 13 16 13.4477 16 14V16C16 16.5523
+                  stroke="#200E32"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />{" "}
+                <path
+                  d="M20 8H15V3"
+                  stroke="#200E32"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+                <path
+                  d="M7.5 13H7V17H7.5C8.60457 17 9.5 16.1046 9.5 15C9.5 13.8954 8.60457 13 7.5 13Z"
+                  stroke="#200E32"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+                <path
+                  d="M17.5 13L17 13C16.4477 13 16 13.4477 16 14V16C16 16.5523
 										16.4477 17 17 17H17.5"
-									stroke="#200E32"
-									strokeWidth="1.2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-								<path
-									d="M11.5 14C11.5 13.4477 11.9477 13 12.5 13H13C13.5523 13 14
+                  stroke="#200E32"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+                <path
+                  d="M11.5 14C11.5 13.4477 11.9477 13 12.5 13H13C13.5523 13 14
 										13.4477 14 14V16C14 16.5523 13.5523 17 13 17H12.5C11.9477
 										17 11.5 16.5523 11.5 16V14Z"
-									stroke="#200E32"
-									strokeWidth="1.2"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>{' '}
-							</g>
-						</svg>
-					</Link>
-				</div>
-			</div>
+                  stroke="#200E32"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />{" "}
+              </g>
+            </svg>
+          </Link>
+        </div>
+      </div>
 
-			<div 
-				className="md:w-1/2 absolute top-0 bottom-0 right-0
+      <div
+        className="md:w-1/2 absolute top-0 bottom-0 right-0
 					opacity-40 bg-no-repeat bg-cover bg-center animate-bob"
-				style={{backgroundSize: "70%", backgroundImage: `url(${logo})`}}
-			/>
-		</div>
-	)
-}
+        style={{ backgroundSize: "70%", backgroundImage: `url(${logo})` }}
+      />
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;

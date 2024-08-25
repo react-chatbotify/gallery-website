@@ -4,7 +4,6 @@ about: Seek help with using the gallery website!
 title: "[Help]"
 labels: help wanted
 assignees: tjtanjin
-
 ---
 
 **Help Description**

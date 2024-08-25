@@ -6,11 +6,9 @@
  */
 const galleryApiFetch = (url: string, options = {}) => {
   return fetch(url, {
-      ...options,
-      credentials: 'include',
+    ...options,
+    credentials: "include",
   });
-}
+};
 
-export {
-  galleryApiFetch
-}
+export { galleryApiFetch };
