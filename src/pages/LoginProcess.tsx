@@ -4,10 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useLoginUser from '../hooks/useFetchUserData';
 import { useAuth } from '../context/AuthContext';
 import { Endpoints } from '../constants/Endpoints';
-// import Spinner from '../components/Spinner/Spinner';
-// import Spinner2 from '../components/Spinner2/Spinner2';
-// import Spinner3 from '../components/Spinner3/Spinner3';
-import Spinner3 from '../components/Spinner4/Spinner4';
+import Spinner from '../components/Spinner/Spinner';
+
 const LoginProcessPage = () => {
 	const { setUserData, setIsLoggedIn } = useAuth();
 	const navigate = useNavigate();
@@ -34,7 +32,7 @@ const LoginProcessPage = () => {
 	// Apply black background during loading
 	return (
 		<div className="h-screen w-full bg-black flex justify-center items-center">
-			{loading && <Spinner3 />}
+			{loading && <Spinner />}
 			{error && <div className="text-white">Error: {error.message}</div>}
 		</div>
 	);
