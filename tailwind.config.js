@@ -8,6 +8,14 @@ export default {
 		},
 		extend: {
 			keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        pulse: {
+        '50%': {
+            opacity: .1
+        },
 				spin: {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' },
@@ -26,6 +34,8 @@ export default {
 				},
 			},
 			animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        pulse: 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				spin: 'spin 2s linear infinite',
 				scaleUp1: 'scaleUp 2s ease-in-out infinite',
 				scaleUp2: 'scaleUp 2s ease-in-out infinite 0.5s',
