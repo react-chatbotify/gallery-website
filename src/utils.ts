@@ -9,7 +9,7 @@ const fetchFile = async (url: string) => {
 	return response.blob()
 }
 
-export const downloadThemeContent = async (
+const downloadThemeContent = async (
 	settingsUrl: string,
 	inlineStylesUrl: string,
 	cssStylesUrl: string,
@@ -30,4 +30,8 @@ export const downloadThemeContent = async (
 	} catch (error) {
 		console.error('Error downloading files:', error)
 	}
+}
+
+export {
+	downloadThemeContent
 }

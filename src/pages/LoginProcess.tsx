@@ -10,10 +10,15 @@ const LoginProcessPage = () => {
 	const { setUserData, setIsLoggedIn } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	// Retrieve provider and key from query params to be used for getting user data
 	const queryParams = new URLSearchParams(location.search);
 	const key = queryParams.get('key') as string;
 	const provider = queryParams.get('provider') as string;
+
+	// Fetch user data
 	const { data, loading, error } = useLoginUser(Endpoints.loginUser, provider, key);
+
 	useEffect(() => {
 		if (loading || error) {
 			return;
@@ -29,6 +34,7 @@ const LoginProcessPage = () => {
 			}
 		}
 	}, [loading, error, data]);
+
 	// Apply black background during loading
 	return (
 		<div className="h-screen w-full bg-black flex justify-center items-center">
@@ -37,4 +43,5 @@ const LoginProcessPage = () => {
 		</div>
 	);
 };
+
 export default LoginProcessPage;

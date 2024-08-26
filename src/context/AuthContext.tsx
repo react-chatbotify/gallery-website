@@ -8,19 +8,19 @@ import React, {
 import { UserData } from '../interfaces/UserData'
 
 type AuthContextType = {
-  isLoggedIn: boolean
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-  userData: UserData | null
-  setUserData: React.Dispatch<React.SetStateAction<UserData | null>>
+	isLoggedIn: boolean
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+	userData: UserData | null
+	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 type AuthProviderProps = {
-  children: ReactNode
+	children: ReactNode
 }
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
 		// Initialize is_logged_in with the value from local storage or false if it doesn't exist
 		const storedIsLoggedIn = localStorage.getItem('is_logged_in')
@@ -50,10 +50,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	)
 }
 
-export const useAuth = (): AuthContextType => {
+const useAuth = (): AuthContextType => {
 	const context = useContext(AuthContext)
 	if (!context) {
 		throw new Error('useAuth must be used within an AuthProvider')
 	}
 	return context
+}
+
+export {
+	AuthProvider,
+	useAuth
 }

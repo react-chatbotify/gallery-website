@@ -1,5 +1,5 @@
 // placeholders for local development by public contributors
-export const Placeholders = {
+const Placeholders = {
 	themes: [
 		{id: "minimal_midnight", favorites_count: 0},
 		{id: "terminal", favorites_count: 0},
@@ -13,4 +13,8 @@ export const Placeholders = {
 		{id: "solid_purple_haze", favorites_count: 0},
 		{id: "cyborg", favorites_count: 0},
 	]
+}
+
+export {
+	Placeholders
 }

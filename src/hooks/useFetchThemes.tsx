@@ -4,6 +4,7 @@ import { ApiTheme } from "../interfaces/ApiTheme";
 import { getGitHubThemeData } from "../services/themeService";
 import { Theme } from "../interfaces/Theme";
 import { Placeholders } from "../constants/Placeholders";
+import { galleryApiFetch } from "../services/apiService";
 
 /**
  * Fetches themes from the backend api.
@@ -34,7 +35,7 @@ const useFetchThemes = (
 						finalUrl += `&searchQuery=${encodeURIComponent(searchQuery)}`;
 					}
 
-					const response = await fetch(finalUrl);
+					const response = await galleryApiFetch(finalUrl);
 					apiThemes = await response.json();
 				} else {
 					apiThemes = Placeholders.themes;

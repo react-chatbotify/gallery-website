@@ -5,6 +5,7 @@ import { handleLogin } from '../../services/authService';
 import { useAuth } from '../../context/AuthContext';
 import { SiteConfig } from '../../constants/SiteConfig';
 import logo from '../../assets/images/logo.png';
+import AppThemeToggle from './AppThemeToggle';
 
 /**
  * Navigation bar for users to navigate between pages.
@@ -217,6 +218,7 @@ const NavigationBar = () => {
 									setUserData(null)
 									navigate('/')
 								}}
+								className="mr-8"
 							>
 								Logout
 							</button>
@@ -227,12 +229,15 @@ const NavigationBar = () => {
 						<button
 							type="button"
 							onClick={() => handleLogin()}
-							className="hover:text-blue-500"
+							className="hover:text-blue-500 mr-8"
 						>
 							Login
 						</button>
 					</li>
 				)}
+				<li>
+					<AppThemeToggle />
+				</li>
 			</ul>
 		</nav>
 	)

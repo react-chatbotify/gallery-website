@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import { CalendarDays, Github, LucideMapPin } from 'lucide-react';
 
 import { useAuth } from '../context/AuthContext';
 import botAvatar from '../assets/images/bot_avatar.png';
+import { Endpoints } from '../constants/Endpoints';
+import { galleryApiFetch } from '../services/apiService';
 
 /**
  * Displays user profile information, owned themes/plugins and favorited themes/plugins.
  */
 const UserProfilePage: React.FC = () => {
-	const { userData } = useAuth()
+	const { userData, setUserData } = useAuth()
+
+	useEffect(() => {
+		refreshUserData();
+	}, [])
+
+	const refreshUserData = async () => {
+		try {
+			const response = await galleryApiFetch(Endpoints.fetchUserProfile);
+			const result = await response.json();
+			setUserData(result);
+		} catch {
+			// no update if error
+		}
+	}
 
 	return (
 		<main className="w-full h-screen bg-[#121212] text-white flex flex-col">
@@ -31,14 +47,14 @@ const UserProfilePage: React.FC = () => {
 							{userData?.name ? `${userData?.name}` : 'User Profile'}
 						</h1>
 						<p className="text-base">Status:</p>
-						{userData?.bio && <p className="text-base">{userData?.bio}</p>}
+						{userData?.status && <p className="text-base">{userData?.status}</p>}
 					</div>
 				</div>
 				<div className="mt-6">
 					<div className="flex items-center mb-4">
 						<Github className="mr-2" />
-						<Link to={userData?.html_url as string} className="text-sm">
-							{userData?.login}
+						<Link to={userData?.profile_url as string} className="text-sm">
+							{userData?.handle}
 						</Link>
 					</div>
 					<div className="flex items-center mb-4">

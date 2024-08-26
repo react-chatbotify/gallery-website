@@ -11,6 +11,7 @@ import ThemeBuilderPage from './pages/ThemeBuilder';
 import UserProfilePage from './pages/UserProfile'
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import { AuthProvider } from './context/AuthContext'
+import { AppThemeProvider } from './context/AppThemeContext';
 import ProtectedRoute from './routes/ProtectedRoute'
 import LoginProcessPage from './pages/LoginProcess'
 
@@ -67,7 +68,9 @@ const router = createBrowserRouter(routes)
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<AuthProvider>
-			<RouterProvider router={router} />
+			<AppThemeProvider>
+				<RouterProvider router={router} />
+			</AppThemeProvider>
 		</AuthProvider>
 	</React.StrictMode>
 )

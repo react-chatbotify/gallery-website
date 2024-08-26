@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
 import { UserData } from "../interfaces/UserData";
+import { galleryApiFetch } from "../services/apiService";
 
 /**
- * Fetches user data from the backend api.
+ * Logs a user in by calling the backend api.
  *
  * @param url url to fetch user data from
  * @param provider oauth login provider being used
- * @param uuid identifies the user uniquely
+ * @param key identifies the user uniquely
  */
-const useFetchUserData = (url: string, provider: string, uuid: string) => {
+const useLoginUser = (url: string, provider: string, key: string) => {
 	const [data, setData] = useState<UserData>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<Error | null>(null);
@@ -23,7 +24,7 @@ const useFetchUserData = (url: string, provider: string, uuid: string) => {
 
 		const fetchData = async () => {
 			try {
-				const response = await fetch(`${url}?provider=${provider}&uuid=${uuid}`);
+				const response = await galleryApiFetch(`${url}?provider=${provider}&key=${key}`);
 				const result = await response.json();
 				setData(result);
 			} catch (err: unknown) {
@@ -35,9 +36,9 @@ const useFetchUserData = (url: string, provider: string, uuid: string) => {
 
 		fetchData();
 		fetchInitiated.current = true;
-	}, [url, provider, uuid]);
+	}, [url, provider, key]);
 
 	return { data, loading, error };
 };
 
-export default useFetchUserData;
+export default useLoginUser;

@@ -1,3 +1,7 @@
-export const SiteConfig = {
+const SiteConfig = {
 	siteName: 'React ChatBotify Gallery'
+}
+
+export {
+	SiteConfig
 }

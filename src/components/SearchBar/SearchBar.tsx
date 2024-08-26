@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 type Props = {
 	onSearch: (query: string) => void;
@@ -9,8 +10,10 @@ type Props = {
  */
 const SearchBar: React.FC<Props> = ({ onSearch }) => {
 	// tracks current user search query
-	const [query, setQuery] = useState("");
-	const [previousQuery, setPreviousQuery] = useState("");
+  const [searchParams] = useSearchParams()
+  // initialize both query and previous query with searchParam if exists
+	const [query, setQuery] = useState(() => searchParams.get('searchQuery') || "");
+	const [previousQuery, setPreviousQuery] = useState(() => searchParams.get('searchQuery') || "");
 
 	// Handles the input change and sets the query state
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +40,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
 				className="w-full border rounded-md px-3 py-2"
+        
 			/>
 		</div>
 	)

@@ -1,7 +1,12 @@
 // endpoints for making requests
-export const Endpoints = {
+const Endpoints = {
 	fetchApiThemes: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/themes`,
-	fetchUserData: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,
+	fetchUserProfile: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/profile`,
 	fetchCacheThemes: import.meta.env.VITE_GITHUB_THEMES_CACHE_URL,
+	loginUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,
 	gitHubLoginUrl: "https://github.com/login/oauth/authorize"
+}
+
+export {
+	Endpoints
 }

@@ -2,16 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-	--main-color: #201E50;
-	--smooth-shadow: 
-	0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
-	0px 2.5px 5.3px rgba(0, 0, 0, 0.028),
-	0px 4.8px 10px rgba(0, 0, 0, 0.035),
-	0px 8.5px 17.9px rgba(0, 0, 0, 0.042),
-	0px 15.9px 33.4px rgba(0, 0, 0, 0.05),
-	0px 38px 80px rgba(0, 0, 0, 0.07);
+  --main-color: #201E50;
+  --smooth-shadow: 
+  0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
+  0px 2.5px 5.3px rgba(0, 0, 0, 0.028),
+  0px 4.8px 10px rgba(0, 0, 0, 0.035),
+  0px 8.5px 17.9px rgba(0, 0, 0, 0.042),
+  0px 15.9px 33.4px rgba(0, 0, 0, 0.05),
+  0px 38px 80px rgba(0, 0, 0, 0.07);
 }
+
+:root[app-theme="light"] {
+  /* Light Theme Accent Palette */
+  --accent-50: #020617;
+  --accent-100: #0F172A;
+  --accent-200: #1E293B;
+  --accent-300: #334155;
+  --accent-400: #475569;
+  --accent-500: #64748B;
+  --accent-600: #94A3B8;
+  --accent-700: #CBD5E1;
+  --accent-800: #E2E8F0;
+  --accent-900: #F1F5F9;
+  --accent-950: #F8FAFC;
+}
+
+:root[app-theme="dark"] {
+  /* Dark Theme Accent Palette */
+  --accent-50: #F8FAFC;
+  --accent-100: #F1F5F9;
+  --accent-200: #E2E8F0;
+  --accent-300: #C8D5E1;
+  --accent-400: #94A3B8;
+  --accent-500: #64748B;
+  --accent-600: #475569;
+  --accent-700: #334155;
+  --accent-800: #1E293B;
+  --accent-900: #0F172A;
+  --accent-950: #020617;
+}
+
+
 
 body {
 	margin: 0;

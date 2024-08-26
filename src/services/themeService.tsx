@@ -16,6 +16,7 @@ const getGitHubThemeData = async (apiTheme: ApiTheme) => {
 	const meta = await (await fetch(metaUrl)).json();
 
 	const contentUrl = `${cdnUrl}/${themeId}/${meta.version}`;
+  
 	// fetch contents
 	const displayFile = 'display.png';
 	const settingsFile = 'settings.json';
@@ -28,7 +29,8 @@ const getGitHubThemeData = async (apiTheme: ApiTheme) => {
 	const cssStylesUrl = `${contentUrl}/${cssStylesFile}`;
 
 	// todo: fetch from github url (can use jsdelivr cache too)
-	const authorImg = '';
+  
+	const authorImg = `https://avatars.githubusercontent.com/${meta.github}`
 
 	// todo: explore whether tags should be stored in database or via meta.json on github
 	const tags = ['beta'];
