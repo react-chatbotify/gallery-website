@@ -13,18 +13,7 @@
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateY(45deg) rotateX(45deg);
 }
-// .circle:nth-child(0) {
-//   position: absolute;
-//   background: transparent;
-//   border: 3px solid #fff;
-//   border-radius: 50%;
-//   left: 0vh;
-//   top: 0vh;
-//   width: 70vh;
-//   height: 70vh;
-//   -webkit-animation: spin Infinitys infinite linear;
-//   animation: spin Infinitys infinite linear;
-// }
+
 .circle:nth-child(1) {
   position: absolute;
   background: transparent;

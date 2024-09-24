@@ -1,5 +1,5 @@
-import styles from './spinner3.module.scss';
-function Spinner3() {
+import styles from './LoadingSpinner.module.scss';
+const LoadingSpinner = () =>  {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
@@ -23,4 +23,4 @@ function Spinner3() {
 		</div>
 	);
 }
-export default Spinner3;
+export default LoadingSpinner;

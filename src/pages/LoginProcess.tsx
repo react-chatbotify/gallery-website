@@ -1,10 +1,9 @@
-/* eslint-disable max-len */
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useLoginUser from '../hooks/useFetchUserData';
 import { useAuth } from '../context/AuthContext';
 import { Endpoints } from '../constants/Endpoints';
-import Spinner from '../components/Spinner/Spinner';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 const LoginProcessPage = () => {
 	const { setUserData, setIsLoggedIn } = useAuth();
@@ -34,11 +33,9 @@ const LoginProcessPage = () => {
 			}
 		}
 	}, [loading, error, data]);
-
-	// Apply black background during loading
 	return (
 		<div className="h-screen w-full bg-black flex justify-center items-center">
-			{loading && <Spinner />}
+			{loading && <LoadingSpinner />}
 			{error && <div className="text-white">Error: {error.message}</div>}
 		</div>
 	);
