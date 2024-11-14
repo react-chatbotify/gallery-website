@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Skeleton from "react-loading-skeleton";
 
 import { Theme } from "../../interfaces/Theme";
 import { useTranslation } from 'react-i18next';
 import "../../styles/theme_card.css";
-import ThemeModal from "./ThemeModal";
 import {  InfoIcon } from "lucide-react";
 
 type Props = {
@@ -13,17 +12,15 @@ type Props = {
   isPreviewed: boolean;
   onPreview: (name: string) => void;
   isLoading: boolean;
+  onViewDetails: (theme: Theme) => void
 };
 
 /**
  * Theme card component to hold the details of each theme in the themes page.
  */
-const ThemeCard: React.FC<Props> = ({ theme, isPreviewed, onPreview, isLoading }) => {
-	const [viewDetails, setViewDetails] = useState(false);
+const ThemeCard: React.FC<Props> = ({ theme, isPreviewed, onViewDetails, onPreview, isLoading }) => {
 
-	const onViewDetails = () => {
-		setViewDetails(true);
-	};
+
 
 	const onClickPreview = () => {
 		onPreview(theme.name)
@@ -68,7 +65,7 @@ const ThemeCard: React.FC<Props> = ({ theme, isPreviewed, onPreview, isLoading }
 				</div>
 				<div className="flex-1 basis-1/6 md:basis-1/6 flex flex-col">
 					<div className="flex items-center text-blue-500">
-						<button onClick={onViewDetails} className="text-sm my-4 w-fit mr-[3px]">
+						<button onClick={()=>(onViewDetails(theme))} className="text-sm my-4 w-fit mr-[3px]">
 							More Info
 						</button>
 						<InfoIcon size={15}/>
@@ -79,7 +76,7 @@ const ThemeCard: React.FC<Props> = ({ theme, isPreviewed, onPreview, isLoading }
 					</label>
 				</div>
 			</div>
-			<ThemeModal isOpen={viewDetails} theme={theme} onClose={() => setViewDetails(false)} />
+			
 		</>
 	);
 };

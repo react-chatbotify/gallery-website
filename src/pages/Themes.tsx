@@ -11,6 +11,9 @@ import ThemePreview from '../components/Themes/ThemePreview';
 import { InfoIcon } from 'lucide-react';
 
 import { useTranslation } from 'react-i18next';
+import ThemeModal from '@/components/Themes/ThemeModal';
+import { useEffect } from 'react';
+import { Theme } from '@/interfaces/Theme';
 
 /**
  * Displays themes for users to search, browse and rate.
@@ -25,6 +28,8 @@ const Themes: React.FC = () => {
 	const [searchQuery, setSearchQuery] = useState(
 		() => searchParams.get('searchQuery') || ''
 	);
+
+	const [focusedTheme, setFocusedTheme] = useState(false)
 
 	// id of themes being selected to be preview (and applied to the interactive chatbot)
 	const [previewIds, setPreviewIds] = useState<string[]>([]);
@@ -41,7 +46,47 @@ const Themes: React.FC = () => {
 		searchQuery
 	);
 
-	console.log(themes);
+	useEffect(()=>{
+		//to update the current focused theme based on url and fetched themes
+		const focusedThemeId = searchParams.get('theme') || '';
+		if(focusedThemeId == ''){
+			return;
+		}
+		const focusedThemeObject = themes.find(theme => theme.id === focusedThemeId);
+		if(!focusedThemeObject){
+			return
+		}
+		setFocusedTheme(focusedThemeObject as unknown as boolean)
+
+	}, [themes])
+
+	/**
+   * Handles the closinf of modal and cleanup of url
+   *
+   */
+	const modalCloseHandler = () => {
+		//first update the search params
+		setSearchParams(params => {
+			params.delete('theme')
+			return params;
+		})
+		return false;
+	}
+
+	/**
+   * Handles opening of the modal for a theme, and updates the url accordingly
+   *
+   * @param theme the theme to focus on
+   */
+	const modalOpenHandler = (theme: Theme) => {
+		setSearchParams(params => {
+			params.set('theme', theme.id)
+			return params;
+		})
+		return theme as unknown as boolean
+	}
+
+
 	/**
    * Handles setting of search query when user hits enter.
    *
@@ -75,6 +120,7 @@ const Themes: React.FC = () => {
 		return <div>Error: {error.message}</div>;
 	}
 
+
 	return (
 	// 92vh comes from 100vh - 8vh (the height of the navbar)
 		<div className="bg-accent-950 flex h-[92vh] w-full">
@@ -107,11 +153,17 @@ const Themes: React.FC = () => {
 								isPreviewed={previewIds.includes(theme.id)}
 								onPreview={() => onPreview(theme.id)}
 								isLoading={loading}
+								onViewDetails={(theme) => (setFocusedTheme(modalOpenHandler(theme)))}
 							/>
 						);
 					})}
 				</div>
 			</div>
+			{focusedTheme && <ThemeModal 
+				isOpen={focusedTheme} 
+				onClose={()=>(setFocusedTheme(modalCloseHandler))} 
+				theme={focusedTheme as unknown as Theme} 
+			/>}
 			{/* Drawer Section */}
 			<ThemePreview
 				setPreviewIds={setPreviewIds}
