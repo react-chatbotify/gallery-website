@@ -29,7 +29,7 @@ const Themes: React.FC = () => {
 		() => searchParams.get('searchQuery') || ''
 	);
 
-	const [focusedTheme, setFocusedTheme] = useState(false)
+	const [focusedTheme, setFocusedTheme] = useState<null | Theme>(null)
 
 	// id of themes being selected to be preview (and applied to the interactive chatbot)
 	const [previewIds, setPreviewIds] = useState<string[]>([]);
@@ -56,7 +56,7 @@ const Themes: React.FC = () => {
 		if(!focusedThemeObject){
 			return
 		}
-		setFocusedTheme(focusedThemeObject as unknown as boolean)
+		setFocusedTheme(focusedThemeObject)
 
 	}, [themes])
 
@@ -70,7 +70,7 @@ const Themes: React.FC = () => {
 			params.delete('theme')
 			return params;
 		})
-		return false;
+		return null;
 	}
 
 	/**
@@ -83,7 +83,7 @@ const Themes: React.FC = () => {
 			params.set('theme', theme.id)
 			return params;
 		})
-		return theme as unknown as boolean
+		return theme
 	}
 
 
@@ -159,11 +159,11 @@ const Themes: React.FC = () => {
 					})}
 				</div>
 			</div>
-			{focusedTheme && <ThemeModal 
-				isOpen={focusedTheme} 
+			<ThemeModal 
+				isOpen={focusedTheme !== null} 
 				onClose={()=>(setFocusedTheme(modalCloseHandler))} 
-				theme={focusedTheme as unknown as Theme} 
-			/>}
+				theme={focusedTheme as Theme} 
+			/>
 			{/* Drawer Section */}
 			<ThemePreview
 				setPreviewIds={setPreviewIds}
