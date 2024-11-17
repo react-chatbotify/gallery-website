@@ -28,6 +28,11 @@ const NavigationBar = () => {
 
 	// handles page navigation
 	const navigate = useNavigate()
+	const handleLogout = () => {
+		setIsLoggedIn(false)
+		setUserData(null)
+		navigate('/')
+	}
 
 	// menu used for mobile view
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -233,6 +238,7 @@ const NavigationBar = () => {
 										<button
 											className="block px-4 py-2 hover:bg-gray-700"
 											type="button"
+											onClick={handleLogout}
 										>
 											Logout
 										</button>
@@ -240,12 +246,12 @@ const NavigationBar = () => {
 								</>
 							) : (
 								<li className="my-1">
-									<Link
-										to="/login"
+									<button
+										onClick={() => handleLogin()}
 										className="block px-4 py-2 hover:bg-gray-700"
 									>
 										Login
-									</Link>
+									</button>
 								</li>
 							)}
 						</ul>
@@ -336,11 +342,7 @@ const NavigationBar = () => {
 						<li>
 							<button
 								type="button"
-								onClick={() => {
-									setIsLoggedIn(false)
-									setUserData(null)
-									navigate('/')
-								}}
+								onClick={handleLogout}
 								className="mr-8"
 							>
 								Logout
