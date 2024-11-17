@@ -49,11 +49,11 @@ const Themes: React.FC = () => {
 	useEffect(()=>{
 		//to update the current focused theme based on url and fetched themes
 		const focusedThemeId = searchParams.get('theme') || '';
-		if(focusedThemeId == ''){
+		if (focusedThemeId == '') {
 			return;
 		}
 		const focusedThemeObject = themes.find(theme => theme.id === focusedThemeId);
-		if(!focusedThemeObject){
+		if (!focusedThemeObject) {
 			return
 		}
 		setFocusedTheme(focusedThemeObject)
@@ -161,7 +161,7 @@ const Themes: React.FC = () => {
 			</div>
 			<ThemeModal 
 				isOpen={focusedTheme !== null} 
-				onClose={()=>(setFocusedTheme(modalCloseHandler))} 
+				onClose={()=>(setFocusedTheme(modalCloseHandler()))} 
 				theme={focusedTheme as Theme} 
 			/>
 			{/* Drawer Section */}
