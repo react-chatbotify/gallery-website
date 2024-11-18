@@ -9,7 +9,8 @@ export const ThemeCard: React.FC<GenericItemCardProps> = ({ themeImg, id, name, 
 				<h1 className="font-extrabold text-xl">{name}</h1>
 				<p className="text-primary-mutedForeground text-sm block ">{description}</p>
 				<div className="flex absolute  bottom-0 bg-primary-darkForeground flex-row gap-2">
-          <Link className=" cursor-pointer font-extrabold text-sm text-blue-500"  to={"/themes?theme="+encodeURIComponent(id)} >View Theme</Link>
+					<Link className=" cursor-pointer font-extrabold text-sm text-blue-500"  
+						to={"/themes?theme="+encodeURIComponent(id )} >View Theme</Link>
 					{/* {mode == 1 && <a className="cursor-pointer text-sm text-red-500">Remove favourite</a>} */}
 				</div>
 			</div>

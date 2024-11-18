@@ -1,5 +1,5 @@
 export interface PropTypes  { type: string, items: Array<any>, loading: boolean, error: any };
-export interface GenericItemCardProps  {mode: number, name: string, id?: number, themeImg: string, description: string};
+export interface GenericItemCardProps  {mode: number, name: string, id: string, themeImg: string, description: string};
 export type ItemsIterator = {items: Array<GenericItemCardProps>, mode: number, type: string, config: any};
 
 interface EmptyState {
