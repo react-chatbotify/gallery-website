@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import ThemeCard from '../components/Themes/ThemeCard';
 import SearchBar from '../components/SearchBar/SearchBar';
-import useFetchData from '../hooks/useFetchThemes';
+import useFetchData, { fetchThemesFromApi } from '../hooks/useFetchThemes';
 import { Endpoints } from '../constants/Endpoints';
 import { useSearchParams } from 'react-router-dom';
 import ThemePreview from '../components/Themes/ThemePreview';
@@ -54,9 +54,14 @@ const Themes: React.FC = () => {
 		}
 		const focusedThemeObject = themes.find(theme => theme.id === focusedThemeId);
 		if (!focusedThemeObject) {
-			return
+			//check if it exists in the list we havent search for yet
+			fetchThemesFromApi(undefined, 1, 1, focusedThemeId).then(
+				themes => setFocusedTheme(themes[0])
+			)
+		}else {
+			setFocusedTheme(focusedThemeObject)
 		}
-		setFocusedTheme(focusedThemeObject)
+	
 
 	}, [themes])
 
