@@ -19,33 +19,58 @@ function useFetchPlugins(
     const [plugins, setPlugins] = useState<Plugin[]>([]);
       const [isLoading, setIsLoading] = useState(false);
       const [error, setError] = useState("");
-    useEffect(function(){
-      
-      const fetchPlugins = async() => {
-        try{
-          setIsLoading(true)
-          if(searchQuery){
-           url += `?searchQuery=${searchQuery}`
-          }
-          console.log(url)
-          const data = await galleryApiFetch(url);
-          const plugins = await data.json()
-          setPlugins(plugins.data);
-        } catch(e){
-          
-        }
-        finally{
-          setIsLoading(false)
-        }
+    useEffect(function() {
+      // avoid race conditions
+      const controller = new AbortController()
+      let isAbort = false
+
+      setIsLoading(true)
+      setError("")
+      setPlugins([])
+
+      fetchPlugins(controller, url, searchQuery)
+
+      .then((plugins)=> {
+        setPlugins(plugins)
+        setError("")
+      })
+
+      .catch((err: Error) => {
+       if(err.name != 'AbortError') { 
+          setError(err.message);
       }
+        else {
+          isAbort = true
+        }
+      })
 
-       fetchPlugins();
+      .finally(() => {
+        if(!isAbort) setIsLoading(false)
+      })
 
-    },[searchQuery])
+      return () => controller.abort()
+    },[searchQuery, url, pageNum, pageSize])
 
 
 
     return {plugins, isLoading, error }
+}
+
+const fetchPlugins = async(controller: AbortController, url: string, searchQuery?: string) => {
+  try{
+    if(searchQuery){
+     url += `?searchQuery=${searchQuery}`
+    }
+    const data = await galleryApiFetch(url,{
+      signal: controller.signal
+    });
+    const plugins = await data.json()
+    return plugins.data
+  } catch(e: unknown){
+    if((e as Error).name != 'AbortError')
+    throw new Error("Problem fetching plugins!")
+    else throw e
+  }
 }
 
 

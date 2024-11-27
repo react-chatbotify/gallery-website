@@ -4,8 +4,8 @@ import { Plugin } from "../../interfaces/Plugin";
 type PluginCardProps = {
   plugin: Plugin;
 }
-export function PluginCard({plugin}:PluginCardProps) {
-	return <section className="border gap-4 flex flex-col max-w-[314px]  hover:scale-[1.01]   p-4 pt-6 m-auto w-full border-[#27272A] rounded-md h-[300px]">
+export function PluginCard({ plugin }: PluginCardProps) {
+	return <section className="border gap-4 flex flex-col max-w-[314px]  hover:scale-[1.01]   p-4 pt-6 m-auto w-full border-[#27272A] rounded-md min-h-[300px]">
 		<div className="flex-1 flex flex-col gap-4">
 			<div>
 				<div>
@@ -18,7 +18,7 @@ export function PluginCard({plugin}:PluginCardProps) {
 			<div className="text-white text-sm">
 				{plugin.description}
 			</div>
-			<div className="w-full">
+			<div className="w-full max-w-[200px]">
 				<img className="w-full"  src={plugin.imageURL} />
 			</div>
 		</div>
