@@ -12,11 +12,11 @@ import UserProfilePage from './pages/UserProfile'
 import AboutPage from './pages/About';
 import NavigationBar from './components/NavigationBar/NavigationBar'
 import { AuthProvider } from './context/AuthContext'
-import { AppThemeProvider } from './context/AppThemeContext';
 import ProtectedRoute from './routes/ProtectedRoute'
 import LoginProcessPage from './pages/LoginProcess'
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import { Provider } from './components/ui/provider';
 
 // eslint-disable-next-line
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
@@ -75,9 +75,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<I18nextProvider i18n={i18n}>
 			<AuthProvider>
-				<AppThemeProvider>
+				<Provider >
 					<RouterProvider router={router} />
-				</AppThemeProvider>
+				</Provider>
 			</AuthProvider>
 		</I18nextProvider>
 	</React.StrictMode>

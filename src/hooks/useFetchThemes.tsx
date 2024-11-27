@@ -5,6 +5,7 @@ import { getGitHubThemeData } from "../services/themeService";
 import { Theme } from "../interfaces/Theme";
 import { Placeholders } from "../constants/Placeholders";
 import { galleryApiFetch } from "../services/apiService";
+import { Endpoints } from "@/constants/Endpoints";
 
 /**
  * Fetches themes from the backend api.
@@ -25,37 +26,21 @@ const useFetchThemes = (
 	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			try {
-				let apiThemes = null;
-				if (url.startsWith("http")) {
-					let finalUrl = `${url}?pageSize=${pageSize}&pageNum=${pageNum}`;
-					if (searchQuery) {
-						finalUrl += `&searchQuery=${encodeURIComponent(searchQuery)}`;
-					}
+		setLoading(true);
+		fetchThemesFromApi(url, pageSize, pageNum, searchQuery)
 
-					const response = await galleryApiFetch(finalUrl);
-					const result = await response.json();
-					apiThemes = result.data;
-				} else {
-					apiThemes = Placeholders.themes;
-				}
+			.then(themes => {
+				setThemes(themes)
+			})
 
-				if (apiThemes) {
-					const themes = await fetchThemesFromGitHub(apiThemes);
-					setThemes(themes);
-				} else {
-					setError(Error("Failed to fetch theme."));
-				}
-			} catch (err: unknown) {
-				setError(err as Error);
-			} finally {
-				setLoading(false);
-			}
-		};
+			.catch(reason => {
+				setError(reason)
+			})
 
-		fetchData();
+			.finally(() => {
+				setLoading(false)
+			})
+
 	}, [url, pageSize, pageNum, searchQuery]);
 
 	return { themes, loading, error };
@@ -67,6 +52,46 @@ const useFetchThemes = (
 const fetchThemesFromGitHub = async (apiThemes: ApiTheme[]): Promise<Theme[]> => {
 	// todo: good to cache themes already fetched to reduce calls to cdn
 	return await Promise.all(apiThemes.map(apiTheme => getGitHubThemeData(apiTheme)));
+}
+
+export const fetchThemesFromApi = async (	
+	url: string = Endpoints.fetchApiThemes,
+	pageSize: number,
+	pageNum: number,
+	searchQuery?: string
+) => {
+
+	try {
+		let apiThemes = null;
+
+
+		if (url.startsWith("http")) {
+			let finalUrl = `${url}?pageSize=${pageSize}&pageNum=${pageNum}`;
+			if (searchQuery) {
+				finalUrl += `&searchQuery=${encodeURIComponent(searchQuery)}`;
+			}
+
+			// first fetch the list of themes as per the input parameters
+			const response = await galleryApiFetch(finalUrl);
+			const result = await response.json();
+			apiThemes = result.data;
+
+		} else {
+			apiThemes = Placeholders.themes;
+		}
+
+		//now fetch the details of each theme
+		if (apiThemes) {
+			return fetchThemesFromGitHub(apiThemes);
+		} else {
+			throw new Error('couldnt fetch themes')
+		}
+	} catch (err: any) {
+		throw new Error(err)
+	} 
+
+
+ 
 }
 
 export default useFetchThemes;

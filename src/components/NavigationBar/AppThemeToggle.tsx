@@ -16,7 +16,7 @@ const AppThemeToggle = () => {
 	console.log(appTheme)
 
 	return <div>
-		<button onClick={handleClick}>${appTheme}</button>
+		<button onClick={handleClick}>{appTheme}</button>
 	</div>
 }
 

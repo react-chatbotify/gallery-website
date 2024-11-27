@@ -6,16 +6,16 @@ import { downloadThemeContent } from '../../utils';
 import { Theme } from '../../interfaces/Theme';
 
 type ThemeModalProps = {
-  isOpen: boolean
-  onClose: () => void
-  theme: Theme
-}
+  isOpen: boolean;
+  onClose: () => void;
+  theme: Theme;
+};
 
 /**
  * Modal to popup for showing theme details.
  */
 const ThemeModal: React.FC<ThemeModalProps> = ({ isOpen, onClose, theme }) => {
-	const modalRef = useRef<HTMLDivElement>(null)
+	const modalRef = useRef<HTMLDivElement>(null);
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const {t} = useTranslation();
@@ -26,22 +26,22 @@ const ThemeModal: React.FC<ThemeModalProps> = ({ isOpen, onClose, theme }) => {
 				modalRef.current &&
         !modalRef.current.contains(event.target as Node)
 			) {
-				onClose()
+				onClose();
 			}
-		}
+		};
 
 		if (isOpen) {
-			document.addEventListener('mousedown', handleClickOutside)
-			document.body.style.overflow = 'hidden'
+			document.addEventListener('mousedown', handleClickOutside);
+			document.body.style.overflow = 'hidden';
 		}
 
 		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
-			document.body.style.overflow = 'unset'
-		}
-	}, [isOpen, onClose])
+			document.removeEventListener('mousedown', handleClickOutside);
+			document.body.style.overflow = 'unset';
+		};
+	}, [isOpen, onClose]);
 
-	if (!isOpen) return null
+	if (!isOpen) return null;
 
 	const onDownload = () => {
 		downloadThemeContent(
@@ -49,13 +49,14 @@ const ThemeModal: React.FC<ThemeModalProps> = ({ isOpen, onClose, theme }) => {
 			theme.content.inlineStyles,
 			theme.content.cssStyles,
 			theme.name
-		)
-	}
+		);
+	};
 
 	const modalContent = (
 		<div
 			className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50
-        flex items-center justify-center pointer-events-auto">
+        flex items-center justify-center pointer-events-auto"
+		>
 			<div
 				ref={modalRef}
 				className="relative bg-white p-6 rounded-lg shadow-lg max-w-screen-lg w-full m-4"
@@ -129,12 +130,12 @@ const ThemeModal: React.FC<ThemeModalProps> = ({ isOpen, onClose, theme }) => {
 				</div>
 			</div>
 		</div>
-	)
+	);
 
 	return ReactDOM.createPortal(
 		modalContent,
 		document.getElementById('modal-container') || document.body
-	)
-}
+	);
+};
 
-export default ThemeModal
+export default ThemeModal;

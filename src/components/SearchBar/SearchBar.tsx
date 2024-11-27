@@ -32,14 +32,13 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
 
 	return (
 		<div className="mb-8">
-			<h2 className="text-lg font-semibold mb-4">Search</h2>
 			<input
 				type="text"
 				placeholder="Search themes..."
 				value={query}
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
-				className="w-full border rounded-md px-3 py-2"
+				className="border rounded-md px-2 py-1 w-3/4 bg-accent-800 text-xs"
         
 			/>
 		</div>

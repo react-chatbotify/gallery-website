@@ -9,20 +9,33 @@ export default function HeroSection() {
 				Browse, rate and share themes for your chatbot today and more!
 			</h3>
 			<div className="flex mt-6 flex-col items-center sm:flex-row gap-2">
-
-        
-				<Link  to={"/themes"}>
-					<button className='bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px]  hover:to-primary-600 transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg'>
+				<Link to={"/themes"}>
+					<button
+						className="
+              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+              transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
+            "
+					>
 						Themes
 					</button>
 				</Link>
-				<Link  to={"/plugins"}>
-					<button className='bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px]  hover:to-primary-600 transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg'>
+				<Link to={"/plugins"}>
+					<button
+						className="
+              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+              transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
+            "
+					>
 						Plugins
 					</button>
 				</Link>
-				<Link  to={"https://react-chatbotify.com"}>
-					<button className='bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px]  hover:to-primary-600 transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg'>
+				<Link to={"https://react-chatbotify.com"}>
+					<button
+						className="
+              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+              transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
+            "
+					>
 						Documentation
 					</button>
 				</Link>
