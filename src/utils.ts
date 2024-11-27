@@ -32,6 +32,15 @@ const downloadThemeContent = async (
 	}
 }
 
+// Function which takes preview ids formatted as 'word1_word2' and returns it formatted as 'Word1 Word2'
+const formatPreviewIdToTitleCase = (input: string): string => {
+  return input
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export {
-	downloadThemeContent
+	downloadThemeContent,
+  formatPreviewIdToTitleCase
 }

@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { handleLogin } from '../../services/authService';
 import { useAuth } from '../../context/AuthContext';
-import { SiteConfig } from '../../constants/SiteConfig';
 import logo from '../../assets/images/logo.png';
 import AppThemeToggle from './AppThemeToggle';
 import { useTranslation } from 'react-i18next';
@@ -29,6 +28,11 @@ const NavigationBar = () => {
 
 	// handles page navigation
 	const navigate = useNavigate()
+	const handleLogout = () => {
+		setIsLoggedIn(false)
+		setUserData(null)
+		navigate('/')
+	}
 
 	// menu used for mobile view
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -41,7 +45,7 @@ const NavigationBar = () => {
 	const navbarRef = useRef<HTMLDivElement>(null)
 
 	useEffect(function(){
-		window.addEventListener('scroll',function(e){
+		window.addEventListener('scroll',function(){
 			if(navbarRef.current) {
 				if(window.scrollY >= 50) {
 					navbarRef.current.className = navBarClass + ' opacity-80 bg-black'
@@ -234,6 +238,7 @@ const NavigationBar = () => {
 										<button
 											className="block px-4 py-2 hover:bg-gray-700"
 											type="button"
+											onClick={handleLogout}
 										>
 											Logout
 										</button>
@@ -241,12 +246,12 @@ const NavigationBar = () => {
 								</>
 							) : (
 								<li className="my-1">
-									<Link
-										to="/login"
+									<button
+										onClick={() => handleLogin()}
 										className="block px-4 py-2 hover:bg-gray-700"
 									>
 										Login
-									</Link>
+									</button>
 								</li>
 							)}
 						</ul>
@@ -337,11 +342,7 @@ const NavigationBar = () => {
 						<li>
 							<button
 								type="button"
-								onClick={() => {
-									setIsLoggedIn(false)
-									setUserData(null)
-									navigate('/')
-								}}
+								onClick={handleLogout}
 								className="mr-8"
 							>
 								Logout

@@ -14,4 +14,5 @@ export interface UserData {
 	profileUrl: string;
 	provider: string;
 	providerUserId: string;
+  joindate?: string;
 }
