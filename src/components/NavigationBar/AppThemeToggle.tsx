@@ -1,5 +1,6 @@
 import { useAppTheme } from "../../context/AppThemeContext";
 import { useTranslation } from "react-i18next";
+import ToggleButton from "./ToggleButton";
 
 
 const AppThemeToggle = () => {
@@ -12,12 +13,9 @@ const AppThemeToggle = () => {
 	const handleClick = () => {
 		toggleAppTheme()
 	}
+  
+	return <ToggleButton onChange={handleClick} checked={appTheme === 'dark'} />
 
-	console.log(appTheme)
-
-	return <div>
-		<button onClick={handleClick}>{appTheme}</button>
-	</div>
 }
 
 export default AppThemeToggle;
