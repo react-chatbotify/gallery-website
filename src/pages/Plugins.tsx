@@ -22,13 +22,14 @@ const Plugins: React.FC = () => {
 			<div className='p-8 flex flex-col gap-8 max-w-[1024px] m-auto'>
 				<PluginSearchBar />
 				<div className='grid xs:grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-8'>
-					{isLoading ? Array.from({length : 9}).map((_ , i)=><Skeleton key={i} width="280px" containerClassName='m-auto' height="300px" />) :
+					{isLoading ? Array.from({length : 9}).map((_ , i) =>
+						<Skeleton key={i} width="280px" containerClassName='m-auto' height="300px" />) :
 						plugins.length > 0 && plugins.map(plugin =>{
 							return <PluginCard key={plugin.id} plugin={plugin} />
 						})}
 				</div>
-				{!isLoading && error && <h1 className='text-white text-lg flex items-center justify-center '>{error}</h1>
-	 }
+				{!isLoading && error && 
+				<h1 className='text-white text-lg flex items-center justify-center '>{error}</h1>}
 				{
 					!error && !isLoading && plugins.length == 0 &&
 					<h1 className='text-white text-lg flex items-center justify-center '>No search results found...</h1>

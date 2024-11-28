@@ -5,7 +5,9 @@ type PluginCardProps = {
   plugin: Plugin;
 }
 export function PluginCard({ plugin }: PluginCardProps) {
-	return <section className="border gap-4 flex flex-col max-w-[314px]  hover:scale-[1.01]   p-4 pt-6 m-auto w-full border-card-border rounded-md h-[300px]">
+	return <section className="border gap-4 flex 
+  flex-col max-w-[314px]  hover:scale-[1.01]
+    p-4 pt-6 m-auto w-full border-card-border rounded-md h-[300px]">
 		<div className="flex-1 flex flex-col gap-4">
 			<div>
 				<div>
@@ -27,9 +29,11 @@ export function PluginCard({ plugin }: PluginCardProps) {
 				Read more
 			</button>
       
-			<button className="bg-brand-purple text-[12px] flex justify-center items-center gap-1  px-4 pt-[6px] pb-[7px] rounded-md text-white"><span>
-				View in NPM 
-			</span>
+			<button className="bg-brand-purple text-[12px] flex justify-center
+       items-center gap-1  px-4 pt-[6px] pb-[7px] rounded-md text-white">
+				<span>
+					View in NPM 
+				</span>
 				<ExternalLink className="w-4" /></button>
 		</div>
     
