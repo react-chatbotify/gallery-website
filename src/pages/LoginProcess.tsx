@@ -10,7 +10,7 @@ const LoginProcessPage = () => {
 	const { setUserData, setIsLoggedIn } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
-  const [gracetime, setgracetime] = useState(false)
+	const [gracetime, setgracetime] = useState(false)
 
 	// Retrieve provider and key from query params to be used for getting user data
 	const queryParams = new URLSearchParams(location.search);
@@ -28,10 +28,10 @@ const LoginProcessPage = () => {
 			setUserData(data);
 			setIsLoggedIn(true);
 			const redirectUri = localStorage.getItem('login_redirect_uri');
-      if(gracetime){
-        //keep waiting until gracetime ends
-        return;
-      }
+			if(gracetime){
+				//keep waiting until gracetime ends
+				return;
+			}
 			if (redirectUri) {
 				window.location.href = redirectUri;
 			} else {
@@ -39,15 +39,15 @@ const LoginProcessPage = () => {
 			}
 		}
 	}, [loading, error, data, gracetime]);
-  useEffect(()=> {
-    if(loading){
-      setgracetime(true)
-      setTimeout(() => {
-        //allow the spinner to remove from render once the gracetime elapses
-        setgracetime(false)
-      }, SiteConfig.loginSpinnerGraceTime);
-    }
-  }, [loading])
+	useEffect(()=> {
+		if(loading){
+			setgracetime(true)
+			setTimeout(() => {
+				//allow the spinner to remove from render once the gracetime elapses
+				setgracetime(false)
+			}, SiteConfig.loginSpinnerGraceTime);
+		}
+	}, [loading])
 	return (
 		<div className="h-screen w-full bg-black flex justify-center items-center">
 			{(loading || gracetime) && <LoadingSpinner />}

@@ -55,7 +55,8 @@ export default {
 				'black': '#000000',
 				'white': '#ffffff',
 				'slate-400': '#94a3b8',
-				'slate-500': '#64748b'
+				'slate-500': '#64748b',
+        'card-border': '#27272A'
       },
       keyframes: {
 				wiggle: {
