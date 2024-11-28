@@ -27,7 +27,7 @@ const Plugins: React.FC = () => {
 							return <PluginCard key={plugin.id} plugin={plugin} />
 						})}
 				</div>
-        {!isLoading && error && <h1 className='text-white text-lg flex items-center justify-center '>{error}</h1>
+				{!isLoading && error && <h1 className='text-white text-lg flex items-center justify-center '>{error}</h1>
 	 }
 				{
 					!error && !isLoading && plugins.length == 0 &&
