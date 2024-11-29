@@ -1,7 +1,6 @@
 import { useAppTheme } from "../../context/AppThemeContext";
 import { useTranslation } from "react-i18next";
-import ToggleButton from "./ToggleButton";
-
+import { DarkModeSwitch } from "react-toggle-dark-mode"
 
 const AppThemeToggle = () => {
 	// context for handling app theme
@@ -14,7 +13,15 @@ const AppThemeToggle = () => {
 		toggleAppTheme()
 	}
   
-	return <ToggleButton onChange={handleClick} checked={appTheme === 'dark'} />
+	const isDark = appTheme === 'dark';
+	return <DarkModeSwitch
+		checked={isDark}
+		onChange={handleClick}
+		size={30}
+		moonColor="hsl(198,90%,15%)"
+		sunColor="hsl(48,90%,55%)"
+
+	/>
 
 }
 
