@@ -17,7 +17,7 @@ const AppThemeToggle = () => {
 	return <DarkModeSwitch
 		checked={isDark}
 		onChange={handleClick}
-		size={30}
+		size={20}
 		moonColor="hsl(198,90%,15%)"
 		sunColor="hsl(48,90%,55%)"
 
