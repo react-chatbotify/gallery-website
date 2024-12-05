@@ -360,7 +360,7 @@ const NavigationBar = () => {
 						</button>
 					</li>
 				)}
-				<li>
+				<li className='grid items-center'>
 					<AppThemeToggle />
 				</li>
 			</ul>

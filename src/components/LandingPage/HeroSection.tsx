@@ -12,7 +12,8 @@ export default function HeroSection() {
 				<Link to={"/themes"}>
 					<button
 						className="
-              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+              bg-accent-100 text-accent-700 hover:bg-gradient-to-r
+               hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
               transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
             "
 					>
@@ -22,7 +23,8 @@ export default function HeroSection() {
 				<Link to={"/plugins"}>
 					<button
 						className="
-              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+            bg-accent-100 text-accent-700  hover:bg-gradient-to-r
+             hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
               transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
             "
 					>
@@ -32,7 +34,8 @@ export default function HeroSection() {
 				<Link to={"https://react-chatbotify.com"}>
 					<button
 						className="
-              bg-accent-900 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px] hover:to-primary-600 
+            bg-accent-100 text-accent-700 hover:bg-gradient-to-r hover:from-secondary-900 px-2 py-1 text-[14px]
+             hover:to-primary-600 
               transition-colors duration-300 hover:text-accent-900 sm:px-4 sm:py-2 sm:text-lg rounded-lg
             "
 					>

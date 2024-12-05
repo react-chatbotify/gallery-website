@@ -12,7 +12,7 @@
   0px 8.5px 17.9px rgba(0, 0, 0, 0.042),
   0px 15.9px 33.4px rgba(0, 0, 0, 0.05),
   0px 38px 80px rgba(0, 0, 0, 0.07);
-}
+ }
 
 :root[app-theme="light"] {
   /* Light Theme Accent Palette */
@@ -97,3 +97,22 @@ code {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+
+
+.theme__toggle {
+  background-color: hsl(48,90%,85%);
+  border-radius: 25% / 50%;
+  box-shadow: 0 0 0 0.125em var(--primaryT);
+  padding: 0.25em;
+  width: 4.3em;
+  height: 2.3em;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color var(--transDur) ease-in-out,
+		box-shadow 0.15s ease-in-out,
+		transform var(--transDur) ease-in-out;
+}
+
+
