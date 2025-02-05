@@ -25,7 +25,7 @@ const App: React.FC = () => {
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const isDarkMode = localStorage.getItem("RCBG_IS_DARK_MODE");
-    return isDarkMode === "true" || isDarkMode == null;
+    return isDarkMode === "true";
   });
 
   useEffect(() => {
