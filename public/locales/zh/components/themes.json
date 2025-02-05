@@ -1,0 +1,21 @@
+{
+	"theme_card": {
+		"more_info": "Haiz",
+		"select": "Select"
+	},
+	"theme_modal": {
+		"description":"Description",
+		"id":"ID",
+		"version":"Version",
+		"author":"Author",
+		"tags":"Tags",
+		"download_theme": "Download Theme"
+	},
+	"theme_preview": {
+		"preview": "Preview",
+		"num_themes_selected": "{num_themes_selected} theme(s) selected",
+		"download_theme_bundle": "Download Theme Bundle",
+		"edit_in_theme_builder": "Edit In Theme Builder",
+		"show_preview": "Show Preview"
+	}
+}

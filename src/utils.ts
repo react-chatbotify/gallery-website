@@ -40,7 +40,32 @@ const formatPreviewIdToTitleCase = (input: string): string => {
     .join(' ');
 }
 
+/**
+ * Wraps around the window fetch function to always include credentials.
+ *
+ * @param url url to call
+ * @param options additional options passed to fetch
+ */
+const galleryApiFetch = (url: string, options = {}) => {
+	return fetch(url, {
+		...options,
+		credentials: 'include',
+	});
+}
+
+const getConstructedUrl = (url: string, params: Record<string, any>): string => {
+  const queryParams = new URLSearchParams(
+    Object.entries(params)
+      .filter(([_, value]) => value !== undefined && value !== null) // Remove undefined or null values
+      .map(([key, value]) => [key, String(value)]) // Ensure all values are strings
+  );
+
+  return `${url}?${queryParams.toString()}`;
+};
+
 export {
 	downloadThemeContent,
-  formatPreviewIdToTitleCase
+  formatPreviewIdToTitleCase,
+  galleryApiFetch,
+  getConstructedUrl,
 }

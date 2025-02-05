@@ -1,41 +1,133 @@
-import { ExternalLink } from "lucide-react";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  IconButton,
+  Typography
+} from "@mui/material";
+import { Heart } from "lucide-react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { Plugin } from "../../interfaces/Plugin";
 
-type PluginCardProps = {
+/**
+ * Card component to hold the details of each plugin in the plugins page.
+ *
+ * @param plugin plugin to show information for
+ * @param onViewMoreInfo handles user action to view more details
+ * @param updateFavorites handles user action to favorite plugin
+ */
+const PluginCard: React.FC<{
   plugin: Plugin;
-}
-export function PluginCard({ plugin }: PluginCardProps) {
-	return <section className="border gap-4 flex 
-  flex-col max-w-[314px]  hover:scale-[1.01]
-    p-4 pt-6 m-auto w-full border-card-border rounded-md h-[300px]">
-		<div className="flex-1 flex flex-col gap-4">
-			<div>
-				<div>
-					<h1 className="text-white text-[22px] font-semibold">{plugin.name}</h1>
-					{/* 
-      // TODO: should add and fetch data about user using the userId or a github handle linked to it
-    */}
-				</div>
-			</div>
-			<div className="text-white text-sm">
-				{plugin.description}
-			</div>
-			<div className="w-full max-w-[200px]">
-				<img className="w-full"  src={plugin.imageURL} />
-			</div>
-		</div>
-		<div className="flex justify-between gap-3 sm:gap-1  flex-col sm:flex-row">
-			<button className="bg-slate-900 text-[12px] px-4 pt-[6px] pb-[7px] rounded-md text-white">
-				Read more
-			</button>
-      
-			<button className="bg-brand-purple text-[12px] flex justify-center
-       items-center gap-1  px-4 pt-[6px] pb-[7px] rounded-md text-white">
-				<span>
-					View in NPM 
-				</span>
-				<ExternalLink className="w-4" /></button>
-		</div>
-    
-	</section>
-}
+  onViewMoreInfo: (plugin: Plugin) => void;
+  updateFavorites: (plugin: Plugin, isFavoriting: boolean) => void;
+}> = ({
+  plugin,
+  onViewMoreInfo,
+  updateFavorites
+}) => {
+  // lazy loads translations
+  const { t } = useTranslation("components/plugins");
+
+  const handleFavoriteClick = async () => {
+    if (plugin.isFavorite) {
+      updateFavorites(plugin, false);
+    } else {
+      updateFavorites(plugin, true);
+    }
+  };
+
+  return (
+    <Card
+      sx={{
+        height: 500,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        p: 2,
+        borderRadius: 5,
+        border: "2px solid",
+        borderColor: "divider",
+      }}
+    >
+      <CardMedia
+        component="img"
+        image={plugin.imageUrl}
+        alt={plugin.name}
+        sx={{
+          height: 280,
+          width: "100%",
+          objectFit: "cover",
+          borderRadius: 5,
+        }}
+      />
+      <CardContent>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          {plugin.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 2,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            mt: 1,
+          }}
+        >
+          {plugin.description}
+        </Typography>
+      </CardContent>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          mt: 0.5
+        }}
+      >
+        <Typography
+          variant="body2"
+          color="primary"
+          onClick={() => onViewMoreInfo(plugin)}
+          sx={{
+            cursor: "pointer",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+            ml: 1.4,
+            fontSize: 16,
+          }}
+        >
+          {t("plugin_card.more_info")}
+        </Typography>
+
+        {/* Favorites count and Heart icon */}
+        <Box sx={{ display: "flex", alignItems: "center", ml: 2, gap: 1 }}>
+          <Typography
+            sx={{
+              fontWeight: 'bold',
+              color: 'text.primary',
+              fontSize: '0.875rem'
+            }}
+          >
+            {plugin.favoritesCount}
+          </Typography>
+          <IconButton aria-label="favorite" onClick={handleFavoriteClick}>
+            <Heart
+              size={20}
+              color={plugin.isFavorite ? 'red' : 'currentColor'}
+              fill={plugin.isFavorite ? 'red' : 'none'}
+            />
+          </IconButton>
+        </Box>
+      </Box>
+    </Card>
+  );
+};
+
+export default PluginCard;

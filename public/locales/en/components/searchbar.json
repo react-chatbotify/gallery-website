@@ -1,0 +1,11 @@
+{
+	"searchbar": {
+		"placeholder": "Search themes..."
+	},
+  "sortbutton": {
+		"placeholder": "Sort",
+    "updated_at": "Last Updated",
+    "created_at": "Newest Release",
+    "favorites_count": "Most Favorited"
+	}
+}

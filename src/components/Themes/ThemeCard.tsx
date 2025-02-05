@@ -1,84 +1,167 @@
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  Typography
+} from "@mui/material";
+import { Heart } from "lucide-react";
 import React from "react";
-
-import Skeleton from "react-loading-skeleton";
-
+import { useTranslation } from "react-i18next";
 import { Theme } from "../../interfaces/Theme";
-import { useTranslation } from 'react-i18next';
-import "../../styles/theme_card.css";
-import {  InfoIcon } from "lucide-react";
-
-type Props = {
-  theme: Theme;
-  isPreviewed: boolean;
-  onPreview: (name: string) => void;
-  isLoading: boolean;
-  onViewDetails: (theme: Theme) => void
-};
 
 /**
- * Theme card component to hold the details of each theme in the themes page.
+ * Card component to hold the details of each theme in the themes page.
+ * 
+ * @param theme theme to show information for
+ * @param isPreviewed boolean indicating if theme is selected by user to be previewed
+ * @param onPreview handles logic for theme selected to be previewed
+ * @param onViewMoreInfo handles user action to view more details
+ * @param updateFavorites handles user action to favorite theme
  */
-const ThemeCard: React.FC<Props> = ({ theme, isPreviewed, onViewDetails, onPreview, isLoading }) => {
+const ThemeCard: React.FC<{
+  theme: Theme;
+  isPreviewed: boolean;
+  onPreview: (theme: Theme) => void;
+  onViewMoreInfo: (theme: Theme) => void;
+  updateFavorites: (theme: Theme, isFavoriting: boolean) => void;
+}> = ({
+  theme,
+  isPreviewed,
+  onPreview,
+  onViewMoreInfo,
+  updateFavorites,
+}) => {
+  // lazy loads translations
+  const { t } = useTranslation("components/themes");
 
+  const handleCheckboxChange = () => {
+    onPreview(theme);
+  };
 
+  const handleFavoriteClick = async () => {
+    if (theme.isFavorite) {
+      updateFavorites(theme, false);
+    } else {
+      updateFavorites(theme, true);
+    }
+  };
 
-	const onClickPreview = () => {
-		onPreview(theme.name)
-	}
+  return (
+    <Card
+      sx={{
+        height: 500,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        p: 2,
+        borderRadius: 5,
+        border: "2px solid",
+        borderColor: isPreviewed ? "primary.main" : "divider",
+      }}
+    >
+      <CardMedia
+        component="img"
+        image={theme.themeImg}
+        alt={theme.name}
+        sx={{
+          height: 280,
+          width: "100%",
+          objectFit: "cover",
+          borderRadius: 5,
+        }}
+      />
+      <CardContent>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          {theme.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 2,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            mt: 1,
+          }}
+        >
+          {theme.description}
+        </Typography>
+      </CardContent>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          mt: 0.5,
+        }}
+      >
+        <Typography
+          variant="body2"
+          color="primary"
+          onClick={() => onViewMoreInfo(theme)}
+          sx={{
+            cursor: "pointer",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+            ml: 1.4,
+            fontSize: 16,
+          }}
+        >
+          {t("theme_card.more_info")}
+        </Typography>
 
-	const handleCheckboxChange = () => {
-		onClickPreview();
-	};
+        {/* Row for select and heart icon */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            mt: 0.5
+          }}
+        >
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isPreviewed}
+                onChange={handleCheckboxChange}
+                color="primary"
+              />
+            }
+            label={t("theme_card.select")}
+            sx={{ ml: 0 }}
+          />
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const {t} = useTranslation();
-
-	if (isLoading) {
-		return (
-			<div>
-				<div className="my-4 mx-2 hidden md:block">
-					<Skeleton height={452} />
-				</div>
-				<div className="my-4 mx-2 block md:hidden">
-					<Skeleton height={148} />
-				</div>
-			</div>
-		);
-	}
-
-	return (
-		<>
-			<div
-				className={`flex flex-row items-center md:items-start md:flex-col 
-        md:w-64 p-4 my-4 mx-2 border-2 border-solid rounded-xl 
-        ${isPreviewed ? "border-blue-700" : "border-accent-600"}`}
-			>
-				<div
-					className="flex-1 basis-1/3 md:basis-1/2 mr-3 flex flex-row
-        overflow-hidden w-32 h-20 md:w-56 md:h-56 rounded-xl"
-				>
-					<img src={theme.themeImg} alt={theme.name} className="w-60 h-60 object-cover object-left-top" />
-				</div>
-				<div className="flex-1 mr-4 basis-1/2 md:basis-1/3 flex flex-col md:pt-4">
-					<h2 className="text-accent-50 text-lg font-medium mt-[-4px]">{theme.name}</h2>
-					<span className="text-accent-300 text-sm">{theme.description}</span>
-				</div>
-				<div className="flex-1 basis-1/6 md:basis-1/6 flex flex-col">
-					<div className="flex items-center text-blue-500">
-						<button onClick={()=>(onViewDetails(theme))} className="text-sm my-4 w-fit mr-[3px]">
-							More Info
-						</button>
-						<InfoIcon size={15}/>
-					</div>
-					<label className=" ml-[2px] text-accent-50 text-sm md:text-base">
-						Select
-						<input type="checkbox" checked={isPreviewed} onChange={handleCheckboxChange} className="ml-2" />
-					</label>
-				</div>
-			</div>
-			
-		</>
-	);
+          {/* Favorites count and Heart icon */}
+          <Box sx={{ display: "flex", alignItems: "center", ml: 2, gap: 1 }}>
+            <Typography
+              sx={{
+                fontWeight: 'bold',
+                color: 'text.primary',
+                fontSize: '0.875rem'
+              }}
+            >
+              {theme.favoritesCount}
+            </Typography>
+            <IconButton aria-label="favorite" onClick={handleFavoriteClick}>
+              <Heart
+                size={20}
+                color={theme.isFavorite ? 'red' : 'currentColor'}
+                fill={theme.isFavorite ? 'red' : 'none'}
+              />
+            </IconButton>
+          </Box>
+        </Box>
+      </Box>
+    </Card>
+  );
 };
 
 export default ThemeCard;

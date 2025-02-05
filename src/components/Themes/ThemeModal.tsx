@@ -1,141 +1,251 @@
-import React, { useEffect, useRef } from 'react';
-
-import ReactDOM from 'react-dom';
-import { useTranslation } from 'react-i18next';
-import { downloadThemeContent } from '../../utils';
-import { Theme } from '../../interfaces/Theme';
-
-type ThemeModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  theme: Theme;
-};
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  Avatar,
+  Box,
+  Button,
+  Chip,
+  Grid,
+  IconButton,
+  Modal,
+  Typography,
+} from "@mui/material";
+import { Heart } from "lucide-react";
+import React, { useRef } from "react";
+import ReactDOM from "react-dom";
+import { useTranslation } from "react-i18next";
+import { Theme } from "../../interfaces/Theme";
+import { downloadThemeContent } from "../../utils";
 
 /**
  * Modal to popup for showing theme details.
+ *
+ * @param onClose handles closing of modal
+ * @param theme theme to show details for
+ * @param updateFavorites handles user action to favorite theme
  */
-const ThemeModal: React.FC<ThemeModalProps> = ({ isOpen, onClose, theme }) => {
-	const modalRef = useRef<HTMLDivElement>(null);
+const ThemeModal: React.FC<{
+  onClose: () => void;
+  theme: Theme;
+  updateFavorites: (theme: Theme, isFavoriting: boolean) => void;
+}> = ({
+  onClose,
+  theme,
+  updateFavorites
+}) => {
+  const { t } = useTranslation("components/themes");
+  const modalRef = useRef<HTMLDivElement>(null);
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const {t} = useTranslation();
+  const handleFavoriteClick = async () => {
+    if (theme.isFavorite) {
+      updateFavorites(theme, false);
+    } else {
+      updateFavorites(theme, true);
+    }
+  };
 
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-			) {
-				onClose();
-			}
-		};
+  const onDownload = () => {
+    downloadThemeContent(
+      theme.content.settings,
+      theme.content.inlineStyles,
+      theme.content.cssStyles,
+      theme.name
+    );
+  };
 
-		if (isOpen) {
-			document.addEventListener('mousedown', handleClickOutside);
-			document.body.style.overflow = 'hidden';
-		}
+  const modalContent = (
+    <Modal open onClose={onClose} aria-labelledby="theme-modal-title">
+      <Box
+        ref={modalRef}
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          backgroundColor: "background.paper",
+          borderRadius: 2,
+          boxShadow: 24,
+          p: 4,
+          maxWidth: "800px",
+          width: "90%",
+        }}
+      >
+        <IconButton
+          onClick={onClose}
+          sx={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
 
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-			document.body.style.overflow = 'unset';
-		};
-	}, [isOpen, onClose]);
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Typography
+              id="theme-modal-title"
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "white",
+                mb: 1,
+              }}
+            >
+              {theme.name}
+            </Typography>
 
-	if (!isOpen) return null;
+            <Box display="flex" alignItems="center" sx={{ mb: 2 }}>
+              {theme.authorImg && (
+                <Avatar
+                  src={theme.authorImg}
+                  alt={theme.authorName}
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    mr: 1,
+                  }}
+                />
+              )}
+              <Typography
+                component="a"
+                href={`https://github.com/${theme.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "gray",
+                  textDecoration: "underline",
+                  fontSize: "1rem",
+                }}
+              >
+                {theme.authorName}
+              </Typography>
+            </Box>
 
-	const onDownload = () => {
-		downloadThemeContent(
-			theme.content.settings,
-			theme.content.inlineStyles,
-			theme.content.cssStyles,
-			theme.name
-		);
-	};
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
+              {theme.tags.map((tag, index) => (
+                <Chip key={`tag-${index}`} label={tag} />
+              ))}
+            </Box>
 
-	const modalContent = (
-		<div
-			className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50
-        flex items-center justify-center pointer-events-auto"
-		>
-			<div
-				ref={modalRef}
-				className="relative bg-white p-6 rounded-lg shadow-lg max-w-screen-lg w-full m-4"
-			>
-				<button
-					type="button"
-					onClick={onClose}
-					className="absolute top-2 right-5 text-gray-500 text-2xl"
-				>
-					&times;
-				</button>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
-					<div className="flex flex-col items-center">
-						<img
-							src={theme.themeImg}
-							alt={theme.name}
-							className="h-[400px] rounded-lg"
-						/>
-					</div>
-					<div className="space-y-4">
-						<div className="space-y-2">
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-								<div className="font-semibold">Name:</div>
-								<div>{theme.name}</div>
-								<div className="font-semibold">Description:</div>
-								<div>{theme.description}</div>
-								<div className="font-semibold">ID:</div>
-								<div>{theme.id}</div>
-								<div className="font-semibold">Version:</div>
-								<div>{theme.version}</div>
-								<div className="font-semibold">Author:</div>
-								<div className="flex items-center space-x-2">
-									{theme.authorImg && (
-										<img
-											src={theme.authorImg}
-											alt={theme.authorName}
-											className="w-8 h-8 rounded-full"
-										/>
-									)}
-									<div>
-										<a
-											href={`https://github.com/${theme.github}`}
-											className="text-blue-500 underline"
-										>
-											{theme.authorName}
-										</a>
-									</div>
-								</div>
-								<div className="font-semibold">Tags:</div>
-								<div className="flex flex-wrap gap-2">
-									{theme.tags.map((tag, index) => (
-										<span
-											key={`tag-${index.toString()}`}
-											className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm"
-										>
-											{tag}
-										</span>
-									))}
-								</div>
-								<div className="font-semibold">Contents:</div>
-								<button
-									type="button"
-									onClick={() => onDownload()}
-									className="theme-card-download"
-								>
-									Download
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+            <Typography
+              variant="body2"
+              sx={{
+                color: "gray",
+                fontSize: "1rem",
+                mb: 3,
+              }}
+            >
+              {theme.description}
+            </Typography>
 
-	return ReactDOM.createPortal(
-		modalContent,
-		document.getElementById('modal-container') || document.body
-	);
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              sx={{ color: "gray", mb: 1 }}
+            >
+              {t("theme_modal.id")}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "gray",
+                fontSize: "1rem",
+                mb: 2,
+              }}
+            >
+              {theme.id}
+            </Typography>
+
+            <Typography
+              variant="body2"
+              fontWeight="bold"
+              sx={{ color: "gray", mb: 1 }}
+            >
+              {t("theme_modal.version")}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "gray",
+                fontSize: "1rem",
+                mb: 3,
+              }}
+            >
+              {theme.version}
+            </Typography>
+
+            <Box
+              mt={3}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 3,
+                width: { xs: "100%", md: "auto" },
+              }}
+            >
+              <Button
+                onClick={onDownload}
+                variant="contained"
+                color="primary"
+                sx={{
+                  width: { xs: "100%", md: "auto" },
+                }}
+              >
+                {t("theme_modal.download_theme")}
+              </Button>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
+                <IconButton 
+                  aria-label="favorite"
+                  onClick={handleFavoriteClick}
+                  sx={{
+                    padding: 1,
+                    '&:hover': {
+                      backgroundColor: 'action.hover'
+                    }
+                  }}
+                >
+                  <Heart
+                    size={20}
+                    color={theme.isFavorite ? 'red' : 'currentColor'}
+                    fill={theme.isFavorite ? 'red' : 'none'}
+                  />
+                </IconButton>
+                <Typography
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: '1rem'
+                  }}
+                >
+                  {theme.favoritesCount} {t("theme_modal.likes")}
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} md={6} display="flex" justifyContent="center">
+            <Box
+              component="img"
+              src={theme.themeImg}
+              alt={theme.name}
+              sx={{
+                width: "100%",
+                height: "auto",
+                maxHeight: "400px",
+                borderRadius: 2,
+                objectFit: "cover",
+              }}
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    </Modal>
+  );
+
+  return ReactDOM.createPortal(
+    modalContent,
+    document.getElementById("modal-container") || document.body
+  );
 };
 
 export default ThemeModal;

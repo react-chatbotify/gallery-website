@@ -1,0 +1,47 @@
+{
+  "contributors_section": {
+    "title": "Contributors",
+    "main_paragraph": "We are grateful to the many developers who have contributed to the development of the various projects that help make up React ChatBotify, as well as authors of themes & plugins who contribute to the available contents today. Your involvement helps keep the platform dynamic and relevant. The list of contributors can be found on the project repositories.",
+    "how_to_contribute_title": "How To Contribute",
+    "how_to_contribute_body_text.1": "Want to contribute to React ChatBotify Gallery? We welcome your involvement! Whether you're submitting a new theme, improving existing plugins, or contributing code, your input helps us grow. ",
+    "how_to_contribute_body_text.2": "Visit our GitHub repositories",
+    "how_to_contribute_body_text.3": " for contribution guidelines and to get started.",
+    "contact_us_title": "Contact Us",
+    "contact_us_body_text.1": "Have questions or want to get in touch? Reach out to us via ",
+    "contact_us_body_text.2": "Discord",
+    "contact_us_body_text.3": " and stay in touch with the latest updates and community news!"
+  },
+  "features_section": {
+    "title": "Key Features",
+    "heading.1": "Extensive Library",
+    "body_text.1": "Access a growing collection of themes and plugins specifically designed for React ChatBotify.",
+    "heading.2": "Community Ratings",
+    "body_text.2": "Browse through user ratings to find the most popular and reliable options.",
+    "heading.3": "Collaborative Community",
+    "body_text.3": "Download and integrate themes and plugins with your chatbot effortlessly."
+  },
+  "benefits_section": {
+    "title": "Benefits",
+    "heading.1": "Save Time",
+    "body_text.1": "Utilize pre-built themes and plugins to accelerate your development process.",
+    "heading.2": "Enhance Functionality",
+    "body_text.2": "Easily add new features and improve the user experience of your chatbot.",
+    "heading.3": "Easy Integration",
+    "body_text.3": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
+  },
+  "hero_section": {
+    "title": "About React ChatBotify",
+    "body_text.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins for ",
+    "body_text.2": "React ChatBotify",
+    "body_text.3": " Our gallery offers a wide range of works contributed by users worldwide, making it easier than ever to enhance your chatbot's design and functionality."
+  },
+  "history_section": {
+    "title": "History and Background",
+    "body_text": "React ChatBotify Gallery started as a project to complement the v2 release of React ChatBotify in 2024. It was born out of the need for a centralized repository of chatbot themes and plugins. As more developers began contributing, the platform quickly grew into a vibrant community, constantly evolving to meet the needs of its users."
+  },
+  "mission_section": {
+    "title": "Mission and Vision",
+    "body_text.1": "Our mission is to empower developers by providing a centralized hub for sharing and discovering high-quality themes and plugins for React ChatBotify.",
+    "body_text.2": "We envision a vibrant community where creativity and collaboration thrive, enabling chatbots to become more customizable and accessible for everyone."
+  }
+}

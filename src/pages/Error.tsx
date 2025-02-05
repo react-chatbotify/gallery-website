@@ -1,30 +1,65 @@
-import { Info } from 'lucide-react';
-import { Link, useRouteError } from 'react-router-dom';
+import { Endpoints } from "@/constants/Endpoints";
+import InfoIcon from "@mui/icons-material/Info";
+import { Box, Button, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { Link, useRouteError } from "react-router-dom";
 
 /**
- * Displays error page to user.
- * // todo: good to customise the error message instead of having a default one.
+ * Standard error page to show when an error is encountered.
  */
 const ErrorPage = () => {
-	/* eslint-disable */
-	const error: any = useRouteError()
-	console.error(error)
+  // lazy load translations
+  const { t } = useTranslation("pages/error");
 
-	return (
-		<section id="error-page">
-			<div className=" p-4 flex flex-col gap-5 justify-center items-center h-screen">
-				<Info width={40} height={40} />
-				<h1 className=" text-4xl">Oops!</h1>
-				<p>Sorry, an unexpected error has occurred.</p>
-				<p>
-					{' '}
-					<i>{error.statusText || error.message}</i>{' '}
-				</p>
+  // eslint-disable-next-line
+  const error: any = useRouteError();
+  console.error(error);
 
-				<Link to="/">Go Back Home</Link>
-			</div>
-		</section>
-	)
-}
+  return (
+    <Box
+      id="error-page"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        gap: 2,
+        p: 4,
+        textAlign: "center",
+      }}
+    >
+      <InfoIcon sx={{ fontSize: 40, color: "text.primary" }} />
+      <Typography variant="h4" component="h1" color="text.primary">
+        {t("error.title")}
+      </Typography>
+      <Typography variant="body1" color="text.secondary">
+        {t("error.paragraph")}
+      </Typography>
+      <Typography variant="body2" color="error.main">
+        <i>{t("error.footnote.1")}</i>
+        <Link
+          to={Endpoints.projectDiscordUrl}
+          target="_blank"
+          style={{
+            color: "secondary",
+            textDecoration: "underline",
+          }}
+        >
+          <i>{t("error.footnote.2")}</i>
+        </Link>
+      </Typography>
+      <Button
+        component={Link}
+        to="/"
+        variant="contained"
+        color="primary"
+        sx={{ mt: 2 }}
+      >
+        {t("error.go_back_home")}
+      </Button>
+    </Box>
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

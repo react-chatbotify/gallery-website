@@ -1,59 +1,80 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import useLoginUser from '../hooks/useFetchUserData';
-import { useAuth } from '../context/AuthContext';
-import { Endpoints } from '../constants/Endpoints';
-import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
-import { SiteConfig } from '@/constants/SiteConfig';
+import { Endpoints } from "@/constants/Endpoints";
+import { SiteConfig } from "@/constants/SiteConfig";
+import { useAuth } from "@/context/AuthContext";
+import { useGlobalModal } from "@/context/GlobalModalContext";
+import useFetchUserData from "@/hooks/useFetchUserData";
+import { Box, CircularProgress } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const LoginProcessPage = () => {
-	const { setUserData, setIsLoggedIn } = useAuth();
-	const navigate = useNavigate();
-	const location = useLocation();
-	const [gracetime, setgracetime] = useState(false)
+/**
+ * A placeholder page shown for processing when a user is has authenticated with auth provider (e.g. github)
+ * and is now calling backend API for fetching remaining user data.
+ */
+const LoginProcessPage: React.FC = () => {
+  const { setUserData, setIsLoggedIn } = useAuth();
+  const { setPromptError } = useGlobalModal();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [graceTime, setGraceTime] = useState(false);
 
-	// Retrieve provider and key from query params to be used for getting user data
-	const queryParams = new URLSearchParams(location.search);
-	const key = queryParams.get('key') as string;
-	const provider = queryParams.get('provider') as string;
+  // retrieve provider and key from query params to be used for getting user data
+  const queryParams = new URLSearchParams(location.search);
+  const key = queryParams.get("key") as string;
+  const provider = queryParams.get("provider") as string;
 
-	// Fetch user data
-	const { data, loading, error } = useLoginUser(Endpoints.loginUser, provider, key);
+  // fetch user data
+  const { data, loading, error } = useFetchUserData(Endpoints.loginUser, provider, key);
 
-	useEffect(() => {
-		if (loading || error) {
-			return;
-		}
-		if (data) {
-			setUserData(data);
-			setIsLoggedIn(true);
-			const redirectUri = localStorage.getItem('login_redirect_uri');
-			if(gracetime){
-				//keep waiting until gracetime ends
-				return;
-			}
-			if (redirectUri) {
-				window.location.href = redirectUri;
-			} else {
-				navigate('/themes');
-			}
-		}
-	}, [loading, error, data, gracetime]);
-	useEffect(()=> {
-		if(loading){
-			setgracetime(true)
-			setTimeout(() => {
-				//allow the spinner to remove from render once the gracetime elapses
-				setgracetime(false)
-			}, SiteConfig.loginSpinnerGraceTime);
-		}
-	}, [loading])
-	return (
-		<div className="h-screen w-full bg-black flex justify-center items-center">
-			{(loading || gracetime) && <LoadingSpinner />}
-			{error && <div className="text-white">Error: {error.message}</div>}
-		</div>
-	);
+  useEffect(() => {
+    if (loading || error) {
+      return;
+    }
+    if (data) {
+      setUserData(data);
+      setIsLoggedIn(true);
+      const redirectUri = localStorage.getItem("login_redirect_uri");
+      if (graceTime) {
+        // keep waiting until grace time ends
+        return;
+      }
+      if (redirectUri) {
+        window.location.href = redirectUri;
+      } else {
+        navigate("/themes");
+      }
+    }
+  }, [loading, error, data, graceTime, setUserData, setIsLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (loading) {
+      setGraceTime(true);
+      setTimeout(() => {
+        // allow the spinner to be removed from render once the grace time elapses
+        setGraceTime(false);
+      }, SiteConfig.loginSpinnerGraceTime);
+    }
+  }, [loading]);
+
+  if (error) {
+    setPromptError("error_modal.fail_login");
+    return;
+  }
+
+  return (
+    <Box
+      sx={{
+        height: "100vh",
+        width: "100%",
+        backgroundColor: "background.default",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {(loading || graceTime) && <CircularProgress size={80} />}
+    </Box>
+  );
 };
 
 export default LoginProcessPage;

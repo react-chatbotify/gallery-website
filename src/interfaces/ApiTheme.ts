@@ -3,7 +3,8 @@ export interface ApiTheme {
   id: string;
   name: string;
   description: string;
-  favorites_count: number;
-	created_at: Date;
-	updated_at: Date;
+  favoritesCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+  isFavorite?: boolean;
 }

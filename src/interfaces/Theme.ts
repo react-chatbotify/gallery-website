@@ -14,7 +14,8 @@ export interface Theme {
   themeImg: string;
   authorImg: string;
   authorName: string;
-  favorites_count: number;
+  favoritesCount: number;
+  isFavorite: boolean;
   tags: string[];
   github: string;
   content: ThemeContent;

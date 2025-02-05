@@ -1,37 +1,87 @@
+import { Box, Button, Container, Typography } from '@mui/material';
 import React from 'react';
-
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
 /**
- * Supports building and optionally sharing of themes directly on the website.
+ * Interactive builder for users to craft and publish themes directly through the website.
  */
 const ThemeBuilder: React.FC = () => {
-	// todo: add theme builder
-	console.log('test')
+  // lazy load translations
+  const { t } = useTranslation("/pages/themebuilder");
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const {t} = useTranslation();
-  
-	return (
-		<div className="flex items-center justify-center h-screen bg-black">
-			<div className="bg-white p-10 rounded-lg shadow-lg text-center max-w-screen-md">
-				<h1 className="text-4xl font-bold mb-4 text-gray-800">Coming Soon</h1>
-				<p className="text-lg text-gray-600 mb-8">
-					The Theme Builder is under construction. Please check back later!
-				</p>
-				<p className="text-md text-gray-500 mb-4">
-					In the meantime, feel free to browse our available themes.
-				</p>
-				<Link
-					to="/themes"
-					className="inline-block bg-blue-500 text-white py-2 px-4 rounded-lg
-						hover:bg-blue-600 transition duration-300"
-				>
-					Browse Themes
-				</Link>
-			</div>
-		</div>
-	)
-}
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80vh',
+        backgroundColor: 'background.default',
+      }}
+    >
+      <Container
+        sx={{
+          backgroundColor: 'background.paper',
+          padding: 5,
+          borderRadius: 2,
+          boxShadow: 3,
+          textAlign: 'center',
+          width: '80vw'
+        }}
+      >
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{
+            fontWeight: 'bold',
+            marginBottom: 2,
+            color: 'text.primary',
+          }}
+        >
+          {t("theme_builder.coming_soon")}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            marginBottom: 4,
+            color: 'text.secondary',
+          }}
+        >
+          {t("theme_builder.paragraph.1")}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            marginBottom: 4,
+            color: 'text.disabled',
+          }}
+        >
+          {t("theme_builder.paragraph.2")}
+        </Typography>
+        <Button
+          component={Link}
+          to="/themes"
+          variant="contained"
+          sx={{
+            bgcolor: "background.primaryBtn",
+            color: "text.primaryBtn",
+            paddingX: 4,
+            paddingY: 1,
+            borderRadius: 2,
+            textTransform: 'none',
+            fontSize: '1rem',
+            fontWeight: 500,
+            ':hover': {
+              backgroundColor: 'background.primaryBtnHover',
+            },
+          }}
+        >
+          {t("theme_builder.browse_themes")}
+        </Button>
+      </Container>
+    </Box>
+  );
+};
 
-export default ThemeBuilder
+export default ThemeBuilder;

@@ -1,0 +1,12 @@
+{
+  "navigation_bar": {
+    "documentation": "文档",
+    "plugins": "插件",
+    "themes": "主题",
+    "theme_builder": "主题构建器",
+    "community": "社区",
+    "profile": "个人资料",
+    "login": "登录",
+    "logout": "登出"
+  }
+}

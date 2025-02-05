@@ -1,0 +1,15 @@
+{
+  "navigation_bar": {
+    "documentation": "Documentation",
+    "plugins": "Plugins",
+    "themes": "Themes",
+    "theme_builder": "Theme Builder",
+    "community": "Community",
+    "community.github": "GitHub",
+    "community.discord": "Discord",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "language_updated_message": "Language updated to English."
+  }
+}

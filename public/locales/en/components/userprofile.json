@@ -1,0 +1,42 @@
+{
+	"user_profile_info_section": {
+		"header": "Profile Information",
+		"location": "Location",
+    "join_date": "Join Date",
+    "community_role": "Community Role"
+	},
+  "user_favorite_plugin_card": {
+    "view_plugin": "View Plugin",
+    "remove_favorite": "Remove Favorite"
+  },
+  "user_owned_plugin_card": {
+    "view_plugin": "View Plugin",
+    "manage_plugin": "Manage Plugin"
+  },
+  "user_profile_plugin_section": {
+		"header": "Plugins",
+    "favorite": "Favorite",
+    "personal": "Personal",
+		"empty_themes": "You have not created any plugins!",
+    "prompt_action": "Browse plugins or create your own",
+		"browse_themes": "Browse Plugins",
+		"build_theme": "Build A Plugin"
+	},
+  "user_favorite_theme_card": {
+    "view_theme": "View Theme",
+    "remove_favorite": "Remove Favorite"
+  },
+  "user_owned_theme_card": {
+    "view_theme": "View Theme",
+    "manage_theme": "Manage Theme"
+  },
+	"user_profile_theme_section": {
+		"header": "Themes",
+    "favorite": "Favorite",
+    "personal": "Personal",
+		"empty_themes": "You have not created any themes!",
+    "prompt_action": "Browse theme selections or create your own",
+		"browse_themes": "Browse Themes",
+		"build_theme": "Build A Theme"
+	}
+}

@@ -1,0 +1,21 @@
+{
+  "login_modal": {
+    "continue": "Continue",
+    "description": "Authenticate with GitHub to browse, favorite and share the dozens of themes and plugins available, or publish your own!",
+    "button": "Continue With GitHub",
+    "footnote.1": "By continuing, you agree to our ",
+    "footnote.2": "and ",
+    "footer.terms_of_service": "Terms of Service",
+    "footer.privacy_policy": "Privacy Policy"
+  },
+  "error_modal": {
+    "title": "Oops, something went wrong!",
+    "fail_themes_fetch": "Unable to fetch themes, please refresh and try again.",
+    "fail_plugins_fetch": "Unable to fetch plugins, please refresh and try again.",
+    "fail_user_profile_fetch": "Uable to fetch user data, please refresh and try again.",
+    "fail_login": "Unable to login, please refresh and try again.",
+    "footnote.1": "If this error persist, feel free to reach out for help via ",
+    "footnote.2": "Discord",
+    "refresh_page": "Refresh Page"
+  }
+}

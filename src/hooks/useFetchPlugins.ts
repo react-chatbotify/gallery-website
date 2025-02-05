@@ -1,77 +1,85 @@
-import { useEffect, useState } from "react";
-import { galleryApiFetch } from "../services/apiService";
+import { fetchPluginsFromApi } from "@/services/plugins/apiService";
+import { fetchPluginsFromCache, savePluginsToCache } from "@/services/plugins/cacheService";
+import { getConstructedUrl } from "@/utils";
+import { useCallback, useState } from "react";
 import { Plugin } from "../interfaces/Plugin";
 
+const generateCacheKey = (url: string, params: Record<string, any>) =>
+  `${url}?${new URLSearchParams(params).toString()}`;
+
 /**
- * Fetches plugins from the backend api.
- *
- * @param url url to fetch plugins from
- * @param pageSize number of plugins to fetch each page
- * @param pageNum page number to fetch for
- * @param searchQuery search query for filtering plugins
+ * Fetch plugins with caching.
  */
-function useFetchPlugins(
-  url: string,
-	pageSize: number,
-	pageNum: number,
-	searchQuery?: string
-  ) {
-    const [plugins, setPlugins] = useState<Plugin[]>([]);
-      const [isLoading, setIsLoading] = useState(false);
-      const [error, setError] = useState("");
-    useEffect(function() {
-      // avoid race conditions
-      const controller = new AbortController()
-      let isAbort = false
+const useFetchPlugins = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
-      setIsLoading(true)
-      setError("")
-      setPlugins([])
+  const fetchPlugins = useCallback(async ({
+    url,
+    pageSize,
+    pageNum,
+    searchQuery,
+    sortBy,
+    sortDirection,
+  }: {
+    url: string;
+    pageSize: number;
+    pageNum: number;
+    searchQuery?: string;
+    sortBy?: string;
+    sortDirection?: string;
+  }): Promise<Plugin[]> => {
+    setIsLoading(true);
+    setError(null);
 
-      fetchPlugins(controller, url, searchQuery)
+    try {
+      const cacheKey = generateCacheKey(url, { 
+        pageSize, 
+        pageNum, 
+        searchQuery, 
+        sortBy, 
+        sortDirection 
+      });
 
-      .then((plugins)=> {
-        setPlugins(plugins)
-        setError("")
-      })
-
-      .catch((err: Error) => {
-       if(err.name != 'AbortError') { 
-          setError(err.message);
-      }
-        else {
-          isAbort = true
+      // check cache first (except for favorites count)
+      if (sortBy !== "favoritesCount") {
+        const cachedResult = fetchPluginsFromCache(cacheKey);
+        if (cachedResult) {
+          setIsLoading(false);
+          return cachedResult;
         }
+      }
+
+      const finalUrl = getConstructedUrl(url, {
+        pageSize,
+        pageNum,
+        searchQuery,
+        sortBy,
+        sortDirection
       })
 
-      .finally(() => {
-        if(!isAbort) setIsLoading(false)
-      })
+      // fetch if not in cache
+      const fetchedPlugins = await fetchPluginsFromApi(finalUrl);
 
-      return () => controller.abort()
-    },[searchQuery, url, pageNum, pageSize])
+      // save to cache
+      if (sortBy !== "favoritesCount") {
+        savePluginsToCache(cacheKey, fetchedPlugins);
+      }
 
-
-
-    return {plugins, isLoading, error }
-}
-
-const fetchPlugins = async(controller: AbortController, url: string, searchQuery?: string) => {
-  try{
-    if(searchQuery){
-     url += `?searchQuery=${searchQuery}`
+      return fetchedPlugins;
+    } catch (err: any) {
+      setError(err);
+      throw err;
+    } finally {
+      setIsLoading(false);
     }
-    const data = await galleryApiFetch(url,{
-      signal: controller.signal
-    });
-    const plugins = await data.json()
-    return plugins.data
-  } catch(e: unknown){
-    if((e as Error).name != 'AbortError')
-    throw new Error("Problem fetching plugins!")
-    else throw e
-  }
-}
+  }, []); // empty dependency array since this function doesn't depend on any external values
 
+  return {
+    fetchPlugins,
+    isLoading,
+    error
+  };
+};
 
-export default useFetchPlugins
+export default useFetchPlugins;
