@@ -185,15 +185,15 @@ const Plugins: React.FC = () => {
             {t("plugins.header")}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {t("plugins.select_multiple_plugins_description")}
+            {t("plugins.description")}
           </Typography>
           <GalleryTooltip
-            content={t("plugin_tooltip.multiple_plugins_usage")}
+            content={t("plugin_tooltip.plugin_usage")}
             placement="right"
           >
             <Box display="inline-flex" alignItems="center" color="primary.main">
               <Typography variant="body2" sx={{ marginRight: "4px" }}>
-                {t("plugins.how_multiple_plugins_work")}
+                {t("plugins.how_plugins_work")}
               </Typography>
               <IconButton size="small" color="primary">
                 <InfoIcon />

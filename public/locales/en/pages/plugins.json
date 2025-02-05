@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "header": "Plugins",
+    "description": "Browse and check out plugins to integrate into your chatbot!",
+    "how_plugins_work": "How to use plugins"
+  },
+  "plugin_tooltip": {
+    "plugin_usage": "Plugins are maintained by their respective authors, separate from the chatbot core library. You may visit the plugin links to find out specific usage instructions."
+  }
+}

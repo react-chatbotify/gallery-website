@@ -203,7 +203,7 @@ const Themes: React.FC = () => {
             {t("themes.header")}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {t("themes.select_multiple_themes_description")}
+            {t("themes.description")}
           </Typography>
           <GalleryTooltip
             content={t("theme_tooltip.multiple_themes_usage")}

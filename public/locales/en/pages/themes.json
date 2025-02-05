@@ -1,7 +1,7 @@
 {
   "themes": {
     "header": "Themes",
-    "select_multiple_themes_description": "Browse, select and preview themes in the panel on the right!",
+    "description": "Browse, select and preview themes in the panel on the right!",
     "how_multiple_themes_work": "How choosing multiple themes work",
     "open_theme_preview": "Open",
     "close_theme_preview": "Collapse"
