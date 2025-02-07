@@ -1,3 +1,4 @@
+import useIsDesktop from "@/hooks/useIsDesktop";
 import {
   Box,
   Card,
@@ -38,6 +39,8 @@ const ThemeCard: React.FC<{
   // lazy loads translations
   const { t } = useTranslation("components/themes");
 
+  const isDesktop = useIsDesktop();
+
   const handleCheckboxChange = () => {
     onPreview(theme);
   };
@@ -53,7 +56,8 @@ const ThemeCard: React.FC<{
   return (
     <Card
       sx={{
-        height: 500,
+        height: isDesktop ? 500 : 460,
+        width: isDesktop ? "100%" : "85vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -68,7 +72,7 @@ const ThemeCard: React.FC<{
         image={theme.themeImg}
         alt={theme.name}
         sx={{
-          height: 280,
+          height: isDesktop ? 280 : 240,
           width: "100%",
           objectFit: "cover",
           borderRadius: 5,

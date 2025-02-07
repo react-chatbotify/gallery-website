@@ -1,4 +1,5 @@
 import GalleryTooltip from "@/components/GalleryTooltip/GalleryTooltip";
+import useIsDesktop from "@/hooks/useIsDesktop";
 import { Box, Button, Typography } from "@mui/material";
 import { Download, Paintbrush, Trash } from "lucide-react";
 import React, { Dispatch, SetStateAction } from "react";
@@ -22,6 +23,8 @@ const ThemePreview: React.FC<{
 }) => {
   // lazy loads translations
   const { t } = useTranslation("components/themes");
+
+  const isDesktop = useIsDesktop();
 
   const navigate = useNavigate();
 
@@ -175,7 +178,7 @@ const ThemePreview: React.FC<{
           flow={flow}
           themes={previewIds.map((themeId) => ({ id: themeId }))}
           settings={{ general: { embedded: true } }}
-          styles={{ chatWindowStyle: { height: "54vh", width: "24vw" } }}
+          styles={{ chatWindowStyle: { height: "54vh", width: isDesktop ? "24vw" : "80vw" } }}
         />
       </Box>
 

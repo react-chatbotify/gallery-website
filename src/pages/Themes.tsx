@@ -12,6 +12,7 @@ import ThemePreview from "@/components/Themes/ThemePreview";
 import { useAuth } from "@/context/AuthContext";
 import { useGlobalModal } from "@/context/GlobalModalContext";
 import useActionQueue from "@/hooks/useActionQueue";
+import useIsDesktop from "@/hooks/useIsDesktop";
 import { useNotify } from "@/hooks/useNotify";
 import { Theme } from "@/interfaces/Theme";
 import { addThemeToFavorites, fetchThemesFromApi, removeThemeFromFavorites } from "@/services/themes/apiService";
@@ -28,6 +29,7 @@ const Themes: React.FC = () => {
   // lazy load translations
   const { t } = useTranslation("pages/themes");
   const { isLoggedIn } = useAuth();
+  const isDesktop = useIsDesktop();
   const { setPromptLogin, setPromptError } = useGlobalModal();
   const [searchParams, setSearchParams] = useSearchParams();
   const { fetchThemes, isLoading, error } = useFetchThemes();
@@ -273,16 +275,17 @@ const Themes: React.FC = () => {
       {/* Pinned Preview Section (Sticky) */}
       <Box
         sx={{
-          position: "sticky",
+          position: isDesktop ? "sticky" : "fixed",
           top: 0,
-          mt: -72,
+          right: isDesktop ? "auto": 0,
+          mt: isDesktop ? -72 : 0,
           height: "100vh",
           borderLeft: "2px solid",
           borderColor: "divider",
           backgroundColor: "background.paper",
           transition: "width 0.3s ease",
           zIndex: 1000,
-          width: isPreviewVisible ? "30%" : "40px",
+          width: isPreviewVisible ? (isDesktop ? "30%" : "100%") : (isDesktop ? "40px": "0px"),
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
@@ -312,7 +315,7 @@ const Themes: React.FC = () => {
               sx={{
                 position: "absolute",
                 mt: 11,
-                left: "-110px",
+                left: isDesktop ? "-110px" : (isPreviewVisible ? "-20px" : "-130px"),
                 backgroundColor: "background.secondaryBtn",
                 color: "text.primary",
                 borderRadius: "8px",
