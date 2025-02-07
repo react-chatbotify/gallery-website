@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import CloseIcon from "@mui/icons-material/Close";
 import LanguageIcon from '@mui/icons-material/Language';
 import MenuIcon from "@mui/icons-material/Menu";
 import NightlightIcon from "@mui/icons-material/Nightlight";
@@ -9,14 +8,13 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import {
   Box,
   Button,
-  Divider,
   Drawer,
   IconButton,
   List,
   ListItem,
   ListItemText,
   Menu,
-  MenuItem,
+  MenuItem
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -124,42 +122,42 @@ const NavigationBar: React.FC<{
 
       {/* Login/Logout and Toggle Buttons */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        {/* Community Dropdown */}
+        <Box>
+          <Button
+            onClick={(event) => {
+              if (communityMenuAnchor) {
+                setCommunityMenuAnchor(null);
+              } else {
+                setCommunityMenuAnchor(event.currentTarget)
+              }
+            }}
+            sx={{ color: "text.primary", textTransform: "capitalize" }}
+          >
+            {t("navigation_bar.community")}
+          </Button>
+          <Menu
+            anchorEl={communityMenuAnchor}
+            open={Boolean(communityMenuAnchor)}
+            onClose={() => setCommunityMenuAnchor(null)}
+            sx={{ mt: 1, zIndex: 9001 }}
+          >
+            <MenuItem onClick={() => {
+              window.open(Endpoints.projectRepoUrl);
+              setCommunityMenuAnchor(null);
+            }}>
+              {t("navigation_bar.community.github")}
+            </MenuItem>
+            <MenuItem onClick={() => {
+              window.open(Endpoints.projectDiscordUrl);
+              setCommunityMenuAnchor(null);
+            }}>
+              {t("navigation_bar.community.discord")}
+            </MenuItem>
+          </Menu>
+        </Box>
         {isLoggedIn ? (
           <>
-            {/* Community Dropdown */}
-            <Box>
-              <Button
-                onClick={(event) => {
-                  if (communityMenuAnchor) {
-                    setCommunityMenuAnchor(null);
-                  } else {
-                    setCommunityMenuAnchor(event.currentTarget)
-                  }
-                }}
-                sx={{ color: "text.primary", textTransform: "capitalize" }}
-              >
-                {t("navigation_bar.community")}
-              </Button>
-              <Menu
-                anchorEl={communityMenuAnchor}
-                open={Boolean(communityMenuAnchor)}
-                onClose={() => setCommunityMenuAnchor(null)}
-                sx={{ mt: 1, zIndex: 9001 }}
-              >
-                <MenuItem onClick={() => {
-                  window.open(Endpoints.projectRepoUrl);
-                  setCommunityMenuAnchor(null);
-                }}>
-                  {t("navigation_bar.community.github")}
-                </MenuItem>
-                <MenuItem onClick={() => {
-                  window.open(Endpoints.projectDiscordUrl);
-                  setCommunityMenuAnchor(null);
-                }}>
-                  {t("navigation_bar.community.discord")}
-                </MenuItem>
-              </Menu>
-            </Box>
             <Button
               component={Link}
               to="/profile"
@@ -221,7 +219,7 @@ const NavigationBar: React.FC<{
 
         {/* Hamburger Menu for Mobile */}
         <IconButton
-          onClick={() => setMobileMenuOpen(true)}
+          onClick={() => setMobileMenuOpen(prev => !prev)}
           sx={{ color: "text.primary", display: { xs: "block", md: "none" } }}
         >
           <MenuIcon />
@@ -238,16 +236,10 @@ const NavigationBar: React.FC<{
             width: "60vw",
             maxWidth: "300px",
             backgroundColor: "background.default",
+            marginTop: 9,
           },
         }}
       >
-        <Box sx={{ p: 2, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32 }} />
-          <IconButton onClick={() => setMobileMenuOpen(false)}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <Divider />
         <List>
           {/* Documentation */}
           <ListItem
@@ -311,20 +303,31 @@ const NavigationBar: React.FC<{
             <ListItemText primary={t("navigation_bar.community.discord")} />
           </ListItem>
 
-          <ListItem
-            component={Link}
-            to="/profile"
-            onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
-          >
-            <ListItemText primary={t("navigation_bar.profile")} />
-          </ListItem>
-          <ListItem
-            onClick={handleLogout}
-            sx={{ cursor: "pointer" }}
-          >
-            <ListItemText primary={t("navigation_bar.logout")} />
-          </ListItem>
+          {isLoggedIn ? (
+            <>
+              <ListItem
+                component={Link}
+                to="/profile"
+                onClick={() => setMobileMenuOpen(false)}
+                sx={{ cursor: "pointer" }}
+              >
+                <ListItemText primary={t("navigation_bar.profile")} />
+              </ListItem>
+              <ListItem
+                onClick={handleLogout}
+                sx={{ cursor: "pointer" }}
+              >
+                <ListItemText primary={t("navigation_bar.logout")} />
+              </ListItem>
+            </>
+          ) : (
+            <ListItem
+              onClick={() => handleLogin()}
+              sx={{ cursor: "pointer" }}
+            >
+              <ListItemText primary={t("navigation_bar.login")} />
+            </ListItem>
+          )}
         </List>
       </Drawer>
     </Box>
