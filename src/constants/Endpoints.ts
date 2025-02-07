@@ -4,6 +4,7 @@ const Endpoints = {
   projectDiscordUrl: "https://discord.gg/6R4DK4G5Zh",
   projectNpmUrl: "https://www.npmjs.com/package/react-chatbotify",
   projectRepoUrl: "https://github.com/tjtanjin/react-chatbotify",
+  galleryAuthRedirectUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/callback`,
   fetchApiThemes: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/themes`,
   fetchApiPlugins: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/plugins`,
   fetchProjectDetails: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/projects`,
