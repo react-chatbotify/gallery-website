@@ -72,6 +72,7 @@ const SortButton: React.FC<{
             '&:hover': {
               borderBottom: "1px dashed",
             },
+            fontSize: 14,
           }}
         >
           {t(`sortbutton.${sortMap[sortBy as keyof typeof sortMap]}`)}
@@ -93,6 +94,9 @@ const SortButton: React.FC<{
             key={field}
             selected={field === sortBy}
             onClick={() => handleMenuClose(field)}
+            sx={{
+              fontSize: 14,
+            }}
           >
             {label}
           </MenuItem>

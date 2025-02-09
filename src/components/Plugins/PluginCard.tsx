@@ -1,3 +1,4 @@
+import useIsDesktop from "@/hooks/useIsDesktop";
 import {
   Box,
   Card,
@@ -30,6 +31,8 @@ const PluginCard: React.FC<{
   // lazy loads translations
   const { t } = useTranslation("components/plugins");
 
+  const isDesktop = useIsDesktop();
+
   const handleFavoriteClick = async () => {
     if (plugin.isFavorite) {
       updateFavorites(plugin, false);
@@ -41,7 +44,8 @@ const PluginCard: React.FC<{
   return (
     <Card
       sx={{
-        height: 500,
+        height: isDesktop ? 500 : 460,
+        width: isDesktop ? "100%" : "85vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -56,7 +60,7 @@ const PluginCard: React.FC<{
         image={plugin.imageUrl}
         alt={plugin.name}
         sx={{
-          height: 280,
+          height: isDesktop ? 280 : 240,
           width: "100%",
           objectFit: "cover",
           borderRadius: 5,

@@ -1,8 +1,8 @@
 import { Endpoints } from "@/constants/Endpoints";
 import { Placeholders } from "@/constants/Placeholders";
+import { ApiPlugin } from "@/interfaces/ApiPlugin";
 import { Plugin } from "@/interfaces/Plugin";
 import { resetPluginsCache } from "../plugins/cacheService";
-import { ApiPlugin } from "@/interfaces/ApiPlugin";
 import { getNpmPluginData } from "./npmService";
 
 /**
@@ -110,8 +110,5 @@ const removePluginFromFavorites = async (plugin: Plugin) => {
 };
 
 export {
-	galleryApiFetch,
-  fetchPluginsFromApi,
-  addPluginToFavorites,
-  removePluginFromFavorites
-}
+  addPluginToFavorites, fetchPluginsFromApi, galleryApiFetch, removePluginFromFavorites
+};

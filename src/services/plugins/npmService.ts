@@ -1,5 +1,5 @@
-import { Endpoints } from "../../constants/Endpoints";
 import { ApiPlugin } from "@/interfaces/ApiPlugin";
+import { Endpoints } from "../../constants/Endpoints";
 
 /**
  * Fetches theme data stored on github via jsdelivr cache.
@@ -35,4 +35,5 @@ const getNpmPluginData = async (plugin: ApiPlugin) => {
 	}
 }
 
-export { getNpmPluginData }
+export { getNpmPluginData };
+

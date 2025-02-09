@@ -126,7 +126,10 @@ const UserProfilePluginSection: React.FC<{
           <img src={EmptySVG} alt="Empty" />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              {t('user_profile_plugin_section.empty_plugins')}
+              {selectedPluginType === "personal" ?
+                <>{t('user_profile_plugin_section.empty_personal_plugins')}</> :
+                <>{t('user_profile_plugin_section.empty_favorited_plugins')}</>
+              }
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>
               {t('user_profile_plugin_section.prompt_action')}

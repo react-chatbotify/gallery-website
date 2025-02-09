@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import logo from "@/assets/images/logo.png";
 import { Endpoints } from "@/constants/Endpoints";
 import { useAuth } from "@/context/AuthContext";
+import useIsDesktop from "@/hooks/useIsDesktop";
 import { useNotify } from "@/hooks/useNotify";
 import { handleLogin } from "@/services/authService";
 import { resetPluginsCache } from "@/services/plugins/cacheService";
@@ -42,6 +43,8 @@ const NavigationBar: React.FC<{
 }) => {
   // lazy loads translations
   const { t, i18n } = useTranslation("components/navigationbar");
+
+  const isDesktop = useIsDesktop();
   const { isLoggedIn, setIsLoggedIn, setUserData } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -73,7 +76,7 @@ const NavigationBar: React.FC<{
     <Box
       component="nav"
       sx={{
-        position: "sticky",
+        position: isDesktop ? "sticky" : "fixed",
         top: 0,
         left: 0,
         width: "100%",

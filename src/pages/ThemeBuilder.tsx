@@ -39,7 +39,7 @@ const ThemeBuilder: React.FC = () => {
             color: 'text.primary',
           }}
         >
-          {t("theme_builder.coming_soon")}
+          {t("theme_builder.title")}
         </Typography>
         <Typography
           variant="body1"

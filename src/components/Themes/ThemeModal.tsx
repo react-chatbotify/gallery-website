@@ -87,7 +87,7 @@ const ThemeModal: React.FC<{
               variant="h5"
               sx={{
                 fontWeight: "bold",
-                color: "white",
+                color: "text.primary",
                 mb: 1,
               }}
             >

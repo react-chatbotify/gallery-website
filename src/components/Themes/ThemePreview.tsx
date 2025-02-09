@@ -194,7 +194,7 @@ const ThemePreview: React.FC<{
         {previewIds.length === 0 ? (
           <Typography
             sx={{
-              color: '#f9fafb',
+              color: 'text.primary',
               fontWeight: 600,
               fontSize: '1.125rem',
               textAlign: 'center',
@@ -219,7 +219,7 @@ const ThemePreview: React.FC<{
               >
                 <Typography
                   sx={{
-                    color: '#f9fafb',
+                    color: 'text.primary',
                     fontWeight: 600,
                     fontSize: '1.125rem'
                   }}
