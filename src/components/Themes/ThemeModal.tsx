@@ -69,9 +69,11 @@ const ThemeModal: React.FC<{
           marginTop: { xs: 4, md: 0 },
         }}
       >
-        <IconButton onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
 
         <Grid
           container
