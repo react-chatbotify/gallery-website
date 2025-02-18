@@ -27,11 +27,7 @@ const ThemeModal: React.FC<{
   onClose: () => void;
   theme: Theme;
   updateFavorites: (theme: Theme, isFavoriting: boolean) => void;
-}> = ({
-  onClose,
-  theme,
-  updateFavorites
-}) => {
+}> = ({ onClose, theme, updateFavorites }) => {
   const { t } = useTranslation("components/themes");
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -64,24 +60,38 @@ const ThemeModal: React.FC<{
           backgroundColor: "background.paper",
           borderRadius: 2,
           boxShadow: 24,
-          p: 4,
+          p: 2,
+          paddingTop: 1,
           maxWidth: "800px",
+          maxHeight: "80vh",
+          overflow: "auto",
           width: "90%",
+          marginTop: { xs: 4, md: 0 },
         }}
       >
-        <IconButton
-          onClick={onClose}
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Grid
+          container
+          spacing={2}
           sx={{
-            position: "absolute",
-            top: 16,
-            right: 16,
+            p: 2,
+            flexDirection: { xs: "column-reverse", md: "row" },
           }}
         >
-          <CloseIcon />
-        </IconButton>
-
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              paddingRight: { xs: 0, md: 2 },
+            }}
+            spacing={0}
+          >
             <Typography
               id="theme-modal-title"
               variant="h5"
@@ -179,8 +189,9 @@ const ThemeModal: React.FC<{
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 3,
+                gap: 1,
                 width: { xs: "100%", md: "auto" },
+                py: 2,
               }}
             >
               <Button
@@ -188,33 +199,41 @@ const ThemeModal: React.FC<{
                 variant="contained"
                 color="primary"
                 sx={{
-                  width: { xs: "100%", md: "auto" },
+                  width: "auto",
+                  flexGrow: 1,
                 }}
               >
                 {t("theme_modal.download_theme")}
               </Button>
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
-                <IconButton 
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  alignSelf: { xs: "flex-start", md: "flex-end" },
+                  gap: 0,
+                }}
+              >
+                <IconButton
                   aria-label="favorite"
                   onClick={handleFavoriteClick}
                   sx={{
                     padding: 1,
-                    '&:hover': {
-                      backgroundColor: 'action.hover'
-                    }
+                    "&:hover": {
+                      backgroundColor: "action.hover",
+                    },
                   }}
                 >
                   <Heart
                     size={20}
-                    color={theme.isFavorite ? 'red' : 'currentColor'}
-                    fill={theme.isFavorite ? 'red' : 'none'}
+                    color={theme.isFavorite ? "red" : "currentColor"}
+                    fill={theme.isFavorite ? "red" : "none"}
                   />
                 </IconButton>
                 <Typography
                   sx={{
-                    color: 'text.primary',
-                    fontSize: '1rem'
+                    color: "text.primary",
+                    fontSize: "1rem",
                   }}
                 >
                   {theme.favoritesCount} {t("theme_modal.likes")}
@@ -223,7 +242,16 @@ const ThemeModal: React.FC<{
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6} display="flex" justifyContent="center">
+          <Grid
+            item
+            xs={12}
+            md={6}
+            display="flex"
+            justifyContent="center"
+            sx={{
+              paddingRight: { xs: 0, md: 2 },
+            }}
+          >
             <Box
               component="img"
               src={theme.themeImg}
