@@ -1,6 +1,7 @@
 import { GitHub } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
 const GenericLinkButton = ({ icon, text, title }: { icon: React.ReactNode; text: string; title: string }) => (
@@ -17,24 +18,23 @@ const GenericLinkButton = ({ icon, text, title }: { icon: React.ReactNode; text:
 );
 
 export default function CommunitySection() {
+  const {t} = useTranslation("components/home");
   return (
     <Box sx={{ display: "grid", gap: 6, mx: "auto" }}>
       <HeadingAndDescription
-        heading="Our community"
-        description="Whether you’re submitting a new theme, improving existing plugins, or contributing code, 
-        your input helps us grow. Join the community, we welcome everyone with open arms. 
-        Just remember to be respectful: we are all humans after all."
+        heading={t("community_section.title")}
+        description={t("community_section.heading.1")}
       />
       <Box sx={linkContainerStyles}>
         <GenericLinkButton
           icon={<MessageCircle size={26} />}
-          title="Join our Discord"
-          text="Reach out to us via Discord and stay in touch with the latest updates and community news!"
+          title={t("community_section.discord.heading")}
+          text={t("community_section.discord.body_text")}
         />
         <GenericLinkButton
           icon={<GitHub sx={{ fontSize: 26 }} />}
-          title="Visit our GitHub"
-          text="Go straight to the (open) source and see what we are up to on the code side of things."
+          title={t("community_section.github.heading")}
+          text={t("community_section.github.body_text")}
         />
       </Box>
     </Box>

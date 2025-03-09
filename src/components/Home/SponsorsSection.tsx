@@ -1,5 +1,7 @@
 import { Box, Container, Grid, Link, Typography } from "@mui/material";
 import { PiggyBank } from "lucide-react";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
 const sponsors = [
@@ -11,6 +13,10 @@ const sponsors = [
 ];
 
 const SponsorCard = () => {
+  const {t} = useTranslation("components/home");
+  const {title, description, contact} = useMemo(()=>{
+    return t("sponsors_section.sponsor_cta", {returnObjects: true}) as {title: string, description: string, contact: string};
+  }, [t])
   return (
     <Box
       sx={{
@@ -28,12 +34,10 @@ const SponsorCard = () => {
       <PiggyBank size={30} color="white" />
       <div>
         <Typography variant="h6" fontWeight="bold" color="white">
-          Want to sponsor us?
+          {title}
         </Typography>
         <Typography variant="body1" color="text.muted">
-          We are always looking for more sponsors, be it individuals or
-          companies. Every dollar helps and will be used to support this
-          project.
+          {description}
         </Typography>
       </div>
       <Link
@@ -50,18 +54,19 @@ const SponsorCard = () => {
           ":hover": { textDecoration: "underline" },
         }}
       >
-        Contact us →
+        {contact} →
       </Link>
     </Box>
   );
 };
 
 export default function SponsorsSection() {
+  const {t} = useTranslation("components/home")
   return (
     <Box sx={{ display: "grid", gap: 6, mx: "auto" }}>
       <HeadingAndDescription
-        heading="Sponsored by these awesome people"
-        description="We offer an open-source solution and have lots of contributors but we all know that money runs this world and thus, also our project. This is where these awesome supporters come in and with the help of their generosity, we get to continue our mission."
+        heading={t("sponsors_section.title")}
+        description={t("sponsors_section.heading.1")}
       />
       <Container maxWidth={false}>
         <Grid container columnSpacing={20} rowSpacing={5} alignItems="center">

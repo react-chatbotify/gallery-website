@@ -2,17 +2,12 @@ import useIsDesktop from "@/hooks/useIsDesktop";
 import { FeatureItemProps, PrimaryFeature } from "@/interfaces/HomePage";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { ArrowRight, Blocks, PaletteIcon, SparkleIcon, Sun } from "lucide-react";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
 
-// Feature list
-const features: PrimaryFeature[] = [
-  { icon: <Sun />, heading: "Dark/light mode toggle", description: "Easily fit your chatbot to common dark or light color themes", actionText: "Try it" },
-  { icon: <PaletteIcon />, heading: "Premade themes", description: "A growing selection of premade, free-to-use themes", actionText: "Swap theme" },
-  { icon: <Blocks />, heading: "Added functionality with plugins", description: "Easily implement additional features with plugins", actionText: "See example" },
-  { icon: <SparkleIcon />, heading: "LLM support out of the box", description: "Implement AI functionality easily", actionText: "View demo" }
-];
+
 
 // Shared styles
 const featureStyles = (selected: boolean) => ({
@@ -42,9 +37,9 @@ const actionButtonStyles = {
 
 
 // Desktop Feature Item
-const FeatureItem: FC<FeatureItemProps> = ({ icon, heading, description, actionText, onClick, selected }) => (
+const FeatureItem: FC<FeatureItemProps> = ({ Icon, heading, description, actionText, onClick, selected }) => (
   <Box sx={featureStyles(selected)} onClick={onClick}>
-    <IconButton>{icon}</IconButton>
+    <IconButton>{<Icon />}</IconButton>
     <Box>
       <Typography fontWeight="bold">{heading}</Typography>
       <Typography color="text.secondary" variant="body2">{description}</Typography>
@@ -54,10 +49,10 @@ const FeatureItem: FC<FeatureItemProps> = ({ icon, heading, description, actionT
 );
 
 // Mobile Feature Item
-const MobileFeatureItem: FC<FeatureItemProps> = ({ icon, heading, description, actionText, onClick, selected }) => (
+const MobileFeatureItem: FC<FeatureItemProps> = ({ Icon, heading, description, actionText, onClick, selected }) => (
   <Box sx={{ ...featureStyles(selected), flexFlow: "column" }} onClick={onClick}>
     <Box sx={{ display: "grid", gridAutoFlow: "column", gridTemplateRows: "100%", width: "100%" }}>
-      <IconButton sx={{ justifySelf: "start" }}>{icon}</IconButton>
+      <IconButton sx={{ justifySelf: "start" }}>{ <Icon />}</IconButton>
       <Button sx={actionButtonStyles}>{actionText} <ArrowRight size={16} /></Button>
     </Box>
     <Box>
@@ -70,15 +65,21 @@ const MobileFeatureItem: FC<FeatureItemProps> = ({ icon, heading, description, a
 
 // Main FeaturesAtGlance component
 const FeaturesAtGlance: FC = () => {
+  const {t} = useTranslation("components/home")
   const [selectedFeature, setSelectedFeature] = useState<number>(0);
   const isDesktop = useIsDesktop();
+  const features = useMemo(()=>{
+    const icons = [Sun, PaletteIcon, Blocks, SparkleIcon];
+    const itemsTexts = t("primary_features_section.features", { returnObjects: true }) as PrimaryFeature[];
+    return icons.map((Icon, index) => ({ Icon, ...itemsTexts[index] }));
+  }, 
+  [t])
 
   return (
     <Box sx={{ gap: 6, display: "grid" }}>
       <HeadingAndDescription
-        description="Modern chatbot with modern features from the get-go. Need something more specific?
-        Check out our premade plugins or create a feature request via our Discord."
-        heading="Awesome features straight out the box"
+        description={t("primary_features_section.heading.1")}
+        heading={t("primary_features_section.title")}
       />
       <Box sx={{ display: "grid", gridAutoFlow: isDesktop ? "column" : "row", gridTemplateColumns: isDesktop ? "1fr 1fr" : "100%", gap: 4, p: 4 }}>
         <Box>

@@ -1,5 +1,6 @@
 import { Avatar, AvatarGroup, Box, Button, Card, CardContent, CardMedia, Link, Typography } from "@mui/material";
 import { ArrowRight } from "lucide-react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import projectimg from "../../assets/images/LandingPage/image.png";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
@@ -40,32 +41,34 @@ const ContributorsSection = () => {
           ))}
         </AvatarGroup>
         <Box sx={bottomSectionStyles}>
-          <Button sx={githubButtonStyles}>View in GitHub</Button>
+          <Button sx={githubButtonStyles}>{t("contributors_section.GithubButton")}</Button>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography sx={{ color: "text.muted" }}>Want to contribute to this project?</Typography>
+            <Typography sx={{ color: "text.muted" }}>{t("contributors_section.ContributionSubheading")}</Typography>
             <Link sx={readMoreLinkStyles}>
-              Read More <ArrowRight size={16} />
+              {t("contributors_section.ReadMore")} <ArrowRight size={16} />
             </Link>
           </Box>
         </Box>
       </CardContent>
     </Card>
   );
-
+  const projects = useMemo(() => {
+    return t("contributors_section.projects", { returnObjects: true }) as { title: string; description: string }[];
+  }, [t]);
   return (
     <Box sx={{ gap: 6, display: "grid" }}>
       <HeadingAndDescription
-        heading="Projects & contributors"
-        description="We are grateful to the many developers who have contributed to the development of React ChatBotify Gallery, as well as authors of themes & plugins, to make the Gallery what it is today. Your involvement helps keep the platform dynamic and relevant."
+        heading={t("contributors_section.title")}
+        description={t("contributors_section.heading.1")}
       />
       <Box sx={gridContainerStyles}>
         <GenericProjectCard
-          name="Gallery website"
-          description="The very website you are currently visiting is designed and built by our own active community members."
+          name={projects[0].title}
+          description={projects[0].description}
         />
         <GenericProjectCard
-          name="Gallery website"
-          description="The very website you are currently visiting is designed and built by our own active community members."
+          name={projects[1].title}
+          description={projects[1].description}
         />
       </Box>
     </Box>

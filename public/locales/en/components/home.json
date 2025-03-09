@@ -1,16 +1,8 @@
 {
-  "contributors_section": {
-    "title": "Contributors",
-    "main_paragraph": "We are grateful to the many developers who have contributed to the development of the various projects that help make up React ChatBotify, as well as authors of themes & plugins who contribute to the available contents today. Your involvement helps keep the platform dynamic and relevant. The list of contributors can be found on the project repositories.",
-    "how_to_contribute_title": "How To Contribute",
-    "how_to_contribute_body_text.1": "Want to contribute to React ChatBotify Gallery? We welcome your involvement! Whether you're submitting a new theme, improving existing plugins, or contributing code, your input helps us grow. ",
-    "how_to_contribute_body_text.2": "Visit our GitHub repositories",
-    "how_to_contribute_body_text.3": " for contribution guidelines and to get started.",
-    "contact_us_title": "Contact Us",
-    "contact_us_body_text.1": "Have questions or want to get in touch? Reach out to us via ",
-    "contact_us_body_text.2": "Discord",
-    "contact_us_body_text.3": " and stay in touch with the latest updates and community news!"
-  },
+ "essentials": {
+  "name" : "React ChatBotify"
+ },
+
   "features_section": {
     "title": "What separates us from the rest",
     "heading.1": "We envision a vibrant community where creativity and collaboration thrive, enabling chatbots to become more customizable and accessible for everyone.",
@@ -49,6 +41,99 @@
           }
         ]
   },
+  "primary_features_section": {
+    "title": "Awesome features straight out the box",
+    "heading.1": "Modern chatbot with modern features from the get-go. Need something more specific? Check out our premade plugins or create a feature request via our Discord.",
+    "features": [
+      { 
+        "heading": "Dark/light mode toggle", 
+        "description": "Easily fit your chatbot to common dark or light color themes", 
+        "actionText": "Try it" 
+      },
+      { 
+        "heading": "Premade themes", 
+        "description": "A growing selection of premade, free-to-use themes", 
+        "actionText": "Swap theme" 
+      },
+      { 
+        "heading": "Added functionality with plugins", 
+        "description": "Easily implement additional features with plugins", 
+        "actionText": "See example" 
+      },
+      { 
+        "heading": "LLM support out of the box", 
+        "description": "Implement AI functionality easily", 
+        "actionText": "View demo" 
+      }
+    ]
+  },
+  "contributors_section": {
+    "title": "Projects & contributors",
+    "heading.1": "We are grateful to the many developers who have contributed to the development of React ChatBotify Gallery, as well as authors of themes & plugins, to make the Gallery what it is today. Your involvement helps keep the platform dynamic and relevant.",
+    "projects": [
+     {
+      "title": "Gallery website",
+      "description": "The very website you are currently visiting is designed and built by our own active community members."
+
+     },
+     {
+      "title": "Gallery website",
+      "description": "The very website you are currently visiting is designed and built by our own active community members."
+     }
+    ],
+    "GithubButton": "View in GitHub",
+    "ContributionSubheading": "Want to contribute to this project?",
+    "ReadMore": "Read More"
+  },
+
+  "community_section": {
+    "title" : "Our community",
+    "heading.1": "Whether you’re submitting a new theme, improving existing plugins, or contributing code, your input helps us grow. Join the community, we welcome everyone with open arms. Just remember to be respectful: we are all humans after all.",
+    "discord.heading": "Join our Discord",
+    "discord.body_text": "Reach out to us via Discord and stay in touch with the latest updates and community news!",
+    "github.heading": "Visit our GitHub",
+    "github.body_text": "Go straight to the (open) source and see what we are up to on the code side of things"
+  },
+
+  "testimonials_section": {
+    "title": "What our users think",
+    "heading.1": "We as builders and contributors are obviously biased, so here’s a few testimonials from our users. No paid partnerships, no marketing tricks—just honest-to-god thoughts from actual users."
+  },
+
+  "sponsors_section": {
+    "title": "Sponsored by these awesome people",
+    "heading.1": "We offer an open-source solution and have lots of contributors but we all know that money runs this world and thus, also our project. This is where these awesome supporters come in and with the help of their generosity, we get to continue our mission.",
+    "sponsor_cta": {
+      "title": "Want to sponsor us?",
+      "description": "We are always looking for more sponsors, be it individuals or companies. Every dollar helps and will be used to support this project.",
+      "contact": "Contact us"
+    }
+  },
+
+  "final_cta": {
+    "title": "Ready to build your own chatbot?",
+    "heading.1": "Jump straight into our “Get started” guide or play around in our playground where there are no rules!",
+    "primaryButton": "Get started",
+    "secondaryButton": "Visit the playground"
+  },
+
+  "footer": {
+    "links": [
+      {
+        "title" : "About us",
+        "children": ["Team and contributors", "Sponsors"]
+      },
+      {
+        "title" : "How to contribute",
+        "children": ["Getting started", "Open issues"]
+      },
+      {
+        "title" : "Legal",
+        "children": ["Terms of service", "Privacy policy"]
+      }
+    ]
+  },
+  
   "benefits_section": {
     "title": "Benefits",
     "heading.1": "Save Time",

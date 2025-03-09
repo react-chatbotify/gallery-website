@@ -1,6 +1,7 @@
 import useIsDesktop from "@/hooks/useIsDesktop";
 import { Testimonial, TestimonialCardProps } from "@/interfaces/HomePage";
 import { Avatar, Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
@@ -67,7 +68,7 @@ const MobileTestimonials: React.FC<{ items: Testimonial[] }> = ({ items }) => (
 
 const TestimonialSection: React.FC = () => {
   const isDesktop: boolean = useIsDesktop();
-  
+  const {t} = useTranslation("components/home");
   const items: Testimonial[] = [
     {
       avatar: "https://randomuser.me/api/portraits/men/1.jpg",
@@ -104,8 +105,8 @@ const TestimonialSection: React.FC = () => {
   return (
     <Box sx={{ position: "relative", display: "grid", gap: 10, py: 5 }}>
       <HeadingAndDescription
-        heading="What our users think"
-        description="We as builders and contributors are obviously biased, so here’s a few testimonials from our users. No paid partnerships, no marketing tricks—just honest-to-god thoughts from actual users."
+        heading={t("testimonials_section.title")}
+        description={t("testimonials_section.heading.1")}
       />
 
       {isDesktop ? (

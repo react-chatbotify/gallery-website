@@ -1,3 +1,5 @@
+import React from "react";
+
 export type Testimonial = {
   avatar: string;
   name: string;
@@ -13,7 +15,7 @@ export type TestimonialCardProps = {
 }
 
 export interface PrimaryFeature  {
-  icon: JSX.Element;
+  Icon: React.ElementType;
   heading: string;
   description: string;
   actionText: string;
