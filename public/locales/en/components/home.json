@@ -12,13 +12,42 @@
     "contact_us_body_text.3": " and stay in touch with the latest updates and community news!"
   },
   "features_section": {
-    "title": "Key Features",
-    "heading.1": "Extensive Library",
-    "body_text.1": "Access a growing collection of themes and plugins specifically designed for React ChatBotify.",
-    "heading.2": "Community Ratings",
-    "body_text.2": "Browse through user ratings to find the most popular and reliable options.",
-    "heading.3": "Collaborative Community",
-    "body_text.3": "Download and integrate themes and plugins with your chatbot effortlessly."
+    "title": "What separates us from the rest",
+    "heading.1": "We envision a vibrant community where creativity and collaboration thrive, enabling chatbots to become more customizable and accessible for everyone.",
+        "features": [
+          {
+            "title": "Extensive Library",
+            "description": "Access a growing collection of themes and plugins."
+          },
+          {
+            "title": "Open source",
+            "description": "Created to be open from the get-go: no hidden data scraping or selling your info to third parties."
+          },
+          {
+            "title": "Collaborative Community",
+            "description": "Download and integrate themes and plugins with your chatbot effortlessly."
+          },
+          {
+            "title": "Community Ratings",
+            "description": "Browse through user ratings to find the most popular and reliable options."
+          },
+          {
+            "title": "Easy Integration",
+            "description": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
+          },
+          {
+            "title": "Enhance Functionality",
+            "description": "Easily add new features and improve the user experience of your chatbot."
+          },
+          {
+            "title": "Build your own",
+            "description": "Built-in builder to allow you to create a theme: quick and easy."
+          },
+          {
+            "title": "Save time",
+            "description": "Utilize pre-built themes and plugins to accelerate your development process."
+          }
+        ]
   },
   "benefits_section": {
     "title": "Benefits",
@@ -30,11 +59,18 @@
     "body_text.3": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
   },
   "hero_section": {
-    "title": "About React ChatBotify",
-    "body_text.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins for ",
-    "body_text.2": "React ChatBotify",
-    "body_text.3": " Our gallery offers a wide range of works contributed by users worldwide, making it easier than ever to enhance your chatbot's design and functionality."
+    "title": "Easily customizable open-source chatbots",
+    "name": "React ChatBotify",
+    "body_text.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins",
+    "quicklinks": [
+      "View documentation 📝",
+      "Go to playground 🕹️",
+      "Browse themes   🎨",
+      "Browse plugins 🧩"],
+    "usedByDevs" : "Already used by <strong>300+ developers</strong> around the world",
+    "devsExperience" : "Read about their experiences"
   },
+
   "history_section": {
     "title": "History and Background",
     "body_text": "React ChatBotify Gallery started as a project to complement the v2 release of React ChatBotify in 2024. It was born out of the need for a centralized repository of chatbot themes and plugins. As more developers began contributing, the platform quickly grew into a vibrant community, constantly evolving to meet the needs of its users."

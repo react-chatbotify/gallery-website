@@ -72,6 +72,11 @@ const NavigationBar: React.FC<{
     notify(t("navigation_bar.language_updated_message"));
   };
 
+  const generalNavLinkSx = { color: "text.muted", textTransform: "capitalize"  ,  ":hover": { 
+    color: "text.primary", 
+    backgroundColor: "transparent" // Disable background on hover
+  }  }
+
   return (
     <Box
       component="nav"
@@ -86,13 +91,14 @@ const NavigationBar: React.FC<{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "background.default",
+        backgroundColor: "background.navbar",
         transition: "background-color 0.3s, opacity 0.3s",
+        backdropFilter: "blur(20px) saturate(180%)",
       }}
     >
       {/* Logo */}
-      <Link to="/">
-        <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mr: 2 }} />
+      <Link to="/" style={{display: "grid", alignItems: "center"}}>
+        <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mx: 2 }} />
       </Link>
 
       {/* Desktop Menu */}
@@ -108,17 +114,17 @@ const NavigationBar: React.FC<{
           component="a"
           href={Endpoints.projectBaseUrl}
           target="_blank"
-          sx={{ color: "text.primary", textTransform: "capitalize" }}
+          sx={generalNavLinkSx}
         >
           {t("navigation_bar.documentation")}
         </Button>
-        <Button component={Link} to="/plugins" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/plugins" sx={generalNavLinkSx}>
           {t("navigation_bar.plugins")}
         </Button>
-        <Button component={Link} to="/themes" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t("navigation_bar.themes")}
         </Button>
-        <Button component={Link} to="/theme-builder" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
           {t("navigation_bar.theme_builder")}
         </Button>
       </Box>
@@ -135,7 +141,7 @@ const NavigationBar: React.FC<{
                 setCommunityMenuAnchor(event.currentTarget)
               }
             }}
-            sx={{ color: "text.primary", textTransform: "capitalize" }}
+            sx={generalNavLinkSx}
           >
             {t("navigation_bar.community")}
           </Button>
@@ -178,7 +184,7 @@ const NavigationBar: React.FC<{
         ) : (
           <Button
             onClick={() => handleLogin()}
-            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" } }}
+            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" }, backgroundColor: "background.muted", borderRadius: '12px' }}
           >
             {t("navigation_bar.login")}
           </Button>

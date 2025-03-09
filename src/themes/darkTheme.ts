@@ -63,14 +63,19 @@ const darkTheme = createTheme({
     	primaryBtnHover: '#1E293B',
 			secondaryBtn: "#FAFAFA",
 			secondaryBtnHover: "#D1D5DB",
+      muted: "#A1A1AA"
 		},
 		background: {
-			paper: "#18181B",
+			paper: "#09090B",
+      navbar: "#121212de",
 			primaryBtn: "#D1D5DB",
 			primaryBtnHover: "#BFC5CE",
 			secondaryBtn: "#374151",
 			secondaryBtnHover: "#425065",
+      icon: '#16191D',
+      muted:"#27272A"
 		},
+
 	},
 	typography: {
 		fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
