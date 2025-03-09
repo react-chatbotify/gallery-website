@@ -1,8 +1,9 @@
 import logo from "@/assets/images/logo.png";
 import { Box, Link, Stack, Typography } from "@mui/material";
-import { Gamepad2, Github } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+
 
 export default function Footer(): JSX.Element {
   const genericLinksStyles = { color: "text.muted", textDecoration: "none", ":hover": { color: "text.primary" } };
@@ -19,8 +20,8 @@ export default function Footer(): JSX.Element {
             <Typography fontWeight="bold" variant="h6">{t("essentials.name")}</Typography>
           </Stack>
           <Stack direction="row" spacing={3}>
-            <Link sx={genericLinksStyles} href="#"><Gamepad2 /></Link>
-            <Link sx={genericLinksStyles} href="#"><Github /></Link>
+            <Link sx={genericLinksStyles} href="#"><FaDiscord size={25} /></Link>
+            <Link sx={genericLinksStyles} href="#"><FaGithub size={25} /></Link>
           </Stack>
         </Stack>
         <Stack spacing={3}>

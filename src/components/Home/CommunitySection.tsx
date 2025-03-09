@@ -1,7 +1,7 @@
-import { GitHub } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
 const GenericLinkButton = ({ icon, text, title }: { icon: React.ReactNode; text: string; title: string }) => (
@@ -13,7 +13,7 @@ const GenericLinkButton = ({ icon, text, title }: { icon: React.ReactNode; text:
         <Typography color="text.muted">{text}</Typography>
       </Box>
     </Box>
-    <ArrowRight size={22} style={{ color: "text.muted" }} />
+    <ArrowRight  size={22} style={{ color: "text.muted", justifySelf: 'end' }} />
   </Button>
 );
 
@@ -27,12 +27,12 @@ export default function CommunitySection() {
       />
       <Box sx={linkContainerStyles}>
         <GenericLinkButton
-          icon={<MessageCircle size={26} />}
+          icon={<FaDiscord size={26} />}
           title={t("community_section.discord.heading")}
           text={t("community_section.discord.body_text")}
         />
         <GenericLinkButton
-          icon={<GitHub sx={{ fontSize: 26 }} />}
+          icon={<FaGithub size={26} />}
           title={t("community_section.github.heading")}
           text={t("community_section.github.body_text")}
         />
@@ -43,9 +43,9 @@ export default function CommunitySection() {
 
 // Styles
 const buttonStyles = {
-  display: "flex",
-  justifyContent: "space-between",
+  display: "grid",
   alignItems: "center",
+  gridTemplateColumns: "90% 10%",
   p: 2,
   px: 3,
   borderRadius: "12px",
