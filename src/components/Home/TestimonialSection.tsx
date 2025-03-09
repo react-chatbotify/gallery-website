@@ -1,22 +1,10 @@
 import useIsDesktop from "@/hooks/useIsDesktop";
+import { Testimonial, TestimonialCardProps } from "@/interfaces/HomePage";
 import { Avatar, Box, Typography } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
-type Testimonial = {
-  avatar: string;
-  name: string;
-  username: string;
-  text: string;
-}
-
-type TestimonialCardProps = {
-  avatar: string;
-  name: string;
-  username: string;
-  text: string;
-}
 
 const responsive = {
   superLargeDesktop: {

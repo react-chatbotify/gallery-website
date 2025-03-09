@@ -1,13 +1,10 @@
+import { SecondaryFeature } from "@/interfaces/HomePage";
 import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import { Blocks, BookOpen, Clock7, Link, LockKeyholeOpen, PencilRuler, Star, UsersRound } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-type Feature = {
-  Icon: React.ElementType;
-  title: string;
-  description: string;
-}
+
 
 export const HeadingAndDescription = ({ heading, description }: { heading: string; description: string }) => (
   <Box>
@@ -28,7 +25,7 @@ export const HeadingAndDescription = ({ heading, description }: { heading: strin
   </Box>
 );
 
-const FeatureCard = ({ item }: { item: Feature }) => (
+const FeatureCard = ({ item }: { item: SecondaryFeature }) => (
   <Grid item xs={12} sm={6} md={3}>
     <Card sx={cardStyles}>
       <Box sx={iconWrapperStyles}>
@@ -51,7 +48,7 @@ export default function FeaturesAndBenefitsSection() {
 
   const items = useMemo(() => {
     const icons = [BookOpen, LockKeyholeOpen, UsersRound, Star, Link, PencilRuler, Blocks, Clock7];
-    const itemsTexts = t("features_section.features", { returnObjects: true }) as Feature[];
+    const itemsTexts = t("features_section.features", { returnObjects: true }) as SecondaryFeature[];
     return icons.map((Icon, index) => ({ Icon, ...itemsTexts[index] }));
   }, [t]);
 

@@ -1,19 +1,13 @@
 import useIsDesktop from "@/hooks/useIsDesktop";
+import { FeatureItemProps, PrimaryFeature } from "@/interfaces/HomePage";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { ArrowRight, Blocks, PaletteIcon, SparkleIcon, Sun } from "lucide-react";
 import { FC, useState } from "react";
 import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
-// Feature structure
-type Feature = {
-  icon: JSX.Element;
-  heading: string;
-  description: string;
-  actionText: string;
-}
 
 // Feature list
-const features: Feature[] = [
+const features: PrimaryFeature[] = [
   { icon: <Sun />, heading: "Dark/light mode toggle", description: "Easily fit your chatbot to common dark or light color themes", actionText: "Try it" },
   { icon: <PaletteIcon />, heading: "Premade themes", description: "A growing selection of premade, free-to-use themes", actionText: "Swap theme" },
   { icon: <Blocks />, heading: "Added functionality with plugins", description: "Easily implement additional features with plugins", actionText: "See example" },
@@ -45,11 +39,7 @@ const actionButtonStyles = {
   gap: 1
 };
 
-// Props for FeatureItem components
-type FeatureItemProps = {
-  onClick: () => void;
-  selected: boolean;
-} & Feature
+
 
 // Desktop Feature Item
 const FeatureItem: FC<FeatureItemProps> = ({ icon, heading, description, actionText, onClick, selected }) => (
