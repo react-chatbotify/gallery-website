@@ -11,18 +11,14 @@
   "[typescriptreact]": {
     "editor.formatOnSave": true
   },
-  "editor.formatOnSave": false,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.fixAll.eslint": true
   },
-  "editor.detectIndentation": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsdk": "node_modules/typescript/lib",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "terminal.integrated.rendererType": "dom",
   "window.zoomLevel": 0,
   "files.eol": "\n"
 }
