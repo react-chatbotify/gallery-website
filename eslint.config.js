@@ -5,6 +5,8 @@ import pluginReact from "eslint-plugin-react";
 import securityPlugin from "eslint-plugin-security";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactHooks from 'eslint-plugin-react-hooks';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -26,13 +28,15 @@ export default [
     plugins: {
       prettier: prettier,
       import: pluginImport,
-      security: securityPlugin,
+      security: securityPlugin
     },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   securityPlugin.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
+  reactHooks.configs['recommended-latest'],
   {
     rules: {
       // Prettier integration rules
