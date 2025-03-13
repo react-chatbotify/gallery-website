@@ -3,6 +3,15 @@
   "name" : "React ChatBotify"
  },
 
+  "hero_section": {
+    "title": "Easily customizable open-source chatbots",
+    "heading.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins.",
+    "starText" : "Star",
+    "forkText" : "Fork",
+    "copyText" : "Copy",
+    "links": ["View documentation", "Go to playground", "Browse themes", "Browse plugins"]
+  },
+
   "features_section": {
     "title": "What separates us from the rest",
     "heading.1": "We envision a vibrant community where creativity and collaboration thrive, enabling chatbots to become more customizable and accessible for everyone.",
@@ -142,18 +151,6 @@
     "body_text.2": "Easily add new features and improve the user experience of your chatbot.",
     "heading.3": "Easy Integration",
     "body_text.3": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
-  },
-  "hero_section": {
-    "title": "Easily customizable open-source chatbots",
-    "name": "React ChatBotify",
-    "body_text.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins",
-    "quicklinks": [
-      "View documentation 📝",
-      "Go to playground 🕹️",
-      "Browse themes   🎨",
-      "Browse plugins 🧩"],
-    "usedByDevs" : "Already used by <strong>300+ developers</strong> around the world",
-    "devsExperience" : "Read about their experiences"
   },
 
   "history_section": {

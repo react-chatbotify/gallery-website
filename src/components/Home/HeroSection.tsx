@@ -1,94 +1,167 @@
 import logo from "@/assets/images/logo.png";
-import { Avatar, AvatarGroup, Box, Link, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { Box, Button, Link, Stack, Typography } from "@mui/material";
+import { ArrowRight } from "lucide-react";
+import { useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { FaGithub } from "react-icons/fa";
 
-/**
- * Shows a broad overview of the chatbot when user lands on the home page.
- */
 const HeroSection = () => {
-  // lazy loads translations
   const { t } = useTranslation("components/home");
 
+  const links = useMemo(() => t("hero_section.links", { returnObjects: true }) as string[], [t]);
 
-
-  const LogoAndText = () => (
-    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-      <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mx: 2 }} />
-      <Typography variant="h6">
-        {t("hero_section.name")}
-      </Typography>
-    </Box>
-  );
-
-  const QuickLinks = () => {
-    const alllinks = t("hero_section.quicklinks", { returnObjects: true }) as string[];
-    return (
-      <Box sx={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignSelf: 'start', alignItems: 'center', justifyContent: 'center' }}>
-        {alllinks.map((link, index) => (
-          <Link
-            key={index}
-            href="#"
-            sx={{
-              color: 'text.primary',
-              ":hover": { borderColor: 'primary.main' },
-              textDecoration: 'none',
-              fontWeight: 'bold',
-              border: '2px solid white',
-              borderColor: 'grey.800',
-              padding: '12px 20px',
-              borderRadius: 100
-            }}
-          >
-            {link}
-          </Link>
-        ))}
-      </Box>
-    );
-  };
-
-  const avatars = [
-    "https://randomuser.me/api/portraits/men/1.jpg",
-    "https://randomuser.me/api/portraits/men/2.jpg",
-    "https://randomuser.me/api/portraits/women/1.jpg",
-    "https://randomuser.me/api/portraits/men/3.jpg",
-    "https://randomuser.me/api/portraits/women/2.jpg",
-    "https://randomuser.me/api/portraits/men/4.jpg",
-    "https://randomuser.me/api/portraits/women/3.jpg",
-    "https://randomuser.me/api/portraits/men/5.jpg",
-    "https://randomuser.me/api/portraits/men/6.jpg",
-  ];
-
-  const UsedByDevs = () => (
-    <Box textAlign="center" sx={{ backgroundColor: "#121212", p: 4, alignSelf: 'end', borderRadius: 2 }}>
-      <AvatarGroup max={9} sx={{ justifyContent: "center" }}>
-        {avatars.map((src, index) => (
-          <Avatar style={{ border: '1px solid white' }} key={index} src={src} />
-        ))}
-      </AvatarGroup>
-      <Typography color="white" mt={2} dangerouslySetInnerHTML={ { __html: t("hero_section.usedByDevs") } } fontSize={18}>
-        
-      </Typography>
-      <Link href="#" color="primary" sx={{ display: "block", mt: 1 }}>
-        {t("hero_section.devsExperience")} →
-      </Link>
-    </Box>
-  );
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText("npm install react-chatbotify");
+  }, []);
 
   return (
-    <Box sx={{ display: 'grid', gap: 4, justifyItems: 'center', minHeight: '90vh', py: '10px', gridTemplateColumns: '100%' }}>
-      <Box sx={{ display: 'flex', mt: '50px', maxWidth: '700px', width: '90vw', height: 'fit-content', textAlign: 'center', flexDirection: 'column', alignItems: 'center', color: "text.muted", fontWeight: "strong", justifyItems: 'center' }}>
-        <LogoAndText />
-        <Typography variant="h2" sx={{ m: 3, color: "text.primary", lineHeight: 0.9, fontWeight: "bold" }}>
+    <Box sx={styles.container}>
+      {/* Left Section */}
+      <Box sx={styles.leftSection}>
+        <Header appName={t("essentials.name")} />
+        <Typography variant="h3" fontWeight={700} gutterBottom>
           {t("hero_section.title")}
         </Typography>
-        <Typography variant="h6">
-          {t("hero_section.body_text.1")}
+
+        <Typography variant="body1" color="text.secondary" paragraph>
+          {t("hero_section.heading.1")}
         </Typography>
+
+        <Stack direction={{ xs: "column", md: "row" }} alignItems={{ xs: "start", md: "center" }} spacing={4}>
+          <NPMCommand handleCopy={handleCopy} copyText={t("hero_section.copyText")} />
+          <GitHubStats starText={t("hero_section.starText")} forkText={t("hero_section.forkText")} />
+        </Stack>
+
+        <Box sx={styles.linksContainer}>
+          {links.map((link, index) => (
+            <Link key={index} sx={styles.link}>
+              {link} <ArrowRight size={16} />
+            </Link>
+          ))}
+        </Box>
       </Box>
-      <QuickLinks />
-      <UsedByDevs />
+
+      {/* Right Section */}
+      <FeaturePreview />
     </Box>
   );
+};
+
+// Extracted Components
+const Header = ({appName}: {appName: string}) => (
+  <Box sx={styles.header}>
+    <Box component="img" src={logo} alt="Logo" sx={styles.logo} />
+    <Typography fontWeight="bold" color="text.secondary">
+      {appName}
+    </Typography>
+  </Box>
+);
+
+const NPMCommand = ({ handleCopy, copyText }: { handleCopy: () => void; copyText: string }) => (
+  <Box sx={styles.npmCommand}>
+    <Typography variant="body2">npm install react-chatbotify</Typography>
+    <Button variant="contained" onClick={handleCopy} sx={styles.copyButton}>
+      {copyText}
+    </Button>
+  </Box>
+);
+
+const GitHubStats = ({ starText, forkText }: { starText: string; forkText: string }) => {
+  const stats = [
+    { text: starText, count: 250 },
+    { text: forkText, count: 138 },
+  ];
+
+  return (
+    <Box sx={styles.statsContainer}>
+      {stats.map((item, index) => (
+        <Box key={index} sx={styles.statItem}>
+          <FaGithub size={20} />
+          <Typography variant="body2">
+            {item.text} {item.count}
+          </Typography>
+        </Box>
+      ))}
+    </Box>
+  );
+};
+
+const FeaturePreview = () => (
+  <Box sx={styles.previewContainer}>
+    <Typography color="text.secondary">Feature Preview</Typography>
+  </Box>
+);
+
+// Styles Object
+const styles = {
+  container: {
+    display: "flex",
+    width: "100vw",
+    alignItems: { xs: "center", md: "start" },
+    flexDirection: { xs: "column", md: "row" },
+    gap: 8,
+    p: 7,
+    pt: 10,
+  },
+  leftSection: {
+    maxWidth: { xs: "auto", md: "60vw" },
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    gap: 2,
+  },
+  logo: {
+    width: 32,
+    height: 32,
+  },
+  npmCommand: {
+    borderRadius: '16px',
+    backgroundColor: "background.muted",
+    pl: '16px',
+    pr: '10px',
+    py: '8px',
+    display: "flex",
+    alignItems: "center",
+    gap: 2,
+  },
+  copyButton: {
+    borderRadius: '10px',
+    textTransform: "none",
+  },
+  statsContainer: {
+    display: "flex",
+    gap: 2,
+  },
+  statItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+  linksContainer: {
+    display: "flex",
+    gap: 2,
+    flexWrap: "wrap",
+  },
+  link: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+  previewContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "background.paper",
+    borderRadius: 2,
+    alignSelf: "center",
+    height: 450,
+    minWidth: 300,
+    border: "1px solid blue",
+  },
 };
 
 export default HeroSection;
