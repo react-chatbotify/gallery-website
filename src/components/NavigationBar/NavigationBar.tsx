@@ -184,7 +184,7 @@ const NavigationBar: React.FC<{
         ) : (
           <Button
             onClick={() => handleLogin()}
-            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" }, backgroundColor: "background.muted", borderRadius: '12px' }}
+            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" }, backgroundColor: "background.secondary", borderRadius: '12px' }}
           >
             {t("navigation_bar.login")}
           </Button>

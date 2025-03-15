@@ -11,12 +11,12 @@ export const HeadingAndDescription = ({ heading, description }: { heading: strin
     <Container maxWidth={false}>
       <Grid container columnSpacing={20} rowSpacing={5} alignItems="center">
         <Grid item xs={12} md={5}>
-          <Typography variant="h4" fontWeight="bold" color="white">
+          <Typography variant="h4" fontWeight="bold" color="text.primary">
             {heading}
           </Typography>
         </Grid>
         <Grid item xs={12} md={7}>
-          <Typography variant="body1" color="gray">
+          <Typography variant="body1" color="text.muted">
             {description}
           </Typography>
         </Grid>
@@ -29,7 +29,7 @@ const FeatureCard = ({ item }: { item: SecondaryFeature }) => (
   <Grid item xs={12} sm={6} md={3}>
     <Card sx={cardStyles}>
       <Box sx={iconWrapperStyles}>
-        <item.Icon size={20} color="white" />
+        <item.Icon size={20}  />
       </Box>
       <CardContent>
         <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -67,7 +67,7 @@ export default function FeaturesAndBenefitsSection() {
 const cardStyles = {
   background: "transparent",
   boxShadow: "none",
-  color: "white",
+  color: "text.primary",
   padding: 2,
   flexDirection: "column",
   display: "flex",
@@ -75,8 +75,9 @@ const cardStyles = {
 };
 
 const iconWrapperStyles = {
-  backgroundColor: "background.icon",
+  backgroundColor: "background.muted",
   padding: 2,
+  color: 'text.primary',
   mx: "16px",
   display: "grid",
   borderRadius: 999,

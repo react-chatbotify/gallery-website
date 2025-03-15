@@ -29,11 +29,12 @@ const SponsorCard = () => {
         flexDirection: "column",
         border: "1px solid white",
         borderColor: "background.muted",
+        color: "text.primary",
       }}
     >
-      <PiggyBank size={30} color="white" />
+      <PiggyBank size={30} />
       <div>
-        <Typography variant="h6" fontWeight="bold" color="white">
+        <Typography variant="h6" fontWeight="bold" >
           {title}
         </Typography>
         <Typography variant="body1" color="text.muted">

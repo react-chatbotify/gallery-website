@@ -73,7 +73,8 @@ const darkTheme = createTheme({
 			secondaryBtn: "#374151",
 			secondaryBtnHover: "#425065",
       icon: '#16191D',
-      muted:"#27272A"
+      muted:"#27272A",
+      secondary:"#404040"
 		},
 
 	},

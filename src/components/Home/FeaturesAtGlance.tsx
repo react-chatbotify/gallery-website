@@ -22,14 +22,14 @@ const featureStyles = (selected: boolean) => ({
   transition: "background-color 0.3s",
   "&:hover": { backgroundColor: "background.muted" },
   border: "1px solid",
-  borderColor: selected ? "grey.700" : "transparent"
+  borderColor: selected ? "background.secondary" : "transparent"
 });
 
 const actionButtonStyles = {
   ml: "auto",
   textTransform: "none",
   color: "text.primary",
-  backgroundColor: "grey.700",
+  backgroundColor: "background.secondary",
   borderRadius: "8px",
   gap: 1
 };

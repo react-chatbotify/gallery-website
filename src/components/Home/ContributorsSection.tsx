@@ -124,7 +124,7 @@ const githubButtonStyles = {
   p: "13px 24px",
   textTransform: "capitalize",
   display: { xs: "none", md: "block" },
-  backgroundColor: "background.muted",
+  backgroundColor: "background.secondary",
   borderRadius: "12px",
 };
 
