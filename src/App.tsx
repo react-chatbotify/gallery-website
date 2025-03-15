@@ -59,7 +59,7 @@ const App: React.FC = () => {
   // Define Navbar wrapper
   const NavbarWrapper = () => (
     <div>
-      <NavigationBar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      <NavigationBar  toggleTheme={toggleTheme} />
       <Outlet />
     </div>
   );

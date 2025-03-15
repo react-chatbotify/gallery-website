@@ -14,7 +14,8 @@ import {
   ListItem,
   ListItemText,
   Menu,
-  MenuItem
+  MenuItem,
+  useTheme
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -31,14 +32,11 @@ import { galleryApiFetch } from "@/utils";
 /**
  * Contains commonly accessed items pinned at the top.
  *
- * @param isDarkMode boolean indicating if the website is in dark mode
  * @param toggleTheme toggles the theme of the website (light/dark)
  */
 const NavigationBar: React.FC<{
-  isDarkMode: boolean;
   toggleTheme: () => void
 }> = ({
-  isDarkMode,
   toggleTheme
 }) => {
   // lazy loads translations
@@ -52,6 +50,7 @@ const NavigationBar: React.FC<{
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [communityMenuAnchor, setCommunityMenuAnchor] = useState<null | HTMLElement>(null);
+  const theme = useTheme()
 
   const handleLogout = async () => {
     setIsLoggedIn(false);
@@ -223,7 +222,7 @@ const NavigationBar: React.FC<{
 
         {/* Theme Toggle Button */}
         <IconButton onClick={toggleTheme} sx={{ color: "text.primary" }}>
-          {isDarkMode ? <NightlightIcon /> : <WbSunnyIcon />}
+          {theme.palette.mode === 'dark' ? <NightlightIcon /> : <WbSunnyIcon />}
         </IconButton>
 
         {/* Hamburger Menu for Mobile */}
