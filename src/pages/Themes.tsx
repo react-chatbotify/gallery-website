@@ -200,7 +200,11 @@ const Themes: React.FC = () => {
     >
       {/* Main Content Section */}
       <Box sx={{ flex: 1, padding: 4 }}>
-        <Box mb={4}>
+        <Box 
+          sx={{
+            mt: { xs: 5, sm: 5, md: 5, lg: 0, xl: 0 },
+            mb: 4,
+          }}>
           <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
             {t("themes.header")}
           </Typography>
