@@ -102,7 +102,7 @@ const LoginModal = () => {
             }}
           >
             {t("login_modal.footnote.1")}{" "}
-            <Link href="/terms-of-service" target="_blank" rel="noopener">
+            <Link href="/terms-of-services" target="_blank" rel="noopener">
               {t("login_modal.footer.terms_of_service")}
             </Link>{" "}
             {t("login_modal.footnote.2")}{" "}

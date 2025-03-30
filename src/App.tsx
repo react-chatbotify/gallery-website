@@ -13,6 +13,7 @@ import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import LoginProcessPage from "./pages/LoginProcess";
 import PluginsPage from "./pages/Plugins";
+import TermsOfService from "./pages/TermofService";
 import ThemeBuilderPage from "./pages/ThemeBuilder";
 import ThemesPage from "./pages/Themes";
 import UserProfilePage from "./pages/UserProfile";
@@ -79,6 +80,7 @@ const App: React.FC = () => {
         { path: "/plugins", element: <PluginsPage /> },
         { path: "/themes", element: <ThemesPage /> },
         { path: "/theme-builder", element: <ThemeBuilderPage /> },
+        { path: "/terms-of-services", element: <TermsOfService/> },
         {
           path: "/profile",
           element: <ProtectedRoute element={<UserProfilePage />} />,
