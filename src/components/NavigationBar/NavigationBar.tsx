@@ -14,7 +14,8 @@ import {
   ListItem,
   ListItemText,
   Menu,
-  MenuItem
+  MenuItem,
+  useTheme
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -31,14 +32,11 @@ import { galleryApiFetch } from "@/utils";
 /**
  * Contains commonly accessed items pinned at the top.
  *
- * @param isDarkMode boolean indicating if the website is in dark mode
  * @param toggleTheme toggles the theme of the website (light/dark)
  */
 const NavigationBar: React.FC<{
-  isDarkMode: boolean;
   toggleTheme: () => void
 }> = ({
-  isDarkMode,
   toggleTheme
 }) => {
   // lazy loads translations
@@ -52,6 +50,7 @@ const NavigationBar: React.FC<{
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [communityMenuAnchor, setCommunityMenuAnchor] = useState<null | HTMLElement>(null);
+  const theme = useTheme()
 
   const handleLogout = async () => {
     setIsLoggedIn(false);
@@ -72,6 +71,11 @@ const NavigationBar: React.FC<{
     notify(t("navigation_bar.language_updated_message"));
   };
 
+  const generalNavLinkSx = { color: "text.muted", textTransform: "capitalize"  ,  ":hover": { 
+    color: "text.primary", 
+    backgroundColor: "transparent" // Disable background on hover
+  }  }
+
   return (
     <Box
       component="nav"
@@ -86,13 +90,14 @@ const NavigationBar: React.FC<{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "background.default",
+        backgroundColor: "background.navbar",
         transition: "background-color 0.3s, opacity 0.3s",
+        backdropFilter: "blur(20px) saturate(180%)",
       }}
     >
       {/* Logo */}
-      <Link to="/">
-        <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mr: 2 }} />
+      <Link to="/" style={{display: "grid", alignItems: "center"}}>
+        <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mx: 2 }} />
       </Link>
 
       {/* Desktop Menu */}
@@ -108,17 +113,17 @@ const NavigationBar: React.FC<{
           component="a"
           href={Endpoints.projectBaseUrl}
           target="_blank"
-          sx={{ color: "text.primary", textTransform: "capitalize" }}
+          sx={generalNavLinkSx}
         >
           {t("navigation_bar.documentation")}
         </Button>
-        <Button component={Link} to="/plugins" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/plugins" sx={generalNavLinkSx}>
           {t("navigation_bar.plugins")}
         </Button>
-        <Button component={Link} to="/themes" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t("navigation_bar.themes")}
         </Button>
-        <Button component={Link} to="/theme-builder" sx={{ color: "text.primary", textTransform: "capitalize" }}>
+        <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
           {t("navigation_bar.theme_builder")}
         </Button>
       </Box>
@@ -135,7 +140,7 @@ const NavigationBar: React.FC<{
                 setCommunityMenuAnchor(event.currentTarget)
               }
             }}
-            sx={{ color: "text.primary", textTransform: "capitalize" }}
+            sx={generalNavLinkSx}
           >
             {t("navigation_bar.community")}
           </Button>
@@ -178,7 +183,7 @@ const NavigationBar: React.FC<{
         ) : (
           <Button
             onClick={() => handleLogin()}
-            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" } }}
+            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" }, backgroundColor: "background.secondary", borderRadius: '12px' }}
           >
             {t("navigation_bar.login")}
           </Button>
@@ -217,7 +222,7 @@ const NavigationBar: React.FC<{
 
         {/* Theme Toggle Button */}
         <IconButton onClick={toggleTheme} sx={{ color: "text.primary" }}>
-          {isDarkMode ? <NightlightIcon /> : <WbSunnyIcon />}
+          {theme.palette.mode === 'dark' ? <NightlightIcon /> : <WbSunnyIcon />}
         </IconButton>
 
         {/* Hamburger Menu for Mobile */}

@@ -1,171 +1,145 @@
-import { Box, Typography } from "@mui/material";
-import { Users } from "lucide-react";
+import { Avatar, AvatarGroup, Box, Button, Card, CardContent, CardMedia, Link, Typography } from "@mui/material";
+import { ArrowRight } from "lucide-react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import AvatarsGroup from "./AvatarsGroup";
-
-const REACT_CHATBOTIFY_GALLERY_URL = "https://github.com/React-ChatBotify/gallery-website";
-const REACT_CHATBOTIFY_GALLERY = "react-chatbotify/gallery-website";
-const REACT_CHATBOTIFY_GALLERY_TITLE = "Gallery Website";
-
-const REACT_CHATBOTIFY_GALLERY_API_URL = "https://github.com/React-ChatBotify/gallery-api";
-const REACT_CHATBOTIFY_GALLERY_API = "react-chatbotify/gallery-api";
-const REACT_CHATBOTIFY_GALLERY_API_TITLE = "Gallery API";
+import projectimg from "../../assets/images/LandingPage/image.png";
+import { HeadingAndDescription } from "./FeaturesAndBenefitsSection";
 
 /**
- * Shows the list of contributors for each project repository that helped made the overall project possible.
+ * Shows the list of contributors for each project repository that helped make the overall project possible.
  */
 const ContributorsSection = () => {
-  // lazy loads translations
   const { t } = useTranslation("components/home");
 
+  const avatars = [
+    "https://randomuser.me/api/portraits/men/1.jpg",
+    "https://randomuser.me/api/portraits/men/2.jpg",
+    "https://randomuser.me/api/portraits/women/1.jpg",
+    "https://randomuser.me/api/portraits/men/3.jpg",
+    "https://randomuser.me/api/portraits/women/2.jpg",
+    "https://randomuser.me/api/portraits/men/4.jpg",
+    "https://randomuser.me/api/portraits/women/3.jpg",
+    "https://randomuser.me/api/portraits/men/5.jpg",
+    "https://randomuser.me/api/portraits/men/6.jpg",
+  ];
+
+  const GenericProjectCard = ({ name, description }: { name: string; description: string }) => (
+    <Card sx={cardStyles}>
+      <Box sx={imageWrapperStyles}>
+        <CardMedia sx={imageStyles} image={projectimg} />
+      </Box>
+      <CardContent sx={cardContentStyles}>
+        <Typography fontWeight="bold" variant="h6">
+          {name}
+        </Typography>
+        <Typography color="text.muted" variant="body1">
+          {description}
+        </Typography>
+        <AvatarGroup max={9} sx={{ justifyContent: "start", my: 2 }}>
+          {avatars.map((src, index) => (
+            <Avatar sx={{ width: 30, height: 30 }} key={index} src={src} />
+          ))}
+        </AvatarGroup>
+        <Box sx={bottomSectionStyles}>
+          <Button sx={githubButtonStyles}>{t("contributors_section.GithubButton")}</Button>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography sx={{ color: "text.muted" }}>{t("contributors_section.ContributionSubheading")}</Typography>
+            <Link sx={readMoreLinkStyles}>
+              {t("contributors_section.ReadMore")} <ArrowRight size={16} />
+            </Link>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+  const projects = useMemo(() => {
+    return t("contributors_section.projects", { returnObjects: true }) as { title: string; description: string }[];
+  }, [t]);
   return (
-    <Box component="section">
-      {/* Contributors Section */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", lg: "row" },
-          alignItems: { xs: "center", lg: "flex-start" },
-          textAlign: { xs: "center", lg: "left" },
-          justifyContent: { lg: "space-between" },
-        }}
-      >
-        {/* Left Content */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: { xs: "center", lg: "flex-start" },
-            gap: 2,
-            marginBottom: { xs: 6, lg: 0 },
-          }}
-        >
-          <Users color="secondary" size={48} /> {/* Icon */}
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: "bold",
-              fontSize: { xs: "2rem", lg: "3rem" },
-            }}
-          >
-            {t("contributors_section.title")}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: { xs: "1rem", lg: "1.125rem" },
-              maxWidth: 650,
-            }}
-          >
-            {t("contributors_section.main_paragraph")}
-          </Typography>
-        </Box>
-
-        {/* Avatars Section */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: { xs: 3, lg: 5 },
-            paddingTop: { lg: 16 },
-          }}
-        >
-          <AvatarsGroup
-            repoUrl={REACT_CHATBOTIFY_GALLERY_URL}
-            repoName={REACT_CHATBOTIFY_GALLERY}
-            repoTitle={REACT_CHATBOTIFY_GALLERY_TITLE}
-          />
-          <AvatarsGroup
-            repoUrl={REACT_CHATBOTIFY_GALLERY_API_URL}
-            repoName={REACT_CHATBOTIFY_GALLERY_API}
-            repoTitle={REACT_CHATBOTIFY_GALLERY_API_TITLE}
-          />
-        </Box>
-      </Box>
-
-      {/* How to Contribute */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: { xs: "center", lg: "flex-start" },
-          my: 12,
-          textAlign: { xs: "center", lg: "left" },
-          gap: 2,
-        }}
-      >
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: "bold",
-            fontSize: "2rem",
-          }}
-        >
-          {t("contributors_section.how_to_contribute_title")}
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: { xs: "1rem", lg: "1.125rem" },
-            maxWidth: 650,
-          }}
-        >
-          {t("contributors_section.how_to_contribute_body_text.1")}
-          <Link
-            to={REACT_CHATBOTIFY_GALLERY_URL}
-            target="_blank"
-            style={{
-              color: "secondary",
-              textDecoration: "underline",
-            }}
-          >
-            {t("contributors_section.how_to_contribute_body_text.2")}
-          </Link>
-          {t("contributors_section.how_to_contribute_body_text.3")}
-        </Typography>
-      </Box>
-
-      {/* Contact us */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: { xs: "center", lg: "flex-start" },
-          pb: 12,
-          textAlign: { xs: "center", lg: "left" },
-          gap: 2,
-        }}
-      >
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: "bold",
-            fontSize: "2rem",
-          }}
-        >
-          {t("contributors_section.contact_us_title")}
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: { xs: "1rem", lg: "1.125rem" },
-            maxWidth: 650,
-          }}
-        >
-          {t("contributors_section.contact_us_body_text.1")}
-          <Link
-            to={REACT_CHATBOTIFY_GALLERY}
-            target="_blank"
-            style={{
-              color: "secondary",
-              textDecoration: "underline",
-            }}
-          >
-            {t("contributors_section.contact_us_body_text.2")}
-          </Link>
-          {t("contributors_section.contact_us_body_text.3")}
-        </Typography>
+    <Box sx={{ gap: 6, display: "grid" }}>
+      <HeadingAndDescription
+        heading={t("contributors_section.title")}
+        description={t("contributors_section.heading.1")}
+      />
+      <Box sx={gridContainerStyles}>
+        <GenericProjectCard
+          name={projects[0].title}
+          description={projects[0].description}
+        />
+        <GenericProjectCard
+          name={projects[1].title}
+          description={projects[1].description}
+        />
       </Box>
     </Box>
   );
 };
 
 export default ContributorsSection;
+
+// Styles
+const cardStyles = {
+  border: "1px solid",
+  borderColor: "background.muted",
+  borderRadius: "12px",
+  backgroundColor: "background.paper",
+};
+
+const imageWrapperStyles = {
+  mx: 4,
+  mt: 4,
+  borderRadius: "17px",
+  overflow: "hidden",
+};
+
+const imageStyles = {
+  height: 200,
+  boxShadow: "0px 0px 50px 0px #5E5E5E0F",
+  borderRadius: "17px",
+  borderBottomLeftRadius: 0,
+  borderBottomRightRadius: 0,
+  borderBottom: 0,
+  border: "1px solid white",
+  borderColor: "background.muted",
+  borderBottomWidth: 0,
+  mx: 2,
+};
+
+const cardContentStyles = {
+  display: "flex",
+  py: 5,
+  backgroundColor: "background.paper",
+  flexDirection: "column",
+  gap: 2,
+};
+
+const bottomSectionStyles = {
+  display: "flex",
+  alignItems: "center",
+  gap: 2,
+};
+
+const githubButtonStyles = {
+  color: "text.primary",
+  p: "13px 24px",
+  textTransform: "capitalize",
+  display: { xs: "none", md: "block" },
+  backgroundColor: "background.secondary",
+  borderRadius: "12px",
+};
+
+const readMoreLinkStyles = {
+  display: "flex",
+  alignItems: "center",
+  flexFlow: "row",
+  gap: 1,
+};
+
+const gridContainerStyles = {
+  display: "grid",
+  gap: 3,
+  m: 2,
+  my: 4,
+  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+  justifyContent: "center",
+};

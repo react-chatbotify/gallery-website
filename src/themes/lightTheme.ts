@@ -62,13 +62,17 @@ const lightTheme = createTheme({
       primaryBtnHover: '#2F2F2F',
       secondaryBtn: "#1A1A1A",
       secondaryBtnHover: "#374151",
+      muted: "#4A4A55",
     },
     background: {
         paper: "#EDEDED",
+        navbar: '#ffffffb5',
         primaryBtn: "#D6D6D6",
         primaryBtnHover: "#C4C4C4",
         secondaryBtn: "#C2C2C2",
         secondaryBtnHover: "#AFAFAF",
+        muted: "#dfdfdf",
+        secondary:"#c7d0d8",
     },
 	},
 	typography: {
