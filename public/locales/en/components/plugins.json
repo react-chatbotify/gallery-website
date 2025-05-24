@@ -1,14 +1,14 @@
 {
-	"plugin_card": {
-		"more_info": "More Info"
-	},
-	"plugin_modal": {
-		"description": "Description",
-		"id": "ID",
-		"version": "Version",
-		"author": "Author",
-		"tags": "Tags",
-		"download_plugin": "Download Plugin",
+  "plugin_card": {
+    "more_info": "More Info"
+  },
+  "plugin_modal": {
+    "description": "Description",
+    "id": "ID",
+    "version": "Version",
+    "author": "Author",
+    "tags": "Tags",
+    "download_plugin": "Download Plugin",
     "likes": "likes"
-	}
+  }
 }

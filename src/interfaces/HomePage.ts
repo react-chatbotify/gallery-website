@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react';
 
 export type Testimonial = {
   avatar: string;
   name: string;
   username: string;
   text: string;
-}
+};
 
 export type TestimonialCardProps = {
   avatar: string;
   name: string;
   username: string;
   text: string;
-}
+};
 
-export interface PrimaryFeature  {
+export type PrimaryFeature = {
   Icon: React.ElementType;
   heading: string;
   description: string;
   actionText: string;
-}
+};
 
 export type FeatureItemProps = {
   onClick: () => void;
   selected: boolean;
-} & PrimaryFeature
+} & PrimaryFeature;
 
-export interface SecondaryFeature  {
+export type SecondaryFeature = {
   Icon: React.ElementType;
   title: string;
   description: string;
-}
+};

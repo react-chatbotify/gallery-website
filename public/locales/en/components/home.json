@@ -1,78 +1,78 @@
 {
- "essentials": {
-  "name" : "React ChatBotify"
- },
+  "essentials": {
+    "name": "React ChatBotify"
+  },
 
   "hero_section": {
     "title": "Easily customizable open-source chatbots",
     "heading.1": "A community-driven platform where developers and enthusiasts can browse, rate, and share custom themes and plugins.",
-    "starText" : "Star",
-    "forkText" : "Fork",
-    "copyText" : "Copy",
+    "starText": "Star",
+    "forkText": "Fork",
+    "copyText": "Copy",
     "links": ["View documentation", "Go to playground", "Browse themes", "Browse plugins"]
   },
 
   "features_section": {
     "title": "What separates us from the rest",
     "heading.1": "We envision a vibrant community where creativity and collaboration thrive, enabling chatbots to become more customizable and accessible for everyone.",
-        "features": [
-          {
-            "title": "Extensive Library",
-            "description": "Access a growing collection of themes and plugins."
-          },
-          {
-            "title": "Open source",
-            "description": "Created to be open from the get-go: no hidden data scraping or selling your info to third parties."
-          },
-          {
-            "title": "Collaborative Community",
-            "description": "Download and integrate themes and plugins with your chatbot effortlessly."
-          },
-          {
-            "title": "Community Ratings",
-            "description": "Browse through user ratings to find the most popular and reliable options."
-          },
-          {
-            "title": "Easy Integration",
-            "description": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
-          },
-          {
-            "title": "Enhance Functionality",
-            "description": "Easily add new features and improve the user experience of your chatbot."
-          },
-          {
-            "title": "Build your own",
-            "description": "Built-in builder to allow you to create a theme: quick and easy."
-          },
-          {
-            "title": "Save time",
-            "description": "Utilize pre-built themes and plugins to accelerate your development process."
-          }
-        ]
+    "features": [
+      {
+        "title": "Extensive Library",
+        "description": "Access a growing collection of themes and plugins."
+      },
+      {
+        "title": "Open source",
+        "description": "Created to be open from the get-go: no hidden data scraping or selling your info to third parties."
+      },
+      {
+        "title": "Collaborative Community",
+        "description": "Download and integrate themes and plugins with your chatbot effortlessly."
+      },
+      {
+        "title": "Community Ratings",
+        "description": "Browse through user ratings to find the most popular and reliable options."
+      },
+      {
+        "title": "Easy Integration",
+        "description": "Join a community of like-minded developers, share your own creations, and contribute to the growth of the platform."
+      },
+      {
+        "title": "Enhance Functionality",
+        "description": "Easily add new features and improve the user experience of your chatbot."
+      },
+      {
+        "title": "Build your own",
+        "description": "Built-in builder to allow you to create a theme: quick and easy."
+      },
+      {
+        "title": "Save time",
+        "description": "Utilize pre-built themes and plugins to accelerate your development process."
+      }
+    ]
   },
   "primary_features_section": {
     "title": "Awesome features straight out the box",
     "heading.1": "Modern chatbot with modern features from the get-go. Need something more specific? Check out our premade plugins or create a feature request via our Discord.",
     "features": [
-      { 
-        "heading": "Dark/light mode toggle", 
-        "description": "Easily fit your chatbot to common dark or light color themes", 
-        "actionText": "Try it" 
+      {
+        "heading": "Dark/light mode toggle",
+        "description": "Easily fit your chatbot to common dark or light color themes",
+        "actionText": "Try it"
       },
-      { 
-        "heading": "Premade themes", 
-        "description": "A growing selection of premade, free-to-use themes", 
-        "actionText": "Swap theme" 
+      {
+        "heading": "Premade themes",
+        "description": "A growing selection of premade, free-to-use themes",
+        "actionText": "Swap theme"
       },
-      { 
-        "heading": "Added functionality with plugins", 
-        "description": "Easily implement additional features with plugins", 
-        "actionText": "See example" 
+      {
+        "heading": "Added functionality with plugins",
+        "description": "Easily implement additional features with plugins",
+        "actionText": "See example"
       },
-      { 
-        "heading": "LLM support out of the box", 
-        "description": "Implement AI functionality easily", 
-        "actionText": "View demo" 
+      {
+        "heading": "LLM support out of the box",
+        "description": "Implement AI functionality easily",
+        "actionText": "View demo"
       }
     ]
   },
@@ -80,15 +80,14 @@
     "title": "Projects & contributors",
     "heading.1": "We are grateful to the many developers who have contributed to the development of React ChatBotify Gallery, as well as authors of themes & plugins, to make the Gallery what it is today. Your involvement helps keep the platform dynamic and relevant.",
     "projects": [
-     {
-      "title": "Gallery website",
-      "description": "The very website you are currently visiting is designed and built by our own active community members."
-
-     },
-     {
-      "title": "Gallery website",
-      "description": "The very website you are currently visiting is designed and built by our own active community members."
-     }
+      {
+        "title": "Gallery website",
+        "description": "The very website you are currently visiting is designed and built by our own active community members."
+      },
+      {
+        "title": "Gallery website",
+        "description": "The very website you are currently visiting is designed and built by our own active community members."
+      }
     ],
     "GithubButton": "View in GitHub",
     "ContributionSubheading": "Want to contribute to this project?",
@@ -96,7 +95,7 @@
   },
 
   "community_section": {
-    "title" : "Our community",
+    "title": "Our community",
     "heading.1": "Whether you’re submitting a new theme, improving existing plugins, or contributing code, your input helps us grow. Join the community, we welcome everyone with open arms. Just remember to be respectful: we are all humans after all.",
     "discord.heading": "Join our Discord",
     "discord.body_text": "Reach out to us via Discord and stay in touch with the latest updates and community news!",
@@ -129,20 +128,20 @@
   "footer": {
     "links": [
       {
-        "title" : "About us",
+        "title": "About us",
         "children": ["Team and contributors", "Sponsors"]
       },
       {
-        "title" : "How to contribute",
+        "title": "How to contribute",
         "children": ["Getting started", "Open issues"]
       },
       {
-        "title" : "Legal",
+        "title": "Legal",
         "children": ["Terms of service", "Privacy policy"]
       }
     ]
   },
-  
+
   "benefits_section": {
     "title": "Benefits",
     "heading.1": "Save Time",

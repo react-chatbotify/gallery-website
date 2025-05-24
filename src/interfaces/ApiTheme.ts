@@ -1,5 +1,5 @@
 // themes data fetched from backend api
-export interface ApiTheme {
+export type ApiTheme = {
   id: string;
   name: string;
   description: string;
@@ -7,4 +7,4 @@ export interface ApiTheme {
   createdAt: Date;
   updatedAt: Date;
   isFavorite?: boolean;
-}
+};

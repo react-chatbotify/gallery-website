@@ -8,76 +8,76 @@ import { Link } from 'react-router-dom';
  */
 const ThemeBuilder: React.FC = () => {
   // lazy load translations
-  const { t } = useTranslation("/pages/themebuilder");
+  const { t } = useTranslation('/pages/themebuilder');
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
-        height: '80vh',
         backgroundColor: 'background.default',
+        display: 'flex',
+        height: '80vh',
+        justifyContent: 'center',
       }}
     >
       <Container
         sx={{
           backgroundColor: 'background.paper',
-          padding: 5,
           borderRadius: 2,
           boxShadow: 3,
+          padding: 5,
           textAlign: 'center',
-          width: '80vw'
+          width: '80vw',
         }}
       >
         <Typography
           variant="h4"
           component="h1"
           sx={{
+            color: 'text.primary',
             fontWeight: 'bold',
             marginBottom: 2,
-            color: 'text.primary',
           }}
         >
-          {t("theme_builder.title")}
+          {t('theme_builder.title')}
         </Typography>
         <Typography
           variant="body1"
           sx={{
-            marginBottom: 4,
             color: 'text.secondary',
+            marginBottom: 4,
           }}
         >
-          {t("theme_builder.paragraph.1")}
+          {t('theme_builder.paragraph.1')}
         </Typography>
         <Typography
           variant="body2"
           sx={{
-            marginBottom: 4,
             color: 'text.disabled',
+            marginBottom: 4,
           }}
         >
-          {t("theme_builder.paragraph.2")}
+          {t('theme_builder.paragraph.2')}
         </Typography>
         <Button
           component={Link}
           to="/themes"
           variant="contained"
           sx={{
-            bgcolor: "background.primaryBtn",
-            color: "text.primaryBtn",
-            paddingX: 4,
-            paddingY: 1,
-            borderRadius: 2,
-            textTransform: 'none',
-            fontSize: '1rem',
-            fontWeight: 500,
             ':hover': {
               backgroundColor: 'background.primaryBtnHover',
             },
+            bgcolor: 'background.primaryBtn',
+            borderRadius: 2,
+            color: 'text.primaryBtn',
+            fontSize: '1rem',
+            fontWeight: 500,
+            paddingX: 4,
+            paddingY: 1,
+            textTransform: 'none',
           }}
         >
-          {t("theme_builder.browse_themes")}
+          {t('theme_builder.browse_themes')}
         </Button>
       </Container>
     </Box>

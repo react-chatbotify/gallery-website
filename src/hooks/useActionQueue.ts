@@ -24,9 +24,7 @@ const useActionQueue = <T>(action: ActionFunction<T>, delay: number = 300) => {
    */
   const addToQueue = (item: QueueItem<T>) => {
     setQueue((prevQueue) => {
-      const filteredQueue = prevQueue.filter(
-        (queuedItem) => JSON.stringify(queuedItem) !== JSON.stringify(item)
-      );
+      const filteredQueue = prevQueue.filter((queuedItem) => JSON.stringify(queuedItem) !== JSON.stringify(item));
       return [...filteredQueue, item];
     });
   };
@@ -41,7 +39,8 @@ const useActionQueue = <T>(action: ActionFunction<T>, delay: number = 300) => {
 
       try {
         await action(currentAction);
-      } catch (error) {
+      } catch {
+        // do nothing if error
       }
 
       setQueue(remainingQueue);
@@ -63,33 +62,6 @@ const useActionQueue = <T>(action: ActionFunction<T>, delay: number = 300) => {
   }, [queue, action, delay]);
 
   return addToQueue;
-};
-
-// todo: use lodash? move into utils file?
-const deepEqual = (obj1: any, obj2: any): boolean => {
-  if (obj1 === obj2) return true;
-
-  if (
-    typeof obj1 !== 'object' ||
-    obj1 === null ||
-    typeof obj2 !== 'object' ||
-    obj2 === null
-  ) {
-    return false;
-  }
-
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-
-  if (keys1.length !== keys2.length) return false;
-
-  for (const key of keys1) {
-    if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
-      return false;
-    }
-  }
-
-  return true;
 };
 
 export default useActionQueue;

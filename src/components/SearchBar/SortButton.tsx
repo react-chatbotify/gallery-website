@@ -1,35 +1,26 @@
-import { ImportExport } from "@mui/icons-material"; // Import sorting icon
-import {
-  Box,
-  Button,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { ImportExport } from '@mui/icons-material'; // Import sorting icon
+import { Box, Button, Menu, MenuItem, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const sortMap = {
-  favoritesCount: "favorites_count",
-  updatedAt: "updated_at",
-  createdAt: "created_at",
-}
+  createdAt: 'created_at',
+  favoritesCount: 'favorites_count',
+  updatedAt: 'updated_at',
+};
 
 /**
  * Sort button for users to sort items based on number of favorites, time of update or time of release.
- * 
+ *
  * @param sortBy field to sort items by
  * @param onSortChange handles logic for when sorting field is changed
  */
 const SortButton: React.FC<{
   sortBy: string;
   onSortChange: (field: string) => void;
-}> = ({
-  sortBy,
-  onSortChange
-}) => {
+}> = ({ sortBy, onSortChange }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/searchbar");
+  const { t } = useTranslation('components/searchbar');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -50,28 +41,28 @@ const SortButton: React.FC<{
       <Button
         onClick={handleSortFieldClick}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          padding: "8px 16px",
-          borderRadius: "20px",
-          backgroundColor: "background.paper",
-          border: "1px solid #ccc",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-          textTransform: "none",
-          color: "text.primary",
+          alignItems: 'center',
+          backgroundColor: 'background.paper',
+          border: '1px solid #ccc',
+          borderRadius: '20px',
+          boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+          color: 'text.primary',
+          display: 'flex',
+          padding: '8px 16px',
+          textTransform: 'none',
         }}
       >
         {/* Sorting Icon on the Left */}
-        <Box sx={{ display: "flex", alignItems: "center", marginRight: "8px" }}>
+        <Box sx={{ alignItems: 'center', display: 'flex', marginRight: '8px' }}>
           <ImportExport /> {/* Single icon for sorting */}
         </Box>
         <Typography
           sx={{
-            cursor: "pointer",
-            borderBottom: "1px dashed transparent",
             '&:hover': {
-              borderBottom: "1px dashed",
+              borderBottom: '1px dashed',
             },
+            borderBottom: '1px dashed transparent',
+            cursor: 'pointer',
             fontSize: 14,
           }}
         >
@@ -80,15 +71,11 @@ const SortButton: React.FC<{
       </Button>
 
       {/* Sort Field Dropdown Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => handleMenuClose()}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={() => handleMenuClose()}>
         {[
-          { field: "favoritesCount", label: t("sortbutton.favorites_count") },
-          { field: "updatedAt", label: t("sortbutton.updated_at") },
-          { field: "createdAt", label: t("sortbutton.created_at") },
+          { field: 'favoritesCount', label: t('sortbutton.favorites_count') },
+          { field: 'updatedAt', label: t('sortbutton.updated_at') },
+          { field: 'createdAt', label: t('sortbutton.created_at') },
         ].map(({ field, label }) => (
           <MenuItem
             key={field}

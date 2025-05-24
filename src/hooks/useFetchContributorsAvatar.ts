@@ -1,6 +1,7 @@
-import { Endpoints } from "@/constants/Endpoints";
-import { galleryApiFetch } from "@/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
+import { Endpoints } from '@/constants/Endpoints';
+import { galleryApiFetch } from '@/utils';
 
 /**
  * Fetches contributors data with caching.
@@ -8,11 +9,13 @@ import { useEffect, useState } from "react";
  * @param repo repo name to fetch contributors from.
  */
 const useFetchContributorsAvatars = (repo: string) => {
-  const [contributors, setContributors] = useState<{
-    avatar_url: string;
-    login: string;
-    html_url: string;
-  }[]>([]);
+  const [contributors, setContributors] = useState<
+    {
+      avatar_url: string;
+      login: string;
+      html_url: string;
+    }[]
+  >([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
@@ -36,24 +39,20 @@ const useFetchContributorsAvatars = (repo: string) => {
           setTotalCount(cachedContributors.length);
         } else {
           // fetch new data from the API
-          const response = await galleryApiFetch(
-            `${Endpoints.fetchProjectDetails}?projectName=${repo}`
-          );
+          const response = await galleryApiFetch(`${Endpoints.fetchProjectDetails}?projectName=${repo}`);
 
           if (!response.ok) {
             throw new Error(`Error fetching contributors: ${response.statusText}`);
           }
 
           const projectDetails = await response.json();
-          const formattedContributors = projectDetails.data.contributors.map((contributor: {
-            avatar_url: string;
-            login: string;
-            html_url: string;
-          }) => ({
-            avatar_url: contributor.avatar_url,
-            login: contributor.login,
-            html_url: contributor.html_url,
-          }));
+          const formattedContributors = projectDetails.data.contributors.map(
+            (contributor: { avatar_url: string; login: string; html_url: string }) => ({
+              avatar_url: contributor.avatar_url,
+              html_url: contributor.html_url,
+              login: contributor.login,
+            })
+          );
 
           // update state
           setContributors(formattedContributors);
@@ -73,7 +72,7 @@ const useFetchContributorsAvatars = (repo: string) => {
     fetchContributors();
   }, [repo]);
 
-  return { contributors, totalCount, loading, error };
+  return { contributors, error, loading, totalCount };
 };
 
 export default useFetchContributorsAvatars;

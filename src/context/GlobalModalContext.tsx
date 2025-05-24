@@ -1,22 +1,17 @@
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useState
-} from 'react'
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 type GlobalModalContextType = {
-  promptLogin: boolean,
-  setPromptLogin: React.Dispatch<React.SetStateAction<boolean>>
-  promptError: string | null,
-  setPromptError: React.Dispatch<React.SetStateAction<string | null>>
-}
+  promptLogin: boolean;
+  setPromptLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  promptError: string | null;
+  setPromptError: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
-const GlobalModalContext = createContext<GlobalModalContextType | undefined>(undefined)
+const GlobalModalContext = createContext<GlobalModalContextType | undefined>(undefined);
 
 type GlobalModalProviderProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 const GlobalModalProvider: React.FC<GlobalModalProviderProps> = ({ children }) => {
   // add more global toast states here if necessary
@@ -26,26 +21,23 @@ const GlobalModalProvider: React.FC<GlobalModalProviderProps> = ({ children }) =
   return (
     <GlobalModalContext.Provider
       value={{
-        promptLogin,
-        setPromptLogin,
         promptError,
-        setPromptError
+        promptLogin,
+        setPromptError,
+        setPromptLogin,
       }}
     >
       {children}
     </GlobalModalContext.Provider>
-  )
-}
+  );
+};
 
 const useGlobalModal = (): GlobalModalContextType => {
-  const context = useContext(GlobalModalContext)
+  const context = useContext(GlobalModalContext);
   if (!context) {
-    throw new Error('useGlobalModal must be used within an GlobalModalProvider')
+    throw new Error('useGlobalModal must be used within an GlobalModalProvider');
   }
-  return context
-}
+  return context;
+};
 
-export {
-  GlobalModalProvider,
-  useGlobalModal
-}
+export { GlobalModalProvider, useGlobalModal };

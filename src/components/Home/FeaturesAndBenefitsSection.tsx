@@ -1,10 +1,9 @@
-import { SecondaryFeature } from "@/interfaces/HomePage";
-import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
-import { Blocks, BookOpen, Clock7, Link, LockKeyholeOpen, PencilRuler, Star, UsersRound } from "lucide-react";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { Box, Card, CardContent, Container, Grid, Typography } from '@mui/material';
+import { Blocks, BookOpen, Clock7, Link, LockKeyholeOpen, PencilRuler, Star, UsersRound } from 'lucide-react';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-
+import { SecondaryFeature } from '@/interfaces/HomePage';
 
 export const HeadingAndDescription = ({ heading, description }: { heading: string; description: string }) => (
   <Box>
@@ -29,7 +28,7 @@ const FeatureCard = ({ item }: { item: SecondaryFeature }) => (
   <Grid item xs={12} sm={6} md={3}>
     <Card sx={cardStyles}>
       <Box sx={iconWrapperStyles}>
-        <item.Icon size={20}  />
+        <item.Icon size={20} />
       </Box>
       <CardContent>
         <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -44,17 +43,17 @@ const FeatureCard = ({ item }: { item: SecondaryFeature }) => (
 );
 
 export default function FeaturesAndBenefitsSection() {
-  const { t } = useTranslation("components/home");
+  const { t } = useTranslation('components/home');
 
   const items = useMemo(() => {
     const icons = [BookOpen, LockKeyholeOpen, UsersRound, Star, Link, PencilRuler, Blocks, Clock7];
-    const itemsTexts = t("features_section.features", { returnObjects: true }) as SecondaryFeature[];
+    const itemsTexts = t('features_section.features', { returnObjects: true }) as SecondaryFeature[];
     return icons.map((Icon, index) => ({ Icon, ...itemsTexts[index] }));
   }, [t]);
 
   return (
-    <Box sx={{ display: "grid", gridTemplateColumns: "100%", color: "text.muted", gap: 6 }}>
-      <HeadingAndDescription heading={t("features_section.title")} description={t("features_section.heading.1")} />
+    <Box sx={{ color: 'text.muted', display: 'grid', gap: 6, gridTemplateColumns: '100%' }}>
+      <HeadingAndDescription heading={t('features_section.title')} description={t('features_section.heading.1')} />
       <Grid container spacing={3}>
         {items.map((item, index) => (
           <FeatureCard key={index} item={item} />
@@ -65,21 +64,21 @@ export default function FeaturesAndBenefitsSection() {
 }
 
 const cardStyles = {
-  background: "transparent",
-  boxShadow: "none",
-  color: "text.primary",
+  alignItems: 'flex-start',
+  background: 'transparent',
+  boxShadow: 'none',
+  color: 'text.primary',
+  display: 'flex',
+  flexDirection: 'column',
   padding: 2,
-  flexDirection: "column",
-  display: "flex",
-  alignItems: "flex-start",
 };
 
 const iconWrapperStyles = {
-  backgroundColor: "background.muted",
-  padding: 2,
-  color: 'text.primary',
-  mx: "16px",
-  display: "grid",
+  aspectRatio: '1/1',
+  backgroundColor: 'background.muted',
   borderRadius: 999,
-  aspectRatio: "1/1",
+  color: 'text.primary',
+  display: 'grid',
+  mx: '16px',
+  padding: 2,
 };

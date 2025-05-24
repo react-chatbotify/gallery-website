@@ -1,22 +1,21 @@
-import { Endpoints } from "@/constants/Endpoints";
-import { useGlobalModal } from "@/context/GlobalModalContext";
-import { Home } from "@mui/icons-material";
-import InfoIcon from "@mui/icons-material/Info";
-import { Box, Button, Modal, Typography } from "@mui/material";
-import { useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { Home } from '@mui/icons-material';
+import InfoIcon from '@mui/icons-material/Info';
+import { Box, Button, Modal, Typography } from '@mui/material';
+import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Endpoints } from '@/constants/Endpoints';
+import { useGlobalModal } from '@/context/GlobalModalContext';
 
 /**
  * Displays an error message in a global modal.
- * 
+ *
  * @param errorMessageKey i18n message key string
  */
 const ErrorModal: React.FC<{
   errorMessageKey: string;
-}> = ({
-  errorMessageKey,
-}) => {
-  const { t } = useTranslation("components/globalmodal");
+}> = ({ errorMessageKey }) => {
+  const { t } = useTranslation('components/globalmodal');
   const { setPromptError } = useGlobalModal(); // Global context to toggle modal
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -25,37 +24,36 @@ const ErrorModal: React.FC<{
       <Box
         ref={modalRef}
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "background.paper",
+          backgroundColor: 'background.paper',
           borderRadius: 2,
           boxShadow: 24,
+          left: '50%',
+          maxWidth: '500px',
           p: 4,
-          maxWidth: "500px",
-          width: "90%",
-          textAlign: "center",
+          position: 'absolute',
+          textAlign: 'center',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
         }}
       >
-
-        <InfoIcon sx={{ fontSize: 40, color: "error.main", mb: 2 }} />
+        <InfoIcon sx={{ color: 'error.main', fontSize: 40, mb: 2 }} />
         <Typography
           id="error-modal-title"
           variant="h5"
           sx={{
-            fontWeight: "bold",
-            color: "text.primary",
+            color: 'text.primary',
+            fontWeight: 'bold',
             mb: 2,
           }}
         >
-          {t("error_modal.title")}
+          {t('error_modal.title')}
         </Typography>
 
         <Typography
           variant="body1"
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
             mb: 3,
           }}
         >
@@ -65,21 +63,21 @@ const ErrorModal: React.FC<{
         <Typography
           variant="body2"
           sx={{
-            color: "error.main",
+            color: 'error.main',
             mb: 3,
           }}
         >
-          <i>{t("error_modal.footnote.1")}</i>
+          <i>{t('error_modal.footnote.1')}</i>
           <a
             href={Endpoints.projectDiscordUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: "secondary",
-              textDecoration: "underline",
+              color: 'secondary',
+              textDecoration: 'underline',
             }}
           >
-            <i>{t("error_modal.footnote.2")}</i>
+            <i>{t('error_modal.footnote.2')}</i>
           </a>
         </Typography>
 
@@ -88,14 +86,14 @@ const ErrorModal: React.FC<{
           variant="contained"
           color="primary"
           startIcon={<Home />}
-          style={{ width: "60%" }}
+          style={{ width: '60%' }}
           sx={{
             mb: 2,
             px: 3,
             py: 1.5,
           }}
         >
-          {t("error_modal.refresh_page")}
+          {t('error_modal.refresh_page')}
         </Button>
       </Box>
     </Modal>

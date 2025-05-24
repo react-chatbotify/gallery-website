@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { galleryApiFetch } from "@/utils";
-import { UserData } from "../interfaces/UserData";
+import { galleryApiFetch } from '@/utils';
+
+import { UserData } from '../interfaces/UserData';
 
 /**
  * Fetches user data by calling the backend api.
@@ -38,7 +39,7 @@ const useFetchUserData = (url: string, provider: string, key: string) => {
     fetchInitiated.current = true;
   }, [url, provider, key]);
 
-  return { data, loading, error };
+  return { data, error, loading };
 };
 
 export default useFetchUserData;

@@ -1,13 +1,15 @@
-import CommunitySection from "@/components/Home/CommunitySection";
-import FeaturesAtGlance from "@/components/Home/FeaturesAtGlance";
-import FinalCta from "@/components/Home/FinalCta";
-import Footer from "@/components/Home/Footer";
-import SponsorsSection from "@/components/Home/SponsorsSection";
-import TestimonialSection from "@/components/Home/TestimonialSection";
-import { Box, Container } from "@mui/material";
-import ContributorsSection from "../components/Home/ContributorsSection";
-import FeaturesAndBenefitsSection from "../components/Home/FeaturesAndBenefitsSection";
-import HeroSection from "../components/Home/HeroSection";
+import { Box, Container } from '@mui/material';
+
+import CommunitySection from '@/components/Home/CommunitySection';
+import FeaturesAtGlance from '@/components/Home/FeaturesAtGlance';
+import FinalCta from '@/components/Home/FinalCta';
+import Footer from '@/components/Home/Footer';
+import SponsorsSection from '@/components/Home/SponsorsSection';
+import TestimonialSection from '@/components/Home/TestimonialSection';
+
+import ContributorsSection from '../components/Home/ContributorsSection';
+import FeaturesAndBenefitsSection from '../components/Home/FeaturesAndBenefitsSection';
+import HeroSection from '../components/Home/HeroSection';
 
 /**
  * Landing page that users first see upon visiting the website.
@@ -16,11 +18,14 @@ const Home: React.FC = () => {
   return (
     <Box
       sx={{
-        color: "text.primary",
-        backgroundColor: "background.paper",
+        backgroundColor: 'background.paper',
+        color: 'text.primary',
+        paddingLeft: '10%',
+        paddingRight: '10%',
       }}
     >
-      <Container maxWidth={false}
+      <Container
+        maxWidth={false}
         sx={{
           px: 6,
         }}

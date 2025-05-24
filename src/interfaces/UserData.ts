@@ -1,5 +1,5 @@
 // user data fetched from github login
-export interface UserData {
+export type UserData = {
   id: string;
   role: string;
   name: string;
@@ -12,4 +12,4 @@ export interface UserData {
   provider: string; // login provider (e.g. github)
   providerUserId: string; // user id given by provider that user logged in with (e.g. github)
   joinDate?: string;
-}
+};

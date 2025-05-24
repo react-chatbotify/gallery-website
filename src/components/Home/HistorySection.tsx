@@ -1,51 +1,51 @@
-import { Box, Typography } from "@mui/material";
-import { Hourglass } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { Box, Typography } from '@mui/material';
+import { Hourglass } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Briefly shares about the history of the project.
  */
 const HistorySection = () => {
   // lazy loads translations
-  const { t } = useTranslation("components/home");
+  const { t } = useTranslation('components/home');
 
   return (
     <Box
       component="section"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
         gap: 4,
+        textAlign: 'center',
       }}
     >
       {/* Icon */}
       <Hourglass
         style={{
-          color: "secondary.main",
-          fontSize: "3rem",
-          transform: "rotate(12deg)",
+          color: 'secondary.main',
+          fontSize: '3rem',
+          transform: 'rotate(12deg)',
         }}
       />
       {/* Title */}
       <Typography
         variant="h2"
         sx={{
-          fontWeight: "bold",
-          fontSize: "3rem",
+          fontSize: '3rem',
+          fontWeight: 'bold',
         }}
       >
-        {t("history_section.title")}
+        {t('history_section.title')}
       </Typography>
       {/* Paragraph */}
       <Typography
         sx={{
-          fontSize: { xs: "1rem", lg: "1.125rem" },
+          fontSize: { lg: '1.125rem', xs: '1rem' },
           maxWidth: 650,
         }}
       >
-        {t("history_section.body_text")}
+        {t('history_section.body_text')}
       </Typography>
     </Box>
   );

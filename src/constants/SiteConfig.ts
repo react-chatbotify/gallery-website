@@ -1,8 +1,6 @@
 const SiteConfig = {
+  loginSpinnerGraceTime: 3000,
   siteName: 'React ChatBotify Gallery',
-  loginSpinnerGraceTime: 3000
-}
+};
 
-export {
-  SiteConfig
-}
+export { SiteConfig };

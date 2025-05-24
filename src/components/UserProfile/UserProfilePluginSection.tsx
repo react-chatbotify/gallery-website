@@ -1,10 +1,12 @@
-import { useNotify } from '@/hooks/useNotify';
-import { Plugin } from '@/interfaces/Plugin';
-import { removePluginFromFavorites } from '@/services/plugins/apiService';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import { useNotify } from '@/hooks/useNotify';
+import { Plugin } from '@/interfaces/Plugin';
+import { removePluginFromFavorites } from '@/services/plugins/apiService';
+
 import EmptySVG from '../../assets/images/empty_card.svg';
 import UserFavoritePluginCard from './UserFavoritePluginCard';
 import UserOwnedPluginCard from './UserOwnedPluginCard';
@@ -22,48 +24,43 @@ const UserProfilePluginSection: React.FC<{
   isLoading: boolean;
   selectedPluginType: 'personal' | 'favorite';
   onTogglePluginType: (type: 'personal' | 'favorite') => void;
-}> = ({
-  plugins,
-  isLoading,
-  selectedPluginType,
-  onTogglePluginType,
-}) => {
+}> = ({ plugins, isLoading, selectedPluginType, onTogglePluginType }) => {
   // lazy loads translations
   const { t } = useTranslation('components/userprofile');
   const navigate = useNavigate();
   const notify = useNotify();
   const [selectedPlugins, setSelectedPlugins] = useState<Plugin[]>([]);
-  
+
   useEffect(() => {
     setSelectedPlugins(plugins);
   }, [plugins]);
 
   const removeFavoritePlugin = (plugin: Plugin) => {
-    notify("Plugin removed from favorites!");
+    notify('Plugin removed from favorites!');
     setSelectedPlugins((prevPlugins) => prevPlugins.filter((t) => t.id !== plugin.id));
     removePluginFromFavorites(plugin);
-  }
+  };
 
   return (
     <Box
       sx={{
-        borderRadius: 2,
-        width: '95vw',
-        margin: '0 auto',
-        padding: 8,
         backgroundColor: 'background.paper',
+        borderRadius: 2,
         color: 'text.secondary',
         display: 'grid',
         gap: 2,
+        margin: '0 auto',
         mt: 4,
+        padding: 8,
+        width: '95vw',
       }}
     >
       {/* Header */}
       <Box
         sx={{
+          alignItems: 'center',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
           paddingBottom: 3,
         }}
       >
@@ -92,10 +89,10 @@ const UserProfilePluginSection: React.FC<{
       {isLoading ? (
         <Box
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
             alignItems: 'center',
+            display: 'flex',
             height: 200,
+            justifyContent: 'center',
           }}
         >
           <CircularProgress />
@@ -115,31 +112,30 @@ const UserProfilePluginSection: React.FC<{
       ) : (
         <Box
           sx={{
+            alignplugins: 'center',
             display: 'grid',
             gap: 3,
             justifyItems: 'center',
-            alignplugins: 'center',
-            textAlign: 'center',
             padding: 2,
+            textAlign: 'center',
           }}
         >
           <img src={EmptySVG} alt="Empty" />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-              {selectedPluginType === "personal" ?
-                <>{t('user_profile_plugin_section.empty_personal_plugins')}</> :
+              {selectedPluginType === 'personal' ? (
+                <>{t('user_profile_plugin_section.empty_personal_plugins')}</>
+              ) : (
                 <>{t('user_profile_plugin_section.empty_favorited_plugins')}</>
-              }
+              )}
             </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              {t('user_profile_plugin_section.prompt_action')}
-            </Typography>
+            <Typography sx={{ color: 'text.secondary' }}>{t('user_profile_plugin_section.prompt_action')}</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button variant="contained" color="secondary" onClick={() => navigate("/plugins")}>
+            <Button variant="contained" color="secondary" onClick={() => navigate('/plugins')}>
               {t('user_profile_plugin_section.browse_plugins')}
             </Button>
-            <Button variant="contained" color="primary" onClick={() => navigate("/plugin-builder")}>
+            <Button variant="contained" color="primary" onClick={() => navigate('/plugin-builder')}>
               {t('user_profile_plugin_section.build_plugin')}
             </Button>
           </Box>

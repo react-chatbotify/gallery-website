@@ -1,11 +1,11 @@
 {
-	"searchbar": {
-		"placeholder": "Enter search here..."
-	},
+  "searchbar": {
+    "placeholder": "Enter search here..."
+  },
   "sortbutton": {
-		"placeholder": "Sort",
+    "placeholder": "Sort",
     "updated_at": "Last Updated",
     "created_at": "Newest Release",
     "favorites_count": "Most Favorited"
-	}
+  }
 }

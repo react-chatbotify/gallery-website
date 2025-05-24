@@ -1,23 +1,15 @@
-import CloseIcon from "@mui/icons-material/Close";
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Grid,
-  IconButton,
-  Modal,
-  Typography,
-} from "@mui/material";
-import { Heart } from "lucide-react";
-import React, { useRef } from "react";
-import ReactDOM from "react-dom";
-import { useTranslation } from "react-i18next";
-import { Plugin } from "../../interfaces/Plugin";
+import CloseIcon from '@mui/icons-material/Close';
+import { Avatar, Box, Button, Chip, Grid, IconButton, Modal, Typography } from '@mui/material';
+import { Heart } from 'lucide-react';
+import React, { useRef } from 'react';
+import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
+
+import { Plugin } from '../../interfaces/Plugin';
 
 /**
  * Modal to popup for showing plugin details.
- * 
+ *
  * @param onClose handles closing of modal
  * @param plugin plugin to show details for
  * @param updateFavorites handles user action to favorite plugin
@@ -26,13 +18,9 @@ const PluginModal: React.FC<{
   onClose: () => void;
   plugin: Plugin;
   updateFavorites: (plugin: Plugin, isFavoriting: boolean) => void;
-}> = ({
-  onClose, 
-  plugin,
-  updateFavorites
-}) => {
+}> = ({ onClose, plugin, updateFavorites }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/plugins");
+  const { t } = useTranslation('components/plugins');
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleFavoriteClick = async () => {
@@ -48,24 +36,24 @@ const PluginModal: React.FC<{
       <Box
         ref={modalRef}
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "background.paper",
+          backgroundColor: 'background.paper',
           borderRadius: 2,
           boxShadow: 24,
+          left: '50%',
+          maxWidth: '800px',
           p: 4,
-          maxWidth: "800px",
-          width: "90%",
+          position: 'absolute',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
         }}
       >
         <IconButton
           onClick={onClose}
           sx={{
-            position: "absolute",
-            top: 16,
+            position: 'absolute',
             right: 16,
+            top: 16,
           }}
         >
           <CloseIcon />
@@ -77,8 +65,8 @@ const PluginModal: React.FC<{
               id="plugin-modal-title"
               variant="h5"
               sx={{
-                fontWeight: "bold",
-                color: "text.primary",
+                color: 'text.primary',
+                fontWeight: 'bold',
                 mb: 1,
               }}
             >
@@ -91,9 +79,9 @@ const PluginModal: React.FC<{
                   src={plugin.authorImg}
                   alt={plugin.authorName}
                   sx={{
-                    width: 32,
                     height: 32,
                     mr: 1,
+                    width: 32,
                   }}
                 />
               )}
@@ -103,16 +91,16 @@ const PluginModal: React.FC<{
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  color: "gray",
-                  textDecoration: "underline",
-                  fontSize: "1rem",
+                  color: 'gray',
+                  fontSize: '1rem',
+                  textDecoration: 'underline',
                 }}
               >
                 {plugin.authorName}
               </Typography>
             </Box>
 
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
               {plugin.keywords.map((tag, index) => (
                 <Chip key={`tag-${index}`} label={tag} />
               ))}
@@ -121,44 +109,36 @@ const PluginModal: React.FC<{
             <Typography
               variant="body2"
               sx={{
-                color: "gray",
-                fontSize: "1rem",
+                color: 'gray',
+                fontSize: '1rem',
                 mb: 3,
               }}
             >
               {plugin.description}
             </Typography>
 
-            <Typography
-              variant="body2"
-              fontWeight="bold"
-              sx={{ color: "gray", mb: 1 }}
-            >
-              {t("plugin_modal.id")}
+            <Typography variant="body2" fontWeight="bold" sx={{ color: 'gray', mb: 1 }}>
+              {t('plugin_modal.id')}
             </Typography>
             <Typography
               variant="body2"
               sx={{
-                color: "gray",
-                fontSize: "1rem",
+                color: 'gray',
+                fontSize: '1rem',
                 mb: 2,
               }}
             >
               {plugin.id}
             </Typography>
 
-            <Typography
-              variant="body2"
-              fontWeight="bold"
-              sx={{ color: "gray", mb: 1 }}
-            >
-              {t("plugin_modal.version")}
+            <Typography variant="body2" fontWeight="bold" sx={{ color: 'gray', mb: 1 }}>
+              {t('plugin_modal.version')}
             </Typography>
             <Typography
               variant="body2"
               sx={{
-                color: "gray",
-                fontSize: "1rem",
+                color: 'gray',
+                fontSize: '1rem',
                 mb: 3,
               }}
             >
@@ -168,10 +148,10 @@ const PluginModal: React.FC<{
             <Box
               mt={3}
               sx={{
-                display: "flex",
-                alignItems: "center",
+                alignItems: 'center',
+                display: 'flex',
                 gap: 3,
-                width: { xs: "100%", md: "auto" },
+                width: { md: 'auto', xs: '100%' },
               }}
             >
               <Button
@@ -179,21 +159,21 @@ const PluginModal: React.FC<{
                 variant="contained"
                 color="primary"
                 sx={{
-                  width: { xs: "100%", md: "auto" },
+                  width: { md: 'auto', xs: '100%' },
                 }}
               >
-                {t("plugin_modal.download_plugin")}
+                {t('plugin_modal.download_plugin')}
               </Button>
 
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0 }}>
-                <IconButton 
+              <Box sx={{ alignItems: 'center', display: 'flex', gap: 0 }}>
+                <IconButton
                   aria-label="favorite"
                   onClick={handleFavoriteClick}
                   sx={{
-                    padding: 1,
                     '&:hover': {
-                      backgroundColor: 'action.hover'
-                    }
+                      backgroundColor: 'action.hover',
+                    },
+                    padding: 1,
                   }}
                 >
                   <Heart
@@ -205,10 +185,10 @@ const PluginModal: React.FC<{
                 <Typography
                   sx={{
                     color: 'text.primary',
-                    fontSize: '1rem'
+                    fontSize: '1rem',
                   }}
                 >
-                  {plugin.favoritesCount} {t("plugin_modal.likes")}
+                  {plugin.favoritesCount} {t('plugin_modal.likes')}
                 </Typography>
               </Box>
             </Box>
@@ -220,11 +200,11 @@ const PluginModal: React.FC<{
               src={plugin.imageUrl}
               alt={plugin.name}
               sx={{
-                width: "100%",
-                height: "auto",
-                maxHeight: "400px",
                 borderRadius: 2,
-                objectFit: "cover",
+                height: 'auto',
+                maxHeight: '400px',
+                objectFit: 'cover',
+                width: '100%',
               }}
             />
           </Grid>
@@ -233,10 +213,7 @@ const PluginModal: React.FC<{
     </Modal>
   );
 
-  return ReactDOM.createPortal(
-    modalContent,
-    document.getElementById("modal-container") || document.body
-  );
+  return ReactDOM.createPortal(modalContent, document.getElementById('modal-container') || document.body);
 };
 
 export default PluginModal;

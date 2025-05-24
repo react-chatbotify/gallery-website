@@ -1,6 +1,7 @@
 import { Avatar, Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { UserData } from '../../interfaces/UserData';
 
 /**
@@ -10,31 +11,29 @@ import { UserData } from '../../interfaces/UserData';
  */
 const UserProfileInfoSection: React.FC<{
   userData: UserData;
-}> = ({
-  userData
-}) => {
+}> = ({ userData }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/userprofile");
+  const { t } = useTranslation('components/userprofile');
 
   return (
     <Box
       sx={{
-        width: '95vw',
-        maxWidth: '100%',
-        margin: '0 auto',
-        padding: 8,
-        borderRadius: 2,
         backgroundColor: 'background.paper',
+        borderRadius: 2,
+        boxSizing: 'border-box',
         color: 'text.secondary',
         display: 'grid',
         gap: 2,
-        boxSizing: 'border-box',
+        margin: '0 auto',
+        maxWidth: '100%',
         mt: 4,
+        padding: 8,
+        width: '95vw',
       }}
     >
       {/* Header */}
-      <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'primary.white' }}>
-        {t("user_profile_info_section.header")}
+      <Typography variant="h5" sx={{ color: 'primary.white', fontWeight: 'bold' }}>
+        {t('user_profile_info_section.header')}
       </Typography>
 
       {/* Profile Information */}
@@ -43,7 +42,7 @@ const UserProfileInfoSection: React.FC<{
           <Avatar
             src={userData?.avatarUrl}
             alt={userData?.name || 'Avatar'}
-            sx={{ width: 44, height: 44, borderRadius: 2 }}
+            sx={{ borderRadius: 2, height: 44, width: 44 }}
           />
         </Grid>
         <Grid item xs>
@@ -66,11 +65,11 @@ const UserProfileInfoSection: React.FC<{
             <Typography
               variant="body2"
               sx={{
-                fontWeight: 'bold',
                 color: userData?.location ? 'inherit' : 'primary.disabledForeground',
+                fontWeight: 'bold',
               }}
             >
-              {t("user_profile_info_section.location")}
+              {t('user_profile_info_section.location')}
             </Typography>
             <Typography variant="body2">{userData?.location || 'Not specified'}</Typography>
           </Box>
@@ -80,11 +79,11 @@ const UserProfileInfoSection: React.FC<{
             <Typography
               variant="body2"
               sx={{
-                fontWeight: 'bold',
                 color: userData?.joinDate ? 'inherit' : 'primary.disabledForeground',
+                fontWeight: 'bold',
               }}
             >
-              {t("user_profile_info_section.join_date")}
+              {t('user_profile_info_section.join_date')}
             </Typography>
             <Typography variant="body2">{userData?.joinDate || 'Not specified'}</Typography>
           </Box>
@@ -94,11 +93,11 @@ const UserProfileInfoSection: React.FC<{
             <Typography
               variant="body2"
               sx={{
-                fontWeight: 'bold',
                 color: userData?.role ? 'inherit' : 'primary.disabledForeground',
+                fontWeight: 'bold',
               }}
             >
-              {t("user_profile_info_section.community_role")}
+              {t('user_profile_info_section.community_role')}
             </Typography>
             <Typography variant="body2">{userData?.role || 'Not specified'}</Typography>
           </Box>

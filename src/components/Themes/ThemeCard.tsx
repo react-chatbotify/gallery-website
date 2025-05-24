@@ -1,22 +1,15 @@
-import useIsDesktop from "@/hooks/useIsDesktop";
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Checkbox,
-  FormControlLabel,
-  IconButton,
-  Typography
-} from "@mui/material";
-import { Heart } from "lucide-react";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Theme } from "../../interfaces/Theme";
+import { Box, Card, CardContent, CardMedia, Checkbox, FormControlLabel, IconButton, Typography } from '@mui/material';
+import { Heart } from 'lucide-react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import useIsDesktop from '@/hooks/useIsDesktop';
+
+import { Theme } from '../../interfaces/Theme';
 
 /**
  * Card component to hold the details of each theme in the themes page.
- * 
+ *
  * @param theme theme to show information for
  * @param isPreviewed boolean indicating if theme is selected by user to be previewed
  * @param onPreview handles logic for theme selected to be previewed
@@ -29,15 +22,9 @@ const ThemeCard: React.FC<{
   onPreview: (theme: Theme) => void;
   onViewMoreInfo: (theme: Theme) => void;
   updateFavorites: (theme: Theme, isFavoriting: boolean) => void;
-}> = ({
-  theme,
-  isPreviewed,
-  onPreview,
-  onViewMoreInfo,
-  updateFavorites,
-}) => {
+}> = ({ theme, isPreviewed, onPreview, onViewMoreInfo, updateFavorites }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/themes");
+  const { t } = useTranslation('components/themes');
 
   const isDesktop = useIsDesktop();
 
@@ -56,15 +43,15 @@ const ThemeCard: React.FC<{
   return (
     <Card
       sx={{
-        height: isDesktop ? 500 : 460,
-        width: isDesktop ? "100%" : "85vw",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        p: 2,
+        border: '2px solid',
+        borderColor: isPreviewed ? 'primary.main' : 'divider',
         borderRadius: 5,
-        border: "2px solid",
-        borderColor: isPreviewed ? "primary.main" : "divider",
+        display: 'flex',
+        flexDirection: 'column',
+        height: isDesktop ? 500 : 460,
+        justifyContent: 'space-between',
+        p: 2,
+        width: isDesktop ? '100%' : '85vw',
       }}
     >
       <CardMedia
@@ -72,26 +59,26 @@ const ThemeCard: React.FC<{
         image={theme.themeImg}
         alt={theme.name}
         sx={{
-          height: isDesktop ? 280 : 240,
-          width: "100%",
-          objectFit: "cover",
           borderRadius: 5,
+          height: isDesktop ? 280 : 240,
+          objectFit: 'cover',
+          width: '100%',
         }}
       />
       <CardContent>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
           {theme.name}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
           sx={{
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
+            WebkitBoxOrient: 'vertical',
             WebkitLineClamp: 2,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
+            display: '-webkit-box',
             mt: 1,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
           {theme.description}
@@ -99,9 +86,9 @@ const ThemeCard: React.FC<{
       </CardContent>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          alignItems: 'flex-start',
+          display: 'flex',
+          flexDirection: 'column',
           mt: 0.5,
         }}
       >
@@ -110,46 +97,40 @@ const ThemeCard: React.FC<{
           color="primary"
           onClick={() => onViewMoreInfo(theme)}
           sx={{
-            cursor: "pointer",
-            "&:hover": {
-              textDecoration: "underline",
+            '&:hover': {
+              textDecoration: 'underline',
             },
-            ml: 1.4,
+            cursor: 'pointer',
             fontSize: 16,
+            ml: 1.4,
           }}
         >
-          {t("theme_card.more_info")}
+          {t('theme_card.more_info')}
         </Typography>
 
         {/* Row for select and heart icon */}
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            mt: 0.5
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: 0.5,
+            width: '100%',
           }}
         >
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={isPreviewed}
-                onChange={handleCheckboxChange}
-                color="primary"
-              />
-            }
-            label={t("theme_card.select")}
+            control={<Checkbox checked={isPreviewed} onChange={handleCheckboxChange} color="primary" />}
+            label={t('theme_card.select')}
             sx={{ ml: 0 }}
           />
 
           {/* Favorites count and Heart icon */}
-          <Box sx={{ display: "flex", alignItems: "center", ml: 2, gap: 1 }}>
+          <Box sx={{ alignItems: 'center', display: 'flex', gap: 1, ml: 2 }}>
             <Typography
               sx={{
-                fontWeight: 'bold',
                 color: 'text.primary',
-                fontSize: '0.875rem'
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
               }}
             >
               {theme.favoritesCount}

@@ -1,33 +1,21 @@
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import LanguageIcon from '@mui/icons-material/Language';
-import MenuIcon from "@mui/icons-material/Menu";
-import NightlightIcon from "@mui/icons-material/Nightlight";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import {
-  Box,
-  Button,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Menu,
-  MenuItem,
-  useTheme
-} from "@mui/material";
-import { useTranslation } from "react-i18next";
+import MenuIcon from '@mui/icons-material/Menu';
+import NightlightIcon from '@mui/icons-material/Nightlight';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { Box, Button, Drawer, IconButton, List, ListItem, ListItemText, Menu, MenuItem, useTheme } from '@mui/material';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import logo from "@/assets/images/logo.png";
-import { Endpoints } from "@/constants/Endpoints";
-import { useAuth } from "@/context/AuthContext";
-import useIsDesktop from "@/hooks/useIsDesktop";
-import { useNotify } from "@/hooks/useNotify";
-import { handleLogin } from "@/services/authService";
-import { resetPluginsCache } from "@/services/plugins/cacheService";
-import { resetThemesCache } from "@/services/themes/cacheService";
-import { galleryApiFetch } from "@/utils";
+import logo from '@/assets/images/logo.png';
+import { Endpoints } from '@/constants/Endpoints';
+import { useAuth } from '@/context/AuthContext';
+import useIsDesktop from '@/hooks/useIsDesktop';
+import { useNotify } from '@/hooks/useNotify';
+import { handleLogin } from '@/services/authService';
+import { resetPluginsCache } from '@/services/plugins/cacheService';
+import { resetThemesCache } from '@/services/themes/cacheService';
+import { galleryApiFetch } from '@/utils';
 
 /**
  * Contains commonly accessed items pinned at the top.
@@ -35,12 +23,10 @@ import { galleryApiFetch } from "@/utils";
  * @param toggleTheme toggles the theme of the website (light/dark)
  */
 const NavigationBar: React.FC<{
-  toggleTheme: () => void
-}> = ({
-  toggleTheme
-}) => {
+  toggleTheme: () => void;
+}> = ({ toggleTheme }) => {
   // lazy loads translations
-  const { t, i18n } = useTranslation("components/navigationbar");
+  const { t, i18n } = useTranslation('components/navigationbar');
 
   const isDesktop = useIsDesktop();
   const { isLoggedIn, setIsLoggedIn, setUserData } = useAuth();
@@ -50,7 +36,7 @@ const NavigationBar: React.FC<{
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [communityMenuAnchor, setCommunityMenuAnchor] = useState<null | HTMLElement>(null);
-  const theme = useTheme()
+  const theme = useTheme();
 
   const handleLogout = async () => {
     setIsLoggedIn(false);
@@ -58,78 +44,77 @@ const NavigationBar: React.FC<{
     await galleryApiFetch(Endpoints.logoutUser);
     resetPluginsCache();
     resetThemesCache();
-    localStorage.setItem("logoutMessage", "You have been logged out successfully, see you next time!");
-    if (location.pathname === "/profile") {
-      navigate("/");
+    localStorage.setItem('logoutMessage', 'You have been logged out successfully, see you next time!');
+    if (location.pathname === '/profile') {
+      navigate('/');
     }
     window.location.reload();
   };
 
   const changeLanguage = (lang: string) => {
-    localStorage.setItem("RCBG_SELECTED_LANGUAGE", lang);
+    localStorage.setItem('RCBG_SELECTED_LANGUAGE', lang);
     i18n.changeLanguage(lang);
-    notify(t("navigation_bar.language_updated_message"));
+    notify(t('navigation_bar.language_updated_message'));
   };
 
-  const generalNavLinkSx = { color: "text.muted", textTransform: "capitalize"  ,  ":hover": { 
-    color: "text.primary", 
-    backgroundColor: "transparent" // Disable background on hover
-  }  }
+  const generalNavLinkSx = {
+    ':hover': {
+      backgroundColor: 'transparent',
+      color: 'text.primary', // Disable background on hover
+    },
+    color: 'text.muted',
+    textTransform: 'capitalize',
+  };
 
   return (
     <Box
       component="nav"
       sx={{
-        position: isDesktop ? "sticky" : "fixed",
-        top: 0,
+        alignItems: 'center',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        backgroundColor: 'background.paper',
+        display: 'flex',
+        justifyContent: 'space-between',
         left: 0,
-        width: "100%",
-        zIndex: 9000,
-        py: 2,
+        position: isDesktop ? 'sticky' : 'fixed',
         px: 6,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        backgroundColor: "background.navbar",
-        transition: "background-color 0.3s, opacity 0.3s",
-        backdropFilter: "blur(20px) saturate(180%)",
+        py: 2,
+        top: 0,
+        transition: 'background-color 0.3s, opacity 0.3s',
+        width: '100%',
+        zIndex: 9000,
       }}
     >
       {/* Logo */}
-      <Link to="/" style={{display: "grid", alignItems: "center"}}>
-        <Box component="img" src={logo} alt="Logo" sx={{ width: 32, height: 32, mx: 2 }} />
+      <Link to="/" style={{ alignItems: 'center', display: 'grid' }}>
+        <Box component="img" src={logo} alt="Logo" sx={{ height: 32, mx: 2, width: 32 }} />
       </Link>
 
       {/* Desktop Menu */}
       <Box
         sx={{
-          display: { xs: "none", md: "flex" },
+          alignItems: 'center',
+          display: { md: 'flex', xs: 'none' },
           flexGrow: 1,
-          alignItems: "center",
           gap: 2,
         }}
       >
-        <Button
-          component="a"
-          href={Endpoints.projectBaseUrl}
-          target="_blank"
-          sx={generalNavLinkSx}
-        >
-          {t("navigation_bar.documentation")}
+        <Button component="a" href={Endpoints.projectBaseUrl} target="_blank" sx={generalNavLinkSx}>
+          {t('navigation_bar.documentation')}
         </Button>
         <Button component={Link} to="/plugins" sx={generalNavLinkSx}>
-          {t("navigation_bar.plugins")}
+          {t('navigation_bar.plugins')}
         </Button>
         <Button component={Link} to="/themes" sx={generalNavLinkSx}>
-          {t("navigation_bar.themes")}
+          {t('navigation_bar.themes')}
         </Button>
         <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
-          {t("navigation_bar.theme_builder")}
+          {t('navigation_bar.theme_builder')}
         </Button>
       </Box>
 
       {/* Login/Logout and Toggle Buttons */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+      <Box sx={{ alignItems: 'center', display: 'flex', gap: 2 }}>
         {/* Community Dropdown */}
         <Box>
           <Button
@@ -137,12 +122,12 @@ const NavigationBar: React.FC<{
               if (communityMenuAnchor) {
                 setCommunityMenuAnchor(null);
               } else {
-                setCommunityMenuAnchor(event.currentTarget)
+                setCommunityMenuAnchor(event.currentTarget);
               }
             }}
             sx={generalNavLinkSx}
           >
-            {t("navigation_bar.community")}
+            {t('navigation_bar.community')}
           </Button>
           <Menu
             anchorEl={communityMenuAnchor}
@@ -150,17 +135,21 @@ const NavigationBar: React.FC<{
             onClose={() => setCommunityMenuAnchor(null)}
             sx={{ mt: 1, zIndex: 9001 }}
           >
-            <MenuItem onClick={() => {
-              window.open(Endpoints.projectRepoUrl);
-              setCommunityMenuAnchor(null);
-            }}>
-              {t("navigation_bar.community.github")}
+            <MenuItem
+              onClick={() => {
+                window.open(Endpoints.projectRepoUrl);
+                setCommunityMenuAnchor(null);
+              }}
+            >
+              {t('navigation_bar.community.github')}
             </MenuItem>
-            <MenuItem onClick={() => {
-              window.open(Endpoints.projectDiscordUrl);
-              setCommunityMenuAnchor(null);
-            }}>
-              {t("navigation_bar.community.discord")}
+            <MenuItem
+              onClick={() => {
+                window.open(Endpoints.projectDiscordUrl);
+                setCommunityMenuAnchor(null);
+              }}
+            >
+              {t('navigation_bar.community.discord')}
             </MenuItem>
           </Menu>
         </Box>
@@ -169,23 +158,29 @@ const NavigationBar: React.FC<{
             <Button
               component={Link}
               to="/profile"
-              sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" } }}
+              sx={{ color: 'text.primary', display: { md: 'block', xs: 'none' }, textTransform: 'capitalize' }}
             >
-              {t("navigation_bar.profile")}
+              {t('navigation_bar.profile')}
             </Button>
             <Button
               onClick={handleLogout}
-              sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" } }}
+              sx={{ color: 'text.primary', display: { md: 'block', xs: 'none' }, textTransform: 'capitalize' }}
             >
-              {t("navigation_bar.logout")}
+              {t('navigation_bar.logout')}
             </Button>
           </>
         ) : (
           <Button
             onClick={() => handleLogin()}
-            sx={{ color: "text.primary", textTransform: "capitalize", display: { xs: "none", md: "block" }, backgroundColor: "background.secondary", borderRadius: '12px' }}
+            sx={{
+              backgroundColor: 'background.secondary',
+              borderRadius: '12px',
+              color: 'text.primary',
+              display: { md: 'block', xs: 'none' },
+              textTransform: 'capitalize',
+            }}
           >
-            {t("navigation_bar.login")}
+            {t('navigation_bar.login')}
           </Button>
         )}
 
@@ -196,10 +191,10 @@ const NavigationBar: React.FC<{
               if (languageMenuAnchor) {
                 setLanguageMenuAnchor(null);
               } else {
-                setLanguageMenuAnchor(event.currentTarget)
+                setLanguageMenuAnchor(event.currentTarget);
               }
             }}
-            sx={{ color: "text.primary" }}
+            sx={{ color: 'text.primary' }}
           >
             <LanguageIcon />
           </IconButton>
@@ -209,26 +204,34 @@ const NavigationBar: React.FC<{
             onClose={() => setLanguageMenuAnchor(null)}
             sx={{ mt: 1, zIndex: 9001 }}
           >
-            <MenuItem onClick={() => {
-              changeLanguage("en")
-              setLanguageMenuAnchor(null)
-            }}>English</MenuItem>
-            <MenuItem onClick={() => {
-              changeLanguage("zh")
-              setLanguageMenuAnchor(null)
-            }}>中文</MenuItem>
+            <MenuItem
+              onClick={() => {
+                changeLanguage('en');
+                setLanguageMenuAnchor(null);
+              }}
+            >
+              English
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                changeLanguage('zh');
+                setLanguageMenuAnchor(null);
+              }}
+            >
+              中文
+            </MenuItem>
           </Menu>
         </Box>
 
         {/* Theme Toggle Button */}
-        <IconButton onClick={toggleTheme} sx={{ color: "text.primary" }}>
+        <IconButton onClick={toggleTheme} sx={{ color: 'text.primary' }}>
           {theme.palette.mode === 'dark' ? <NightlightIcon /> : <WbSunnyIcon />}
         </IconButton>
 
         {/* Hamburger Menu for Mobile */}
         <IconButton
-          onClick={() => setMobileMenuOpen(prev => !prev)}
-          sx={{ color: "text.primary", display: { xs: "block", md: "none" } }}
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          sx={{ color: 'text.primary', display: { md: 'none', xs: 'block' } }}
         >
           <MenuIcon />
         </IconButton>
@@ -240,11 +243,11 @@ const NavigationBar: React.FC<{
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         sx={{
-          "& .MuiDrawer-paper": {
-            width: "60vw",
-            maxWidth: "300px",
-            backgroundColor: "background.default",
+          '& .MuiDrawer-paper': {
+            backgroundColor: 'background.default',
             marginTop: 9,
+            maxWidth: '300px',
+            width: '60vw',
           },
         }}
       >
@@ -254,9 +257,9 @@ const NavigationBar: React.FC<{
             component={Link}
             to={Endpoints.projectBaseUrl}
             onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: 'pointer' }}
           >
-            <ListItemText primary={t("navigation_bar.documentation")} />
+            <ListItemText primary={t('navigation_bar.documentation')} />
           </ListItem>
 
           {/* Plugins */}
@@ -264,19 +267,14 @@ const NavigationBar: React.FC<{
             component={Link} // Specify Link as the component
             to="/plugins" // Pass the 'to' prop
             onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: 'pointer' }}
           >
-            <ListItemText primary={t("navigation_bar.plugins")} />
+            <ListItemText primary={t('navigation_bar.plugins')} />
           </ListItem>
 
           {/* Themes */}
-          <ListItem
-            component={Link}
-            to="/themes"
-            onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
-          >
-            <ListItemText primary={t("navigation_bar.themes")} />
+          <ListItem component={Link} to="/themes" onClick={() => setMobileMenuOpen(false)} sx={{ cursor: 'pointer' }}>
+            <ListItemText primary={t('navigation_bar.themes')} />
           </ListItem>
 
           {/* Theme Builder */}
@@ -284,9 +282,9 @@ const NavigationBar: React.FC<{
             component={Link}
             to="/theme-builder"
             onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: 'pointer' }}
           >
-            <ListItemText primary={t("navigation_bar.theme_builder")} />
+            <ListItemText primary={t('navigation_bar.theme_builder')} />
           </ListItem>
 
           {/* GitHub */}
@@ -295,9 +293,9 @@ const NavigationBar: React.FC<{
             href={Endpoints.projectRepoUrl}
             target="_blank"
             onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: 'pointer' }}
           >
-            <ListItemText primary={t("navigation_bar.community.github")} />
+            <ListItemText primary={t('navigation_bar.community.github')} />
           </ListItem>
 
           {/* Discord */}
@@ -306,9 +304,9 @@ const NavigationBar: React.FC<{
             href={Endpoints.projectDiscordUrl}
             target="_blank"
             onClick={() => setMobileMenuOpen(false)}
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: 'pointer' }}
           >
-            <ListItemText primary={t("navigation_bar.community.discord")} />
+            <ListItemText primary={t('navigation_bar.community.discord')} />
           </ListItem>
 
           {isLoggedIn ? (
@@ -317,23 +315,17 @@ const NavigationBar: React.FC<{
                 component={Link}
                 to="/profile"
                 onClick={() => setMobileMenuOpen(false)}
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: 'pointer' }}
               >
-                <ListItemText primary={t("navigation_bar.profile")} />
+                <ListItemText primary={t('navigation_bar.profile')} />
               </ListItem>
-              <ListItem
-                onClick={handleLogout}
-                sx={{ cursor: "pointer" }}
-              >
-                <ListItemText primary={t("navigation_bar.logout")} />
+              <ListItem onClick={handleLogout} sx={{ cursor: 'pointer' }}>
+                <ListItemText primary={t('navigation_bar.logout')} />
               </ListItem>
             </>
           ) : (
-            <ListItem
-              onClick={() => handleLogin()}
-              sx={{ cursor: "pointer" }}
-            >
-              <ListItemText primary={t("navigation_bar.login")} />
+            <ListItem onClick={() => handleLogin()} sx={{ cursor: 'pointer' }}>
+              <ListItemText primary={t('navigation_bar.login')} />
             </ListItem>
           )}
         </List>
