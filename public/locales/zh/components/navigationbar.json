@@ -5,8 +5,13 @@
     "themes": "主题",
     "theme_builder": "主题构建器",
     "community": "社区",
+    "github": "GitHub",
+    "community.discord": "Discord",
+    "community.instagram": "Instagram",
+    "community.twitter": "Twitter (X)",
     "profile": "个人资料",
     "login": "登录",
-    "logout": "登出"
+    "logout": "登出",
+    "language_updated_message": "语言已更新为中文 🇨🇳"
   }
 }

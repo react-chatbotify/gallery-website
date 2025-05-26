@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import GalleryTooltip from '@/components/GalleryTooltip/GalleryTooltip';
+import { Endpoints } from '@/constants/Endpoints';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 import { formatPreviewIdToTitleCase } from '../../utils';
@@ -31,13 +32,16 @@ const ThemePreview: React.FC<{
     end: {
       message: "What's next? 😊",
       options: ['Try Again', 'Check Documentation', 'Discord'],
-      path: (params: Params) => {
-        if (params.userInput === 'Try Again') setPreviewIds([]);
-        else if (params.userInput === 'Discord') window.open('https://discord.gg/6R4DK4G5Zh');
-        else if (params.userInput === 'Check Documentation') window.open('https://react-chatbotify.com');
-        else {
+      path: async (params: Params) => {
+        if (params.userInput === 'Try Again') {
           setPreviewIds([]);
-          params.injectMessage("Hmmm I'm not sure what you said, but let's try again!");
+        } else if (params.userInput === 'Discord') {
+          window.open(Endpoints.projectCoreDiscordUrl);
+        } else if (params.userInput === 'Check Documentation') {
+          window.open(Endpoints.projectBaseUrl);
+        } else {
+          setPreviewIds([]);
+          await params.injectMessage("Hmmm I'm not sure what you said, but let's try again!");
         }
         return 'start';
       },
@@ -54,8 +58,8 @@ const ThemePreview: React.FC<{
           })
         );
       },
-      message: (params: Params) => {
-        params.injectMessage('Hello 👋! Did you know? The order of specifying themes matters!');
+      message: async (params: Params) => {
+        await params.injectMessage('Hello 👋! Did you know? The order of specifying themes matters!');
         return 'Try previewing some themes below, or click on those on the left! 😊';
       },
       path: 'end',
@@ -94,14 +98,14 @@ const ThemePreview: React.FC<{
     <Box
       sx={{
         alignItems: 'center',
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         borderColor: 'divider',
-        borderLeft: '2px solid',
         boxSizing: 'border-box',
         color: '#f9fafb',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        overflowY: 'auto',
         p: 3,
       }}
     >
@@ -182,7 +186,6 @@ const ThemePreview: React.FC<{
         sx={{
           maxHeight: '300px',
           mt: 0.5,
-          overflowY: 'auto',
           width: '100%',
         }}
       >

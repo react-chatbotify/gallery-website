@@ -2,7 +2,9 @@
 const Placeholders = {
   plugins: [
     { favoritesCount: 0, id: 'rcb-input-validator' },
-    { favoritesCount: 0, id: 'markdown-parser' },
+    { favoritesCount: 0, id: 'markdown-renderer' },
+    { favoritesCount: 1, id: 'html-renderer' },
+    { favoritesCount: 2, id: 'llm-connector' },
   ],
   themes: [
     { favoritesCount: 0, id: 'minimal_midnight' },

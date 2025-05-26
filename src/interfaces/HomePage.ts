@@ -16,6 +16,7 @@ export type TestimonialCardProps = {
 
 export type PrimaryFeature = {
   Icon: React.ElementType;
+  url: string;
   heading: string;
   description: string;
   actionText: string;

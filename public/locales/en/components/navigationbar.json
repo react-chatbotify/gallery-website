@@ -5,11 +5,13 @@
     "themes": "Themes",
     "theme_builder": "Theme Builder",
     "community": "Community",
-    "community.github": "GitHub",
+    "github": "GitHub",
     "community.discord": "Discord",
+    "community.instagram": "Instagram",
+    "community.twitter": "Twitter (X)",
     "profile": "Profile",
     "login": "Login",
     "logout": "Logout",
-    "language_updated_message": "Language updated to English."
+    "language_updated_message": "Language updated to English 🇺🇸"
   }
 }

@@ -91,13 +91,15 @@ const App: React.FC = () => {
   const router = createBrowserRouter(routes);
 
   return (
-    <Suspense fallback={<div></div>}>
+    <>
       <I18nextProvider i18n={i18n}>
         <AuthProvider>
           <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
             <GlobalModalProvider>
               <CssBaseline />
-              <RouterProvider router={router} />
+              <Suspense fallback={<div></div>}>
+                <RouterProvider router={router} />
+              </Suspense>
               <GlobalModal />
             </GlobalModalProvider>
           </ThemeProvider>
@@ -105,7 +107,7 @@ const App: React.FC = () => {
       </I18nextProvider>
       {/* Toast */}
       <ToastContainer />
-    </Suspense>
+    </>
   );
 };
 

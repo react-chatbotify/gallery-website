@@ -1,15 +1,15 @@
 import { Box, Container } from '@mui/material';
 
+import CallToActionSection from '@/components/Home/CallToActionSection';
 import CommunitySection from '@/components/Home/CommunitySection';
-import FeaturesAtGlance from '@/components/Home/FeaturesAtGlance';
-import FinalCta from '@/components/Home/FinalCta';
+import FeaturesAtGlanceSection from '@/components/Home/FeaturesAtGlanceSection';
 import Footer from '@/components/Home/Footer';
-import SponsorsSection from '@/components/Home/SponsorsSection';
-import TestimonialSection from '@/components/Home/TestimonialSection';
 
-import ContributorsSection from '../components/Home/ContributorsSection';
+// import SponsorsSection from '@/components/Home/SponsorsSection';
+// import TestimonialSection from '@/components/Home/TestimonialSection';
 import FeaturesAndBenefitsSection from '../components/Home/FeaturesAndBenefitsSection';
 import HeroSection from '../components/Home/HeroSection';
+import ProjectSection from '../components/Home/ProjectSection';
 
 /**
  * Landing page that users first see upon visiting the website.
@@ -20,32 +20,32 @@ const Home: React.FC = () => {
       sx={{
         backgroundColor: 'background.paper',
         color: 'text.primary',
-        paddingLeft: '10%',
-        paddingRight: '10%',
+        px: { sm: '10%', xs: 0 },
       }}
     >
       <Container
         maxWidth={false}
+        disableGutters
         sx={{
-          px: 6,
+          px: { sm: 6, xs: 2 },
         }}
       >
         <HeroSection />
-        <Box sx={{ my: 16 }} />
-        <FeaturesAtGlance />
-        <Box sx={{ my: 16 }} />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+        <FeaturesAtGlanceSection />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
         <FeaturesAndBenefitsSection />
-        <Box sx={{ my: 16 }} />
-        <ContributorsSection />
-        <Box sx={{ my: 16 }} />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+        <ProjectSection />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
         <CommunitySection />
-        <Box sx={{ my: 16 }} />
-        <TestimonialSection />
-        <Box sx={{ my: 16 }} />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+        {/* <TestimonialSection />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
         <SponsorsSection />
-        <Box sx={{ my: 16 }} />
-        <FinalCta />
-        <Box sx={{ my: 16 }} />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} /> */}
+        <CallToActionSection />
+        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
         <Footer />
       </Container>
     </Box>

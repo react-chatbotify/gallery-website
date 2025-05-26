@@ -1,28 +1,49 @@
 import { Box, Button, Link, Stack, Typography } from '@mui/material';
-import { ArrowRight } from 'lucide-react';
-import { useCallback, useMemo } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ChatBot from 'react-chatbotify';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 
-import logo from '@/assets/images/logo.png';
+import logo from '@/assets/images/logo.webp';
+import { Endpoints } from '@/constants/Endpoints';
+import useFetchGitHubRepoInfo from '@/hooks/useFetchGitHubRepoInfo';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
-const HeroSection = () => {
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, transition: { duration: 0.6 }, y: 0 },
+};
+
+/**
+ * Shows the landing page with catch phrases and common/helpful links/buttons and a chatbot preview.
+ */
+const HeroSection = (): JSX.Element => {
   const { t } = useTranslation('components/home');
+  const isDesktop = useIsDesktop();
+  const [titleIndex, setTitleIndex] = useState(1);
 
+  const { stars, forks, repoUrl, loading } = useFetchGitHubRepoInfo('React ChatBotify', 'tjtanjin/react-chatbotify');
+
+  // rotates title every 4 seconds
+  const numTitles = 5;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((prev) => (prev >= numTitles ? 1 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentTitle = t(`hero_section.title.${titleIndex}`);
   const link_buttons = useMemo(() => {
     const texts = t('hero_section.links', { returnObjects: true }) as string[];
-    const urls = [
-      'https://react-chatbotify.com/docs/introduction/quickstart',
-      'https://react-chatbotify.com/playground',
-      'https://gallery.react-chatbotify.com/themes',
-      'https://gallery.react-chatbotify.com/plugins',
-    ];
-
-    return texts.map((text, i) => ({
-      text,
-      url: urls[i] ?? '#',
-    }));
+    const urls = [Endpoints.projectQuickStartUrl, Endpoints.projectPlaygroundUrl, '/plugins', '/themes'];
+    return texts.map((text, i) => ({ text, url: urls[i] ?? '#' }));
   }, [t]);
 
   const handleCopy = useCallback(() => {
@@ -34,146 +55,257 @@ const HeroSection = () => {
       sx={{
         alignItems: 'center',
         display: 'flex',
-        flexDirection: { lg: 'row', md: 'column' },
-        gap: 8,
-        height: 'calc(100vh - 200px)',
-        p: 7,
+        flexDirection: { lg: 'row', xs: 'column' },
+        gap: { lg: 8, xs: 4 },
+        minHeight: { md: 'calc(100vh - 200px)', xs: 'auto' },
+        position: 'relative',
+        pt: { md: 0, xs: '97px' },
+        px: { md: 7, sm: 3, xs: 1 },
+        py: { md: 7 },
         width: '100%',
       }}
     >
-      {/* Left Section */}
-      <Box
-        sx={{
+      {/* Left Column */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
-          maxWidth: { md: '60vw', xs: 'auto' },
+          gap: 16,
+          maxWidth: !isDesktop ? '100%' : '60vw',
+          width: '100%',
         }}
       >
-        {/* Header */}
-        <Box
-          sx={{
-            alignItems: 'center',
-            display: 'flex',
-            gap: 2,
-          }}
-        >
-          <Box
-            component="img"
-            src={logo}
-            alt="Logo"
-            sx={{
-              height: 32,
-              width: 32,
-            }}
-          />
-          <Typography fontWeight="bold" color="text.secondary">
-            {t('essentials.name')}
-          </Typography>
-        </Box>
-
-        <Typography variant="h2" fontWeight={700} gutterBottom>
-          {t('hero_section.title')}
-        </Typography>
-
-        <Typography variant="body1" color="text.secondary" paragraph>
-          {t('hero_section.heading.1')}
-        </Typography>
-
-        <Stack direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'center', xs: 'start' }} spacing={4}>
-          {/* NPMCommand */}
-          <Box
-            sx={{
-              alignItems: 'center',
-              backgroundColor: 'background.muted',
-              borderRadius: '16px',
-              display: 'flex',
-              gap: 3,
-              pl: '16px',
-              pr: '10px',
-              py: '8px',
-            }}
-          >
-            <Typography variant="body2">npm install react-chatbotify</Typography>
-            <Button
-              variant="contained"
-              onClick={handleCopy}
+        {/* Logo */}
+        <motion.div variants={itemVariants}>
+          {!isDesktop ? (
+            <Box
               sx={{
-                borderRadius: '10px',
-                textTransform: 'none',
+                display: 'flex',
+                justifyContent: 'center',
+                mb: 2,
               }}
             >
-              {t('hero_section.copyText')}
-            </Button>
-          </Box>
+              <Box component="img" src={logo} alt="Logo" sx={{ height: 96, width: 96 }} />
+            </Box>
+          ) : (
+            <Box sx={{ alignItems: 'center', display: 'flex', gap: 2 }}>
+              <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 32 }} />
+              <Typography fontWeight="bold" color="text.secondary">
+                {t('essentials.name')}
+              </Typography>
+            </Box>
+          )}
+        </motion.div>
 
-          {/* GitHubStats */}
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 8,
-              pl: '20px',
-            }}
-          >
-            {[
-              { count: 250, text: t('hero_section.starText') },
-              { count: 138, text: t('hero_section.forkText') },
-            ].map((item, index) => (
-              <Box
-                key={index}
+        {/* Animated Title */}
+        <motion.div variants={itemVariants} key={titleIndex}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={titleIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6 }}
+              style={{ width: '100%' }}
+            >
+              <Typography
+                variant="h2"
+                fontWeight={700}
+                gutterBottom
                 sx={{
-                  alignItems: 'center',
-                  display: 'flex',
-                  gap: 1,
+                  fontSize: { md: '4rem', xs: '2.8rem' },
+                  lineHeight: 1.2,
+                  maxWidth: { md: 700, xs: '100%' },
+                  minHeight: { md: 72, xs: '13.44rem' },
+                  mx: { md: 0, xs: 'auto' },
+                  textAlign: { md: 'left', xs: 'center' },
                 }}
               >
-                <FaGithub size={20} />
-                <Typography variant="body2">
-                  {item.text} {item.count}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </Stack>
+                {currentTitle}
+              </Typography>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 2,
-          }}
-        >
-          {link_buttons.map((link_button, index) => (
-            <Link
-              key={index}
+        {/* Subtitle */}
+        <motion.div variants={itemVariants}>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            paragraph
+            sx={{
+              maxWidth: { md: 600, xs: '100%' },
+              mx: { md: 0, xs: 'auto' },
+              textAlign: { md: 'left', xs: 'center' },
+            }}
+          >
+            {t('hero_section.heading.1')}
+          </Typography>
+        </motion.div>
+
+        {/* Buttons & Stats */}
+        <motion.div variants={itemVariants}>
+          <Stack direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'center', xs: 'start' }} spacing={4}>
+            <Box
               sx={{
                 alignItems: 'center',
+                backgroundColor: 'background.muted',
+                borderRadius: '16px',
                 display: 'flex',
-                gap: 1,
+                gap: 3,
+                justifyContent: { md: 'start', xs: 'space-between' },
+                px: 2,
+                py: 1,
+                width: { md: 'auto', xs: '100%' },
               }}
-              href={link_button.url}
-              target="_blank"
             >
-              {link_button.text} <ArrowRight size={16} />
-            </Link>
-          ))}
-        </Box>
-      </Box>
+              <Typography variant="body2">npm install react-chatbotify</Typography>
+              <Button
+                component={motion.button}
+                whileHover={{ boxShadow: '0px 4px 8px rgba(0,0,0,0.1)', y: -2 }}
+                transition={{ damping: 20, stiffness: 300, type: 'spring' }}
+                variant="contained"
+                onClick={handleCopy}
+                sx={{ borderRadius: '10px', textTransform: 'none' }}
+              >
+                {t('hero_section.copyText')}
+              </Button>
+            </Box>
+            {!loading && (
+              <Box sx={{ display: 'flex', gap: 4, pl: { md: 2, xs: 0 } }}>
+                {[
+                  { count: stars, text: t('hero_section.starText'), url: `${repoUrl}/stargazers` },
+                  { count: forks, text: t('hero_section.forkText'), url: `${repoUrl}/forks` },
+                ].map((item, idx) => (
+                  <Box
+                    key={idx}
+                    component={motion.div}
+                    whileHover={{ boxShadow: '0px 4px 8px rgba(0,0,0,0.1)', y: -2 }}
+                    transition={{ damping: 20, stiffness: 300, type: 'spring' }}
+                    onClick={() => window.open(item.url, '_blank')}
+                    sx={{
+                      alignItems: 'center',
+                      backgroundColor: 'background.paper',
+                      borderRadius: 2,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      gap: 1,
+                      px: 2,
+                      py: 1,
+                    }}
+                  >
+                    <FaGithub size={20} />
+                    <Typography variant="body2">
+                      {item.text} {item.count}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Stack>
+        </motion.div>
 
-      {/* Right Section */}
+        {/* Links */}
+        <motion.div variants={itemVariants}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+            {link_buttons.map((link, idx) => (
+              <Link
+                key={idx}
+                component={motion.a}
+                whileHover={{ scale: 1.02, textDecoration: 'underline' }}
+                transition={{ duration: 0.2 }}
+                sx={{ alignItems: 'center', display: 'flex', gap: 1 }}
+                href={link.url}
+                target="_blank"
+              >
+                {link.text} <ArrowRight size={16} />
+              </Link>
+            ))}
+          </Box>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Column: ChatBot */}
       <Box
         sx={{
           alignItems: 'center',
-          alignSelf: 'center',
           display: 'flex',
-          height: 450,
+          height: { lg: 450, xs: 'auto' },
           justifyContent: 'center',
-          minWidth: 300,
-          pt: 12,
+          mb: { lg: 0, xs: 2 },
+          mt: { lg: 0, xs: 4 },
+          position: 'relative',
+          width: { lg: 'auto', xs: '100%' },
+          zIndex: 1,
         }}
       >
-        <ChatBot settings={{ general: { embedded: true } }} />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {!isDesktop ? (
+            <ChatBot
+              settings={{
+                botBubble: { simulateStream: true },
+                chatHistory: { disabled: true },
+                general: { embedded: true },
+              }}
+              styles={{
+                chatWindowStyle: {
+                  width: '95%',
+                },
+              }}
+            />
+          ) : (
+            <ChatBot
+              settings={{
+                botBubble: { simulateStream: true },
+                chatHistory: { disabled: true },
+                general: { embedded: true },
+              }}
+            />
+          )}
+        </motion.div>
       </Box>
+
+      {/* Scroll-down Cue */}
+      {isDesktop && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.2 }}
+          style={{
+            alignItems: 'center',
+            bottom: -90,
+            display: 'flex',
+            flexDirection: 'column',
+            left: '50%',
+            position: 'absolute',
+            transform: 'translateX(-50%)',
+            zIndex: 10,
+          }}
+        >
+          {[0.15, 0.3].map((delay, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.6, 1, 0.6] }}
+              transition={{
+                delay: 1 + delay,
+                duration: 1.8,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
+            >
+              <ChevronDown size={28} color="#444" />
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </Box>
   );
 };

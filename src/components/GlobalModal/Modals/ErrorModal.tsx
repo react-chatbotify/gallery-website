@@ -69,7 +69,7 @@ const ErrorModal: React.FC<{
         >
           <i>{t('error_modal.footnote.1')}</i>
           <a
-            href={Endpoints.projectDiscordUrl}
+            href={Endpoints.projectCoreDiscordUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{

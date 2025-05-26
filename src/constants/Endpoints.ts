@@ -1,4 +1,5 @@
 // endpoints for making requests
+// todo: update url after domains are consolidated
 const Endpoints = {
   favoritePlugins: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/plugins/favorited`,
   favoriteThemes: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/themes/favorited`,
@@ -11,13 +12,18 @@ const Endpoints = {
   fetchUserOwnedThemes: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/themes`,
   fetchUserProfile: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/profile`,
   galleryAuthRedirectUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/callback`,
+  gitHubCoreOrgUrl: 'https://github.com/React-ChatBotify',
   gitHubLoginUrl: 'https://github.com/login/oauth/authorize',
+  instagramCoreUrl: 'https://www.instagram.com/react.chatbotify',
   loginUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,
   logoutUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/logout`,
   projectBaseUrl: 'https://react-chatbotify.com',
-  projectDiscordUrl: 'https://discord.gg/6R4DK4G5Zh',
-  projectNpmUrl: 'https://www.npmjs.com/package/react-chatbotify',
-  projectRepoUrl: 'https://github.com/tjtanjin/react-chatbotify',
+  projectCoreDiscordUrl: 'https://discord.gg/6R4DK4G5Zh',
+  projectCoreNpmUrl: 'https://www.npmjs.com/package/react-chatbotify',
+  projectCoreRepoUrl: 'https://github.com/tjtanjin/react-chatbotify',
+  projectPlaygroundUrl: 'https://react-chatbotify.com/playground',
+  projectQuickStartUrl: 'https://react-chatbotify.com/docs/introduction/quickstart',
+  twitterCoreUrl: 'https://x.com/reactchatbotify',
 };
 
 export { Endpoints };

@@ -170,7 +170,7 @@ const Plugins: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: 'background.paper',
         display: 'flex',
         minHeight: '100vh',
         width: '100%',

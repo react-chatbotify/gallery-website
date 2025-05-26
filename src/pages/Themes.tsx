@@ -15,6 +15,7 @@ import { useGlobalModal } from '@/context/GlobalModalContext';
 import useActionQueue from '@/hooks/useActionQueue';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { useNotify } from '@/hooks/useNotify';
+import useScrollLock from '@/hooks/useScrollLock';
 import { Theme } from '@/interfaces/Theme';
 import { addThemeToFavorites, fetchThemesFromApi, removeThemeFromFavorites } from '@/services/themes/apiService';
 
@@ -51,6 +52,7 @@ const Themes: React.FC = () => {
     const isLastVisible = localStorage.getItem('RCBG_THEME_PREVIEW_VISIBLE');
     return isLastVisible === 'true';
   });
+  useScrollLock(!isDesktop && isPreviewVisible);
 
   // debounces favoriting of themes in a queue
   const addQueue = useActionQueue<Theme>(addThemeToFavorites, 300);
@@ -186,7 +188,7 @@ const Themes: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: 'background.paper',
         display: 'flex',
         minHeight: '100vh',
         width: '100%',
@@ -262,7 +264,6 @@ const Themes: React.FC = () => {
           alignItems: 'flex-start',
           backgroundColor: 'background.paper',
           borderColor: 'divider',
-          borderLeft: '2px solid',
           display: 'flex',
           flexDirection: 'column',
           height: '100vh',
@@ -307,7 +308,7 @@ const Themes: React.FC = () => {
                 color: 'text.primary',
                 fontSize: '0.875rem',
                 left: isDesktop ? '-110px' : isPreviewVisible ? '-20px' : '-130px',
-                mt: 11,
+                mt: 8,
                 padding: '8px 12px',
                 position: 'absolute',
                 textTransform: 'none',

@@ -1,4 +1,3 @@
-// src/index.tsx
 import './index.css';
 
 import React from 'react';

@@ -1,43 +1,88 @@
 import { Box, Button, Typography } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { FaDiscord, FaGithub } from 'react-icons/fa';
+import { FaDiscord, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
 
+import { Endpoints } from '@/constants/Endpoints';
+import useIsDesktop from '@/hooks/useIsDesktop';
+
+import FadeInOnView from '../FadeComponent/FadeInOnView';
 import { HeadingAndDescription } from './FeaturesAndBenefitsSection';
 
-const GenericLinkButton = ({ icon, text, title }: { icon: React.ReactNode; text: string; title: string }) => (
-  <Button fullWidth sx={buttonStyles}>
-    <Box sx={contentBoxStyles}>
-      {icon}
-      <Box sx={textBoxStyles}>
-        <Typography fontWeight="bold">{title}</Typography>
-        <Typography color="text.muted">{text}</Typography>
-      </Box>
-    </Box>
-    <ArrowRight size={22} style={{ color: 'text.muted', justifySelf: 'end' }} />
-  </Button>
-);
-
-export default function CommunitySection() {
+/**
+ * CommunitySection renders a list of community links with icons, titles, and descriptions.
+ */
+const CommunitySection = (): JSX.Element => {
+  // lazy loads translations
   const { t } = useTranslation('components/home');
+
+  const isDesktop = useIsDesktop();
+
+  // define community link items with icon, title, body text, and URL
+  const links = [
+    {
+      Icon: <FaDiscord size={26} />,
+      text: t('community_section.discord.body_text'),
+      title: t('community_section.discord.heading'),
+      url: Endpoints.projectCoreDiscordUrl,
+    },
+    {
+      Icon: <FaGithub size={26} />,
+      text: t('community_section.github.body_text'),
+      title: t('community_section.github.heading'),
+      url: Endpoints.gitHubCoreOrgUrl,
+    },
+    {
+      Icon: <FaInstagram size={26} />,
+      text: t('community_section.instagram.body_text'),
+      title: t('community_section.instagram.heading'),
+      url: Endpoints.instagramCoreUrl,
+    },
+    {
+      Icon: <FaTwitter size={26} />,
+      text: t('community_section.twitter.body_text'),
+      title: t('community_section.twitter.heading'),
+      url: Endpoints.twitterCoreUrl,
+    },
+  ];
+
   return (
     <Box sx={{ display: 'grid', gap: 6, mx: 'auto' }}>
-      <HeadingAndDescription heading={t('community_section.title')} description={t('community_section.heading.1')} />
-      <Box sx={linkContainerStyles}>
-        <GenericLinkButton
-          icon={<FaDiscord size={26} />}
-          title={t('community_section.discord.heading')}
-          text={t('community_section.discord.body_text')}
-        />
-        <GenericLinkButton
-          icon={<FaGithub size={26} />}
-          title={t('community_section.github.heading')}
-          text={t('community_section.github.body_text')}
-        />
+      {/* Section heading and description */}
+      <FadeInOnView>
+        <HeadingAndDescription heading={t('community_section.title')} description={t('community_section.heading.1')} />
+      </FadeInOnView>
+
+      {/* Community link buttons */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          p: isDesktop ? 4 : 1,
+        }}
+      >
+        {links.map(({ Icon, title, text, url }, idx) => (
+          <FadeInOnView key={idx}>
+            {/* Open community URL in new tab */}
+            <Button fullWidth onClick={() => window.open(url, '_blank')} sx={buttonStyles}>
+              <Box sx={contentBoxStyles}>
+                {Icon}
+                <Box sx={textBoxStyles}>
+                  <Typography fontWeight="bold">{title}</Typography>
+                  <Typography color="text.muted">{text}</Typography>
+                </Box>
+              </Box>
+              <ArrowRight size={22} style={{ color: 'text.muted' }} />
+            </Button>
+          </FadeInOnView>
+        ))}
       </Box>
     </Box>
   );
-}
+};
+
+export default CommunitySection;
 
 // Styles
 const buttonStyles = {
@@ -65,11 +110,4 @@ const textBoxStyles = {
   flexDirection: 'column',
   gap: '2px',
   textAlign: 'start',
-};
-
-const linkContainerStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 2,
-  p: 4,
 };

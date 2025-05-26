@@ -39,7 +39,7 @@ const ErrorPage = () => {
       <Typography variant="body2" color="error.main">
         <i>{t('error.footnote.1')}</i>
         <Link
-          to={Endpoints.projectDiscordUrl}
+          to={Endpoints.projectCoreDiscordUrl}
           target="_blank"
           style={{
             color: 'secondary',
