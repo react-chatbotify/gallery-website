@@ -1,0 +1,10 @@
+{
+  "teams_page": {
+    "title": "Meet Our Team",
+    "introduction": "The dedicated individuals making this project a success. We're passionate about creating great software."
+  },
+  "team_page": {
+    "maybe_you_title": "Maybe You!",
+    "maybe_you_text": "Interested in joining us? We welcome new contributors. Help shape the future of our project!"
+  }
+}

@@ -4,6 +4,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import GroupsIcon from '@mui/icons-material/Groups';
 import LanguageIcon from '@mui/icons-material/Language';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
@@ -148,6 +149,9 @@ const NavigationBar: React.FC<{
         </Button>
         <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t('navigation_bar.themes')}
+        </Button>
+        <Button component={Link} to="/teams" sx={generalNavLinkSx}>
+          {t('navigation_bar.teams')}
         </Button>
         <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
           {t('navigation_bar.theme_builder')}
@@ -351,6 +355,10 @@ const NavigationBar: React.FC<{
             <ListItem component={Link} to="/themes" sx={generalNavLinkSx}>
               <PaletteIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.themes')} />
+            </ListItem>
+            <ListItem component={Link} to="/teams" sx={generalNavLinkSx}>
+              <GroupsIcon sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.teams')} />
             </ListItem>
             <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
               <CodeIcon sx={{ mr: 1 }} />
