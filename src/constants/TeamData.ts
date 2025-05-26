@@ -1,30 +1,42 @@
-import { TeamMember } from '@/interfaces/TeamMember';
-import { Endpoints } from '@/constants/Endpoints';
+import { TeamMember } from '@/interfaces/TeamMember'; // Ensure this path is correct
 
 /**
  * Array of team members for the project.
  */
 export const teamMembers: TeamMember[] = [
   {
-    id: 'member-1',
-    name: 'Alex Doe',
-    githubUrl: 'https://github.com/octocat',
-    roles: ['Core Maintainer', 'Lead Developer'],
-    avatarUrl: 'https://i.pravatar.cc/150?u=member-1',
+    id: '1',
+    name: 'Tan Jin',
+    githubUrl: 'https://github.com/tjtanjin',
+    roles: [
+      { name: 'Core Maintainer', link: 'https://github.com/React-ChatBotify' },
+      { name: 'Lead Developer', link: 'https://github.com/React-ChatBotify' },
+    ],
+    avatarUrl: 'https://tjtanjin.com/assets/tj-about-5db91acb.jpg',
   },
   {
-    id: 'member-2',
-    name: 'Jamie Lan',
-    githubUrl: 'https://github.com/torvalds', // Linus Torvalds' GitHub for variety
-    roles: ['Documentation Lead', 'Community Support'],
-    // avatarUrl is intentionally left undefined to test fallback
+    id: '2',
+    name: 'Miikka Marin',
+    githubUrl: 'https://github.com/Deksu',
+    roles: [
+      {
+        name: 'Lead Designer',
+        project: 'Gallery Website',
+        link: 'https://github.com/React-ChatBotify/gallery-website',
+      },
+    ],
   },
   {
-    id: 'member-3',
-    name: 'Sam Ray',
-    githubUrl: 'https://github.com/gaearon', // Dan Abramov's GitHub for variety
-    roles: ['UI/UX Designer', 'Frontend Specialist'],
-    avatarUrl: 'https://i.pravatar.cc/150?u=member-3',
+    id: '3',
+    name: 'Hunain Ahmed',
+    githubUrl: 'https://github.com/hunxjunedo',
+    roles: [
+      {
+        name: 'Lead Developer',
+        project: 'Gallery Website',
+        link: 'https://github.com/React-ChatBotify/gallery-website',
+      },
+    ],
   },
 ];
 
@@ -40,8 +52,4 @@ export const maybeYouCardData = {
    * Translation key for the descriptive text of the card.
    */
   textKey: 'team_page.maybe_you_text',
-  /**
-   * URL for the call-to-action button, typically linking to contribution guidelines.
-   */
-  ctaUrl: `${Endpoints.projectCoreRepoUrl}/blob/main/CONTRIBUTING.md`,
 };

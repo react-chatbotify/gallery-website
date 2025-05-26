@@ -1,29 +1,47 @@
+// file: interfaces/TeamMember.ts
+
 /**
- * Represents a team member.
+ * Represents a specific role held by a team member,
+ * optionally associated with a project.
+ */
+export interface Role {
+  /**
+   * The name of the role (e.g., "Lead Developer", "UI/UX Designer").
+   */
+  name: string;
+  /**
+   * Links to direct the user to when this role is clicked.
+   */
+  link: string;
+  /**
+   * The name of the project this role is associated with.
+   * Optional, for global roles like "Core Maintainer".
+   */
+  project?: string;
+}
+
+/**
+ * Represents a team member in the project.
  */
 export interface TeamMember {
   /**
-   * The unique identifier for the team member.
+   * Unique identifier for the team member.
    */
   id: string;
-
   /**
-   * The name of the team member.
+   * Full name of the team member.
    */
   name: string;
-
   /**
-   * The GitHub profile URL of the team member.
+   * URL to the team member's GitHub profile.
    */
   githubUrl: string;
-
   /**
-   * An array of roles the team member has.
+   * Array of roles held by the team member.
    */
-  roles: string[];
-
+  roles: Role[];
   /**
-   * The URL of the team member's avatar image (optional).
+   * URL to the team member's avatar image. Optional.
    */
   avatarUrl?: string;
 }

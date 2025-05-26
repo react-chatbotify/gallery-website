@@ -153,9 +153,9 @@ const NavigationBar: React.FC<{
         <Button component={Link} to="/teams" sx={generalNavLinkSx}>
           {t('navigation_bar.teams')}
         </Button>
-        <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
+        {/* <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
           {t('navigation_bar.theme_builder')}
-        </Button>
+        </Button> */}
       </Box>
 
       {/* Authentication, community, language & theme controls */}

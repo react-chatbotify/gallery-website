@@ -48,19 +48,23 @@ const ThemePreview: React.FC<{
     },
     start: {
       chatDisabled: true,
+      message: async (params: Params) => {
+        await params.injectMessage('Hello 👋! Did you know? The order of specifying themes matters!');
+        return 'Try previewing some themes below, or click on those on the left! 😊';
+      },
       checkboxes: { items: ['Minimal Midnight', 'Cyborg', 'Terminal'] },
       function: (params: Params) => {
         setPreviewIds(
           params.userInput.split(',').map((theme: string) => {
-            if (theme === 'Minimal Midnight') return 'minimal_midnight';
-            if (theme === 'Cyborg') return 'cyborg';
+            if (theme === 'Minimal Midnight') {
+              return 'minimal_midnight';
+            }
+            if (theme === 'Cyborg') {
+              return 'cyborg';
+            }
             return 'terminal';
           })
         );
-      },
-      message: async (params: Params) => {
-        await params.injectMessage('Hello 👋! Did you know? The order of specifying themes matters!');
-        return 'Try previewing some themes below, or click on those on the left! 😊';
       },
       path: 'end',
     },

@@ -1,18 +1,15 @@
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'; // Icon for CTA
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Endpoints } from '@/constants/Endpoints';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 /**
  * Props for the MaybeYouCard component.
  */
 interface MaybeYouCardProps {
-  /**
-   * The URL for the call-to-action button.
-   */
-  ctaUrl: string;
   /**
    * The title text for the card.
    */
@@ -25,64 +22,71 @@ interface MaybeYouCardProps {
 
 /**
  * Card component serving as a call to action for users to contribute.
- * It displays a title, descriptive text, and a button linking to a contribution URL.
+ * Styles align with TeamMemberCard for consistent layout.
  */
-const MaybeYouCard: React.FC<MaybeYouCardProps> = ({ ctaUrl, title, text }) => {
+const MaybeYouCard: React.FC<MaybeYouCardProps> = ({ title, text }) => {
   const { t } = useTranslation('components/team');
   const isDesktop = useIsDesktop();
 
-  const cardHeight = isDesktop ? 420 : 380; // Consistent with TeamMemberCard
+  // Match heights to TeamMemberCard
+  const cardHeight = isDesktop ? 420 : 380;
 
   return (
     <Card
       sx={{
-        border: '2px dashed', // Distinct border style
-        borderColor: 'primary.main', // Use primary color for the dashed border
+        border: '2px dashed',
+        borderColor: 'primary.main',
         borderRadius: 5,
         display: 'flex',
         flexDirection: 'column',
         height: cardHeight,
         p: 2,
-        width: isDesktop ? '100%' : '85vw', // Consistent with TeamMemberCard
-        justifyContent: 'center', // Center content vertically
-        alignItems: 'center', // Center content horizontally
-        textAlign: 'center', // Center text
-        backgroundColor: 'action.hover', // Slightly different background
+        width: isDesktop ? '100%' : '85vw',
+        justifyContent: 'space-between',
+        // Center horizontally on mobile
+        mx: isDesktop ? undefined : 'auto',
       }}
     >
       <CardContent
         sx={{
+          textAlign: 'center',
+          flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           justifyContent: 'center',
-          flexGrow: 1,
+          p: 1,
         }}
       >
-        <AddCircleOutlineIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
-        <Typography variant="h5" component="h3" sx={{ fontWeight: 'bold', mb: 1.5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+          <AddCircleOutlineIcon sx={{ fontSize: isDesktop ? 60 : 50, color: 'primary.main' }} />
+        </Box>
+        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
           {t(title, title)}
         </Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           {t(text, text)}
         </Typography>
+      </CardContent>
+
+      <Box sx={{ px: 1, pb: 1, display: 'flex', justifyContent: 'center' }}>
         <Button
           variant="contained"
           color="primary"
-          href={ctaUrl}
+          href={Endpoints.projectCoreDiscordUrl}
           target="_blank"
           rel="noopener noreferrer"
           sx={{
             borderRadius: '12px',
-            textTransform: 'capitalize',
+            textTransform: 'none',
             fontWeight: 'bold',
-            px: 4, // Add some padding to the button
+            px: 4,
             py: 1,
+            mb: 5,
           }}
         >
-          {t('maybe_you_card.learn_more_button', 'Learn More')}
+          {t('maybe_you_card.reach_out_button', 'Reach Out')}
         </Button>
-      </CardContent>
+      </Box>
     </Card>
   );
 };

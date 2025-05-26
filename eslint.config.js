@@ -5,7 +5,6 @@ import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import reactRefreshPlugin from 'eslint-plugin-react-refresh';
 import simpleImportSortPlugin from 'eslint-plugin-simple-import-sort';
-import sortKeysFixPlugin from 'eslint-plugin-sort-keys-fix';
 
 export default [
 	{
@@ -27,7 +26,6 @@ export default [
       "@typescript-eslint": typescriptPlugin,
       "react": reactPlugin,
       "simple-import-sort": simpleImportSortPlugin,
-      "sort-keys-fix": sortKeysFixPlugin,
       "react-hooks": reactHooksPlugin,
       "react-refresh": reactRefreshPlugin,
       "prettier": prettierPlugin,
@@ -45,7 +43,6 @@ export default [
       // Import sorting
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "sort-keys-fix/sort-keys-fix": "warn",
     },
     settings: {
       react: {

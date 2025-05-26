@@ -1,12 +1,11 @@
-import { Box, Card, CardContent, CardMedia, Chip, Link, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import GitHubIcon from '@mui/icons-material/GitHub'; // Assuming GitHubIcon is available
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Box, Card, CardContent, CardMedia, Chip, Link, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useIsDesktop from '@/hooks/useIsDesktop'; // Assuming this hook exists and is appropriate
-
-import { TeamMember } from '../../interfaces/TeamMember';
+import useIsDesktop from '@/hooks/useIsDesktop';
+import { Role as RoleType, TeamMember } from '../../interfaces/TeamMember';
 
 /**
  * Props for the TeamMemberCard component.
@@ -20,14 +19,17 @@ interface TeamMemberCardProps {
 
 /**
  * Card component to display information about a team member.
- * It shows the member's avatar, name, GitHub profile link, and roles.
+ * Roles are displayed as two-line chips if a project is associated,
+ * with a focus on improved aesthetics and centered layout on mobile.
+ *
+ * @param member member to show info for
  */
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   const { t } = useTranslation('components/team');
   const isDesktop = useIsDesktop();
 
-  const cardHeight = isDesktop ? 420 : 380; // Adjusted height slightly from PluginCard
-  const avatarSize = isDesktop ? 180 : 140; // Adjusted avatar size
+  const cardHeight = isDesktop ? 420 : 380;
+  const avatarSize = isDesktop ? 180 : 140;
 
   return (
     <Card
@@ -39,8 +41,9 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
         flexDirection: 'column',
         height: cardHeight,
         p: 2,
-        width: isDesktop ? '100%' : '85vw', // Same width behavior as PluginCard
+        width: isDesktop ? '100%' : '85vw',
         justifyContent: 'space-between',
+        mx: isDesktop ? undefined : 'auto',
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: avatarSize, mb: 1 }}>
@@ -50,24 +53,29 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
             image={member.avatarUrl}
             alt={member.name}
             sx={{
-              borderRadius: '50%', // Circular avatar
+              borderRadius: '50%',
               height: avatarSize,
               width: avatarSize,
               objectFit: 'cover',
             }}
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-              // Fallback to icon if image fails to load
               (e.target as HTMLImageElement).style.display = 'none';
-              // Ideally, we'd render the icon here, but CardMedia doesn't easily allow a child fallback
-              // For now, we'll rely on the AccountCircleIcon rendered below if avatarUrl is missing.
-              // A more robust solution might involve a state variable to toggle between img and icon.
             }}
           />
         ) : (
           <AccountCircleIcon sx={{ fontSize: avatarSize, color: 'text.secondary' }} />
         )}
       </Box>
-      <CardContent sx={{ textAlign: 'center', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', p: 1 }}>
+      <CardContent
+        sx={{
+          textAlign: 'center',
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          p: 1,
+        }}
+      >
         <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 0.5 }}>
           {member.name}
         </Typography>
@@ -90,24 +98,98 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
           }}
         >
           <GitHubIcon sx={{ fontSize: 20 }} />
-          <Typography variant="body2">
-            {t('team_member_card.github_profile', 'GitHub')}
-          </Typography>
+          <Typography variant="body2">{t('team_member_card.github_profile', 'GitHub')}</Typography>
         </Link>
         <Box
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: 0.5,
-            mt: 1,
-            maxHeight: isDesktop ? 80 : 60, // Max height for roles container
-            overflowY: 'auto', // Scroll if many roles
+            gap: 1,
+            mt: 1.5,
+            maxHeight: isDesktop ? 90 : 70,
+            overflowY: 'auto',
+            px: 0.5,
           }}
         >
-          {member.roles.map((role) => (
-            <Chip label={role} key={role} size="small" />
-          ))}
+          {member.roles.map((role: RoleType, index: number) => {
+            const chipKey = `${member.id}-role-${role.name}-${role.project || 'global'}-${index}`;
+
+            return (
+              <Chip
+                key={chipKey}
+                label={
+                  <Box
+                    onClick={role.link ? () => window.open(role.link) : undefined}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: role.link ? 'pointer' : 'default',
+                    }}
+                  >
+                    {role.project ? (
+                      <>
+                        <Typography
+                          variant="caption"
+                          component="div"
+                          sx={{
+                            lineHeight: 1.2,
+                            fontSize: '0.68rem',
+                            color: 'text.secondary',
+                            fontWeight: 500,
+                            whiteSpace: 'normal',
+                            textAlign: 'center',
+                          }}
+                        >
+                          {role.project}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          component="div"
+                          sx={{
+                            lineHeight: 1.25,
+                            fontWeight: 600,
+                            fontSize: '0.8rem',
+                            color: 'text.primary',
+                            whiteSpace: 'normal',
+                            textAlign: 'center',
+                            mt: '1px',
+                          }}
+                        >
+                          {role.name}
+                        </Typography>
+                      </>
+                    ) : (
+                      <Typography
+                        variant="body2"
+                        component="div"
+                        sx={{
+                          lineHeight: 1.3,
+                          fontWeight: 600,
+                          fontSize: '0.825rem',
+                          color: 'text.primary',
+                          whiteSpace: 'normal',
+                          textAlign: 'center',
+                        }}
+                      >
+                        {role.name}
+                      </Typography>
+                    )}
+                  </Box>
+                }
+                sx={{
+                  height: 'auto',
+                  minHeight: '38px',
+                  borderRadius: '8px',
+                  '& .MuiChip-label': {
+                    padding: '5px 10px',
+                  },
+                }}
+              />
+            );
+          })}
         </Box>
       </CardContent>
     </Card>

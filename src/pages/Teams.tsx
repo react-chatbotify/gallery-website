@@ -60,7 +60,6 @@ const Teams: React.FC = () => {
                 maybeYouCardData.textKey,
                 "We're always looking for passionate individuals to contribute. Check out our contribution guidelines!"
               )}
-              ctaUrl={maybeYouCardData.ctaUrl}
             />
           </Grid>
         </Grid>

@@ -14,8 +14,7 @@ import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
 import LoginProcessPage from './pages/LoginProcess';
 import PluginsPage from './pages/Plugins';
-import TeamsPage from './pages/Teams'; // Import the Teams page
-import ThemeBuilderPage from './pages/ThemeBuilder';
+import TeamsPage from './pages/Teams';
 import ThemesPage from './pages/Themes';
 import UserProfilePage from './pages/UserProfile';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -77,8 +76,7 @@ const App: React.FC = () => {
         { element: <HomePage />, path: '/' },
         { element: <PluginsPage />, path: '/plugins' },
         { element: <ThemesPage />, path: '/themes' },
-        { element: <ThemeBuilderPage />, path: '/theme-builder' },
-        { element: <TeamsPage />, path: '/teams' }, // Add the Teams page route
+        { element: <TeamsPage />, path: '/teams' },
         {
           element: <ProtectedRoute element={<UserProfilePage />} />,
           path: '/profile',
