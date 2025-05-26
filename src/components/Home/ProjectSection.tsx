@@ -3,7 +3,6 @@ import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import useFetchGitHubRepoInfo from '@/hooks/useFetchGitHubRepoInfo';
-import useIsDesktop from '@/hooks/useIsDesktop';
 import useSeamlessScroll from '@/hooks/useSeamlessScroll';
 
 import coreLibraryPreview from '../../assets/images/LandingPage/ProjectPreviews/core_library.webp';
@@ -22,7 +21,6 @@ export const ProjectSection = (): JSX.Element => {
   // lazy loads translations
   const { t } = useTranslation('components/home');
 
-  const isDesktop = useIsDesktop();
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const gradientColor = isDark ? '9,9,11' : '237,237,237';
@@ -52,7 +50,8 @@ export const ProjectSection = (): JSX.Element => {
   }, [projects]);
 
   // initialize seamless scroll hook
-  const scrollSpeed = isDesktop ? 0.05 : 0.3;
+  // note: speed value 0.05 and below seems to break on mobile
+  const scrollSpeed = 0.06;
   const { containerRef, handlers } = useSeamlessScroll(scrollSpeed, loopedProjects.length);
 
   // generate unique keys for each card
