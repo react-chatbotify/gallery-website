@@ -9,7 +9,7 @@ import useIsDesktop from '@/hooks/useIsDesktop';
 /**
  * Props for the MaybeYouCard component.
  */
-interface MaybeYouCardProps {
+type MaybeYouCardProps = {
   /**
    * The title text for the card.
    */
@@ -18,7 +18,7 @@ interface MaybeYouCardProps {
    * The descriptive text for the card.
    */
   text: string;
-}
+};
 
 /**
  * Card component serving as a call to action for users to contribute.

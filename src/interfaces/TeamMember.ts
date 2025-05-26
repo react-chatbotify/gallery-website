@@ -4,7 +4,7 @@
  * Represents a specific role held by a team member,
  * optionally associated with a project.
  */
-export interface Role {
+export type Role = {
   /**
    * The name of the role (e.g., "Lead Developer", "UI/UX Designer").
    */
@@ -18,12 +18,12 @@ export interface Role {
    * Optional, for global roles like "Core Maintainer".
    */
   project?: string;
-}
+};
 
 /**
  * Represents a team member in the project.
  */
-export interface TeamMember {
+export type TeamMember = {
   /**
    * Unique identifier for the team member.
    */
@@ -44,4 +44,4 @@ export interface TeamMember {
    * URL to the team member's avatar image. Optional.
    */
   avatarUrl?: string;
-}
+};

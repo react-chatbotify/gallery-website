@@ -5,17 +5,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import useIsDesktop from '@/hooks/useIsDesktop';
+
 import { Role as RoleType, TeamMember } from '../../interfaces/TeamMember';
 
 /**
  * Props for the TeamMemberCard component.
  */
-interface TeamMemberCardProps {
+type TeamMemberCardProps = {
   /**
    * The team member data to display.
    */
   member: TeamMember;
-}
+};
 
 /**
  * Card component to display information about a team member.
