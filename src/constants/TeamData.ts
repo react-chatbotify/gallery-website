@@ -1,4 +1,7 @@
-import { TeamMember } from '@/interfaces/TeamMember'; // Ensure this path is correct
+import member2Avatar from '@/assets/images/TeamsPage/deksu.webp';
+import member3Avatar from '@/assets/images/TeamsPage/hunxjunedo.webp';
+import member1Avatar from '@/assets/images/TeamsPage/tjtanjin.webp';
+import { TeamMember } from '@/interfaces/TeamMember';
 
 /**
  * Array of team members for the project.
@@ -12,7 +15,7 @@ export const teamMembers: TeamMember[] = [
       { name: 'Core Maintainer', link: 'https://github.com/React-ChatBotify' },
       { name: 'Lead Developer', link: 'https://github.com/React-ChatBotify' },
     ],
-    avatarUrl: 'https://tjtanjin.com/assets/tj-about-5db91acb.jpg',
+    avatarUrl: member1Avatar,
   },
   {
     id: '2',
@@ -25,6 +28,7 @@ export const teamMembers: TeamMember[] = [
         link: 'https://github.com/React-ChatBotify/gallery-website',
       },
     ],
+    avatarUrl: member2Avatar,
   },
   {
     id: '3',
@@ -32,11 +36,12 @@ export const teamMembers: TeamMember[] = [
     githubUrl: 'https://github.com/hunxjunedo',
     roles: [
       {
-        name: 'Lead Developer',
+        name: 'Developer',
         project: 'Gallery Website',
         link: 'https://github.com/React-ChatBotify/gallery-website',
       },
     ],
+    avatarUrl: member3Avatar,
   },
 ];
 

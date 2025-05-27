@@ -53,7 +53,7 @@ const Footer = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h6">
               {footerLinks[0].title}
             </Typography>
-            <Link sx={genericLinksStyles} href="#">
+            <Link sx={genericLinksStyles} href="/teams">
               {footerLinks[0].children[0]}
             </Link>
             <Link sx={genericLinksStyles} href="#">
