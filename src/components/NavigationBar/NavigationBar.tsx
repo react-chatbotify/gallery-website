@@ -1,6 +1,6 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
-import CodeIcon from '@mui/icons-material/Code';
+// import CodeIcon from '@mui/icons-material/Code';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -360,10 +360,10 @@ const NavigationBar: React.FC<{
               <GroupsIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.teams')} />
             </ListItem>
-            <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
+            {/* <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
               <CodeIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.theme_builder')} />
-            </ListItem>
+            </ListItem> */}
           </List>
 
           {/* Mobile community and utility bar */}

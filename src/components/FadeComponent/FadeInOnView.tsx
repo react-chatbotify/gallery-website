@@ -17,7 +17,6 @@ const FadeInOnView: FC<{
   // animate opacity and vertical offset when element enters viewport
   return (
     <motion.div
-      style={{ display: 'contents' }}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay, duration }}
