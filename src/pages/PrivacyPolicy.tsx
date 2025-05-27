@@ -7,19 +7,19 @@ import FadeInOnView from '@/components/FadeComponent/FadeInOnView';
 import Footer from '@/components/Home/Footer';
 
 // Define types for the translation structure
-interface ContentItem {
+type ContentItem = {
   point?: string;
   text: string;
-}
+};
 
-interface Section {
+type Section = {
   title: string;
   content: (string | ContentItem)[];
-}
+};
 
-interface PrivacyPolicyTranslation {
+type PrivacyPolicyTranslation = {
   [sectionKey: string]: Section; // Dynamic section keys with a Section value
-}
+};
 
 /**
  * Privacy Policy component that displays data collection, usage, and user rights.
