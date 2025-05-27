@@ -15,6 +15,7 @@ import HomePage from './pages/Home';
 import LoginProcessPage from './pages/LoginProcess';
 import PluginsPage from './pages/Plugins';
 import TeamsPage from './pages/Teams';
+import TermsOfService from "./pages/TermofService";
 import ThemesPage from './pages/Themes';
 import UserProfilePage from './pages/UserProfile';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -77,6 +78,7 @@ const App: React.FC = () => {
         { element: <PluginsPage />, path: '/plugins' },
         { element: <ThemesPage />, path: '/themes' },
         { element: <TeamsPage />, path: '/teams' },
+        { element: <TermsOfService/>,  path: '/terms-of-services' },
         {
           element: <ProtectedRoute element={<UserProfilePage />} />,
           path: '/profile',
