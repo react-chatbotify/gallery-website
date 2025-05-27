@@ -61,7 +61,7 @@ export const ProjectSection = (): JSX.Element => {
   // initialize seamless scroll hook
   // note: speed value 0.05 and below seems to break on mobile
   const scrollSpeed = 0.06;
-  const { containerRef, handlers } = useSeamlessScroll(scrollSpeed, loopedProjects.length);
+  const { containerRef, handlers } = useSeamlessScroll(scrollSpeed, isSectionLoading);
 
   // generate unique keys for each card
   const generateKey = useCallback(

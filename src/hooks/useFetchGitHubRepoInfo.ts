@@ -44,8 +44,7 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
     };
 
     // Attempt to load from cache first.
-    const
-      isCacheApplied = applyCache();
+    const isCacheApplied = applyCache();
 
     if (isCacheApplied) {
       setLoading(false); // Data loaded from cache, no initial loading state needed.
