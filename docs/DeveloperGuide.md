@@ -5,48 +5,49 @@
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Navigating this Developer Guide](#navigating-this-developer-guide)
-* [Design](#design)
-* [Implementation](#implementation)
-* [Code Documentation](#code-documentation)
-* [Testing](#testing)
-* [Final Notes](#final-notes)
+- [Introduction](#introduction)
+- [Navigating this Developer Guide](#navigating-this-developer-guide)
+- [Design](#design)
+- [Implementation](#implementation)
+- [Code Documentation](#code-documentation)
+- [Testing](#testing)
+- [Final Notes](#final-notes)
 
 <div  style="page-break-after: always;"></div>
 
 ## Introduction
 
-Welcome to the Developer Guide for the React Chatbotify Gallery Website project. Before diving into this guide, ensure you have gone through the project [*README*](https://github.com/your-repo/react-chatbotify-gallery-website/blob/main/README.md) for an overview. This guide assumes you have a **basic understanding** of [**React**](https://reactjs.org/), [**TypeScript**](https://www.typescriptlang.org/) and [**TailwindCSS**](https://tailwindcss.com/). In addition, you should also be familiar with [**React ChatBotify**](https://react-chatbotify.com), which is the core library that this project complements.
+Welcome to the Developer Guide for the React Chatbotify Gallery Website project. Before diving into this guide, ensure you have gone through the project [_README_](https://github.com/your-repo/react-chatbotify-gallery-website/blob/main/README.md) for an overview. This guide assumes you have a **basic understanding** of [**React**](https://reactjs.org/), [**TypeScript**](https://www.typescriptlang.org/) and [**TailwindCSS**](https://tailwindcss.com/). In addition, you should also be familiar with [**React ChatBotify**](https://react-chatbotify.com), which is the core library that this project complements.
 
 ## Navigating this Developer Guide
 
 To facilitate your reading, take note of the following syntaxes used throughout this guide:
 
-| Syntax       | Description                                                                                   |
-|--------------|-----------------------------------------------------------------------------------------------|
-| `Code`       | Denotes functions, components, or code-related references (e.g., `App`, `useEffect`)          |
-| *Italics*    | Refers to folder or file names (e.g., *App.js*, *components*)                                 |
-| **Bold**     | Highlights important keywords or concepts                                                     |
+| Syntax    | Description                                                                          |
+| --------- | ------------------------------------------------------------------------------------ |
+| `Code`    | Denotes functions, components, or code-related references (e.g., `App`, `useEffect`) |
+| _Italics_ | Refers to folder or file names (e.g., _App.js_, _components_)                        |
+| **Bold**  | Highlights important keywords or concepts                                            |
 
 <div  style="page-break-after: always;"></div>
 
 ## Setup
 
 Setting up the project is relatively simple. Before you begin, ensure that you have **at least NodeJS 16.x** installed (this project was first developed on v20.3.1).
-1) Fork the [project repository](https://github.com/tjtanjin/react-chatbotify-gallery-website).
-2) Clone the **forked project** into your desired directory with:
-    ```
-    git clone {the-forked-project}.git
-    ```
-3) Next, `cd` into the project and install dependencies with:
-    ```
-    npm install
-    ```
-4) Once installations are complete, you may launch the project with:
-    ```
-    npm run start
-    ```
+
+1. Fork the [project repository](https://github.com/tjtanjin/react-chatbotify-gallery-website).
+2. Clone the **forked project** into your desired directory with:
+   ```
+   git clone {the-forked-project}.git
+   ```
+3. Next, `cd` into the project and install dependencies with:
+   ```
+   npm install
+   ```
+4. Once installations are complete, you may launch the project with:
+   ```
+   npm run start
+   ```
 
 **Note:** For internal developers, you will be provided with a `.env.development` file. It contains the variables for you to interact with the development environment APIs and make OAuth logins via the GitHub test application. For public contributors, you will have to setup your own backend API server and create your own GitHub application if necessary. However, for the majority of cases, this will **not be necessary**.
 
@@ -54,7 +55,8 @@ Setting up the project is relatively simple. Before you begin, ensure that you h
 
 ### Overview
 
-The project is neatly structured within the *src* folder, which contains subfolders with their own responsibilities:
+The project is neatly structured within the _src_ folder, which contains subfolders with their own responsibilities:
+
 - assets
 - components
 - constants
@@ -71,6 +73,7 @@ We will not be covering what each folder does - the folders are self-explanatory
 ### Gallery Pages
 
 The gallery website serves up several pages to its users, some of which are only visible if a user is logged in. The following pages are available for public use (i.e. user need not be logged in):
+
 - Home/Landing
 - Themes
 - Plugins
@@ -78,6 +81,7 @@ The gallery website serves up several pages to its users, some of which are only
 - Author Profile
 
 The following pages are only available when a user is logged in:
+
 - Personal Profile
 - Theme Upload
 - Plugin Upload
@@ -131,16 +135,19 @@ The progress of the project is tracked using [**GitHub Projects**](https://githu
 If you are looking to contribute to the project as a public contributor, then you may ignore the information above about the sprints. You are strongly encouraged to take up **good-first-issues** if it is your first time working on the project. Do also note that issues prefixed with **[Task]** are internal issues meant for team members only.
 
 ### Forking Workflow
+
 This project adopts the [**Forking Workflow**](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow). In short, here are the steps required:
-1) Fork the repository
-2) Clone the forked repository to your local device
-3) Make your code changes
-4) Push to your forked remote repository
-5) Open a pull request from your forked repository to the upstream repository (i.e. the main repository)
+
+1. Fork the repository
+2. Clone the forked repository to your local device
+3. Make your code changes
+4. Push to your forked remote repository
+5. Open a pull request from your forked repository to the upstream repository (i.e. the main repository)
 
 In addition, developers should fill up the pull requests template diligently. This ensures that changes are well-documented and reviewed before merging.
 
 ### Commit Messages
+
 This project adopts [**Conventional Commits**](https://www.conventionalcommits.org/en/v1.0.0/), with a minor difference that **the first word after the commit type is always capitalised**. For example, notice how "A" in "Add" is capitalised in this commit message: `feat: Add initial theme builder layout`.
 
 ## Code Documentation
@@ -149,15 +156,16 @@ Adhering to code documentation best practices is crucial for maintainability. Ea
 
 ```javascript
 /**
-* Fetches gallery themes from the backend.
-* @param  {number}  page - The page number to fetch
-* @param  {number}  limit - The number of themes per page
-* @returns {Promise<Array>} An array of gallery themes
-*/
+ * Fetches gallery themes from the backend.
+ * @param  {number}  page - The page number to fetch
+ * @param  {number}  limit - The number of themes per page
+ * @returns {Promise<Array>} An array of gallery themes
+ */
 async function fetchGalleryItems(page, limit) {
   // Implementation...
 }
 ```
+
 The above shows an example code comment for a function that fetches gallery themes from the backend server.
 
 Finally, any leftover tasks or areas in the code to be revisited should be flagged with a comment like the one below:

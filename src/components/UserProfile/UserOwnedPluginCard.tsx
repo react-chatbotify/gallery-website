@@ -1,8 +1,10 @@
-import { Plugin } from "@/interfaces/Plugin";
-import { Box, CardMedia, Link, Typography } from "@mui/material";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import GalleryTooltip from "../GalleryTooltip/GalleryTooltip";
+import { Box, CardMedia, Link, Typography } from '@mui/material';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Plugin } from '@/interfaces/Plugin';
+
+import GalleryTooltip from '../GalleryTooltip/GalleryTooltip';
 
 /**
  * Card component to hold details and actionables for user owned plugin.
@@ -11,21 +13,19 @@ import GalleryTooltip from "../GalleryTooltip/GalleryTooltip";
  */
 const UserOwnedPluginCard: React.FC<{
   plugin: Plugin;
-}> = ({
-  plugin
-}) => {
+}> = ({ plugin }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/userprofile");
+  const { t } = useTranslation('components/userprofile');
   const { name, id, imageUrl, description } = plugin;
 
   return (
     <Box
       sx={{
-        display: "flex",
+        display: 'flex',
+        flexDirection: 'row',
         gap: 3,
-        width: "100%",
-        height: "fit-content",
-        flexDirection: "row",
+        height: 'fit-content',
+        width: '100%',
       }}
     >
       {/* Image */}
@@ -34,25 +34,25 @@ const UserOwnedPluginCard: React.FC<{
         src={imageUrl}
         alt={name}
         sx={{
-          height: 224,
-          width: "80%",
-          objectFit: "cover",
           borderRadius: 5,
+          height: 224,
+          objectFit: 'cover',
+          width: '80%',
         }}
       />
 
       {/* Content */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          position: "relative",
+          display: 'flex',
+          flexDirection: 'column',
           gap: 3,
+          position: 'relative',
+          width: '100%',
         }}
       >
         {/* Title */}
-        <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "1.25rem" }}>
+        <Typography variant="h6" sx={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
           {name}
         </Typography>
 
@@ -60,8 +60,8 @@ const UserOwnedPluginCard: React.FC<{
         <Typography
           variant="body2"
           sx={{
-            color: "text.secondary",
-            fontSize: "0.875rem",
+            color: 'text.secondary',
+            fontSize: '0.875rem',
           }}
         >
           {description}
@@ -70,37 +70,37 @@ const UserOwnedPluginCard: React.FC<{
         {/* Links */}
         <Box
           sx={{
-            display: "flex",
-            position: "absolute",
+            backgroundColor: 'background.paper',
             bottom: 0,
+            display: 'flex',
             gap: 2,
-            backgroundColor: "background.paper",
+            position: 'absolute',
           }}
         >
           <Link
             href={`/plugins?pluginId=${encodeURIComponent(id)}`}
             sx={{
-              cursor: "pointer",
-              fontWeight: "bold",
-              fontSize: "0.875rem",
-              color: "primary.main",
-              textDecoration: "none",
-              "&:hover": {
-                textDecoration: "underline",
+              '&:hover': {
+                textDecoration: 'underline',
               },
+              color: 'primary.main',
+              cursor: 'pointer',
+              fontSize: '0.875rem',
+              fontWeight: 'bold',
+              textDecoration: 'none',
             }}
           >
-            {t("user_owned_plugin_card.view_plugin")}
+            {t('user_owned_plugin_card.view_plugin')}
           </Link>
           <GalleryTooltip content="This feature is currently unavailable." placement="top">
             <Typography
               sx={{
-                cursor: "not-allowed",
-                fontSize: "0.875rem",
-                color: "error.main",
+                color: 'error.main',
+                cursor: 'not-allowed',
+                fontSize: '0.875rem',
               }}
             >
-              {t("user_owned_plugin_card.manage_plugin")}
+              {t('user_owned_plugin_card.manage_plugin')}
             </Typography>
           </GalleryTooltip>
         </Box>

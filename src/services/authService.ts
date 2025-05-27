@@ -1,4 +1,4 @@
-import { Endpoints } from "../constants/Endpoints";
+import { Endpoints } from '../constants/Endpoints';
 
 /**
  * Handles redirecting of user for login.
@@ -6,7 +6,6 @@ import { Endpoints } from "../constants/Endpoints";
  * @param redirect_uri uri to redirect user to after login
  */
 const handleLogin = (redirect_uri?: string) => {
-
   // if no uri specified to redirect to after login, then fallback to current location
   let final_redirect_uri = redirect_uri as string;
   if (!redirect_uri) {
@@ -23,7 +22,6 @@ const handleLogin = (redirect_uri?: string) => {
   const encodedRedirectUri = encodeURIComponent(redirectUri);
   // redirect user to login endpoint with client id
   window.location.href = `${Endpoints.gitHubLoginUrl}?client_id=${client_id}&redirect_uri=${encodedRedirectUri}`;
-}
+};
 
 export { handleLogin };
-

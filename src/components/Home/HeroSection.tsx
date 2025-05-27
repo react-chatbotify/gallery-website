@@ -1,114 +1,311 @@
-import { Endpoints } from '@/constants/Endpoints';
-import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, Button, Link, Stack, Typography } from '@mui/material';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import ChatBot from 'react-chatbotify';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import HeroImg from '../../assets/images/About/Hero-img.png';
+import { FaGithub } from 'react-icons/fa';
+
+import logo from '@/assets/images/logo.webp';
+import { Endpoints } from '@/constants/Endpoints';
+import useFetchGitHubRepoInfo from '@/hooks/useFetchGitHubRepoInfo';
+import useIsDesktop from '@/hooks/useIsDesktop';
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, transition: { duration: 0.6 }, y: 0 },
+};
 
 /**
- * Shows a broad overview of the chatbot when user lands on the home page.
+ * Shows the landing page with catch phrases and common/helpful links/buttons and a chatbot preview.
  */
-const HeroSection = () => {
-  // lazy loads translations
-  const { t } = useTranslation("components/home");
+const HeroSection = (): JSX.Element => {
+  const { t } = useTranslation('components/home');
+  const isDesktop = useIsDesktop();
+  const [titleIndex, setTitleIndex] = useState(1);
 
-  const theme = useTheme();
+  const { stars, forks, repoUrl, loading } = useFetchGitHubRepoInfo('React ChatBotify', 'tjtanjin/react-chatbotify');
+
+  // rotates title every 4 seconds
+  const numTitles = 5;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((prev) => (prev >= numTitles ? 1 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentTitle = t(`hero_section.title.${titleIndex}`);
+  const link_buttons = useMemo(() => {
+    const texts = t('hero_section.links', { returnObjects: true }) as string[];
+    const urls = [Endpoints.projectQuickStartUrl, Endpoints.projectPlaygroundUrl, '/plugins', '/themes'];
+    return texts.map((text, i) => ({ text, url: urls[i] ?? '#' }));
+  }, [t]);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText('npm install react-chatbotify');
+  }, []);
 
   return (
     <Box
-      component="section"
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', lg: 'row' },
-        justifyContent: { xs: 'center', lg: 'space-between' },
         alignItems: 'center',
-        pt: 8,
-        gap: 3,
+        display: 'flex',
+        flexDirection: { lg: 'row', xs: 'column' },
+        gap: { lg: 8, xs: 4 },
+        minHeight: { md: 'calc(100vh - 200px)', xs: 'auto' },
+        position: 'relative',
+        pt: { md: 0, xs: '97px' },
+        px: { md: 7, sm: 3, xs: 1 },
+        py: { md: 7 },
+        width: '100%',
       }}
     >
-      {/* Left Text Section */}
-      <Box
-        sx={{
-          flex: 1,
-          textAlign: { xs: 'center', lg: 'left' },
+      {/* Left Column */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          maxWidth: !isDesktop ? '100%' : '60vw',
+          width: '100%',
         }}
       >
-        <Typography
-          variant="h1"
-          sx={{
-            fontWeight: 'bold',
-            fontSize: { xs: '2rem', lg: '3rem' },
-          }}
-        >
-          {t("hero_section.title")}
-        </Typography>
-        <Typography
-          sx={{
-            mt: 3,
-            maxWidth: '500px',
-            mx: { xs: 'auto', lg: 'unset' },
-            fontSize: { xs: '1rem', lg: '1.125rem' },
-          }}
-        >
-          <Box component="span" display="block">
-            {t("hero_section.body_text.1")}
-            <Link
-              to={Endpoints.projectNpmUrl}
-              style={{
-                color: 'secondary.main',
-                textDecoration: 'none',
+        {/* Logo */}
+        <motion.div variants={itemVariants}>
+          {!isDesktop ? (
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                mb: 2,
               }}
-              target="_blank"
             >
-              {t("hero_section.body_text.2")}
-            </Link>.
+              <Box component="img" src={logo} alt="Logo" sx={{ height: 96, width: 96 }} />
+            </Box>
+          ) : (
+            <Box sx={{ alignItems: 'center', display: 'flex', gap: 2 }}>
+              <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 32 }} />
+              <Typography fontWeight="bold" color="text.secondary">
+                {t('essentials.name')}
+              </Typography>
+            </Box>
+          )}
+        </motion.div>
+
+        {/* Animated Title */}
+        <motion.div variants={itemVariants} key={titleIndex}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={titleIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6 }}
+              style={{ width: '100%' }}
+            >
+              <Typography
+                variant="h2"
+                fontWeight={700}
+                gutterBottom
+                sx={{
+                  fontSize: { md: '4rem', xs: '2.8rem' },
+                  lineHeight: 1.2,
+                  maxWidth: { md: 700, xs: '100%' },
+                  minHeight: { md: 72, xs: '13.44rem' },
+                  mx: { md: 0, xs: 'auto' },
+                  textAlign: { md: 'left', xs: 'center' },
+                }}
+              >
+                {currentTitle}
+              </Typography>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.div variants={itemVariants}>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            paragraph
+            sx={{
+              maxWidth: { md: 600, xs: '100%' },
+              mx: { md: 0, xs: 'auto' },
+              textAlign: { md: 'left', xs: 'center' },
+            }}
+          >
+            {t('hero_section.heading.1')}
+          </Typography>
+        </motion.div>
+
+        {/* Buttons & Stats */}
+        <motion.div variants={itemVariants}>
+          <Stack direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'center', xs: 'start' }} spacing={4}>
+            <Box
+              sx={{
+                alignItems: 'center',
+                backgroundColor: 'background.muted',
+                borderRadius: '16px',
+                display: 'flex',
+                gap: 3,
+                justifyContent: { md: 'start', xs: 'space-between' },
+                px: 2,
+                py: 1,
+                width: { md: 'auto', xs: '100%' },
+              }}
+            >
+              <Typography variant="body2">npm install react-chatbotify</Typography>
+              <Button
+                component={motion.button}
+                whileHover={{ boxShadow: '0px 4px 8px rgba(0,0,0,0.1)', y: -2 }}
+                transition={{ damping: 20, stiffness: 300, type: 'spring' }}
+                variant="contained"
+                onClick={handleCopy}
+                sx={{ borderRadius: '10px', textTransform: 'none' }}
+              >
+                {t('hero_section.copyText')}
+              </Button>
+            </Box>
+            {!loading && (
+              <Box sx={{ display: 'flex', gap: 4, pl: { md: 2, xs: 0 } }}>
+                {[
+                  { count: stars, text: t('hero_section.starText'), url: `${repoUrl}/stargazers` },
+                  { count: forks, text: t('hero_section.forkText'), url: `${repoUrl}/forks` },
+                ].map((item, idx) => (
+                  <Box
+                    key={idx}
+                    component={motion.div}
+                    whileHover={{ boxShadow: '0px 4px 8px rgba(0,0,0,0.1)', y: -2 }}
+                    transition={{ damping: 20, stiffness: 300, type: 'spring' }}
+                    onClick={() => window.open(item.url, '_blank')}
+                    sx={{
+                      alignItems: 'center',
+                      backgroundColor: 'background.paper',
+                      borderRadius: 2,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      gap: 1,
+                      px: 2,
+                      py: 1,
+                    }}
+                  >
+                    <FaGithub size={20} />
+                    <Typography variant="body2">
+                      {item.text} {item.count}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            )}
+          </Stack>
+        </motion.div>
+
+        {/* Links */}
+        <motion.div variants={itemVariants}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+            {link_buttons.map((link, idx) => (
+              <Link
+                key={idx}
+                component={motion.a}
+                whileHover={{ scale: 1.02, textDecoration: 'underline' }}
+                transition={{ duration: 0.2 }}
+                sx={{ alignItems: 'center', display: 'flex', gap: 1 }}
+                href={link.url}
+                target="_blank"
+              >
+                {link.text} <ArrowRight size={16} />
+              </Link>
+            ))}
           </Box>
-          <Box component="span" display="block" mt={2}>
-            {t("hero_section.body_text.3")}
-          </Box>
-        </Typography>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Column: ChatBot */}
+      <Box
+        sx={{
+          alignItems: 'center',
+          display: 'flex',
+          height: { lg: 450, xs: 'auto' },
+          justifyContent: 'center',
+          mb: { lg: 0, xs: 2 },
+          mt: { lg: 0, xs: 4 },
+          position: 'relative',
+          width: { lg: 'auto', xs: '100%' },
+          zIndex: 1,
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {!isDesktop ? (
+            <ChatBot
+              settings={{
+                botBubble: { simulateStream: true },
+                chatHistory: { disabled: true },
+                general: { embedded: true },
+              }}
+              styles={{
+                chatWindowStyle: {
+                  width: '95%',
+                },
+              }}
+            />
+          ) : (
+            <ChatBot
+              settings={{
+                botBubble: { simulateStream: true },
+                chatHistory: { disabled: true },
+                general: { embedded: true },
+              }}
+            />
+          )}
+        </motion.div>
       </Box>
 
-      {/* Right Image Section */}
-      <Box
-        sx={{
-          flex: 1,
-          position: 'relative',
-          display: 'flex',
-          justifyContent: { xs: 'center', lg: 'flex-end' },
-        }}
-      >
-        {/* Main Image */}
-        <Box
-          component="img"
-          src={HeroImg}
-          sx={{
-            width: '75%',
-            maxWidth: '500px',
-            aspectRatio: '1',
-            position: 'relative',
+      {/* Scroll-down Cue */}
+      {isDesktop && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.2 }}
+          style={{
+            alignItems: 'center',
+            bottom: -90,
+            display: 'flex',
+            flexDirection: 'column',
+            left: '50%',
+            position: 'absolute',
+            transform: 'translateX(-50%)',
             zIndex: 10,
           }}
-        />
-        {/* Background Gradient */}
-        <Box
-          sx={{
-            position: 'absolute',
-            width: '55%',
-            height: '55%',
-            bgcolor: 'transparent',
-            background: `linear-gradient(to right, ${theme.palette.secondary[900]},
-              ${theme.palette.primary[500]})`,
-            transform: 'rotate(-45deg)',
-            borderRadius: '50%',
-            top: '55%',
-            left: '60%',
-            zIndex: 0,
-            filter: 'blur(200px)',
-            transformOrigin: 'center',
-          }}
-        />
-      </Box>
+        >
+          {[0.15, 0.3].map((delay, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.6, 1, 0.6] }}
+              transition={{
+                delay: 1 + delay,
+                duration: 1.8,
+                ease: 'easeInOut',
+                repeat: Infinity,
+              }}
+            >
+              <ChevronDown size={28} color="#444" />
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </Box>
   );
 };

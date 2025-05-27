@@ -1,8 +1,9 @@
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 
-import { useGlobalModal } from "@/context/GlobalModalContext";
-import ErrorModal from "./Modals/ErrorModal";
-import LoginModal from "./Modals/LoginModal";
+import { useGlobalModal } from '@/context/GlobalModalContext';
+
+import ErrorModal from './Modals/ErrorModal';
+import LoginModal from './Modals/LoginModal';
 
 /**
  * Wraps all global modals for rendering logic.
@@ -16,18 +17,15 @@ const GlobalModal = () => {
   const renderGlobalModal = () => {
     let modal = null;
     if (promptLogin) {
-      modal = <LoginModal/>;
+      modal = <LoginModal />;
     }
 
     if (promptError) {
-      modal = <ErrorModal errorMessageKey={promptError}/>;
+      modal = <ErrorModal errorMessageKey={promptError} />;
     }
 
-    return ReactDOM.createPortal(
-      modal,
-      document.getElementById("modal-container") || document.body
-    )
-  }
+    return ReactDOM.createPortal(modal, document.getElementById('modal-container') || document.body);
+  };
 
   return renderGlobalModal();
 };

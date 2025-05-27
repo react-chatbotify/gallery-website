@@ -1,28 +1,28 @@
-import "@mui/material/styles";
+import '@mui/material/styles';
 
-declare module "*.png"
+declare module '*.png';
 declare module '*.json' {
-	const value: any;
-	export default value;
+  const value: any;
+  export default value;
 }
 
-declare module "@mui/material/styles" {
-	interface Palette {
-		accent: Record<number, string>;
-	}
-	interface PaletteOptions {
-		accent: Record<number, string>;
-	}
+declare module '@mui/material/styles' {
+  type Palette = {
+    accent: Record<number, string>;
+  };
+  type PaletteOptions = {
+    accent: Record<number, string>;
+  };
 
-	interface PaletteColor {
+  type PaletteColor = {
     [key: number | string]: string;
-  }
+  };
 
-  interface TypeText {
+  type TypeText = {
     [key: number | string]: string;
-  }
+  };
 
-  interface TypeBackground {
+  type TypeBackground = {
     [key: number | string]: string;
-  }
+  };
 }

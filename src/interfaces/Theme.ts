@@ -1,12 +1,12 @@
 // file contents belonging to a theme
-interface ThemeContent {
+type ThemeContent = {
   settings: string;
   inlineStyles: string;
   cssStyles: string;
-}
+};
 
 // consolidated themes data fetched from both backend api and github
-export interface Theme {
+export type Theme = {
   id: string;
   name: string;
   description: string;
@@ -19,4 +19,4 @@ export interface Theme {
   tags: string[];
   github: string;
   content: ThemeContent;
-}
+};

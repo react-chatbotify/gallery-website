@@ -1,5 +1,5 @@
 // plugin data fetched from both backend api
-export interface ApiPlugin {
+export type ApiPlugin = {
   id: string;
   name: string;
   description: string;
@@ -10,4 +10,4 @@ export interface ApiPlugin {
   userId: string;
   packageUrl: string;
   isFavorite?: boolean;
-}
+};

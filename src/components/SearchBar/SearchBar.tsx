@@ -5,16 +5,14 @@ import { useSearchParams } from 'react-router-dom';
 
 /**
  * Searchbar for users to input their search query.
- * 
+ *
  * @param onSearch handles logic for when user performs search
  */
 const SearchBar: React.FC<{
-  onSearch: (query: string) => void
-}> = ({
-  onSearch
-}) => {
+  onSearch: (query: string) => void;
+}> = ({ onSearch }) => {
   // lazy loads translations
-  const { t } = useTranslation("components/searchbar");
+  const { t } = useTranslation('components/searchbar');
 
   const [searchParams] = useSearchParams();
 
@@ -39,19 +37,19 @@ const SearchBar: React.FC<{
     <Box>
       <TextField
         variant="outlined"
-        placeholder={t("searchbar.placeholder")}
+        placeholder={t('searchbar.placeholder')}
         value={query}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         fullWidth
         sx={{
-          '& .MuiOutlinedInput-root': {
-            backgroundColor: 'background.default', // Background based on theme
-          },
           '& .MuiOutlinedInput-input': {
             fontSize: '0.875rem', // Equivalent to text-xs
           },
-          width: {md: 400, sm: "100%"}
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: 'background.default', // Background based on theme
+          },
+          width: { md: 400, sm: '100%' },
         }}
       />
     </Box>

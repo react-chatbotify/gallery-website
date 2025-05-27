@@ -1,27 +1,28 @@
-import { useTheme } from "@mui/material/styles";
-import { toast } from "react-toastify";
+import { useTheme } from '@mui/material/styles';
+import { toast } from 'react-toastify';
 
 /**
  * Notifies user by displaying information via a toast.
  */
 const useNotify = () => {
   const theme = useTheme();
-  
+
   /**
    * Notifies user with information.
    *
    * @param text text containing information to show
    */
-  const notify = (text: string) => toast(text, {
-    position: "bottom-center",
-    autoClose: 3000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: false,
-    draggable: false,
-    theme: theme.palette.mode,
-    style: {justifyContent: "center"}
-  });
+  const notify = (text: string) =>
+    toast(text, {
+      autoClose: 3000,
+      closeOnClick: true,
+      draggable: false,
+      hideProgressBar: true,
+      pauseOnHover: false,
+      position: 'bottom-center',
+      style: { justifyContent: 'center' },
+      theme: theme.palette.mode,
+    });
 
   return notify;
 };

@@ -1,16 +1,18 @@
-import { useGlobalModal } from "@/context/GlobalModalContext";
-import useFetchPlugins from "@/hooks/useFetchPlugins";
-import { Plugin } from "@/interfaces/Plugin";
-import { Theme } from "@/interfaces/Theme";
-import { galleryApiFetch } from "@/utils";
-import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import UserProfileInfoSection from "../components/UserProfile/UserProfileInfoSection";
-import UserProfilePluginSection from "../components/UserProfile/UserProfilePluginSection";
-import UserProfileThemeSection from "../components/UserProfile/UserProfileThemeSection";
-import { Endpoints } from "../constants/Endpoints";
-import { useAuth } from "../context/AuthContext";
-import useFetchThemes from "../hooks/useFetchThemes";
+import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+import { useGlobalModal } from '@/context/GlobalModalContext';
+import useFetchPlugins from '@/hooks/useFetchPlugins';
+import { Plugin } from '@/interfaces/Plugin';
+import { Theme } from '@/interfaces/Theme';
+import { galleryApiFetch } from '@/utils';
+
+import UserProfileInfoSection from '../components/UserProfile/UserProfileInfoSection';
+import UserProfilePluginSection from '../components/UserProfile/UserProfilePluginSection';
+import UserProfileThemeSection from '../components/UserProfile/UserProfileThemeSection';
+import { Endpoints } from '../constants/Endpoints';
+import { useAuth } from '../context/AuthContext';
+import useFetchThemes from '../hooks/useFetchThemes';
 
 const THEME_FAVORITES_PER_PAGE = import.meta.env.VITE_THEME_FAVORITES_PER_PAGE;
 const THEME_OWNERSHIP_PER_PAGE = import.meta.env.VITE_THEME_OWNERSHIP_PER_PAGE;
@@ -25,11 +27,11 @@ const UserProfilePage: React.FC = () => {
   const { setPromptError } = useGlobalModal();
 
   const { fetchThemes, isLoading: isLoadingThemes } = useFetchThemes();
-  const [selectedThemeType, setSelectedThemeType] = useState<"personal" | "favorite">("favorite");
+  const [selectedThemeType, setSelectedThemeType] = useState<'personal' | 'favorite'>('favorite');
   const [themes, setThemes] = useState<Theme[]>([]);
 
   const { fetchPlugins, isLoading: isLoadingPlugins } = useFetchPlugins();
-  const [selectedPluginType, setSelectedPluginType] = useState<"personal" | "favorite">("favorite");
+  const [selectedPluginType, setSelectedPluginType] = useState<'personal' | 'favorite'>('favorite');
   const [plugins, setPlugins] = useState<Plugin[]>([]);
 
   // Fetch user data on mount
@@ -42,20 +44,16 @@ const UserProfilePage: React.FC = () => {
     const loadThemes = async () => {
       try {
         const fetchedThemes = await fetchThemes({
-          url: selectedThemeType === "personal" 
-            ? Endpoints.fetchUserOwnedThemes 
-            : Endpoints.favoriteThemes,
-          pageSize: selectedThemeType === "personal" 
-            ? THEME_OWNERSHIP_PER_PAGE 
-            : THEME_FAVORITES_PER_PAGE,
           pageNum: 1,
-          sortBy: "updatedAt",
-          sortDirection: "DESC"
+          pageSize: selectedThemeType === 'personal' ? THEME_OWNERSHIP_PER_PAGE : THEME_FAVORITES_PER_PAGE,
+          sortBy: 'updatedAt',
+          sortDirection: 'DESC',
+          url: selectedThemeType === 'personal' ? Endpoints.fetchUserOwnedThemes : Endpoints.favoriteThemes,
         });
-        
+
         setThemes(fetchedThemes);
       } catch (err) {
-        console.error("Failed to fetch themes:", err);
+        console.error('Failed to fetch themes:', err);
       }
     };
 
@@ -66,20 +64,16 @@ const UserProfilePage: React.FC = () => {
     const loadPlugins = async () => {
       try {
         const fetchedPlugins = await fetchPlugins({
-          url: selectedPluginType === "personal" 
-            ? Endpoints.fetchUserOwnedPlugins
-            : Endpoints.favoritePlugins,
-          pageSize: selectedPluginType === "personal" 
-            ? PLUGIN_OWNERSHIP_PER_PAGE 
-            : PLUGIN_FAVORITES_PER_PAGE,
           pageNum: 1,
-          sortBy: "updatedAt",
-          sortDirection: "DESC"
+          pageSize: selectedPluginType === 'personal' ? PLUGIN_OWNERSHIP_PER_PAGE : PLUGIN_FAVORITES_PER_PAGE,
+          sortBy: 'updatedAt',
+          sortDirection: 'DESC',
+          url: selectedPluginType === 'personal' ? Endpoints.fetchUserOwnedPlugins : Endpoints.favoritePlugins,
         });
-        
+
         setPlugins(fetchedPlugins);
       } catch (err) {
-        console.error("Failed to fetch plugins:", err);
+        console.error('Failed to fetch plugins:', err);
       }
     };
 
@@ -94,22 +88,22 @@ const UserProfilePage: React.FC = () => {
         setUserData(result.data);
       }
     } catch (err) {
-      console.error("Failed to fetch user profile:", err);
+      console.error('Failed to fetch user profile:', err);
       // todo: send to error page
     }
   };
 
   // Handle theme type toggle
-  const handleThemeTypeToggle = (type: "personal" | "favorite") => {
+  const handleThemeTypeToggle = (type: 'personal' | 'favorite') => {
     setSelectedThemeType(type);
   };
 
-  const handlePluginTypeToggle  = (type: "personal" | "favorite") => {
+  const handlePluginTypeToggle = (type: 'personal' | 'favorite') => {
     setSelectedPluginType(type);
   };
 
   if (!userData) {
-    setPromptError("error_modal.fail_user_data_fetch");
+    setPromptError('error_modal.fail_user_data_fetch');
     return;
   }
 
@@ -117,13 +111,13 @@ const UserProfilePage: React.FC = () => {
     <Box
       component="main"
       sx={{
-        minHeight: "100vh",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "background.default",
-        color: "text.primary",
+        backgroundColor: 'background.default',
+        color: 'text.primary',
+        display: 'flex',
+        flexDirection: 'column',
         marginBottom: 5,
+        minHeight: '100vh',
+        overflow: 'hidden',
       }}
     >
       <UserProfileInfoSection userData={userData} />

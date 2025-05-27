@@ -1,5 +1,5 @@
 // plugin data fetched from both backend api
-export interface Plugin {
+export type Plugin = {
   id: string;
   name: string;
   description: string;
@@ -15,4 +15,4 @@ export interface Plugin {
   userId: string;
   github: string;
   packageUrl: string;
-}
+};
