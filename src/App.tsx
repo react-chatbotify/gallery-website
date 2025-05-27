@@ -14,8 +14,9 @@ import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
 import LoginProcessPage from './pages/LoginProcess';
 import PluginsPage from './pages/Plugins';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import TeamsPage from './pages/Teams';
-import TermsOfService from "./pages/TermofService";
+import TermsOfService from './pages/TermsOfService';
 import ThemesPage from './pages/Themes';
 import UserProfilePage from './pages/UserProfile';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -76,9 +77,10 @@ const App: React.FC = () => {
       children: [
         { element: <HomePage />, path: '/' },
         { element: <PluginsPage />, path: '/plugins' },
+        { element: <PrivacyPolicy />, path: '/privacy-policy' },
         { element: <ThemesPage />, path: '/themes' },
         { element: <TeamsPage />, path: '/teams' },
-        { element: <TermsOfService/>,  path: '/terms-of-services' },
+        { element: <TermsOfService />, path: '/terms-of-service' },
         {
           element: <ProtectedRoute element={<UserProfilePage />} />,
           path: '/profile',

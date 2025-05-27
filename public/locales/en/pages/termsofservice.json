@@ -1,5 +1,9 @@
 {
   "terms_of_service": {
+    "title": "Terms of Service",
+    "subtitle": "While open source libraries encourage collaboration and accessibility, it's essential to ensure that users and contributors understand their rights and responsibilities. Our Terms of Service provide clear guidelines on usage, modification and distribution."
+  },
+  "terms_of_service_paragraphs": {
     "01": {
       "title": "Introduction",
       "content": [

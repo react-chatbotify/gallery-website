@@ -13,6 +13,7 @@ const Endpoints = {
   fetchUserProfile: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/profile`,
   galleryAuthRedirectUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/callback`,
   gitHubCoreOrgUrl: 'https://github.com/React-ChatBotify',
+  gitHubCoreOrgSponsorUrl: 'https://github.com/sponsors/React-ChatBotify',
   gitHubLoginUrl: 'https://github.com/login/oauth/authorize',
   instagramCoreUrl: 'https://www.instagram.com/react.chatbotify',
   loginUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,

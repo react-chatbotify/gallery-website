@@ -56,7 +56,7 @@ const Footer = (): JSX.Element => {
             <Link sx={genericLinksStyles} href="/teams">
               {footerLinks[0].children[0]}
             </Link>
-            <Link sx={genericLinksStyles} href="#">
+            <Link sx={genericLinksStyles} href={Endpoints.gitHubCoreOrgSponsorUrl}>
               {footerLinks[0].children[1]}
             </Link>
           </Stack>
@@ -85,10 +85,10 @@ const Footer = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h6">
               {footerLinks[2].title}
             </Typography>
-            <Link sx={genericLinksStyles} href="#">
+            <Link sx={genericLinksStyles} href="/terms-of-service">
               {footerLinks[2].children[0]}
             </Link>
-            <Link sx={genericLinksStyles} href="#">
+            <Link sx={genericLinksStyles} href="/privacy-policy">
               {footerLinks[2].children[1]}
             </Link>
           </Stack>
