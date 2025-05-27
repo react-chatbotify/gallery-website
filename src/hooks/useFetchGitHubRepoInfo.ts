@@ -122,7 +122,6 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
     // fetchAll is called only if cache was not applied, or if it was applied but stale.
     // If cache was applied and fresh, the useEffect hook returns early.
     fetchAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullRepo]); // name is not a dependency for fetching
 
   return {
