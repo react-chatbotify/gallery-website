@@ -13,6 +13,7 @@ import galleryWebsitePreview from '../../assets/images/LandingPage/ProjectPrevie
 import FadeInOnView from '../FadeComponent/FadeInOnView';
 import { HeadingAndDescription } from './FeaturesAndBenefitsSection';
 import ProjectCard from './ProjectCard';
+import ProjectSectionPlaceholder from './ProjectSectionPlaceholder';
 
 /**
  * Shows the list of contributors for each project repository that helped make the overall project possible.
@@ -31,6 +32,14 @@ export const ProjectSection = (): JSX.Element => {
   const galleryApiProject = useFetchGitHubRepoInfo('Gallery API', 'React-ChatBotify/gallery-api');
   const documentationProject = useFetchGitHubRepoInfo('Documentation', 'React-ChatBotify/core-library-documentation');
   const discordBotProject = useFetchGitHubRepoInfo('Discord Bot', 'React-ChatBotify/discord-bot');
+
+  // calculate collective loading state
+  const isSectionLoading =
+    coreLibraryProject.loading ||
+    galleryWebsiteProject.loading ||
+    galleryApiProject.loading ||
+    documentationProject.loading ||
+    discordBotProject.loading;
 
   // combine fetched data with i18n metadata
   const projects = useMemo(() => {
@@ -71,54 +80,58 @@ export const ProjectSection = (): JSX.Element => {
         <HeadingAndDescription heading={t('project_section.title')} description={t('project_section.heading.1')} />
       </FadeInOnView>
 
-      {/* Scrolling Container with Fixed Gradients */}
-      <Box
-        sx={{
-          '&:after': {
-            background: `linear-gradient(270deg, rgba(${gradientColor},1) 0%, rgba(${gradientColor},0.8) 60%, transparent 100%)`,
-            right: 0,
-          },
-          '&:before': {
-            background: `linear-gradient(90deg, rgba(${gradientColor},1) 0%, rgba(${gradientColor},0.8) 60%, transparent 100%)`,
-            left: 0,
-          },
-          '&:before, &:after': {
-            bottom: 0,
-            content: '""',
-            pointerEvents: 'none',
-            position: 'absolute',
-            top: 0,
-            width: '60px',
-            zIndex: 2,
-          },
-          overflow: 'hidden',
-          position: 'relative',
-        }}
-      >
+      {/* Conditional rendering of placeholder or actual content */}
+      {isSectionLoading ? (
+        <ProjectSectionPlaceholder />
+      ) : (
         <Box
-          ref={containerRef}
-          {...handlers}
           sx={{
+            '&:after': {
+              background: `linear-gradient(270deg, rgba(${gradientColor},1) 0%, rgba(${gradientColor},0.8) 60%, transparent 100%)`,
+              right: 0,
+            },
+            '&:before': {
+              background: `linear-gradient(90deg, rgba(${gradientColor},1) 0%, rgba(${gradientColor},0.8) 60%, transparent 100%)`,
+              left: 0,
+            },
+            '&:before, &:after': {
+              bottom: 0,
+              content: '""',
+              pointerEvents: 'none',
+              position: 'absolute',
+              top: 0,
+              width: '60px',
+              zIndex: 2,
+            },
             overflow: 'hidden',
-            width: '100%',
+            position: 'relative',
           }}
         >
           <Box
+            ref={containerRef}
+            {...handlers}
             sx={{
-              display: 'flex',
-              gap: 3,
-              width: 'fit-content',
-              willChange: 'transform',
+              overflow: 'hidden',
+              width: '100%',
             }}
           >
-            {loopedProjects.map((project, index) => (
-              <Box key={generateKey(index, project.name)}>
-                <ProjectCard {...project} />
-              </Box>
-            ))}
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 3,
+                width: 'fit-content',
+                willChange: 'transform',
+              }}
+            >
+              {loopedProjects.map((project, index) => (
+                <Box key={generateKey(index, project.name)}>
+                  <ProjectCard {...project} />
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Box>
-      </Box>
+      )}
     </Box>
   );
 };

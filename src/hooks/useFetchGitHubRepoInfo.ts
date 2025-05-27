@@ -23,8 +23,6 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
 
   useEffect(() => {
     const cacheKey = `github_${fullRepo.replace('/', '_')}`;
-    const cacheTimestamp = localStorage.getItem(`${cacheKey}_ts`);
-    const oneHour = 1000 * 60 * 60;
 
     const applyCache = (): boolean => {
       const cachedData = localStorage.getItem(cacheKey);
@@ -37,21 +35,41 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
         setForks(forks);
         setDescription(description);
         return true;
-      } catch {
+      } catch (e) {
+        console.error('Failed to parse cached data:', e);
+        localStorage.removeItem(cacheKey); // Clear corrupted cache
+        localStorage.removeItem(`${cacheKey}_ts`);
         return false;
       }
     };
 
-    // if cache is fresh, use it and skip fetch
-    if (cacheTimestamp && Date.now() - Number(cacheTimestamp) < oneHour) {
-      if (applyCache()) {
-        setLoading(false);
+    // Attempt to load from cache first.
+    const
+      isCacheApplied = applyCache();
+
+    if (isCacheApplied) {
+      setLoading(false); // Data loaded from cache, no initial loading state needed.
+      // Check for cache freshness
+      const cacheTimestamp = localStorage.getItem(`${cacheKey}_ts`);
+      const oneHour = 1000 * 60 * 60;
+      if (cacheTimestamp && Date.now() - Number(cacheTimestamp) < oneHour) {
+        // Cache is fresh and applied, skip fetchAll
         return;
       }
+      // Cache is stale, proceed to fetchAll, loading is already false
+    } else {
+      setLoading(true); // No cache or failed to apply, show loading state, must fetch.
     }
 
     const fetchAll = async () => {
-      setLoading(true);
+      // If cache wasn't applied, we are in an initial loading state (setLoading(true) already called).
+      // If cache was applied but stale, loading is currently false, this is a background update.
+      // No need to set loading to true here again if cache was stale and applied.
+      // setLoading(true) is only for the case where there was no cache initially.
+      if (!isCacheApplied) {
+        // This condition is already handled by the setLoading(true) in the else block above.
+        // Redundant setLoading(true) removed here.
+      }
       setError(null);
 
       try {
@@ -90,18 +108,23 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
         );
         localStorage.setItem(`${cacheKey}_ts`, String(Date.now()));
       } catch (err) {
-        // on error, fallback to stale cache
+        // on error, fallback to stale cache (if it was already applied)
         setError(err as Error);
-        if (applyCache()) {
-          console.warn(`Fetch failed for ${fullRepo}, applied stale cache.`);
+        // No need to call applyCache() again here, if it failed initially, it's already handled.
+        // If it was applied, the stale data is already there.
+        if (isCacheApplied) {
+          console.warn(`Fetch failed for ${fullRepo}, continuing to show stale cache.`);
         }
       } finally {
-        setLoading(false);
+        setLoading(false); // Always set loading to false after fetch attempt.
       }
     };
 
+    // fetchAll is called only if cache was not applied, or if it was applied but stale.
+    // If cache was applied and fresh, the useEffect hook returns early.
     fetchAll();
-  }, [name, fullRepo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fullRepo]); // name is not a dependency for fetching
 
   return {
     contributors,
