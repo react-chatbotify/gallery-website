@@ -21,7 +21,6 @@ import { Endpoints } from '@/constants/Endpoints';
 import { useAuth } from '@/context/AuthContext';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { useNotify } from '@/hooks/useNotify';
-import useScrollLock from '@/hooks/useScrollLock';
 import { handleLogin } from '@/services/authService';
 import { resetPluginsCache } from '@/services/plugins/cacheService';
 import { resetThemesCache } from '@/services/themes/cacheService';
@@ -56,8 +55,6 @@ const NavigationBar: React.FC<{
 
   // mobile drawer open state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // lock scroll when mobile drawer is open
-  useScrollLock(mobileMenuOpen);
 
   const theme = useTheme();
 

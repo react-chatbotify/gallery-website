@@ -15,7 +15,6 @@ import { useGlobalModal } from '@/context/GlobalModalContext';
 import useActionQueue from '@/hooks/useActionQueue';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { useNotify } from '@/hooks/useNotify';
-import useScrollLock from '@/hooks/useScrollLock';
 import { Theme } from '@/interfaces/Theme';
 import { addThemeToFavorites, fetchThemesFromApi, removeThemeFromFavorites } from '@/services/themes/apiService';
 
@@ -52,7 +51,6 @@ const Themes: React.FC = () => {
     const isLastVisible = localStorage.getItem('RCBG_THEME_PREVIEW_VISIBLE');
     return isLastVisible === 'true';
   });
-  useScrollLock(!isDesktop && isPreviewVisible);
 
   // debounces favoriting of themes in a queue
   const addQueue = useActionQueue<Theme>(addThemeToFavorites, 300);
@@ -192,6 +190,7 @@ const Themes: React.FC = () => {
         display: 'flex',
         minHeight: '100vh',
         width: '100%',
+        overflowX: 'hidden',
       }}
     >
       {/* Main Content Section */}
