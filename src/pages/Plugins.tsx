@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
+import FadeInOnView from '@/components/FadeComponent/FadeInOnView';
 import GalleryTooltip from '@/components/GalleryTooltip/GalleryTooltip';
 import PluginCard from '@/components/Plugins/PluginCard';
 import PluginModal from '@/components/Plugins/PluginModal';
@@ -179,64 +180,68 @@ const Plugins: React.FC = () => {
     >
       {/* Main Content Section */}
       <Box sx={{ flex: 1, padding: 4 }}>
-        <Box
-          sx={{
-            mb: 4,
-            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
-          }}
-        >
-          <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
-            {t('plugins.header')}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {t('plugins.description')}
-          </Typography>
-          <GalleryTooltip content={t('plugin_tooltip.plugin_usage')} placement="right">
-            <Box display="inline-flex" alignItems="center" color="primary.main">
-              <Typography variant="body2" sx={{ marginRight: '4px' }}>
-                {t('plugins.how_plugins_work')}
-              </Typography>
-              <IconButton size="small" color="primary">
-                <InfoIcon />
-              </IconButton>
+        <FadeInOnView>
+          <Box
+            sx={{
+              mb: 4,
+              mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
+            }}
+          >
+            <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
+              {t('plugins.header')}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {t('plugins.description')}
+            </Typography>
+            <GalleryTooltip content={t('plugin_tooltip.plugin_usage')} placement="right">
+              <Box display="inline-flex" alignItems="center" color="primary.main">
+                <Typography variant="body2" sx={{ marginRight: '4px' }}>
+                  {t('plugins.how_plugins_work')}
+                </Typography>
+                <IconButton size="small" color="primary">
+                  <InfoIcon />
+                </IconButton>
+              </Box>
+            </GalleryTooltip>
+            <Box mt={2} display="flex" gap={2}>
+              <SearchBar onSearch={handleSearch} />
+              <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
             </Box>
-          </GalleryTooltip>
-          <Box mt={2} display="flex" gap={2}>
-            <SearchBar onSearch={handleSearch} />
-            <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
           </Box>
-        </Box>
-        {/* Plugins Grid */}
-        <Grid container spacing={2}>
-          {isLoading && queryParams.page === 1 ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
-              <CircularProgress size={80} />
-            </Box>
-          ) : (
-            <>
-              {allPlugins.map((plugin) => (
-                <Grid item key={plugin.id} sm={12} md={6} lg={3}>
-                  <PluginCard
-                    plugin={plugin}
-                    onViewMoreInfo={() => {
-                      setSearchParams((params) => {
-                        params.set('pluginId', plugin.id);
-                        return params;
-                      });
-                      setFocusedPlugin(plugin);
-                    }}
-                    updateFavorites={updateFavorites}
-                  />
-                </Grid>
-              ))}
-              {isLoading && (
-                <Box textAlign="center" width="100%" mt={2}>
-                  <CircularProgress size={24} />
-                </Box>
-              )}
-            </>
-          )}
-        </Grid>
+          {/* Plugins Grid */}
+          <Grid container spacing={2}>
+            {isLoading && queryParams.page === 1 ? (
+              <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
+                <CircularProgress size={80} />
+              </Box>
+            ) : (
+              <>
+                {allPlugins.map((plugin) => (
+                  <Grid item key={plugin.id} sm={12} md={6} lg={3}>
+                    <FadeInOnView>
+                      <PluginCard
+                        plugin={plugin}
+                        onViewMoreInfo={() => {
+                          setSearchParams((params) => {
+                            params.set('pluginId', plugin.id);
+                            return params;
+                          });
+                          setFocusedPlugin(plugin);
+                        }}
+                        updateFavorites={updateFavorites}
+                      />
+                    </FadeInOnView>
+                  </Grid>
+                ))}
+                {isLoading && (
+                  <Box textAlign="center" width="100%" mt={2}>
+                    <CircularProgress size={24} />
+                  </Box>
+                )}
+              </>
+            )}
+          </Grid>
+        </FadeInOnView>
       </Box>
 
       {/* Modal */}

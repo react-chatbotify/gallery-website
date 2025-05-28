@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
+import FadeInOnView from '@/components/FadeComponent/FadeInOnView';
 import GalleryTooltip from '@/components/GalleryTooltip/GalleryTooltip';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SortButton from '@/components/SearchBar/SortButton';
@@ -195,66 +196,70 @@ const Themes: React.FC = () => {
     >
       {/* Main Content Section */}
       <Box sx={{ flex: 1, padding: 4 }}>
-        <Box
-          sx={{
-            mb: 4,
-            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
-          }}
-        >
-          <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
-            {t('themes.header')}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {t('themes.description')}
-          </Typography>
-          <GalleryTooltip content={t('theme_tooltip.multiple_themes_usage')} placement="right">
-            <Box display="inline-flex" alignItems="center" color="primary.main">
-              <Typography variant="body2" sx={{ marginRight: '4px' }}>
-                {t('themes.how_multiple_themes_work')}
-              </Typography>
-              <IconButton size="small" color="primary">
-                <InfoIcon />
-              </IconButton>
+        <FadeInOnView>
+          <Box
+            sx={{
+              mb: 4,
+              mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
+            }}
+          >
+            <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
+              {t('themes.header')}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {t('themes.description')}
+            </Typography>
+            <GalleryTooltip content={t('theme_tooltip.multiple_themes_usage')} placement="right">
+              <Box display="inline-flex" alignItems="center" color="primary.main">
+                <Typography variant="body2" sx={{ marginRight: '4px' }}>
+                  {t('themes.how_multiple_themes_work')}
+                </Typography>
+                <IconButton size="small" color="primary">
+                  <InfoIcon />
+                </IconButton>
+              </Box>
+            </GalleryTooltip>
+            <Box mt={2} display="flex" gap={2}>
+              <SearchBar onSearch={handleSearch} />
+              <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
             </Box>
-          </GalleryTooltip>
-          <Box mt={2} display="flex" gap={2}>
-            <SearchBar onSearch={handleSearch} />
-            <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
           </Box>
-        </Box>
-        {/* Themes Grid */}
-        <Grid container spacing={2}>
-          {isLoading && queryParams.page === 1 ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
-              <CircularProgress size={80} />
-            </Box>
-          ) : (
-            <>
-              {allThemes.map((theme) => (
-                <Grid item key={theme.id} sm={12} md={6} lg={isPreviewVisible ? 4 : 3}>
-                  <ThemeCard
-                    theme={theme}
-                    isPreviewed={previewIds.includes(theme.id)}
-                    onPreview={onPreview}
-                    onViewMoreInfo={() => {
-                      setSearchParams((params) => {
-                        params.set('themeId', theme.id);
-                        return params;
-                      });
-                      setFocusedTheme(theme);
-                    }}
-                    updateFavorites={updateFavorites}
-                  />
-                </Grid>
-              ))}
-              {isLoading && (
-                <Box textAlign="center" width="100%" mt={2}>
-                  <CircularProgress size={24} />
-                </Box>
-              )}
-            </>
-          )}
-        </Grid>
+          {/* Themes Grid */}
+          <Grid container spacing={2}>
+            {isLoading && queryParams.page === 1 ? (
+              <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
+                <CircularProgress size={80} />
+              </Box>
+            ) : (
+              <>
+                {allThemes.map((theme) => (
+                  <Grid item key={theme.id} sm={12} md={6} lg={isPreviewVisible ? 4 : 3}>
+                    <FadeInOnView>
+                      <ThemeCard
+                        theme={theme}
+                        isPreviewed={previewIds.includes(theme.id)}
+                        onPreview={onPreview}
+                        onViewMoreInfo={() => {
+                          setSearchParams((params) => {
+                            params.set('themeId', theme.id);
+                            return params;
+                          });
+                          setFocusedTheme(theme);
+                        }}
+                        updateFavorites={updateFavorites}
+                      />
+                    </FadeInOnView>
+                  </Grid>
+                ))}
+                {isLoading && (
+                  <Box textAlign="center" width="100%" mt={2}>
+                    <CircularProgress size={24} />
+                  </Box>
+                )}
+              </>
+            )}
+          </Grid>
+        </FadeInOnView>
       </Box>
 
       {/* Pinned Preview Section (Sticky) */}
@@ -291,31 +296,33 @@ const Themes: React.FC = () => {
               },
             }}
           >
-            <Button
-              onClick={() =>
-                setIsPreviewVisible((prev) => {
-                  localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!prev));
-                  return !prev;
-                })
-              }
-              sx={{
-                '&:hover': {
-                  backgroundColor: 'background.secondaryBtnHover',
-                },
-                backgroundColor: 'background.secondaryBtn',
-                borderRadius: '8px',
-                color: 'text.primary',
-                fontSize: '0.875rem',
-                left: isDesktop ? '-110px' : isPreviewVisible ? '-20px' : '-130px',
-                mt: 8,
-                padding: '8px 12px',
-                position: 'absolute',
-                textTransform: 'none',
-                width: 140,
-              }}
-            >
-              {isPreviewVisible ? `${t('themes.close_theme_preview')} >>` : `<< ${t('themes.open_theme_preview')}`}
-            </Button>
+            <FadeInOnView>
+              <Button
+                onClick={() =>
+                  setIsPreviewVisible((prev) => {
+                    localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!prev));
+                    return !prev;
+                  })
+                }
+                sx={{
+                  '&:hover': {
+                    backgroundColor: 'background.secondaryBtnHover',
+                  },
+                  backgroundColor: 'background.secondaryBtn',
+                  borderRadius: '8px',
+                  color: 'text.primary',
+                  fontSize: '0.875rem',
+                  left: isDesktop ? '-110px' : isPreviewVisible ? '-20px' : '-130px',
+                  mt: 8,
+                  padding: '8px 12px',
+                  position: 'absolute',
+                  textTransform: 'none',
+                  width: 140,
+                }}
+              >
+                {isPreviewVisible ? `${t('themes.close_theme_preview')} >>` : `<< ${t('themes.open_theme_preview')}`}
+              </Button>
+            </FadeInOnView>
           </Badge>
 
           {isPreviewVisible && (
