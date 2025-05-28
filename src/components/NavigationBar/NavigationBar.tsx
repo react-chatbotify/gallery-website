@@ -4,13 +4,25 @@ import CloseIcon from '@mui/icons-material/Close';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import GroupsIcon from '@mui/icons-material/Groups';
+import GroupIcon from '@mui/icons-material/Group';
 import LanguageIcon from '@mui/icons-material/Language';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import PaletteIcon from '@mui/icons-material/Palette';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import { Box, Button, Drawer, IconButton, List, ListItem, ListItemText, Menu, MenuItem, useTheme } from '@mui/material';
+import {
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Menu,
+  MenuItem,
+  useTheme,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaDiscord, FaDoorOpen, FaInstagram, FaTwitter, FaUserCog } from 'react-icons/fa';
@@ -52,6 +64,7 @@ const NavigationBar: React.FC<{
   const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
   const [communityMenuAnchor, setCommunityMenuAnchor] = useState<null | HTMLElement>(null);
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
+  const [aboutMenuAnchor, setAboutMenuAnchor] = useState<null | HTMLElement>(null);
 
   // mobile drawer open state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -147,9 +160,30 @@ const NavigationBar: React.FC<{
         <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t('navigation_bar.themes')}
         </Button>
-        <Button component={Link} to="/teams" sx={generalNavLinkSx}>
-          {t('navigation_bar.teams')}
-        </Button>
+        <Box>
+          <Button
+            onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
+            sx={generalNavLinkSx}
+          >
+            About Us
+          </Button>
+          <Menu
+            anchorEl={aboutMenuAnchor}
+            open={Boolean(aboutMenuAnchor)}
+            onClose={() => setAboutMenuAnchor(null)}
+            sx={{ mt: 1, zIndex: 9001 }}
+          >
+            <MenuItem component="a" href="/teams" onClick={() => setAboutMenuAnchor(null)}>
+              {t('navigation_bar.about_us.our_team')}
+            </MenuItem>
+            <MenuItem component="a" href="/terms-of-service" onClick={() => setAboutMenuAnchor(null)}>
+              {t('navigation_bar.about_us.terms_of_service')}
+            </MenuItem>
+            <MenuItem component="a" href="/privacy-policy" onClick={() => setAboutMenuAnchor(null)}>
+              {t('navigation_bar.about_us.privacy_policy')}
+            </MenuItem>
+          </Menu>
+        </Box>
         {/* <Button component={Link} to="/theme-builder" sx={generalNavLinkSx}>
           {t('navigation_bar.theme_builder')}
         </Button> */}
@@ -353,14 +387,19 @@ const NavigationBar: React.FC<{
               <PaletteIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.themes')} />
             </ListItem>
-            <ListItem component={Link} to="/teams" sx={generalNavLinkSx}>
-              <GroupsIcon sx={{ mr: 1 }} />
-              <ListItemText primary={t('navigation_bar.teams')} />
-            </ListItem>
             {/* <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
               <CodeIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.theme_builder')} />
             </ListItem> */}
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
+                sx={generalNavLinkSx}
+              >
+                <GroupIcon sx={{ mr: 1 }} />
+                <ListItemText primary="About Us" />
+              </ListItemButton>
+            </ListItem>
           </List>
 
           {/* Mobile community and utility bar */}
