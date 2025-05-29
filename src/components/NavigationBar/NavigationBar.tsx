@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import GroupIcon from '@mui/icons-material/Group';
+import InfoIcon from '@mui/icons-material/Info';
 import LanguageIcon from '@mui/icons-material/Language';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
@@ -25,7 +25,7 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDiscord, FaDoorOpen, FaInstagram, FaTwitter, FaUserCog } from 'react-icons/fa';
+import { FaDiscord, FaDoorOpen, FaInstagram, FaTwitter, FaUserCog, FaUserFriends, FaUserSecret } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import logo from '@/assets/images/logo.webp';
@@ -165,7 +165,7 @@ const NavigationBar: React.FC<{
             onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
             sx={generalNavLinkSx}
           >
-            About Us
+            {t('navigation_bar.about_us')}
           </Button>
           <Menu
             anchorEl={aboutMenuAnchor}
@@ -174,12 +174,15 @@ const NavigationBar: React.FC<{
             sx={{ mt: 1, zIndex: 9001 }}
           >
             <MenuItem component="a" href="/teams" onClick={() => setAboutMenuAnchor(null)}>
+              <FaUserFriends style={{ marginRight: 8 }} />
               {t('navigation_bar.about_us.our_team')}
             </MenuItem>
             <MenuItem component="a" href="/terms-of-service" onClick={() => setAboutMenuAnchor(null)}>
+              <FaUserFriends style={{ marginRight: 8 }} />
               {t('navigation_bar.about_us.terms_of_service')}
             </MenuItem>
             <MenuItem component="a" href="/privacy-policy" onClick={() => setAboutMenuAnchor(null)}>
+              <FaUserSecret style={{ marginRight: 8 }} />
               {t('navigation_bar.about_us.privacy_policy')}
             </MenuItem>
           </Menu>
@@ -396,8 +399,8 @@ const NavigationBar: React.FC<{
                 onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
                 sx={generalNavLinkSx}
               >
-                <GroupIcon sx={{ mr: 1 }} />
-                <ListItemText primary="About Us" />
+                <InfoIcon sx={{ mr: 1 }} />
+                <ListItemText primary={t('navigation_bar.about_us')} />
               </ListItemButton>
             </ListItem>
           </List>
