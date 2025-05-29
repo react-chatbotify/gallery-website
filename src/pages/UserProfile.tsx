@@ -7,6 +7,7 @@ import { Plugin } from '@/interfaces/Plugin';
 import { Theme } from '@/interfaces/Theme';
 import { galleryApiFetch } from '@/utils';
 
+import FadeInOnView from '../components/FadeComponent/FadeInOnView';
 import UserProfileInfoSection from '../components/UserProfile/UserProfileInfoSection';
 import UserProfilePluginSection from '../components/UserProfile/UserProfilePluginSection';
 import UserProfileThemeSection from '../components/UserProfile/UserProfileThemeSection';
@@ -111,7 +112,7 @@ const UserProfilePage: React.FC = () => {
     <Box
       component="main"
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: 'background.paper',
         color: 'text.primary',
         display: 'flex',
         flexDirection: 'column',
@@ -120,22 +121,28 @@ const UserProfilePage: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      <UserProfileInfoSection userData={userData} />
+      <FadeInOnView>
+        <UserProfileInfoSection userData={userData} />
+      </FadeInOnView>
 
-      <UserProfileThemeSection
-        themes={themes}
-        isLoading={isLoadingThemes}
-        selectedThemeType={selectedThemeType}
-        onToggleThemeType={handleThemeTypeToggle}
-      />
+      <FadeInOnView>
+        <UserProfileThemeSection
+          themes={themes}
+          isLoading={isLoadingThemes}
+          selectedThemeType={selectedThemeType}
+          onToggleThemeType={handleThemeTypeToggle}
+        />
+      </FadeInOnView>
 
       {/* Plugins section commented out for now */}
-      <UserProfilePluginSection
-        plugins={plugins}
-        isLoading={isLoadingPlugins}
-        selectedPluginType={selectedPluginType}
-        onTogglePluginType={handlePluginTypeToggle}
-      />
+      <FadeInOnView>
+        <UserProfilePluginSection
+          plugins={plugins}
+          isLoading={isLoadingPlugins}
+          selectedPluginType={selectedPluginType}
+          onTogglePluginType={handlePluginTypeToggle}
+        />
+      </FadeInOnView>
     </Box>
   );
 };

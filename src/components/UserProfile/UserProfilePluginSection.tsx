@@ -44,14 +44,14 @@ const UserProfilePluginSection: React.FC<{
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         borderRadius: 2,
         color: 'text.secondary',
         display: 'grid',
         gap: 2,
         margin: '0 auto',
         mt: 4,
-        padding: 8,
+        padding: { xs: 2, sm: 4, md: 6 },
         width: '95vw',
       }}
     >
@@ -100,7 +100,7 @@ const UserProfilePluginSection: React.FC<{
       ) : selectedPlugins.length > 0 ? (
         <Grid container spacing={3}>
           {selectedPlugins.map((plugin: Plugin, index: number) => (
-            <Grid item xs={12} sm={6} key={index}>
+            <Grid item xs={12} sm={6} key={index} sx={{ display: 'flex' }}>
               {selectedPluginType === 'personal' ? (
                 <UserOwnedPluginCard plugin={plugin} />
               ) : (

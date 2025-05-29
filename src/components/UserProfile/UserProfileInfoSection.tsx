@@ -18,7 +18,7 @@ const UserProfileInfoSection: React.FC<{
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         borderRadius: 2,
         boxSizing: 'border-box',
         color: 'text.secondary',
@@ -27,7 +27,7 @@ const UserProfileInfoSection: React.FC<{
         margin: '0 auto',
         maxWidth: '100%',
         mt: 4,
-        padding: 8,
+        padding: { xs: 2, sm: 4, md: 6 },
         width: '95vw',
       }}
     >

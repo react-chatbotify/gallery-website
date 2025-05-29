@@ -259,7 +259,7 @@ const NavigationBar: React.FC<{
                 onClose={() => setUserMenuAnchor(null)}
                 sx={{ mt: 1, zIndex: 9001 }}
               >
-                <MenuItem component={Link} to="/profile" onClick={() => setUserMenuAnchor(null)}>
+                <MenuItem component="a" href="/profile" onClick={() => setUserMenuAnchor(null)}>
                   <FaUserCog style={{ marginRight: 8 }} />
                   {t('navigation_bar.profile')}
                 </MenuItem>

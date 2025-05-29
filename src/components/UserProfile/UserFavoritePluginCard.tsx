@@ -23,9 +23,9 @@ const UserFavoritePluginCard: React.FC<{
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        gap: 3,
-        height: 'fit-content',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: { xs: 2, sm: 3 },
+        height: '100%',
         width: '100%',
       }}
     >
@@ -35,10 +35,11 @@ const UserFavoritePluginCard: React.FC<{
         src={imageUrl}
         alt={name}
         sx={{
-          borderRadius: 5,
-          height: 224,
+          borderRadius: 2,
           objectFit: 'cover',
-          width: '80%',
+          width: { xs: '100%', sm: 180 },
+          height: { xs: 'auto', sm: '100%' },
+          aspectRatio: { xs: '16/9', sm: 'auto' },
         }}
       />
 
@@ -47,9 +48,9 @@ const UserFavoritePluginCard: React.FC<{
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 3,
-          position: 'relative',
+          gap: { xs: 1.5, sm: 3 },
           width: '100%',
+          flexGrow: 1,
         }}
       >
         {/* Title */}
@@ -71,11 +72,9 @@ const UserFavoritePluginCard: React.FC<{
         {/* Links */}
         <Box
           sx={{
-            backgroundColor: 'background.paper',
-            bottom: 0,
             display: 'flex',
             gap: 2,
-            position: 'absolute',
+            marginTop: { xs: 2, sm: 'auto' },
           }}
         >
           <Link

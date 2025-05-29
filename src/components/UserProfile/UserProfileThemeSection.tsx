@@ -44,14 +44,14 @@ const UserProfileThemeSection: React.FC<{
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         borderRadius: 2,
         color: 'text.secondary',
         display: 'grid',
         gap: 2,
         margin: '0 auto',
         mt: 4,
-        padding: 8,
+        padding: { xs: 2, sm: 4, md: 6 },
         width: '95vw',
       }}
     >
@@ -100,7 +100,7 @@ const UserProfileThemeSection: React.FC<{
       ) : selectedThemes.length > 0 ? (
         <Grid container spacing={3}>
           {selectedThemes.map((theme: Theme, index: number) => (
-            <Grid item xs={12} sm={6} key={index}>
+            <Grid item xs={12} sm={6} key={index} sx={{ display: 'flex' }}>
               {selectedThemeType === 'personal' ? (
                 <UserOwnedThemeCard theme={theme} />
               ) : (
