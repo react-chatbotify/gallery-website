@@ -298,46 +298,48 @@ const Themes: React.FC = () => {
         }}
       >
         <Box sx={{ height: '100%', position: 'relative', width: '100%' }}>
-          <FadeInOnView>
-            <Badge
-              badgeContent={previewIds.length}
-              sx={{
-                '& .MuiBadge-badge': {
-                  bgcolor: 'primary.main',
-                  borderRadius: '50%',
-                  fontSize: '0.75rem',
-                  height: '1.5rem',
-                  minWidth: '1.5rem',
-                  mr: 3,
-                  mt: 9,
-                  zIndex: 1100,
-                },
-              }}
-            >
-              <Fab
-                size="small"
-                onClick={() =>
-                  setIsPreviewVisible((v) => {
-                    localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!v));
-                    return !v;
-                  })
-                }
+          {isDesktop && (
+            <FadeInOnView>
+              <Badge
+                badgeContent={previewIds.length}
                 sx={{
-                  position: 'absolute',
-                  top: 72,
-                  left: -28,
-                  boxShadow: 3,
-                  border: '1px solid',
-                  borderColor: 'divider',
-                  bgcolor: 'background.secondaryBtn',
-                  '&:hover': { bgcolor: 'background.secondaryBtnHover' },
-                  color: 'text.primary',
+                  '& .MuiBadge-badge': {
+                    bgcolor: 'primary.main',
+                    borderRadius: '50%',
+                    fontSize: '0.75rem',
+                    height: '1.5rem',
+                    minWidth: '1.5rem',
+                    mr: 3,
+                    mt: 9,
+                    zIndex: 1100,
+                  },
                 }}
               >
-                {isPreviewVisible ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-              </Fab>
-            </Badge>
-          </FadeInOnView>
+                <Fab
+                  size="small"
+                  onClick={() =>
+                    setIsPreviewVisible((v) => {
+                      localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!v));
+                      return !v;
+                    })
+                  }
+                  sx={{
+                    position: 'absolute',
+                    top: 72,
+                    left: -28,
+                    boxShadow: 3,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    bgcolor: 'background.secondaryBtn',
+                    '&:hover': { bgcolor: 'background.secondaryBtnHover' },
+                    color: 'text.primary',
+                  }}
+                >
+                  {isPreviewVisible ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                </Fab>
+              </Badge>
+            </FadeInOnView>
+          )}
 
           {isPreviewVisible && (
             <Box sx={{ height: '100%' }}>

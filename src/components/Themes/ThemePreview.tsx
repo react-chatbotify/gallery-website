@@ -178,12 +178,14 @@ const ThemePreview: React.FC<{
 
       {/* ChatBot */}
       <Box sx={{ mb: 4, width: '100%' }}>
-        <ChatBot
-          flow={flow}
-          themes={previewIds.map((themeId) => ({ id: themeId }))}
-          settings={{ general: { embedded: true } }}
-          styles={{ chatWindowStyle: { height: '54vh', width: isDesktop ? '24vw' : '80vw' } }}
-        />
+        <Box sx={{ width: '100%' }}>
+          <ChatBot
+            flow={flow}
+            themes={previewIds.map((themeId) => ({ id: themeId }))}
+            settings={{ general: { embedded: true } }}
+            styles={{ chatWindowStyle: { height: '54vh', width: isDesktop ? '24vw' : '80vw' } }}
+          />
+        </Box>
       </Box>
 
       {/* Selected Themes */}

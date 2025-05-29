@@ -247,27 +247,30 @@ const HeroSection = (): JSX.Element => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          {!isDesktop ? (
+          {isDesktop ? (
             <ChatBot
               settings={{
                 botBubble: { simulateStream: true },
                 chatHistory: { disabled: true },
                 general: { embedded: true },
-              }}
-              styles={{
-                chatWindowStyle: {
-                  width: '95%',
-                },
               }}
             />
           ) : (
-            <ChatBot
-              settings={{
-                botBubble: { simulateStream: true },
-                chatHistory: { disabled: true },
-                general: { embedded: true },
-              }}
-            />
+            <Box sx={{ width: '90vw', maxHeight: '60vh' }}>
+              <ChatBot
+                settings={{
+                  botBubble: { simulateStream: true },
+                  chatHistory: { disabled: true },
+                  general: { embedded: true },
+                }}
+                styles={{
+                  chatWindowStyle: {
+                    width: '100%',
+                    height: '60vh',
+                  },
+                }}
+              />
+            </Box>
           )}
         </motion.div>
       </Box>
