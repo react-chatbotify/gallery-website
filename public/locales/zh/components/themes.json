@@ -15,7 +15,6 @@
     "preview": "Preview",
     "num_themes_selected": "{num_themes_selected} theme(s) selected",
     "download_theme_bundle": "Download Theme Bundle",
-    "edit_in_theme_builder": "Edit In Theme Builder",
-    "show_preview": "Show Preview"
+    "edit_in_theme_builder": "Edit In Theme Builder"
   }
 }

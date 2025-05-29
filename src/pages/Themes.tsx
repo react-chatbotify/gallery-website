@@ -1,5 +1,7 @@
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
-import { Badge, Box, Button, CircularProgress, Grid, IconButton, Typography } from '@mui/material';
+import { Badge, Box, CircularProgress, Fab, Grid, IconButton, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
@@ -19,6 +21,7 @@ import { useNotify } from '@/hooks/useNotify';
 import { Theme } from '@/interfaces/Theme';
 import { addThemeToFavorites, fetchThemesFromApi, removeThemeFromFavorites } from '@/services/themes/apiService';
 
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { Endpoints } from '../constants/Endpoints';
 import useFetchThemes from '../hooks/useFetchThemes';
 
@@ -156,7 +159,11 @@ const Themes: React.FC = () => {
       searchParams.set('searchQuery', query);
     }
     setSearchParams(searchParams);
-    setQueryParams({ page: 1, searchQuery: query, sortBy: queryParams.sortBy });
+    setQueryParams({
+      page: 1,
+      searchQuery: query,
+      sortBy: queryParams.sortBy,
+    });
     setNoMoreThemes(false);
     setAllThemes([]);
   };
@@ -173,7 +180,7 @@ const Themes: React.FC = () => {
   };
 
   const onPreview = (theme: Theme) => {
-    if (previewIds.length === 0) {
+    if (previewIds.length === 0 && isDesktop) {
       notify('Open the preview panel on the top right corner to preview selected themes!');
     }
     setPreviewIds((prev) => (prev.includes(theme.id) ? prev.filter((item) => item !== theme.id) : [...prev, theme.id]));
@@ -181,7 +188,7 @@ const Themes: React.FC = () => {
 
   if (error) {
     setPromptError('error_modal.fail_themes_fetch');
-    return;
+    return null;
   }
 
   return (
@@ -195,7 +202,15 @@ const Themes: React.FC = () => {
       }}
     >
       {/* Main Content Section */}
-      <Box sx={{ flex: 1, padding: 4 }}>
+      <Box
+        sx={{
+          flex: 1,
+          padding: 4,
+          marginRight: isDesktop ? (isPreviewVisible ? '30%' : '40px') : 0,
+          marginBottom: !isDesktop ? (isPreviewVisible ? '50vh' : '40px') : 0,
+          transition: 'margin 0.3s ease',
+        }}
+      >
         <FadeInOnView>
           <Box
             sx={{
@@ -270,63 +285,62 @@ const Themes: React.FC = () => {
           borderColor: 'divider',
           display: 'flex',
           flexDirection: 'column',
-          height: '100vh',
-          mt: isDesktop ? -72 : 0,
-          position: isDesktop ? 'sticky' : 'fixed',
-          right: isDesktop ? 'auto' : 0,
-          top: 0,
-          transition: 'width 0.3s ease',
-          width: isPreviewVisible ? (isDesktop ? '30%' : '100%') : isDesktop ? '40px' : '0px',
+          height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : '0px',
+          mt: 0,
+          position: 'fixed',
+          top: isDesktop ? 0 : 'auto',
+          right: isDesktop ? 0 : 'auto',
+          bottom: isDesktop ? 'auto' : 0,
+          left: isDesktop ? 'auto' : 0,
+          transition: isDesktop ? 'width 0.3s ease' : 'height 0.3s ease',
+          width: isDesktop ? (isPreviewVisible ? '30%' : '40px') : '100%',
           zIndex: 1000,
         }}
       >
         <Box sx={{ height: '100%', position: 'relative', width: '100%' }}>
-          <Badge
-            badgeContent={previewIds.length}
-            color="error"
-            sx={{
-              '& .MuiBadge-badge': {
-                bgcolor: 'primary.main',
-                borderRadius: '50%',
-                fontSize: '0.75rem',
-                height: '1.5rem',
-                minWidth: '1.5rem',
-                mr: '110px',
-                mt: 11,
-              },
-            }}
-          >
-            <FadeInOnView>
-              <Button
+          <FadeInOnView>
+            <Badge
+              badgeContent={previewIds.length}
+              sx={{
+                '& .MuiBadge-badge': {
+                  bgcolor: 'primary.main',
+                  borderRadius: '50%',
+                  fontSize: '0.75rem',
+                  height: '1.5rem',
+                  minWidth: '1.5rem',
+                  mr: 3,
+                  mt: 9,
+                  zIndex: 1100,
+                },
+              }}
+            >
+              <Fab
+                size="small"
                 onClick={() =>
-                  setIsPreviewVisible((prev) => {
-                    localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!prev));
-                    return !prev;
+                  setIsPreviewVisible((v) => {
+                    localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!v));
+                    return !v;
                   })
                 }
                 sx={{
-                  '&:hover': {
-                    backgroundColor: 'background.secondaryBtnHover',
-                  },
-                  backgroundColor: 'background.secondaryBtn',
-                  borderRadius: '8px',
-                  color: 'text.primary',
-                  fontSize: '0.875rem',
-                  left: isDesktop ? '-110px' : isPreviewVisible ? '-20px' : '-130px',
-                  mt: 8,
-                  padding: '8px 12px',
                   position: 'absolute',
-                  textTransform: 'none',
-                  width: 140,
+                  top: 72,
+                  left: -28,
+                  boxShadow: 3,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  bgcolor: 'background.secondaryBtn',
+                  '&:hover': { bgcolor: 'background.secondaryBtnHover' },
+                  color: 'text.primary',
                 }}
               >
-                {isPreviewVisible ? `${t('themes.close_theme_preview')} >>` : `<< ${t('themes.open_theme_preview')}`}
-              </Button>
-            </FadeInOnView>
-          </Badge>
+                {isPreviewVisible ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </Fab>
+            </Badge>
+          </FadeInOnView>
 
           {isPreviewVisible && (
-            <Box sx={{ height: 'calc(100% - 56px)', mt: '56px' }}>
+            <Box sx={{ height: '100%' }}>
               <ThemePreview setPreviewIds={setPreviewIds} previewIds={previewIds} />
             </Box>
           )}
@@ -344,6 +358,47 @@ const Themes: React.FC = () => {
           theme={focusedTheme as Theme}
           updateFavorites={updateFavorites}
         />
+      )}
+
+      {/* Mobile toggle button */}
+      {!isDesktop && (
+        <IconButton
+          onClick={() =>
+            setIsPreviewVisible((prev) => {
+              localStorage.setItem('RCBG_THEME_PREVIEW_VISIBLE', String(!prev));
+              return !prev;
+            })
+          }
+          sx={{
+            position: 'fixed',
+            bottom: 16,
+            right: 16,
+            bgcolor: 'background.secondaryBtn',
+            '&:hover': { backgroundColor: 'background.secondaryBtnHover' },
+            color: 'text.primary',
+            zIndex: 1050,
+          }}
+        >
+          {isPreviewVisible ? (
+            <ExpandMoreIcon />
+          ) : (
+            <Badge
+              badgeContent={previewIds.length}
+              sx={{
+                '& .MuiBadge-badge': {
+                  bgcolor: 'primary.main',
+                  borderRadius: '50%',
+                  fontSize: '0.75rem',
+                  height: '1.25rem',
+                  minWidth: '1.25rem',
+                  mt: -1,
+                },
+              }}
+            >
+              <ExpandLessIcon />
+            </Badge>
+          )}
+        </IconButton>
       )}
     </Box>
   );

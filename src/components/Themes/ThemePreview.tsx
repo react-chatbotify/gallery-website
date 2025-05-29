@@ -110,6 +110,7 @@ const ThemePreview: React.FC<{
         flexDirection: 'column',
         height: '100%',
         overflowY: 'auto',
+        overflowX: 'hidden',
         p: 3,
       }}
     >
@@ -121,7 +122,7 @@ const ThemePreview: React.FC<{
           justifyContent: 'space-between',
           mb: 2,
           ml: 6,
-          mt: 6,
+          mt: isDesktop ? 6 : 0,
           width: '100%',
         }}
       >

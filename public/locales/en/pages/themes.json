@@ -3,8 +3,8 @@
     "header": "Themes",
     "description": "Browse, select and preview themes in the panel on the right!",
     "how_multiple_themes_work": "How choosing multiple themes work",
-    "open_theme_preview": "Open",
-    "close_theme_preview": "Collapse"
+    "show_theme_preview": "Show Theme Preview",
+    "hide_theme_preview": "Hide Theme Preview"
   },
   "theme_tooltip": {
     "multiple_themes_usage": "When multiple themes are selected, the order in which they are selected/specified matters. The later themes will override the styles of the earlier themes. Open the preview panel on the right and select themes to explore!"
