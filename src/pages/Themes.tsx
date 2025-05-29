@@ -211,13 +211,13 @@ const Themes: React.FC = () => {
           transition: 'margin 0.3s ease',
         }}
       >
-        <FadeInOnView>
-          <Box
-            sx={{
-              mb: 4,
-              mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
-            }}
-          >
+        <Box
+          sx={{
+            mb: 4,
+            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
+          }}
+        >
+          <FadeInOnView>
             <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
               {t('themes.header')}
             </Typography>
@@ -238,43 +238,43 @@ const Themes: React.FC = () => {
               <SearchBar onSearch={handleSearch} />
               <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
             </Box>
-          </Box>
-          {/* Themes Grid */}
-          <Grid container spacing={2}>
-            {isLoading && queryParams.page === 1 ? (
-              <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
-                <CircularProgress size={80} />
-              </Box>
-            ) : (
-              <>
-                {allThemes.map((theme) => (
-                  <Grid item key={theme.id} sm={12} md={6} lg={isPreviewVisible ? 4 : 3}>
-                    <FadeInOnView>
-                      <ThemeCard
-                        theme={theme}
-                        isPreviewed={previewIds.includes(theme.id)}
-                        onPreview={onPreview}
-                        onViewMoreInfo={() => {
-                          setSearchParams((params) => {
-                            params.set('themeId', theme.id);
-                            return params;
-                          });
-                          setFocusedTheme(theme);
-                        }}
-                        updateFavorites={updateFavorites}
-                      />
-                    </FadeInOnView>
-                  </Grid>
-                ))}
-                {isLoading && (
-                  <Box textAlign="center" width="100%" mt={2}>
-                    <CircularProgress size={24} />
-                  </Box>
-                )}
-              </>
-            )}
-          </Grid>
-        </FadeInOnView>
+          </FadeInOnView>
+        </Box>
+        {/* Themes Grid */}
+        <Grid container spacing={2}>
+          {isLoading && queryParams.page === 1 ? (
+            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
+              <CircularProgress size={80} />
+            </Box>
+          ) : (
+            <>
+              {allThemes.map((theme) => (
+                <Grid item key={theme.id} sm={12} md={6} lg={isPreviewVisible ? 4 : 3}>
+                  <FadeInOnView>
+                    <ThemeCard
+                      theme={theme}
+                      isPreviewed={previewIds.includes(theme.id)}
+                      onPreview={onPreview}
+                      onViewMoreInfo={() => {
+                        setSearchParams((params) => {
+                          params.set('themeId', theme.id);
+                          return params;
+                        });
+                        setFocusedTheme(theme);
+                      }}
+                      updateFavorites={updateFavorites}
+                    />
+                  </FadeInOnView>
+                </Grid>
+              ))}
+              {isLoading && (
+                <Box textAlign="center" width="100%" mt={2}>
+                  <CircularProgress size={24} />
+                </Box>
+              )}
+            </>
+          )}
+        </Grid>
       </Box>
 
       {/* Pinned Preview Section (Sticky) */}

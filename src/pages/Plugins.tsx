@@ -180,13 +180,13 @@ const Plugins: React.FC = () => {
     >
       {/* Main Content Section */}
       <Box sx={{ flex: 1, padding: 4 }}>
-        <FadeInOnView>
-          <Box
-            sx={{
-              mb: 4,
-              mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
-            }}
-          >
+        <Box
+          sx={{
+            mb: 4,
+            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
+          }}
+        >
+          <FadeInOnView>
             <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
               {t('plugins.header')}
             </Typography>
@@ -207,41 +207,41 @@ const Plugins: React.FC = () => {
               <SearchBar onSearch={handleSearch} />
               <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
             </Box>
-          </Box>
-          {/* Plugins Grid */}
-          <Grid container spacing={2}>
-            {isLoading && queryParams.page === 1 ? (
-              <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
-                <CircularProgress size={80} />
-              </Box>
-            ) : (
-              <>
-                {allPlugins.map((plugin) => (
-                  <Grid item key={plugin.id} sm={12} md={6} lg={3}>
-                    <FadeInOnView>
-                      <PluginCard
-                        plugin={plugin}
-                        onViewMoreInfo={() => {
-                          setSearchParams((params) => {
-                            params.set('pluginId', plugin.id);
-                            return params;
-                          });
-                          setFocusedPlugin(plugin);
-                        }}
-                        updateFavorites={updateFavorites}
-                      />
-                    </FadeInOnView>
-                  </Grid>
-                ))}
-                {isLoading && (
-                  <Box textAlign="center" width="100%" mt={2}>
-                    <CircularProgress size={24} />
-                  </Box>
-                )}
-              </>
-            )}
-          </Grid>
-        </FadeInOnView>
+          </FadeInOnView>
+        </Box>
+        {/* Plugins Grid */}
+        <Grid container spacing={2}>
+          {isLoading && queryParams.page === 1 ? (
+            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
+              <CircularProgress size={80} />
+            </Box>
+          ) : (
+            <>
+              {allPlugins.map((plugin) => (
+                <Grid item key={plugin.id} sm={12} md={6} lg={3}>
+                  <FadeInOnView>
+                    <PluginCard
+                      plugin={plugin}
+                      onViewMoreInfo={() => {
+                        setSearchParams((params) => {
+                          params.set('pluginId', plugin.id);
+                          return params;
+                        });
+                        setFocusedPlugin(plugin);
+                      }}
+                      updateFavorites={updateFavorites}
+                    />
+                  </FadeInOnView>
+                </Grid>
+              ))}
+              {isLoading && (
+                <Box textAlign="center" width="100%" mt={2}>
+                  <CircularProgress size={24} />
+                </Box>
+              )}
+            </>
+          )}
+        </Grid>
       </Box>
 
       {/* Modal */}
