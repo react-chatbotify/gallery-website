@@ -2,6 +2,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
 import { Badge, Box, CircularProgress, Fab, Grid, IconButton, Typography } from '@mui/material';
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
@@ -21,7 +22,6 @@ import { useNotify } from '@/hooks/useNotify';
 import { Theme } from '@/interfaces/Theme';
 import { addThemeToFavorites, fetchThemesFromApi, removeThemeFromFavorites } from '@/services/themes/apiService';
 
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { Endpoints } from '../constants/Endpoints';
 import useFetchThemes from '../hooks/useFetchThemes';
 
