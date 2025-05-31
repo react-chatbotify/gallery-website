@@ -115,11 +115,12 @@ const HeroSection = (): JSX.Element => {
                 variant="h2"
                 fontWeight={700}
                 gutterBottom
+                lineHeight="1.2"
                 sx={{
                   fontSize: { md: '4rem', xs: '2.8rem' },
                   lineHeight: 1.2,
                   maxWidth: { md: 700, xs: '100%' },
-                  minHeight: { md: 72, xs: '13.44rem' },
+                  minHeight: { md: '9.6rem', xs: '13.44rem' },
                   mx: { md: 0, xs: 'auto' },
                   textAlign: { md: 'left', xs: 'center' },
                 }}
