@@ -1,7 +1,7 @@
-import logo from '@/assets/images/logo.webp';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
+import logo from '@/assets/images/logo.webp';
 import { Endpoints } from '@/constants/Endpoints';
 
 import FadeInOnView from '../FadeComponent/FadeInOnView';
