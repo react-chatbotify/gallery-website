@@ -17,6 +17,7 @@ import { useNotify } from '@/hooks/useNotify';
 import { Plugin } from '@/interfaces/Plugin';
 import { addPluginToFavorites, fetchPluginsFromApi, removePluginFromFavorites } from '@/services/plugins/apiService';
 
+import useIsDesktop from '@/hooks/useIsDesktop';
 import { Endpoints } from '../constants/Endpoints';
 import useFetchPlugins from '../hooks/useFetchPlugins';
 
@@ -28,6 +29,7 @@ const PLUGINS_PER_PAGE = import.meta.env.VITE_PLUGINS_PER_PAGE;
 const Plugins: React.FC = () => {
   // lazy load translations
   const { t } = useTranslation('pages/plugins');
+  const isDesktop = useIsDesktop();
   const { isLoggedIn } = useAuth();
   const { setPromptLogin, setPromptError } = useGlobalModal();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -193,7 +195,7 @@ const Plugins: React.FC = () => {
             <Typography variant="body2" color="text.secondary">
               {t('plugins.description')}
             </Typography>
-            <GalleryTooltip content={t('plugin_tooltip.plugin_usage')} placement="right">
+            <GalleryTooltip content={t('plugin_tooltip.plugin_usage')} placement={isDesktop ? 'right' : 'bottom'}>
               <Box display="inline-flex" alignItems="center" color="primary.main">
                 <Typography variant="body2" sx={{ marginRight: '4px' }}>
                   {t('plugins.how_plugins_work')}

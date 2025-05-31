@@ -240,12 +240,15 @@ const Themes: React.FC = () => {
             {t('themes.description')}
           </Typography>
           <Box display="flex" alignItems="center" gap={1} mb={2}>
-            <GalleryTooltip content={t('theme_tooltip.multiple_themes_usage')} placement="right">
+            <GalleryTooltip
+              content={t('theme_tooltip.multiple_themes_usage')}
+              placement={isDesktop ? 'right' : 'bottom'}
+            >
               <Box display="flex" alignItems="center" color="primary.main">
                 <Typography variant="body2" mr={0.5}>
                   {t('themes.how_multiple_themes_work')}
                 </Typography>
-                <IconButton size="small">
+                <IconButton size="small" color="primary">
                   <InfoIcon />
                 </IconButton>
               </Box>
@@ -265,7 +268,7 @@ const Themes: React.FC = () => {
             </Box>
           ) : (
             allThemes.map((theme) => (
-              <Grid item key={theme.id} xs={12} sm={6} md={isPreviewVisible ? 4 : 3}>
+              <Grid item key={theme.id} xs={12} md={6} lg={isPreviewVisible ? 4 : 3}>
                 <FadeInOnView>
                   <ThemeCard
                     theme={theme}
