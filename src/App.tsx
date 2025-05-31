@@ -26,9 +26,9 @@ import lightTheme from './themes/lightTheme';
 const App: React.FC = () => {
   const notify = useNotify();
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    const isDarkMode = localStorage.getItem('RCBG_IS_DARK_MODE');
-    return isDarkMode === 'true';
+  const [isLightMode, setIsLightMode] = useState<boolean>(() => {
+    const isLightMode = localStorage.getItem('RCBG_IS_LIGHT_MODE');
+    return isLightMode === 'true';
   });
 
   useEffect(() => {
@@ -53,8 +53,8 @@ const App: React.FC = () => {
   }
 
   const toggleTheme = () => {
-    setIsDarkMode((prev) => {
-      localStorage.setItem('RCBG_IS_DARK_MODE', String(!prev));
+    setIsLightMode((prev) => {
+      localStorage.setItem('RCBG_IS_LIGHT_MODE', String(!prev));
       return !prev;
     });
   };
@@ -98,7 +98,7 @@ const App: React.FC = () => {
     <>
       <I18nextProvider i18n={i18n}>
         <AuthProvider>
-          <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+          <ThemeProvider theme={isLightMode ? lightTheme : darkTheme}>
             <GlobalModalProvider>
               <CssBaseline />
               <Suspense fallback={<div></div>}>
