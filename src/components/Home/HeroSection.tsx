@@ -256,7 +256,7 @@ const HeroSection = (): JSX.Element => {
               }}
             />
           ) : (
-            <Box sx={{ width: '90vw', maxHeight: '60vh' }}>
+            <Box sx={{ width: '88vw', maxHeight: '60vh' }}>
               <ChatBot
                 settings={{
                   botBubble: { simulateStream: true },
