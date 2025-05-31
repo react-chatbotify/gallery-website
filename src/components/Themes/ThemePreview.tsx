@@ -112,6 +112,7 @@ const ThemePreview: React.FC<{
         overflowY: 'auto',
         overflowX: 'hidden',
         p: 3,
+        pb: 8,
       }}
     >
       {/* Header */}
@@ -122,7 +123,7 @@ const ThemePreview: React.FC<{
           justifyContent: 'space-between',
           mb: 2,
           ml: 6,
-          mt: isDesktop ? 6 : 0,
+          mt: isDesktop ? 12 : 0,
           width: '100%',
         }}
       >
