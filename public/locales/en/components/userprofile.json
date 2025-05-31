@@ -3,7 +3,8 @@
     "header": "Profile Information",
     "location": "Location",
     "join_date": "Join Date",
-    "community_role": "Community Role"
+    "community_role": "Community Role",
+    "info_unavailable": "Information Unavailable"
   },
   "user_favorite_plugin_card": {
     "view_plugin": "View Plugin",

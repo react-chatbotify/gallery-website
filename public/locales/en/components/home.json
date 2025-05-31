@@ -10,10 +10,10 @@
     "title.4": "Explore a Growing Ecosystem of Plugins",
     "title.5": "Discover a Diverse Range of Rich Themes",
     "heading.1": "A community-driven platform for crafting modern chatbots.",
-    "starText": "Star",
-    "forkText": "Fork",
-    "copyText": "Copy",
-    "links": ["View documentation", "Go to playground", "Browse plugins", "Browse themes"]
+    "star_text": "Star",
+    "fork_text": "Fork",
+    "copy_text": "Copy",
+    "links": ["View documentation", "Go to playground", "Explore plugins", "Discover themes"]
   },
 
   "features_section": {
@@ -84,8 +84,8 @@
     "title": "Projects & contributors",
     "heading.1": "We are grateful to the many developers who have contributed to the development of React ChatBotify Gallery, as well as authors of themes & plugins, to make the Gallery what it is today. Your involvement helps keep the platform dynamic and relevant.",
     "view_in_github": "View in GitHub",
-    "ContributionSubheading": "Want to contribute to this project?",
-    "ReadMore": "Read More"
+    "contribution_sub_heading": "Want to contribute to this project?",
+    "read_more": "Read More"
   },
 
   "community_section": {
@@ -119,8 +119,9 @@
   "call_to_action_section": {
     "title": "Ready to build your own chatbot?",
     "heading.1": "Jump straight into our “Get started” guide or play around in our playground where there are no rules!",
-    "primaryButton": "Get started",
-    "secondaryButton": "Visit the playground"
+    "primary_button": "Get started",
+    "secondary_button": "Visit the playground",
+    "logo_alt": "Project Logo"
   },
 
   "footer": {

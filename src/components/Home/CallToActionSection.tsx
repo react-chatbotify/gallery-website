@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
-import logo from '@/assets/images/logo.webp';
 import { Endpoints } from '@/constants/Endpoints';
 
 import FadeInOnView from '../FadeComponent/FadeInOnView';
@@ -26,7 +25,12 @@ const CallToActionSection = (): JSX.Element => {
         >
           {/* Project logo */}
           <Grid item>
-            <Box component="img" src={logo} alt="Logo" sx={{ height: 128, width: 128 }} />
+            <Box
+              component="img"
+              src={t('call_to_action_section.logo_alt')}
+              alt="Logo"
+              sx={{ height: 128, width: 128 }}
+            />
           </Grid>
 
           {/* Section title */}
@@ -58,7 +62,7 @@ const CallToActionSection = (): JSX.Element => {
                 variant="contained"
                 color="primary"
               >
-                {t('call_to_action_section.primaryButton')}
+                {t('call_to_action_section.primary_button')}
               </Button>
             </Grid>
             <Grid item>
@@ -74,7 +78,7 @@ const CallToActionSection = (): JSX.Element => {
                 variant="contained"
                 color="secondary"
               >
-                {t('call_to_action_section.secondaryButton')}
+                {t('call_to_action_section.secondary_button')}
               </Button>
             </Grid>
           </Grid>

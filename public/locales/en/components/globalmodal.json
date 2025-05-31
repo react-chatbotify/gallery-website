@@ -12,7 +12,7 @@
     "title": "Oops, something went wrong!",
     "fail_themes_fetch": "Unable to fetch themes, please refresh and try again.",
     "fail_plugins_fetch": "Unable to fetch plugins, please refresh and try again.",
-    "fail_user_profile_fetch": "Uable to fetch user data, please refresh and try again.",
+    "fail_user_profile_fetch": "Unable to fetch user data, please refresh and try again.",
     "fail_login": "Unable to login, please refresh and try again.",
     "footnote.1": "If this error persist, feel free to reach out for help via ",
     "footnote.2": "Discord",

@@ -171,14 +171,14 @@ const HeroSection = (): JSX.Element => {
                 onClick={handleCopy}
                 sx={{ borderRadius: '10px', textTransform: 'none' }}
               >
-                {t('hero_section.copyText')}
+                {t('hero_section.copy_text')}
               </Button>
             </Box>
             {!loading && (
               <Box sx={{ display: 'flex', gap: 4, pl: { md: 2, xs: 0 } }}>
                 {[
-                  { count: stars, text: t('hero_section.starText'), url: `${repoUrl}/stargazers` },
-                  { count: forks, text: t('hero_section.forkText'), url: `${repoUrl}/forks` },
+                  { count: stars, text: t('hero_section.star_text'), url: `${repoUrl}/stargazers` },
+                  { count: forks, text: t('hero_section.fork_text'), url: `${repoUrl}/forks` },
                 ].map((item, idx) => (
                   <Box
                     key={idx}

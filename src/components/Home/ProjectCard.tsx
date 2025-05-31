@@ -121,12 +121,12 @@ const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.mem
                 >
                   {loading
                     ? ''
-                    : t('project_section.ContributionSubheading', {
+                    : t('project_section.contribution_sub_heading', {
                         count: totalCount,
                       })}
                 </Typography>
                 <MuiLink sx={readMoreLinkStyles}>
-                  {t('project_section.ReadMore')} <ArrowRight size={16} />
+                  {t('project_section.read_more')} <ArrowRight size={16} />
                 </MuiLink>
               </Box>
             </Box>

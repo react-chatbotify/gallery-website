@@ -47,14 +47,14 @@ const UserProfileInfoSection: React.FC<{
         </Grid>
         <Grid item xs>
           <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-            {userData?.name || 'Name Unavailable'}
+            {userData?.name || t('user_profile_info_section.info_unavailable')}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {userData?.handle || 'Handle Unavailable'}
+            {userData?.handle || t('user_profile_info_section.info_unavailable')}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="body2">{userData?.status || 'No status provided'}</Typography>
+          <Typography variant="body2">{userData?.status || t('user_profile_info_section.info_unavailable')}</Typography>
         </Grid>
       </Grid>
 
@@ -71,7 +71,9 @@ const UserProfileInfoSection: React.FC<{
             >
               {t('user_profile_info_section.location')}
             </Typography>
-            <Typography variant="body2">{userData?.location || 'Not specified'}</Typography>
+            <Typography variant="body2">
+              {userData?.location || t('user_profile_info_section.info_unavailable')}
+            </Typography>
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -85,7 +87,9 @@ const UserProfileInfoSection: React.FC<{
             >
               {t('user_profile_info_section.join_date')}
             </Typography>
-            <Typography variant="body2">{userData?.joinDate || 'Not specified'}</Typography>
+            <Typography variant="body2">
+              {userData?.joinDate || t('user_profile_info_section.info_unavailable')}
+            </Typography>
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -99,7 +103,7 @@ const UserProfileInfoSection: React.FC<{
             >
               {t('user_profile_info_section.community_role')}
             </Typography>
-            <Typography variant="body2">{userData?.role || 'Not specified'}</Typography>
+            <Typography variant="body2">{userData?.role || t('user_profile_info_section.info_unavailable')}</Typography>
           </Box>
         </Grid>
       </Grid>
