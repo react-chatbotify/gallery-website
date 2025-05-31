@@ -13,11 +13,11 @@ import SortButton from '@/components/SearchBar/SortButton';
 import { useAuth } from '@/context/AuthContext';
 import { useGlobalModal } from '@/context/GlobalModalContext';
 import useActionQueue from '@/hooks/useActionQueue';
+import useIsDesktop from '@/hooks/useIsDesktop';
 import { useNotify } from '@/hooks/useNotify';
 import { Plugin } from '@/interfaces/Plugin';
 import { addPluginToFavorites, fetchPluginsFromApi, removePluginFromFavorites } from '@/services/plugins/apiService';
 
-import useIsDesktop from '@/hooks/useIsDesktop';
 import { Endpoints } from '../constants/Endpoints';
 import useFetchPlugins from '../hooks/useFetchPlugins';
 
