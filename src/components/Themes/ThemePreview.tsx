@@ -103,7 +103,8 @@ const ThemePreview: React.FC<{
       sx={{
         alignItems: 'center',
         backgroundColor: 'background.default',
-        borderColor: 'divider',
+        borderTopLeftRadius: isDesktop ? 0 : 20,
+        borderTopRightRadius: isDesktop ? 0 : 20,
         boxSizing: 'border-box',
         color: '#f9fafb',
         display: 'flex',

@@ -1,7 +1,7 @@
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
-import { Badge, Box, CircularProgress, Grid, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Badge, Box, CircularProgress, Grid, IconButton, Typography, useTheme } from '@mui/material';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,6 @@ const Themes: React.FC = () => {
 
   // MUI theme & breakpoints for mobile outline
   const muiTheme = useTheme();
-  const isMobile = useMediaQuery(muiTheme.breakpoints.down('sm'));
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { fetchThemes, isLoading, error } = useFetchThemes();
@@ -311,16 +310,18 @@ const Themes: React.FC = () => {
           width: isDesktop ? (isPreviewVisible ? '30%' : '40px') : '100%',
           height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : 0,
           borderLeft: isDesktop ? '1px solid' : 'none',
-          borderColor: 'divider',
+          border: !isDesktop && isPreviewVisible ? '6px solid' : 'none',
+          borderTopLeftRadius: isDesktop ? 0 : 20,
+          borderTopRightRadius: isDesktop ? 0 : 20,
+          borderColor: isDesktop ? 'divider' : muiTheme.palette.primary.main,
           transition: 'all 0.3s ease',
           zIndex: 1000,
           display: 'flex',
           flexDirection: 'column',
-          outline: isMobile ? `2px solid ${muiTheme.palette.primary.main}` : 'none',
-          outlineOffset: isMobile ? '-2px' : 0,
+          transform: isPreviewVisible ? 'translateY(0)' : 'translateY(100%)',
         }}
       >
-        {isPreviewVisible && <ThemePreview previewIds={previewIds} setPreviewIds={setPreviewIds} />}
+        {<ThemePreview previewIds={previewIds} setPreviewIds={setPreviewIds} />}
       </Box>
 
       {/* Desktop Toggle Button (outside preview panel) */}
@@ -336,7 +337,7 @@ const Themes: React.FC = () => {
             '&:hover': { bgcolor: 'background.secondaryBtnHover' },
             color: 'text.primary',
             zIndex: 1050,
-            outline: previewIds.length > 0 ? `2px solid ${muiTheme.palette.primary.main}` : 'none',
+            outline: previewIds.length > 0 ? `3px solid ${muiTheme.palette.primary.main}` : 'none',
           }}
         >
           <Badge
@@ -385,7 +386,7 @@ const Themes: React.FC = () => {
             '&:hover': { bgcolor: 'background.secondaryBtnHover' },
             color: 'text.primary',
             zIndex: 1050,
-            outline: previewIds.length > 0 ? `2px solid ${muiTheme.palette.primary.main}` : 'none',
+            outline: previewIds.length > 0 ? `3px solid ${muiTheme.palette.primary.main}` : 'none',
           }}
         >
           <Badge
