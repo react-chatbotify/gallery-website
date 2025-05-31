@@ -16,9 +16,9 @@ const lightTheme = createTheme({
     },
 
     background: {
-      default: '#f8f8f8',
+      default: '#f6f6f6',
       muted: '#dfdfdf',
-      paper: '#ffffff',
+      paper: '#fdfdfd',
       primaryBtn: '#D6D6D6',
       primaryBtnHover: '#C4C4C4',
       secondary: '#c7d0d8',
