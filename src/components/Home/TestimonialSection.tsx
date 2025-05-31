@@ -1,35 +1,32 @@
-import 'react-multi-carousel/lib/styles.css';
-
 import { Avatar, Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import Carousel from 'react-multi-carousel';
 
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { Testimonial, TestimonialCardProps } from '@/interfaces/HomePage';
 
 import { HeadingAndDescription } from './FeaturesAndBenefitsSection';
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    partialVisibilityGutter: 40,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    partialVisibilityGutter: 40,
-  },
-};
+// const responsive = {
+//   desktop: {
+//     breakpoint: { max: 3000, min: 1024 },
+//     items: 3,
+//     partialVisibilityGutter: 40,
+//   },
+//   mobile: {
+//     breakpoint: { max: 464, min: 0 },
+//     items: 1,
+//   },
+//   superLargeDesktop: {
+//     // the naming can be any, depends on you.
+//     breakpoint: { max: 4000, min: 3000 },
+//     items: 5,
+//   },
+//   tablet: {
+//     breakpoint: { max: 1024, min: 464 },
+//     items: 2,
+//     partialVisibilityGutter: 40,
+//   },
+// };
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ avatar, name, username, text }) => (
   <Box
@@ -111,20 +108,21 @@ const TestimonialSection: React.FC = () => {
       />
 
       {isDesktop ? (
-        <Carousel
-          responsive={responsive}
-          swipeable
-          draggable
-          showDots={false}
-          infinite={false}
-          partialVisible
-          keyBoardControl
-        >
-          {items.map((item, index) => (
-            <TestimonialCard key={index} {...item} />
-          ))}
-        </Carousel>
+        <></>
       ) : (
+        // <Carousel
+        //   responsive={responsive}
+        //   swipeable
+        //   draggable
+        //   showDots={false}
+        //   infinite={false}
+        //   partialVisible
+        //   keyBoardControl
+        // >
+        //   {items.map((item, index) => (
+        //     <TestimonialCard key={index} {...item} />
+        //   ))}
+        // </Carousel>
         <MobileTestimonials items={items} />
       )}
     </Box>

@@ -182,7 +182,7 @@ const Themes: React.FC = () => {
    */
   const togglePreview = useCallback(
     (theme: Theme) => {
-      if (!previewIds.length && isDesktop) {
+      if (!previewIds.length && isDesktop && !isPreviewVisible) {
         notify('Open the preview panel on the top right corner to preview selected themes!');
       }
       setPreviewIds((prev) => (prev.includes(theme.id) ? prev.filter((id) => id !== theme.id) : [...prev, theme.id]));
