@@ -16,7 +16,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@chakra-ui/react": "^3.0.1",
     "@mui/icons-material": "^6.1.9",
     "@mui/material": "^6.1.9",
     "file-saver": "^2.0.5",
