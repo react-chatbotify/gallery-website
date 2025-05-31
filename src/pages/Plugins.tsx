@@ -1,6 +1,6 @@
 import InfoIcon from '@mui/icons-material/Info';
 import { Box, CircularProgress, Grid, IconButton, Typography } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
@@ -165,37 +165,45 @@ const Plugins: React.FC = () => {
     setAllPlugins([]);
   };
 
+  // Styles
+  const containerStyles = useMemo(
+    () => ({
+      backgroundColor: 'background.paper',
+      display: 'flex',
+      minHeight: '100vh',
+      width: '100%',
+      overflowX: 'hidden',
+    }),
+    []
+  );
+
   if (error) {
     setPromptError('error_modal.fail_plugins_fetch');
     return;
   }
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'background.paper',
-        display: 'flex',
-        minHeight: '100vh',
-        width: '100%',
-        overflowX: 'hidden',
-        ml: isDesktop ? 4 : 0,
-      }}
-    >
+    <Box sx={containerStyles}>
       {/* Main Content Section */}
-      <Box sx={{ flex: 1, padding: 4 }}>
-        <Box
-          sx={{
-            mb: 4,
-            mt: { xs: 5, lg: 0 },
-          }}
-        >
-          <FadeInOnView>
-            <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
-              {t('plugins.header')}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {t('plugins.description')}
-            </Typography>
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          p: 4,
+          mr: 4,
+          mb: 4,
+          mt: { xs: 5, lg: 0 },
+          ml: isDesktop ? 4 : 0,
+        }}
+      >
+        <FadeInOnView>
+          <Typography variant="h4" fontWeight="bold" mb={3}>
+            {t('plugins.header')}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            {t('plugins.description')}
+          </Typography>
+          <Box display="flex" alignItems="center" gap={1} mb={2}>
             <GalleryTooltip content={t('plugin_tooltip.plugin_usage')} placement={isDesktop ? 'right' : 'bottom'}>
               <Box display="inline-flex" alignItems="center" color="primary.main">
                 <Typography variant="body2" sx={{ marginRight: '4px' }}>
@@ -206,22 +214,23 @@ const Plugins: React.FC = () => {
                 </IconButton>
               </Box>
             </GalleryTooltip>
-            <Box mt={2} display="flex" gap={2}>
-              <SearchBar onSearch={handleSearch} />
-              <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
-            </Box>
-          </FadeInOnView>
-        </Box>
+          </Box>
+          <Box display="flex" gap={2} mb={4}>
+            <SearchBar onSearch={handleSearch} />
+            <SortButton sortBy={queryParams.sortBy} onSortChange={handleSortChange} />
+          </Box>
+        </FadeInOnView>
+
         {/* Plugins Grid */}
         <Grid container spacing={2}>
           {isLoading && queryParams.page === 1 ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="300%">
+            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="100%">
               <CircularProgress size={80} />
             </Box>
           ) : (
             <>
               {allPlugins.map((plugin) => (
-                <Grid item key={plugin.id} sm={12} md={6} lg={3}>
+                <Grid item key={plugin.id} xs={12} sm={6} md={4} xl={3}>
                   <FadeInOnView>
                     <PluginCard
                       plugin={plugin}
@@ -237,7 +246,7 @@ const Plugins: React.FC = () => {
                   </FadeInOnView>
                 </Grid>
               ))}
-              {isLoading && (
+              {isLoading && queryParams.page > 1 && (
                 <Box textAlign="center" width="100%" mt={2}>
                   <CircularProgress size={24} />
                 </Box>
