@@ -370,7 +370,9 @@ const NavigationBar: React.FC<{
               py: 0.5,
             }}
           >
-            <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 32 }} />
+            <Link to="/" style={{ alignItems: 'center', display: 'grid' }}>
+              <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 32 }} />
+            </Link>
             <IconButton onClick={() => setMobileMenuOpen(false)}>
               <CloseIcon />
             </IconButton>

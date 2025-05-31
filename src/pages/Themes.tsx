@@ -214,8 +214,6 @@ const Themes: React.FC = () => {
 
   // Redirect on fetch error
   if (error) {
-    console.log('GOT ERROR LOADING THEMES');
-    console.log(error);
     setPromptError('error_modal.fail_themes_fetch');
     return null;
   }
