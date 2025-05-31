@@ -36,31 +36,45 @@ const PluginModal: React.FC<{
       <Box
         ref={modalRef}
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: 'background.default',
           borderRadius: 2,
           boxShadow: 24,
           left: '50%',
+          marginTop: { md: 0, xs: 4 },
+          maxHeight: '80vh',
           maxWidth: '800px',
-          p: 4,
+          overflow: 'auto',
+          p: 2,
+          paddingTop: 1,
           position: 'absolute',
           top: '50%',
           transform: 'translate(-50%, -50%)',
           width: '90%',
         }}
       >
-        <IconButton
-          onClick={onClose}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Grid
+          container
+          spacing={4}
           sx={{
-            position: 'absolute',
-            right: 16,
-            top: 16,
+            flexDirection: { md: 'row', xs: 'column-reverse' },
+            p: 2,
           }}
         >
-          <CloseIcon />
-        </IconButton>
-
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              paddingRight: { md: 2, xs: 0 },
+            }}
+            spacing={0}
+          >
             <Typography
               id="plugin-modal-title"
               variant="h5"
@@ -150,7 +164,8 @@ const PluginModal: React.FC<{
               sx={{
                 alignItems: 'center',
                 display: 'flex',
-                gap: 3,
+                gap: 1,
+                py: 2,
                 width: { md: 'auto', xs: '100%' },
               }}
             >
@@ -160,13 +175,21 @@ const PluginModal: React.FC<{
                 variant="contained"
                 color="primary"
                 sx={{
-                  width: { md: 'auto', xs: '100%' },
+                  flexGrow: 1,
+                  width: 'auto',
                 }}
               >
                 {t('plugin_modal.view_on_npm')}
               </Button>
 
-              <Box sx={{ alignItems: 'center', display: 'flex', gap: 0 }}>
+              <Box
+                sx={{
+                  alignItems: 'center',
+                  alignSelf: { md: 'flex-end', xs: 'flex-start' },
+                  display: 'flex',
+                  gap: 0,
+                }}
+              >
                 <IconButton
                   aria-label="favorite"
                   onClick={handleFavoriteClick}
@@ -195,7 +218,16 @@ const PluginModal: React.FC<{
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6} display="flex" justifyContent="center">
+          <Grid
+            item
+            xs={12}
+            md={6}
+            display="flex"
+            justifyContent="center"
+            sx={{
+              paddingRight: { md: 2, xs: 0 },
+            }}
+          >
             <Box
               component="img"
               src={plugin.imageUrl}
