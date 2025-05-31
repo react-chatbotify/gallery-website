@@ -241,7 +241,7 @@ const NavigationBar: React.FC<{
 
           {/* Direct link to GitHub repository */}
           <IconButton component="a" href={Endpoints.projectCoreRepoUrl} target="_blank">
-            <GitHubIcon />
+            <GitHubIcon sx={{ fill: theme.palette.mode === 'dark' ? '#fff' : '#000' }} />
           </IconButton>
 
           {isLoggedIn ? (
