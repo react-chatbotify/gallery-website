@@ -40,7 +40,7 @@ const ThemeModal: React.FC<{
       <Box
         ref={modalRef}
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: 'background.default',
           borderRadius: 2,
           boxShadow: 24,
           left: '50%',

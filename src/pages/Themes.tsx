@@ -215,6 +215,8 @@ const Themes: React.FC = () => {
 
   // Redirect on fetch error
   if (error) {
+    console.log('GOT ERROR LOADING THEMES');
+    console.log(error);
     setPromptError('error_modal.fail_themes_fetch');
     return null;
   }
@@ -268,7 +270,7 @@ const Themes: React.FC = () => {
             </Box>
           ) : (
             allThemes.map((theme) => (
-              <Grid item key={theme.id} xs={12} md={6} lg={isPreviewVisible ? 4 : 3}>
+              <Grid item key={theme.id} xs={12} sm={6} md={4} xl={isPreviewVisible ? 4 : 3}>
                 <FadeInOnView>
                   <ThemeCard
                     theme={theme}
