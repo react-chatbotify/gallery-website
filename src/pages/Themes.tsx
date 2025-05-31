@@ -333,6 +333,7 @@ const Themes: React.FC = () => {
             '&:hover': { bgcolor: 'background.secondaryBtnHover' },
             color: 'text.primary',
             zIndex: 1050,
+            outline: previewIds.length > 0 ? `2px solid ${muiTheme.palette.primary.main}` : 'none',
           }}
         >
           <Badge
@@ -381,6 +382,7 @@ const Themes: React.FC = () => {
             '&:hover': { bgcolor: 'background.secondaryBtnHover' },
             color: 'text.primary',
             zIndex: 1050,
+            outline: previewIds.length > 0 ? `2px solid ${muiTheme.palette.primary.main}` : 'none',
           }}
         >
           <Badge
