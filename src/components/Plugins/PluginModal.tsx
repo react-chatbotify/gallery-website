@@ -101,7 +101,7 @@ const PluginModal: React.FC<{
               )}
               <Typography
                 component="a"
-                href={`https://github.com/${plugin.github}`}
+                href={`https://github.com/${plugin.authorName}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{

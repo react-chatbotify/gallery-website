@@ -17,8 +17,10 @@ const getNpmPluginData = async (plugin: ApiPlugin) => {
   const response = await fetch(`${Endpoints.fetchNpmPlugins}/${encodeURIComponent(plugin.id)}`);
   const pluginData = await response.json();
 
+  const authorImg = `https://avatars.githubusercontent.com/${pluginData.author.name}`;
+
   return {
-    authorImg: pluginData.author.name,
+    authorImg,
     authorName: pluginData.author.name,
     createdAt: plugin.createdAt,
     description: pluginData.description,
