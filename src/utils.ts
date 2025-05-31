@@ -16,19 +16,46 @@ const downloadThemeContent = async (
   zipName: string
 ) => {
   const zip = new JSZip();
+
+  // files to be downloaded
+  const tasks = [
+    { url: settingsUrl, filename: 'settings.json' },
+    { url: inlineStylesUrl, filename: 'styles.json' },
+    { url: cssStylesUrl, filename: 'styles.css' },
+  ];
+
+  // fetch in parallel
+  const fetchPromises = tasks.map((task) => fetchFile(task.url));
+
+  // wait for all fetches to complete
+  const results = await Promise.allSettled(fetchPromises);
+
+  let addedAny = false;
+  results.forEach((res, idx) => {
+    const { filename } = tasks[idx];
+
+    if (res.status === 'fulfilled') {
+      // add to zip if successful
+      zip.file(filename, res.value);
+      addedAny = true;
+    } else {
+      // log warning if a file cannot be fetched due to error
+      console.warn(`Skipping "${filename}":`, (res.reason as Error).message);
+    }
+  });
+
+  // if no files were fetched, nothing to download
+  if (!addedAny) {
+    console.error('No files were available to download. ZIP not created.');
+    return;
+  }
+
+  // trigger download
   try {
-    const settings = await fetchFile(settingsUrl);
-    const inlineStyles = await fetchFile(inlineStylesUrl);
-    const cssStyles = await fetchFile(cssStylesUrl);
-
-    zip.file('settings.json', settings);
-    zip.file('styles.json', inlineStyles);
-    zip.file('styles.css', cssStyles);
-
     const content = await zip.generateAsync({ type: 'blob' });
     saveAs(content, `${zipName}.zip`);
-  } catch (error) {
-    console.error('Error downloading files:', error);
+  } catch (err) {
+    console.error('Error generating ZIP:', (err as Error).message);
   }
 };
 
