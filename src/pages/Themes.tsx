@@ -232,6 +232,8 @@ const Themes: React.FC = () => {
           mr: isDesktop ? (isPreviewVisible ? '30%' : 4) : 0,
           mb: !isDesktop ? (isPreviewVisible ? '50vh' : 4) : 0,
           transition: 'margin 0.3s ease',
+          ml: isDesktop ? 4 : 0,
+          mt: { xs: 5, lg: 0 },
         }}
       >
         <FadeInOnView>
@@ -308,7 +310,6 @@ const Themes: React.FC = () => {
           right: 0,
           width: isDesktop ? (isPreviewVisible ? '30%' : '40px') : '100%',
           height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : 0,
-          bgcolor: 'background.paper',
           borderLeft: isDesktop ? '1px solid' : 'none',
           borderColor: 'divider',
           transition: 'all 0.3s ease',

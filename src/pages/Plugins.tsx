@@ -178,6 +178,7 @@ const Plugins: React.FC = () => {
         minHeight: '100vh',
         width: '100%',
         overflowX: 'hidden',
+        ml: isDesktop ? 4 : 0,
       }}
     >
       {/* Main Content Section */}
@@ -185,7 +186,7 @@ const Plugins: React.FC = () => {
         <Box
           sx={{
             mb: 4,
-            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 },
+            mt: { xs: 5, lg: 0 },
           }}
         >
           <FadeInOnView>
