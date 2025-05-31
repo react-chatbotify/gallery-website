@@ -304,7 +304,7 @@ const Themes: React.FC = () => {
           position: 'fixed',
           top: isDesktop ? 0 : 'auto',
           bottom: isDesktop ? 'auto' : 0,
-          right: (!isDesktop || isPreviewVisible) ? 0 : '40px',
+          right: !isDesktop || isPreviewVisible ? 0 : '40px',
           width: isDesktop ? '30%' : '100%',
           height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : 0,
           borderLeft: isDesktop ? '1px solid' : 'none',
