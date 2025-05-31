@@ -1,3 +1,4 @@
+import logo from '@/assets/images/logo.webp';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
@@ -27,8 +28,8 @@ const CallToActionSection = (): JSX.Element => {
           <Grid item>
             <Box
               component="img"
-              src={t('call_to_action_section.logo_alt')}
-              alt="Logo"
+              src={logo}
+              alt={t('call_to_action_section.logo_alt')}
               sx={{ height: 128, width: 128 }}
             />
           </Grid>

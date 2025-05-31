@@ -156,6 +156,7 @@ const PluginModal: React.FC<{
             >
               <Button
                 href={plugin.packageUrl}
+                target="_blank"
                 variant="contained"
                 color="primary"
                 sx={{
