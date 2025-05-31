@@ -18,7 +18,7 @@ const lightTheme = createTheme({
     background: {
       muted: '#dfdfdf',
       navbar: '#ffffffb5',
-      paper: '#EDEDED',
+      paper: '#fdfdfd',
       primaryBtn: '#D6D6D6',
       primaryBtnHover: '#C4C4C4',
       secondary: '#c7d0d8',
@@ -67,13 +67,12 @@ const lightTheme = createTheme({
       main: '#64748B',
     },
     text: {
-      disabled: '#A1A1AA',
+      disabled: '#737373',
       muted: '#4A4A55',
       primary: '#1A1A1A',
 
       primaryBtn: '#1A1A1A',
-      // todo: update
-      primaryBtnHover: '#2F2F2F',
+      primaryBtnHover: '#1A1A1A',
       secondary: '#4A4A55',
       secondaryBtn: '#1A1A1A',
       secondaryBtnHover: '#374151',

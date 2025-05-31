@@ -18,9 +18,8 @@ type AppThemeProviderProps = {
 };
 
 const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
-  const [appTheme, setAppTheme] = useState<AppThemeType>(() =>
-    window.matchMedia('(prefers-color-theme: dark)').matches ? 'dark' : 'light'
-  );
+  // defaults to dark theme
+  const [appTheme, setAppTheme] = useState<AppThemeType>('dark');
 
   useEffect(() => {
     document.documentElement.setAttribute('app-theme', appTheme);

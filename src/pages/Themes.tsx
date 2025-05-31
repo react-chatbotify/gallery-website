@@ -304,11 +304,11 @@ const Themes: React.FC = () => {
           position: 'fixed',
           top: isDesktop ? 0 : 'auto',
           bottom: isDesktop ? 'auto' : 0,
-          right: 0,
-          width: isDesktop ? (isPreviewVisible ? '30%' : '40px') : '100%',
+          right: (!isDesktop || isPreviewVisible) ? 0 : '40px',
+          width: isDesktop ? '30%' : '100%',
           height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : 0,
           borderLeft: isDesktop ? '1px solid' : 'none',
-          border: !isDesktop && isPreviewVisible ? '6px solid' : 'none',
+          border: isDesktop ? '1px solid' : '6px solid',
           borderTopLeftRadius: isDesktop ? 0 : 20,
           borderTopRightRadius: isDesktop ? 0 : 20,
           borderColor: isDesktop ? 'divider' : muiTheme.palette.primary.main,
@@ -316,7 +316,7 @@ const Themes: React.FC = () => {
           zIndex: 1000,
           display: 'flex',
           flexDirection: 'column',
-          transform: isPreviewVisible ? 'translateY(0)' : 'translateY(100%)',
+          transform: isPreviewVisible ? 'translateY(0)' : isDesktop ? 'translateX(100%)' : 'translateY(100%)',
         }}
       >
         {<ThemePreview previewIds={previewIds} setPreviewIds={setPreviewIds} />}
