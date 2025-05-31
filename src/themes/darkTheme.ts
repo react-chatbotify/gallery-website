@@ -16,12 +16,9 @@ const darkTheme = createTheme({
     },
 
     background: {
-      icon: '#16191D',
-
+      default: '#121212',
       muted: '#27272A',
-
       paper: '#09090B',
-      //navbar: "#121212de",
       primaryBtn: '#D1D5DB',
       primaryBtnHover: '#BFC5CE',
       secondary: '#404040',
