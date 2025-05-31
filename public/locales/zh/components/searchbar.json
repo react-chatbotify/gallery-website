@@ -1,5 +1,11 @@
 {
   "searchbar": {
-    "placeholder": "Search themes..."
+    "placeholder": "在此输入搜索内容..."
+  },
+  "sortbutton": {
+    "placeholder": "排序",
+    "updated_at": "最后更新",
+    "created_at": "最新发布",
+    "favorites_count": "最多收藏"
   }
 }

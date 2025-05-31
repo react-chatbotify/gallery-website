@@ -1,20 +1,24 @@
 {
   "theme_card": {
-    "more_info": "Haiz",
-    "select": "Select"
+    "more_info": "更多信息",
+    "select": "选择"
   },
   "theme_modal": {
-    "description": "Description",
-    "id": "ID",
-    "version": "Version",
-    "author": "Author",
-    "tags": "Tags",
-    "download_theme": "Download Theme"
+    "description": "描述",
+    "id": "标识符",
+    "version": "版本",
+    "author": "作者",
+    "tags": "标签",
+    "download_theme": "下载主题",
+    "likes": "喜欢"
   },
   "theme_preview": {
-    "preview": "Preview",
-    "num_themes_selected": "{num_themes_selected} theme(s) selected",
-    "download_theme_bundle": "Download Theme Bundle",
-    "edit_in_theme_builder": "Edit In Theme Builder"
+    "preview": "预览",
+    "num_themes_selected": "{num_themes_selected} 个主题已选择",
+    "reset_selected_themes": "重置已选择的主题",
+    "download_theme_bundle": "下载主题包",
+    "edit_in_theme_builder": "在主题生成器中编辑",
+    "select_themes_to_preview": "选择主题以在此面板中预览！",
+    "remove_selection": "取消选择"
   }
 }

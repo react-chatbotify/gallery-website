@@ -1,0 +1,154 @@
+{
+  "essentials": {
+    "name": "React ChatBotify"
+  },
+  "hero_section": {
+    "title.1": "轻松定制的开源聊天机器人",
+    "title.2": "可集成 OpenAI、Google Gemini 等服务",
+    "title.3": "使用 React 构建，可部署到任意位置",
+    "title.4": "探索日益增长的插件生态系统",
+    "title.5": "发现丰富多样的主题",
+    "heading.1": "一个由社区驱动的平台，用于打造现代聊天机器人。",
+    "star_text": "已加星标",
+    "fork_text": "叉",
+    "copy_text": "复制",
+    "links": ["查看文档", "前往演示区", "探索插件", "发现主题"]
+  },
+  "features_section": {
+    "title": "我们的优势",
+    "heading.1": "我们设想一个充满活力的社区，在这里创意与协作蓬勃发展，使聊天机器人对于每个人来说都更加可定制且易于使用。",
+    "features": [
+      {
+        "title": "丰富的库",
+        "description": "获取不断增长的主题、插件和功能集合。"
+      },
+      {
+        "title": "开源",
+        "description": "自始即开源：不存在隐藏的数据抓取或将您的信息出售给第三方。"
+      },
+      {
+        "title": "轻松集成",
+        "description": "轻松将主题和插件下载并集成到您的聊天机器人中。"
+      },
+      {
+        "title": "支持大型语言模型",
+        "description": "通过即插即用的大型语言模型连接器，无缝集成 OpenAI、Gemini 或本地模型。"
+      },
+      {
+        "title": "协作社区",
+        "description": "加入志同道合的开发者社区，分享您的创作，并为平台的成长做出贡献。"
+      },
+      {
+        "title": "开发者优先的 CLI",
+        "description": "使用我们专门构建的 CLI 工具快速搭建主题、插件和小部件。"
+      },
+      {
+        "title": "高度可定制",
+        "description": "轻松添加新功能，以提升聊天机器人的用户体验。"
+      },
+      {
+        "title": "随处部署",
+        "description": "编译为小型 JS 代码片段，并将机器人嵌入到任何网站（例如 WordPress）。"
+      }
+    ]
+  },
+  "features_at_glance_section_section": {
+    "title": "开箱即用的强大功能",
+    "heading.1": "现代化聊天机器人，自带先进功能。需要更具体的功能？查看我们预制的插件或通过 Discord 提交功能请求。",
+    "features": [
+      {
+        "heading": "使用主题自定义外观",
+        "description": "浏览不断增长的预制主题",
+        "actionText": "探索主题"
+      },
+      {
+        "heading": "通过插件扩展功能",
+        "description": "通过插件轻松获取附加功能",
+        "actionText": "探索插件"
+      },
+      {
+        "heading": "开箱即用地集成大型语言模型",
+        "description": "轻松快速地实现 AI 功能",
+        "actionText": "查看示例"
+      },
+      {
+        "heading": "超越 React 生态",
+        "description": "使用 React 构建，但可将聊天机器人部署到任何地方",
+        "actionText": "查看 CLI 工具"
+      }
+    ]
+  },
+  "project_section": {
+    "title": "项目与贡献者",
+    "heading.1": "我们感谢为 React ChatBotify Gallery 发展做出贡献的众多开发者，以及主题和插件的作者，正是因为你们的付出，Gallery 才有了今天的面貌。你们的参与帮助保持了平台的活力和相关性。",
+    "view_in_github": "在 GitHub 查看",
+    "contribution_sub_heading": "想为该项目做贡献吗？",
+    "read_more": "阅读更多"
+  },
+  "community_section": {
+    "title": "我们的社区",
+    "heading.1": "无论您是提交新主题、改进现有插件，还是贡献代码，您的意见都会帮助我们成长。加入社区，我们张开双臂欢迎每一个人。但请记住要彼此尊重：毕竟我们都是人。",
+    "discord.heading": "加入我们的 Discord",
+    "discord.body_text": "通过 Discord 与我们联系，随时了解最新动态和社区新闻！",
+    "github.heading": "访问我们的 GitHub",
+    "github.body_text": "直接查看（开放）源代码，了解我们在代码方面的最新动向",
+    "instagram.heading": "在 Instagram 关注我们",
+    "instagram.body_text": "获取幕后花絮、社区亮点和团队的视觉更新。",
+    "twitter.heading": "在 X（Twitter）关注我们",
+    "twitter.body_text": "关注功能更新、公告以及实时动态，每条限制在 280 个字符以内。"
+  },
+  "testimonials_section": {
+    "title": "用户评价",
+    "heading.1": "作为构建者和贡献者，我们显然是有偏见的，所以这里分享一些用户的评价。没有付费合作，没有营销手段——只有来自真实用户的真诚想法。"
+  },
+  "sponsors_section": {
+    "title": "由这些了不起的人赞助",
+    "heading.1": "我们提供开源解决方案，拥有众多贡献者，但我们都知道金钱主导着这个世界，也推动着我们的项目。正是这些了不起的支持者，在其慷慨帮助下，我们得以继续使命。",
+    "sponsor_cta": {
+      "title": "想赞助我们吗？",
+      "description": "我们始终在寻找更多赞助者，无论是个人还是公司。每一分钱都能助力并将用于支持该项目。",
+      "contact": "联系我们"
+    }
+  },
+  "call_to_action_section": {
+    "title": "准备好构建您自己的聊天机器人了吗？",
+    "heading.1": "直接查看我们的“入门”指南，或在我们的演示区随意尝试，这里没有任何规则！",
+    "primary_button": "开始使用",
+    "secondary_button": "访问演示区",
+    "logo_alt": "项目标志"
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "关于我们",
+        "children": ["我们的团队", "赞助商"]
+      },
+      {
+        "title": "如何贡献",
+        "children": ["入门指南", "未解决的问题"]
+      },
+      {
+        "title": "法律",
+        "children": ["服务条款", "隐私政策"]
+      }
+    ]
+  },
+  "benefits_section": {
+    "title": "好处",
+    "heading.1": "节省时间",
+    "body_text.1": "利用预构建的主题和插件，加快您的开发进度。",
+    "heading.2": "增强功能",
+    "body_text.2": "轻松添加新功能，提升聊天机器人的用户体验。",
+    "heading.3": "轻松集成",
+    "body_text.3": "加入志同道合的开发者社区，分享您的创作，并为平台的成长做出贡献。"
+  },
+  "history_section": {
+    "title": "历史与背景",
+    "body_text": "React ChatBotify Gallery 最初作为一个项目于 2024 年补充 React ChatBotify v2 版本推出。它诞生于对聊天机器人主题和插件集中存储库的需求。随着越来越多的开发者开始贡献，该平台迅速发展成为一个充满活力的社区，不断演变以满足用户需求。"
+  },
+  "mission_section": {
+    "title": "使命与愿景",
+    "body_text.1": "我们的使命是通过提供一个集中式中心，使开发者能够分享并发现高质量的 React ChatBotify 主题和插件，从而赋能开发者。",
+    "body_text.2": "我们设想一个充满活力的社区，在这里创意与协作蓬勃发展，使聊天机器人对于每个人来说都更加可定制且易于使用。"
+  }
+}

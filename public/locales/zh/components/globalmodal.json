@@ -1,0 +1,21 @@
+{
+  "login_modal": {
+    "continue": "继续",
+    "description": "使用 GitHub 进行身份验证，以浏览、收藏并分享数十个可用的主题和插件，或发布您自己的！",
+    "button": "使用 GitHub 继续",
+    "footnote.1": "继续即表示您同意我们的 ",
+    "footnote.2": "和 ",
+    "footer.terms_of_service": "服务条款",
+    "footer.privacy_policy": "隐私政策"
+  },
+  "error_modal": {
+    "title": "哎呀，出了点问题！",
+    "fail_themes_fetch": "无法获取主题，请刷新后重试。",
+    "fail_plugins_fetch": "无法获取插件，请刷新后重试。",
+    "fail_user_profile_fetch": "无法获取用户数据，请刷新后重试。",
+    "fail_login": "无法登录，请刷新后重试。",
+    "footnote.1": "如果此错误持续存在，请随时通过 ",
+    "footnote.2": "Discord",
+    "refresh_page": "刷新页面"
+  }
+}

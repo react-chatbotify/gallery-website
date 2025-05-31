@@ -1,0 +1,10 @@
+{
+  "plugins": {
+    "header": "插件",
+    "description": "浏览并查看插件，将其集成到您的聊天机器人中！",
+    "how_plugins_work": "如何使用插件"
+  },
+  "plugin_tooltip": {
+    "plugin_usage": "插件由各自的作者维护，独立于聊天机器人核心库。您可以访问插件链接以了解具体的使用说明。"
+  }
+}

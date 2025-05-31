@@ -1,10 +1,10 @@
 {
   "teams_page": {
     "title": "认识我们的团队",
-    "introduction": "致力于使这个项目成功的敬业人士。我们热衷于创造出色的软件。"
+    "introduction": "使此项目成功的敬业团队成员。我们热衷于创造优秀的软件。"
   },
   "team_page": {
-    "maybe_you_title": "也许是你！",
-    "maybe_you_text": "有兴趣加入我们吗？我们欢迎新的贡献者。帮助塑造我们项目的未来！"
+    "maybe_you_title": "也许就是你！",
+    "maybe_you_text": "有兴趣加入我们吗？我们欢迎新的贡献者。帮助共同塑造我们项目的未来！"
   }
 }

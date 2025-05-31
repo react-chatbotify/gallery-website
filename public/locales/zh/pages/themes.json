@@ -1,0 +1,12 @@
+{
+  "themes": {
+    "header": "主题",
+    "description": "在右侧面板浏览、选择并预览主题！",
+    "how_multiple_themes_work": "多主题选择的工作原理",
+    "show_theme_preview": "显示主题预览",
+    "hide_theme_preview": "隐藏主题预览"
+  },
+  "theme_tooltip": {
+    "multiple_themes_usage": "当选择多个主题时，选择/指定的顺序非常重要。后面的主题会覆盖前面主题的样式。打开右侧的预览面板并选择主题进行探索！"
+  }
+}

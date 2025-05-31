@@ -1,0 +1,45 @@
+{
+  "user_profile_info_section": {
+    "header": "个人资料信息",
+    "location": "位置",
+    "join_date": "加入日期",
+    "community_role": "社区角色",
+    "info_unavailable": "信息不可用"
+  },
+  "user_favorite_plugin_card": {
+    "view_plugin": "查看插件",
+    "remove_favorite": "取消收藏"
+  },
+  "user_owned_plugin_card": {
+    "view_plugin": "查看插件",
+    "manage_plugin": "管理插件"
+  },
+  "user_profile_plugin_section": {
+    "header": "插件",
+    "favorite": "收藏",
+    "personal": "个人",
+    "empty_personal_plugins": "您还没有创建任何插件！",
+    "empty_favorited_plugins": "您还没有收藏任何插件！",
+    "prompt_action": "浏览插件或创建您自己的插件",
+    "browse_plugins": "浏览插件",
+    "build_plugin": "创建插件"
+  },
+  "user_favorite_theme_card": {
+    "view_theme": "查看主题",
+    "remove_favorite": "取消收藏"
+  },
+  "user_owned_theme_card": {
+    "view_theme": "查看主题",
+    "manage_theme": "管理主题"
+  },
+  "user_profile_theme_section": {
+    "header": "主题",
+    "favorite": "收藏",
+    "personal": "个人",
+    "empty_personal_themes": "您还没有创建任何主题！",
+    "empty_favorited_themes": "您还没有收藏任何主题！",
+    "prompt_action": "浏览主题或创建您自己的主题",
+    "browse_themes": "浏览主题",
+    "build_theme": "创建主题"
+  }
+}

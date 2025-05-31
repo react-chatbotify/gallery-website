@@ -162,7 +162,7 @@ const PluginModal: React.FC<{
                   width: { md: 'auto', xs: '100%' },
                 }}
               >
-                {t('plugin_modal.download_plugin')}
+                {t('plugin_modal.view_on_npm')}
               </Button>
 
               <Box sx={{ alignItems: 'center', display: 'flex', gap: 0 }}>

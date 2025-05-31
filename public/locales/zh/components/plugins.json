@@ -1,6 +1,14 @@
 {
   "plugin_card": {
-    "read_more": "Read More",
-    "view_on_npm": "View On NPM"
+    "more_info": "更多信息"
+  },
+  "plugin_modal": {
+    "description": "描述",
+    "id": "标识符",
+    "version": "版本",
+    "author": "作者",
+    "tags": "标签",
+    "view_on_npm": "在 NPM 上查看",
+    "likes": "点赞"
   }
 }

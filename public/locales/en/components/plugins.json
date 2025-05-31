@@ -8,7 +8,7 @@
     "version": "Version",
     "author": "Author",
     "tags": "Tags",
-    "download_plugin": "Download Plugin",
+    "view_on_npm": "View On NPM",
     "likes": "likes"
   }
 }
