@@ -380,25 +380,21 @@ const Themes: React.FC = () => {
             zIndex: 1050,
           }}
         >
-          {isPreviewVisible ? (
-            <ExpandMoreIcon />
-          ) : (
-            <Badge
-              badgeContent={previewIds.length}
-              sx={{
-                '& .MuiBadge-badge': {
-                  bgcolor: 'primary.main',
-                  borderRadius: '50%',
-                  fontSize: '0.75rem',
-                  height: '1.25rem',
-                  minWidth: '1.25rem',
-                  mt: -1,
-                },
-              }}
-            >
-              <ExpandLessIcon />
-            </Badge>
-          )}
+          <Badge
+            badgeContent={previewIds.length}
+            sx={{
+              '& .MuiBadge-badge': {
+                bgcolor: 'primary.main',
+                borderRadius: '50%',
+                fontSize: '0.75rem',
+                height: '1.25rem',
+                minWidth: '1.25rem',
+                mt: -1,
+              },
+            }}
+          >
+            {isPreviewVisible ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+          </Badge>
         </IconButton>
       )}
     </Box>
