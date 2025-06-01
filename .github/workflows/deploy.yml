@@ -36,6 +36,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ vars.PROJECT_NAME }}
+          path: ${{ vars.PROJECT_NAME }}
 
       # temp: for debugging
       - name: List files after artifact download
