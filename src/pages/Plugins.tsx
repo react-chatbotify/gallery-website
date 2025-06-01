@@ -1,6 +1,6 @@
 import InfoIcon from '@mui/icons-material/Info';
 import { Box, CircularProgress, Grid, IconButton, Typography } from '@mui/material';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
@@ -29,12 +29,16 @@ const PLUGINS_PER_PAGE = import.meta.env.VITE_PLUGINS_PER_PAGE;
 const Plugins: React.FC = () => {
   // lazy load translations
   const { t } = useTranslation('pages/plugins');
-  const isDesktop = useIsDesktop();
   const { isLoggedIn } = useAuth();
   const { setPromptLogin, setPromptError } = useGlobalModal();
+  const notify = useNotify();
+  const isDesktop = useIsDesktop();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const { fetchPlugins, isLoading, error } = useFetchPlugins();
-  const notify = useNotify();
+
+  // lock to prevent multiple simultaneous page increments
+  const fetchLockRef = useRef(false);
 
   const [queryParams, setQueryParams] = useState({
     page: 1,
@@ -88,7 +92,10 @@ const Plugins: React.FC = () => {
 
   // Fetch plugins when query params change
   useEffect(() => {
+    let canceled = false;
     const loadPlugins = async () => {
+      fetchLockRef.current = true;
+
       try {
         const plugins = await fetchPlugins({
           pageNum: queryParams.page,
@@ -99,31 +106,31 @@ const Plugins: React.FC = () => {
           url: Endpoints.fetchApiPlugins,
         });
 
-        if (plugins.length < PLUGINS_PER_PAGE) {
-          setNoMorePlugins(true);
-        } else {
-          setNoMorePlugins(false);
+        if (canceled) {
+          return;
         }
 
+        setNoMorePlugins(plugins.length < PLUGINS_PER_PAGE);
         setAllPlugins((prev) => (queryParams.page === 1 ? plugins : [...prev, ...plugins]));
+        fetchLockRef.current = false;
       } catch (err) {
         console.error('Failed to fetch plugins:', err);
       }
     };
 
     loadPlugins();
+    return () => {
+      canceled = true;
+    };
   }, [queryParams, fetchPlugins]);
 
   const handleScroll = useCallback(() => {
-    const isNearBottom =
-      window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100;
-
-    if (!isNearBottom || isLoading || noMorePlugins) {
-      return;
+    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+    if (nearBottom && !isLoading && !noMorePlugins && !fetchLockRef.current) {
+      fetchLockRef.current = true;
+      setQueryParams((prev) => ({ ...prev, page: prev.page + 1 }));
     }
-
-    setQueryParams((prev) => ({ ...prev, page: prev.page + 1 }));
-  }, [isLoading]);
+  }, [isLoading, noMorePlugins]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

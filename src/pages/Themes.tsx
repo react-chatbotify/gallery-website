@@ -3,7 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InfoIcon from '@mui/icons-material/Info';
 import { Badge, Box, CircularProgress, Grid, IconButton, Typography, useTheme } from '@mui/material';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 
@@ -42,6 +42,9 @@ const Themes: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { fetchThemes, isLoading, error } = useFetchThemes();
+
+  // lock to prevent multiple simultaneous page increments
+  const fetchLockRef = useRef(false);
 
   // query parameters state
   const [queryParams, setQueryParams] = useState({
@@ -99,7 +102,9 @@ const Themes: React.FC = () => {
    */
   useEffect(() => {
     let canceled = false;
-    const load = async () => {
+    const loadThemes = async () => {
+      fetchLockRef.current = true;
+
       try {
         const themes = await fetchThemes({
           pageNum: queryParams.page,
@@ -110,16 +115,19 @@ const Themes: React.FC = () => {
           url: Endpoints.fetchApiThemes,
         });
 
-        if (canceled) return;
+        if (canceled) {
+          return;
+        }
 
         setNoMoreThemes(themes.length < THEMES_PER_PAGE);
         setAllThemes((prev) => (queryParams.page === 1 ? themes : [...prev, ...themes]));
+        fetchLockRef.current = false;
       } catch (err) {
         console.error('Failed to fetch themes:', err);
       }
     };
 
-    load();
+    loadThemes();
     return () => {
       canceled = true;
     };
@@ -130,7 +138,8 @@ const Themes: React.FC = () => {
    */
   const handleScroll = useCallback(() => {
     const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
-    if (nearBottom && !isLoading && !noMoreThemes) {
+    if (nearBottom && !isLoading && !noMoreThemes && !fetchLockRef.current) {
+      fetchLockRef.current = true;
       setQueryParams((prev) => ({ ...prev, page: prev.page + 1 }));
     }
   }, [isLoading, noMoreThemes]);
