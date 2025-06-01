@@ -25,7 +25,16 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDiscord, FaDoorOpen, FaInstagram, FaTwitter, FaUserCog, FaUserFriends, FaUserSecret } from 'react-icons/fa';
+import {
+  FaBookOpen,
+  FaDiscord,
+  FaDoorOpen,
+  FaInstagram,
+  FaTwitter,
+  FaUserCog,
+  FaUserFriends,
+  FaUserSecret,
+} from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import logo from '@/assets/images/logo.webp';
@@ -179,7 +188,7 @@ const NavigationBar: React.FC<{
               {t('navigation_bar.about_us.our_team')}
             </MenuItem>
             <MenuItem component="a" href="/terms-of-service" onClick={() => setAboutMenuAnchor(null)}>
-              <FaUserFriends style={{ marginRight: 8 }} />
+              <FaBookOpen style={{ marginRight: 8 }} />
               {t('navigation_bar.about_us.terms_of_service')}
             </MenuItem>
             <MenuItem component="a" href="/privacy-policy" onClick={() => setAboutMenuAnchor(null)}>
