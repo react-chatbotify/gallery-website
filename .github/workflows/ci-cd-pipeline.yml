@@ -7,7 +7,7 @@ permissions:
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "development"]
     paths-ignore:
       - "*.md" # ignore all markdown files at root
       - "*.js" # ignore all js files at root
@@ -21,7 +21,7 @@ on:
       - ".eslintrc" # ignore eslint changes
       - ".gitignore" # ignore git ignore changes
   pull_request:
-    branches: ["main"]
+    branches: ["main", "development"]
     paths-ignore:
       - "*.md" # ignore all markdown files at root
       - "*.js" # ignore all js files at root
