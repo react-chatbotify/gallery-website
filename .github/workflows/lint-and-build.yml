@@ -82,4 +82,3 @@ jobs:
     secrets: inherit
     with:
       target_env: ${{ inputs.target_env }}
-      node-version: ${{ inputs.node-version }}
