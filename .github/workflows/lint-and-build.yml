@@ -52,6 +52,9 @@ jobs:
       - name: Checkout code
         # Checks out the repository code.
         uses: actions/checkout@v4
+
+      - name: Load env file
+        run: echo "${{ secrets.APPLICATION_ENV_FILE }}" > .env
       
       - name: Setup Node.js ${{ inputs.node-version }}
         # Sets up NodeJS environment
