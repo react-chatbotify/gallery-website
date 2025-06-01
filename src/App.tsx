@@ -45,13 +45,6 @@ const App: React.FC = () => {
     }
   }, [notify]);
 
-  const storedLanguage = localStorage.getItem('RCBG_SELECTED_LANGUAGE');
-  if (storedLanguage) {
-    i18n.changeLanguage(storedLanguage);
-  } else {
-    i18n.changeLanguage('en');
-  }
-
   const toggleTheme = () => {
     setIsLightMode((prev) => {
       localStorage.setItem('RCBG_IS_LIGHT_MODE', String(!prev));

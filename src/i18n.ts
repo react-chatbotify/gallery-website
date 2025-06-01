@@ -24,7 +24,11 @@ i18n
       escapeValue: false, // React already escapes values
     },
 
-    lng: 'en',
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+      lookupLocalStorage: 'RCBG_SELECTED_LANGUAGE',
+    },
     // Enable debug mode
     ns: [],
     react: {

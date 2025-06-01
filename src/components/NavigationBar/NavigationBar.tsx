@@ -101,8 +101,9 @@ const NavigationBar: React.FC<{
    */
   const changeLanguage = (lang: string) => {
     localStorage.setItem('RCBG_SELECTED_LANGUAGE', lang);
-    i18n.changeLanguage(lang);
-    notify(t('navigation_bar.language_updated_message'));
+    i18n.changeLanguage(lang).then(() => {
+      notify(t('navigation_bar.language_updated_message'));
+    });
   };
 
   // shared style for navigation links
