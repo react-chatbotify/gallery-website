@@ -235,8 +235,7 @@ const Themes: React.FC = () => {
         sx={{
           flex: 1,
           p: 4,
-          mr: isDesktop ? (isPreviewVisible ? '30%' : 4) : 0,
-          mb: !isDesktop ? (isPreviewVisible ? '50vh' : 4) : 0,
+          mr: isDesktop && isPreviewVisible ? '30%' : 4,
           transition: 'margin 0.3s ease',
           ml: isDesktop ? 4 : 0,
           mt: { xs: 5, lg: 0 },
@@ -315,7 +314,7 @@ const Themes: React.FC = () => {
           bottom: isDesktop ? 'auto' : 0,
           right: !isDesktop || isPreviewVisible ? 0 : '40px',
           width: isDesktop ? '30%' : '100%',
-          height: isDesktop ? '100vh' : isPreviewVisible ? '60vh' : 0,
+          height: isDesktop ? '100vh' : '60vh',
           border: isDesktop ? '1px solid' : '6px solid',
           borderBottom: 'none',
           borderTopLeftRadius: isDesktop ? 0 : 20,
