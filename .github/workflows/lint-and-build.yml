@@ -1,0 +1,85 @@
+name: Lint & Build
+run-name: Lint & Build
+
+permissions:
+  contents: read
+  actions: read
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: "Node.js version to use"
+        required: true
+        type: string
+      target_env:
+        description: 'The deployment environment e.g. production or development'
+        required: true
+        type: string
+
+jobs:
+  lint:
+    name: Run Lint
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+
+    steps:
+      - name: Checkout code
+        # Checks out the repository code.
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (Latest)
+        # Sets up NodeJS environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install Dependencies
+        # Installs dependencies
+        run: npm ci
+
+      - name: Run Linter
+        # Runs lint checks
+        run: npm run lint
+
+  build:
+    needs: lint
+    name: Run Build Process
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+
+    steps:
+      - name: Checkout code
+        # Checks out the repository code.
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ inputs.node-version }}
+        # Sets up NodeJS environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install Dependencies
+        # Install dependencies
+        run: npm ci
+
+      - name: Build Project
+        # Builds project
+        run: npm run build --if-present
+
+      - name: Upload build artifact (dist)
+        # Uploads build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery-website
+          path: dist
+          retention-days: 1 
+
+  trigger-deploy:
+    needs: build
+    name: Deploy
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+    with:
+      target_env: ${{ inputs.target_env }}
+      node-version: ${{ inputs.node-version }}
