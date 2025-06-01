@@ -43,5 +43,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOYMENT_SSH_USER }}@${{ secrets.DEPLOYMENT_SERVER }} \
             "mkdir -p /var/www/rcb/${{ vars.PROJECT_NAME }} && rm -rf /var/www/rcb/${{ vars.PROJECT_NAME }}/*"
 
-          scp -o StrictHostKeyChecking=no -r /${{ vars.PROJECT_NAME }}/*  \
+          scp -o StrictHostKeyChecking=no -r ${{ vars.PROJECT_NAME }}/*  \
             ${{ secrets.DEPLOYMENT_SSH_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/rcb/${{ vars.PROJECT_NAME }}/
