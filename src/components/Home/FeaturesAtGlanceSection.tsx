@@ -3,6 +3,7 @@ import { ArrowRight, Blocks, PaletteIcon, SparkleIcon, Sun } from 'lucide-react'
 import { FC, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Endpoints } from '@/constants/Endpoints';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import { FeatureItemProps, PrimaryFeature } from '@/interfaces/HomePage';
 
@@ -141,12 +142,7 @@ const FeaturesAtGlanceSection = (): JSX.Element => {
   const features = useMemo(() => {
     const icons = [Sun, PaletteIcon, Blocks, SparkleIcon];
     // todo: update urls after domain is consolidated and CLI tool is ready
-    const urls = [
-      '/themes',
-      '/plugins',
-      'https://react-chatbotify.com/docs/examples/llm_conversation',
-      'https://example.com/feature-4',
-    ];
+    const urls = ['/themes', '/plugins', Endpoints.projectLlmExampleUrl, 'https://example.com/feature-4'];
 
     const items = t('features_at_glance_section_section.features', {
       returnObjects: true,
