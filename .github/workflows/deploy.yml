@@ -38,16 +38,6 @@ jobs:
           name: ${{ vars.PROJECT_NAME }}
           path: ${{ vars.PROJECT_NAME }}
 
-      # temp: for debugging
-      - name: List files after artifact download
-        run: |
-          echo ">>> Listing the top-level workspace directories:"
-          ls -la
-          echo ">>> Listing contents of ${{ vars.PROJECT_NAME }} (artifact folder):"
-          ls -la ${{ vars.PROJECT_NAME }}
-          echo ">>> Full recursive tree of ${{ vars.PROJECT_NAME }}:"
-          ls -R ${{ vars.PROJECT_NAME }}
-
       - name: Deploy files to VPS
         # Clears existing files and deploy new files
         run: |
