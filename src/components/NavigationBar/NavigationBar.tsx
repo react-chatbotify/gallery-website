@@ -161,7 +161,7 @@ const NavigationBar: React.FC<{
           gap: 2,
         }}
       >
-        <Button component="a" href={Endpoints.projectBaseUrl} target="_blank" sx={generalNavLinkSx}>
+        <Button component="a" href={Endpoints.projectQuickStartUrl} target="_blank" sx={generalNavLinkSx}>
           {t('navigation_bar.documentation')}
         </Button>
         <Button component={Link} to="/plugins" sx={generalNavLinkSx}>
@@ -390,7 +390,7 @@ const NavigationBar: React.FC<{
 
           {/* Primary navigation links in drawer */}
           <List>
-            <ListItem component="a" href={Endpoints.projectBaseUrl} sx={generalNavLinkSx}>
+            <ListItem component="a" href={Endpoints.projectQuickStartUrl} sx={generalNavLinkSx}>
               <DescriptionIcon sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.documentation')} />
             </ListItem>

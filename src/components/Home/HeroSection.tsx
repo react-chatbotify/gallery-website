@@ -149,7 +149,7 @@ const HeroSection = (): JSX.Element => {
 
         {/* Buttons & Stats */}
         <motion.div variants={itemVariants}>
-          <Stack direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'center', xs: 'start' }} spacing={4}>
+          <Stack direction={{ md: 'row', xs: 'column' }} alignItems={'center'} spacing={4}>
             <Box
               sx={{
                 alignItems: 'center',

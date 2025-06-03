@@ -18,12 +18,13 @@ const Endpoints = {
   instagramCoreUrl: 'https://www.instagram.com/react.chatbotify',
   loginUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,
   logoutUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/logout`,
-  projectBaseUrl: 'https://react-chatbotify.com',
+  projectBaseUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}`,
   projectCoreDiscordUrl: 'https://discord.gg/6R4DK4G5Zh',
   projectCoreNpmUrl: 'https://www.npmjs.com/package/react-chatbotify',
   projectCoreRepoUrl: 'https://github.com/tjtanjin/react-chatbotify',
-  projectPlaygroundUrl: 'https://react-chatbotify.com/playground',
-  projectQuickStartUrl: 'https://react-chatbotify.com/docs/introduction/quickstart',
+  projectPlaygroundUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/playground`,
+  projectQuickStartUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/introduction/quickstart`,
+  projectLlmExampleUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/examples/llm_conversation`,
   twitterCoreUrl: 'https://x.com/reactchatbotify',
 };
 
