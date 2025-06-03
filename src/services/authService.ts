@@ -1,4 +1,5 @@
 import { galleryApiFetch } from '@/utils';
+
 import { Endpoints } from '../constants/Endpoints';
 
 /**
