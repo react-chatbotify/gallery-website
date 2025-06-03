@@ -38,7 +38,7 @@ const ThemePreview: React.FC<{
         } else if (params.userInput === 'Discord') {
           window.open(Endpoints.projectCoreDiscordUrl);
         } else if (params.userInput === 'Check Documentation') {
-          window.open(Endpoints.projectBaseUrl);
+          window.open(Endpoints.projectQuickStartUrl);
         } else {
           setPreviewIds([]);
           await params.injectMessage("Hmmm I'm not sure what you said, but let's try again!");
