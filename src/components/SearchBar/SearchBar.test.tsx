@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 
 import SearchBar from './SearchBar';
@@ -19,16 +18,15 @@ vi.mock('react-i18next', () => ({
 // Mock react-router-dom's useSearchParams
 let mockSearchParamsGet: (key: string) => string | null = () => null;
 vi.mock('react-router-dom', async (importOriginal) => {
- const original = await importOriginal();
- return {
-    ...original,
+  const original = await importOriginal();
+  return {
+    ...(original as object),
     useSearchParams: () => [
       { get: mockSearchParamsGet },
       vi.fn(), // Mock setSearchParams, not used by this component directly for setting
     ],
- };
+  };
 });
-
 
 describe('SearchBar', () => {
   const mockOnSearch = vi.fn();
@@ -91,16 +89,15 @@ describe('SearchBar', () => {
     expect(mockOnSearch).toHaveBeenCalledTimes(2);
   });
 
-
   test('initializes with query from searchParams', () => {
-    mockSearchParamsGet = (key: string) => key === 'searchQuery' ? 'initial query from params' : null;
+    mockSearchParamsGet = (key: string) => (key === 'searchQuery' ? 'initial query from params' : null);
     render(<SearchBar onSearch={mockOnSearch} />);
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toHaveValue('initial query from params');
   });
 
   test('does not call onSearch on initial render even if searchParams has query', () => {
-    mockSearchParamsGet = (key: string) => key === 'searchQuery' ? 'initial query' : null;
+    mockSearchParamsGet = (key: string) => (key === 'searchQuery' ? 'initial query' : null);
     render(<SearchBar onSearch={mockOnSearch} />);
     expect(mockOnSearch).not.toHaveBeenCalled();
   });
@@ -116,7 +113,7 @@ describe('SearchBar', () => {
   });
 
   test('pressing Enter with empty string DOES call onSearch if initial query was non-empty', () => {
-    mockSearchParamsGet = (key: string) => key === 'searchQuery' ? 'initial query' : null;
+    mockSearchParamsGet = (key: string) => (key === 'searchQuery' ? 'initial query' : null);
     render(<SearchBar onSearch={mockOnSearch} />);
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toHaveValue('initial query');

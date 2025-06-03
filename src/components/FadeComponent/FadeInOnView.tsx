@@ -2,13 +2,13 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { FC, ReactNode } from 'react';
 
 // Define Props type that extends standard div attributes for ...otherProps
-interface Props extends Omit<HTMLMotionProps<'div'>, 'children' | 'transition'> {
+type Props = Omit<HTMLMotionProps<'div'>, 'children' | 'transition'> & {
   children: ReactNode;
   delay?: number;
   duration?: number;
   // yOffset and viewAmount are currently hardcoded in the component
   // If they need to be props, add them here.
-}
+};
 
 /**
  * Wraps its children in a Framer Motion div that fades and slides in

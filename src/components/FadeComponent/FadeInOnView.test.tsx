@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { motion } from 'framer-motion';
-import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 
 import FadeInOnView from './FadeInOnView';
@@ -11,7 +10,7 @@ vi.mock('framer-motion', async (importOriginal) => {
   return {
     ...original,
     motion: {
-      ...original.motion,
+      ...original,
       div: vi.fn(({ children, ...props }) => <div {...props}>{children}</div>),
     },
   };

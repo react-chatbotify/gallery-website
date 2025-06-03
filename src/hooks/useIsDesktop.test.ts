@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import useIsDesktop from './useIsDesktop';
@@ -11,7 +11,8 @@ describe('useIsDesktop', () => {
     // by React/Testing Library internals.
     vi.stubGlobal('navigator', {
       ...global.navigator, // Spread original navigator to keep other properties
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+      userAgent:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
     });
   });
 
@@ -28,7 +29,8 @@ describe('useIsDesktop', () => {
   test('returns false for mobile user agent (iPhone, on mount)', () => {
     vi.stubGlobal('navigator', {
       ...global.navigator,
-      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1',
+      userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1',
     });
     const { result } = renderHook(() => useIsDesktop());
     expect(result.current).toBe(false);
