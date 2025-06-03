@@ -287,7 +287,7 @@ const NavigationBar: React.FC<{
           ) : (
             // Login button when not authenticated
             <Button
-              onClick={() => handleLogin()}
+              onClick={handleLogin}
               sx={{
                 backgroundColor: 'background.secondary',
                 borderRadius: '9999px',

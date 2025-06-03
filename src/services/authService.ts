@@ -1,27 +1,29 @@
+import { galleryApiFetch } from '@/utils';
 import { Endpoints } from '../constants/Endpoints';
 
 /**
  * Handles redirecting of user for login.
- *
- * @param redirect_uri uri to redirect user to after login
  */
-const handleLogin = (redirect_uri?: string) => {
-  // if no uri specified to redirect to after login, then fallback to current location
-  let final_redirect_uri = redirect_uri as string;
-  if (!redirect_uri) {
-    final_redirect_uri = window.location.href;
+const handleLogin = async () => {
+  // save current location as redirect uri for later (post-login)
+  localStorage.setItem('login_redirect_uri', window.location.href);
+
+  const resp = await galleryApiFetch(Endpoints.gitHubCoreOrgUrl, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+    },
+  });
+  if (!resp.ok) {
+    // todo: show error modal?
+    console.error('Failed to get GitHub authorization URL', await resp.text());
+    return;
   }
 
-  // save redirect uri for later (post-login)
-  localStorage.setItem('login_redirect_uri', final_redirect_uri);
+  const { authorizationUrl } = await resp.json();
 
-  // oauth provider chosen (currently no parameter as github is the only one)
-  const client_id = import.meta.env.VITE_GITHUB_APP_CLIENT_ID;
-
-  const redirectUri = `${Endpoints.galleryAuthRedirectUrl}?provider=github&redirect_url=${window.location.origin}`;
-  const encodedRedirectUri = encodeURIComponent(redirectUri);
-  // redirect user to login endpoint with client id
-  window.location.href = `${Endpoints.gitHubLoginUrl}?client_id=${client_id}&redirect_uri=${encodedRedirectUri}`;
+  // redirect user to login endpoint
+  window.location.href = authorizationUrl;
 };
 
 export { handleLogin };

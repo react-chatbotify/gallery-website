@@ -78,7 +78,7 @@ const LoginModal = () => {
           }}
         >
           <Button
-            onClick={() => handleLogin()}
+            onClick={handleLogin}
             variant="contained"
             color="primary"
             startIcon={<GitHub />}

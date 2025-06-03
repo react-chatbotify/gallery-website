@@ -14,7 +14,7 @@ const Endpoints = {
   galleryAuthRedirectUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/callback`,
   gitHubCoreOrgUrl: 'https://github.com/React-ChatBotify',
   gitHubCoreOrgSponsorUrl: 'https://github.com/sponsors/React-ChatBotify',
-  gitHubLoginUrl: 'https://github.com/login/oauth/authorize',
+  gitHubLoginUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/github/login`,
   instagramCoreUrl: 'https://www.instagram.com/react.chatbotify',
   loginUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/login/process`,
   logoutUser: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/logout`,
