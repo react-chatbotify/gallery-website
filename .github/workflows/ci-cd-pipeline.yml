@@ -39,8 +39,9 @@ on:
 jobs:
   trigger-full-ci:
     name: CI
-    uses: ./.github/workflows/lint-and-build.yml
+    uses: ./.github/workflows/lint-test-build.yml
     secrets: inherit
     with:
       target_env: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref == 'refs/heads/development' && 'development' || 'invalid' }}
       node-version: "22.4.1"
+      skip_deploy: ${{ github.event_name == 'pull_request' }} # skip deployment if it's a pull request

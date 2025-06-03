@@ -1,5 +1,5 @@
-name: Lint & Build
-run-name: Lint & Build
+name: Lint, Build & Test
+run-name: Lint, Build & Test
 
 permissions:
   contents: read
@@ -16,6 +16,10 @@ on:
         description: 'The deployment environment e.g. production or development'
         required: true
         type: string
+      skip_deploy:
+        description: 'Skip the deploy step (true/false)'
+        required: true
+        type: boolean
 
 jobs:
   lint:
@@ -42,8 +46,33 @@ jobs:
         # Runs lint checks
         run: npm run lint
 
-  build:
+  test:
     needs: lint
+    name: Run Tests
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+
+    steps:
+      - name: Checkout code
+        # Checks out the repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ inputs.node-version }}
+        # Sets up NodeJS environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install Dependencies
+        # Installs dependencies
+        run: npm ci
+
+      - name: Run Tests
+        # Runs test cases
+        run: npm run test
+
+  build:
+    needs: test
     name: Run Build Process
     runs-on: ubuntu-latest
     environment: ${{ inputs.target_env }}
@@ -54,6 +83,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Load env file
+        # Loads environment variables from file
         run: echo "${{ secrets.APPLICATION_ENV_FILE }}" > .env
       
       - name: Setup Node.js ${{ inputs.node-version }}
@@ -81,6 +111,7 @@ jobs:
   trigger-deploy:
     needs: build
     name: Deploy
+    if: ${{ inputs.skip_deploy == false }}
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
     with:
