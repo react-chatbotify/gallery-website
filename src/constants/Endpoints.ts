@@ -11,6 +11,7 @@ const Endpoints = {
   fetchUserOwnedPlugins: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/plugins`,
   fetchUserOwnedThemes: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/themes`,
   fetchUserProfile: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/users/profile`,
+  fetchCsrfToken: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/csrf-token`,
   galleryAuthRedirectUrl: `${import.meta.env.VITE_GALLERY_API_URL}/api/v1/auth/callback`,
   gitHubCoreOrgUrl: 'https://github.com/React-ChatBotify',
   gitHubCoreOrgSponsorUrl: 'https://github.com/sponsors/React-ChatBotify',
