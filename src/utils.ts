@@ -107,7 +107,8 @@ const galleryApiFetch = async (url: string, options: RequestInit = {}): Promise<
         // if can’t get a fresh token, return original 403
         return response;
       }
-      const { csrfToken: newToken } = await tokenResponse.json();
+      const tokenResult = await tokenResponse.json();
+      const { csrfToken: newToken } = tokenResult.data;
       localStorage.setItem('csrf_token', newToken);
 
       // update the token if successful
