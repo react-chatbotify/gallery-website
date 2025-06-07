@@ -35,7 +35,7 @@ const HeroSection = (): JSX.Element => {
   useEffect(() => {
     const interval = setInterval(() => {
       setTitleIndex((prev) => (prev >= numTitles ? 1 : prev + 1));
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -158,7 +158,8 @@ const HeroSection = (): JSX.Element => {
                 display: 'flex',
                 gap: 3,
                 justifyContent: { md: 'start', xs: 'space-between' },
-                px: 2,
+                pl: '16px',
+                pr: '10px',
                 py: 1,
                 width: { md: 'auto', xs: '100%' },
               }}

@@ -1,14 +1,11 @@
+import { DescriptionOutlined, ExtensionOutlined, InfoOutlined, PaletteOutlined } from '@mui/icons-material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 // import CodeIcon from '@mui/icons-material/Code';
-import DescriptionIcon from '@mui/icons-material/Description';
-import ExtensionIcon from '@mui/icons-material/Extension';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import InfoIcon from '@mui/icons-material/Info';
 import LanguageIcon from '@mui/icons-material/Language';
 import MenuIcon from '@mui/icons-material/Menu';
 import NightlightIcon from '@mui/icons-material/Nightlight';
-import PaletteIcon from '@mui/icons-material/Palette';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import {
   Box,
@@ -206,6 +203,12 @@ const NavigationBar: React.FC<{
       <Box sx={{ alignItems: 'center', display: 'flex', gap: 2 }}>
         {/* Community dropdown and GitHub link (desktop only) */}
         <Box sx={{ alignItems: 'center', display: { md: 'flex', xs: 'none' }, gap: 2 }}>
+          {/* Direct link to GitHub repository */}
+          <Button component="a" href={Endpoints.projectCoreRepoUrl} target="_blank" sx={generalNavLinkSx}>
+            {t('navigation_bar.github')}
+          </Button>
+
+          {/* Community buttons */}
           <Box>
             <Button
               onClick={(event) => setCommunityMenuAnchor((prev) => (prev ? null : event.currentTarget))}
@@ -249,11 +252,6 @@ const NavigationBar: React.FC<{
             </Menu>
           </Box>
 
-          {/* Direct link to GitHub repository */}
-          <IconButton component="a" href={Endpoints.projectCoreRepoUrl} target="_blank">
-            <GitHubIcon sx={{ fill: theme.palette.mode === 'dark' ? '#fff' : '#000' }} />
-          </IconButton>
-
           {isLoggedIn ? (
             <>
               {/* User menu when logged in */}
@@ -290,7 +288,7 @@ const NavigationBar: React.FC<{
               onClick={handleLogin}
               sx={{
                 backgroundColor: 'background.secondary',
-                borderRadius: '9999px',
+                borderRadius: '12px',
                 color: 'text.primary',
                 display: { md: 'block', xs: 'none' },
                 px: 3,
@@ -383,67 +381,7 @@ const NavigationBar: React.FC<{
             <Link to="/" style={{ alignItems: 'center', display: 'grid' }}>
               <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 32 }} />
             </Link>
-            <IconButton onClick={() => setMobileMenuOpen(false)}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          {/* Primary navigation links in drawer */}
-          <List>
-            <ListItem component="a" href={Endpoints.projectQuickStartUrl} sx={generalNavLinkSx}>
-              <DescriptionIcon sx={{ mr: 1 }} />
-              <ListItemText primary={t('navigation_bar.documentation')} />
-            </ListItem>
-            <ListItem component={Link} to="/plugins" sx={generalNavLinkSx}>
-              <ExtensionIcon sx={{ mr: 1 }} />
-              <ListItemText primary={t('navigation_bar.plugins')} />
-            </ListItem>
-            <ListItem component={Link} to="/themes" sx={generalNavLinkSx}>
-              <PaletteIcon sx={{ mr: 1 }} />
-              <ListItemText primary={t('navigation_bar.themes')} />
-            </ListItem>
-            {/* <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
-              <CodeIcon sx={{ mr: 1 }} />
-              <ListItemText primary={t('navigation_bar.theme_builder')} />
-            </ListItem> */}
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
-                sx={generalNavLinkSx}
-              >
-                <InfoIcon sx={{ mr: 1 }} />
-                <ListItemText primary={t('navigation_bar.about_us')} />
-              </ListItemButton>
-            </ListItem>
-          </List>
-
-          {/* Mobile community and utility bar */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 'auto' }}>
-            {/* Social media icon row */}
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
-              <IconButton onClick={() => window.open(Endpoints.projectCoreDiscordUrl)}>
-                <FaDiscord />
-              </IconButton>
-              <IconButton component="a" href={Endpoints.projectCoreRepoUrl} target="_blank">
-                <GitHubIcon />
-              </IconButton>
-              <IconButton onClick={() => window.open(Endpoints.instagramCoreUrl)}>
-                <FaInstagram />
-              </IconButton>
-              <IconButton onClick={() => window.open(Endpoints.twitterCoreUrl)}>
-                <FaTwitter />
-              </IconButton>
-            </Box>
-
-            {/* Mobile utility: language, theme, and profile */}
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'space-around',
-                mb: 2,
-              }}
-            >
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
               {/* Language picker for mobile */}
               <IconButton onClick={(e) => setLanguageMenuAnchor(e.currentTarget)} sx={{ color: 'text.primary' }}>
                 <LanguageIcon />
@@ -477,6 +415,68 @@ const NavigationBar: React.FC<{
                 {theme.palette.mode === 'dark' ? <NightlightIcon /> : <WbSunnyIcon />}
               </IconButton>
 
+              <IconButton onClick={() => setMobileMenuOpen(false)}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+          </Box>
+
+          {/* Primary navigation links in drawer */}
+          <List>
+            <ListItem component="a" href={Endpoints.projectQuickStartUrl} sx={generalNavLinkSx}>
+              <DescriptionOutlined sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.documentation')} />
+            </ListItem>
+            <ListItem component={Link} to="/plugins" sx={generalNavLinkSx}>
+              <ExtensionOutlined sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.plugins')} />
+            </ListItem>
+            <ListItem component={Link} to="/themes" sx={generalNavLinkSx}>
+              <PaletteOutlined sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.themes')} />
+            </ListItem>
+            {/* <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
+              <CodeIcon sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.theme_builder')} />
+            </ListItem> */}
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={(event) => setAboutMenuAnchor((prev) => (prev ? null : event.currentTarget))}
+                sx={generalNavLinkSx}
+              >
+                <InfoOutlined sx={{ mr: 1 }} />
+                <ListItemText primary={t('navigation_bar.about_us')} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+
+          {/* Mobile community and utility bar */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', mt: 'auto' }}>
+            {/* Social media icon row */}
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
+              <IconButton component="a" href={Endpoints.projectCoreRepoUrl} target="_blank">
+                <GitHubIcon />
+              </IconButton>
+              <IconButton onClick={() => window.open(Endpoints.projectCoreDiscordUrl)}>
+                <FaDiscord />
+              </IconButton>
+              <IconButton onClick={() => window.open(Endpoints.instagramCoreUrl)}>
+                <FaInstagram />
+              </IconButton>
+              <IconButton onClick={() => window.open(Endpoints.twitterCoreUrl)}>
+                <FaTwitter />
+              </IconButton>
+            </Box>
+
+            {/* Mobile utility: language, theme, and profile */}
+            <Box
+              sx={{
+                alignItems: 'center',
+                display: 'flex',
+                justifyContent: 'space-around',
+                mb: 2,
+              }}
+            >
               {/* Profile icon link in mobile when logged in */}
               {isLoggedIn && (
                 <IconButton
@@ -499,7 +499,14 @@ const NavigationBar: React.FC<{
                   handleLogout();
                   setMobileMenuOpen(false);
                 }}
-                sx={{ textTransform: 'capitalize' }}
+                sx={{
+                  backgroundColor: 'background.muted',
+                  borderRadius: '10px',
+                  color: 'text.primary',
+                  mt: 1,
+                  py: 1,
+                  textTransform: 'capitalize',
+                }}
               >
                 {t('navigation_bar.logout')}
               </Button>

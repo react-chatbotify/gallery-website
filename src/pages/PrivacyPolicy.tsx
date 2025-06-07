@@ -35,96 +35,100 @@ const PrivacyPolicy: React.FC = () => {
   const sortedKeys = Object.keys(privacyPolicy).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'background.paper',
-        color: 'text.primary',
-        px: { sm: '10%', xs: 0 },
-      }}
-    >
-      <Container
-        maxWidth="md"
+    <>
+      <Box
         sx={{
-          pt: { xs: 12, sm: 11, md: 10 },
-          pb: { xs: 4, sm: 6, md: 10 },
+          backgroundColor: 'background.paper',
+          color: 'text.primary',
+          px: { sm: '10%', xs: 0 },
         }}
       >
-        {/* Logo */}
-        <FadeInOnView>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-            <Box
-              component="img"
-              src={logo}
-              alt="React ChatBotify Gallery Logo"
-              sx={{
-                height: { xs: '96px', sm: '112px', md: '128px', lg: '160px', xl: '192px' },
-              }}
-            />
-          </Box>
+        <Container
+          maxWidth="md"
+          sx={{
+            pt: { xs: 12, sm: 11, md: 10 },
+            pb: { xs: 4, sm: 6, md: 10 },
+          }}
+        >
+          {/* Logo */}
+          <FadeInOnView>
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+              <Box
+                component="img"
+                src={logo}
+                alt="React ChatBotify Gallery Logo"
+                sx={{
+                  height: { xs: '96px', sm: '112px', md: '128px', lg: '160px', xl: '192px' },
+                }}
+              />
+            </Box>
 
-          {/* Header */}
-          <Box sx={{ textAlign: 'left' }}>
-            <Typography variant="h3" color="text.primary" fontWeight="bold" gutterBottom>
-              {t('privacy_policy.title')}
-            </Typography>
-            <Typography variant="h6" color="text.secondary" fontWeight="light" gutterBottom>
-              {t('privacy_policy.subtitle')}
-            </Typography>
-          </Box>
-        </FadeInOnView>
+            {/* Header */}
+            <Box sx={{ textAlign: 'left' }}>
+              <Typography variant="h3" color="text.primary" fontWeight="bold" gutterBottom>
+                {t('privacy_policy.title')}
+              </Typography>
+              <Typography variant="h6" color="text.secondary" fontWeight="light" gutterBottom>
+                {t('privacy_policy.subtitle')}
+              </Typography>
+            </Box>
+          </FadeInOnView>
 
-        {/* Sections */}
-        {sortedKeys.map((sectionKey) => {
-          const section = privacyPolicy[sectionKey];
-          if (!section) return null;
-          const { title, content } = section;
-          const sectionNumber = sectionKey.padStart(2, '0');
+          {/* Sections */}
+          {sortedKeys.map((sectionKey) => {
+            const section = privacyPolicy[sectionKey];
+            if (!section) return null;
+            const { title, content } = section;
+            const sectionNumber = sectionKey.padStart(2, '0');
 
-          return (
-            <FadeInOnView>
-              <Box key={sectionKey} sx={{ mt: 5 }}>
-                <Typography variant="h5" color="text.primary" fontWeight="bold">
-                  <Typography variant="h5" color="text.secondary" component="span">
-                    {sectionNumber}
-                  </Typography>{' '}
-                  {title}
-                </Typography>
-
-                {/* Plain text paragraphs */}
-                {(content.filter((item) => typeof item === 'string') as string[]).map((text, idx) => (
-                  <Typography key={`text-${idx}`} variant="body1" color="text.primary" sx={{ mt: 1, mb: 2 }}>
-                    {text}
+            return (
+              <FadeInOnView>
+                <Box key={sectionKey} sx={{ mt: 5 }}>
+                  <Typography variant="h5" color="text.primary" fontWeight="bold">
+                    <Typography variant="h5" color="text.secondary" component="span">
+                      {sectionNumber}
+                    </Typography>{' '}
+                    {title}
                   </Typography>
-                ))}
 
-                {/* Pointed items */}
-                {(content.filter((item) => typeof item !== 'string') as ContentItem[]).map((item, idx) => (
-                  <Typography key={`point-${idx}`} variant="body1" color="text.primary" sx={{ mt: 1, mb: 2 }}>
-                    <strong>{item.point}</strong> {item.text}
-                  </Typography>
-                ))}
-              </Box>
-            </FadeInOnView>
-          );
-        })}
+                  {/* Plain text paragraphs */}
+                  {(content.filter((item) => typeof item === 'string') as string[]).map((text, idx) => (
+                    <Typography key={`text-${idx}`} variant="body1" color="text.primary" sx={{ mt: 1, mb: 2 }}>
+                      {text}
+                    </Typography>
+                  ))}
 
-        {/* Effective date */}
-        <Box sx={{ mt: 5, opacity: 0.5 }}>
-          <Typography variant="body2" color="text.primary">
-            {t('Effective date for this policy: 2nd of March 2025')}
-          </Typography>
-        </Box>
-      </Container>
+                  {/* Pointed items */}
+                  {(content.filter((item) => typeof item !== 'string') as ContentItem[]).map((item, idx) => (
+                    <Typography key={`point-${idx}`} variant="body1" color="text.primary" sx={{ mt: 1, mb: 2 }}>
+                      <strong>{item.point}</strong> {item.text}
+                    </Typography>
+                  ))}
+                </Box>
+              </FadeInOnView>
+            );
+          })}
+
+          {/* Effective date */}
+          <Box sx={{ mt: 5, opacity: 0.5 }}>
+            <Typography variant="body2" color="text.primary">
+              {t('Effective date for this policy: 2nd of March 2025')}
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
       <Container
         maxWidth={false}
         disableGutters
         sx={{
-          px: { sm: 6, xs: 2 },
+          backgroundColor: 'background.paper',
+          color: 'text.primary',
+          px: { sm: '48px', xs: 2 },
         }}
       >
         <Footer />
       </Container>
-    </Box>
+    </>
   );
 };
 

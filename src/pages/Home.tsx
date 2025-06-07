@@ -16,39 +16,49 @@ import ProjectSection from '../components/Home/ProjectSection';
  */
 const Home: React.FC = () => {
   return (
-    <Box
-      sx={{
-        backgroundColor: 'background.paper',
-        color: 'text.primary',
-        px: { sm: '10%', xs: 0 },
-      }}
-    >
-      <Container
-        maxWidth={false}
-        disableGutters
+    <>
+      <Box
         sx={{
-          px: { sm: 6, xs: 2 },
+          backgroundColor: 'background.paper',
+          color: 'text.primary',
+          px: { sm: '10%', xs: 0 },
         }}
       >
-        <HeroSection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
-        <FeaturesAtGlanceSection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
-        <FeaturesAndBenefitsSection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
-        <ProjectSection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
-        <CommunitySection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
-        {/* <TestimonialSection />
+        <Container
+          maxWidth={false}
+          disableGutters
+          sx={{
+            px: { sm: 6, xs: 2 },
+          }}
+        >
+          <HeroSection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          <FeaturesAtGlanceSection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          <FeaturesAndBenefitsSection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          <ProjectSection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          <CommunitySection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          {/* <TestimonialSection />
         <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
         <SponsorsSection />
         <Box sx={{ height: { sm: '240px', xs: '64px' } }} /> */}
-        <CallToActionSection />
-        <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+          <CallToActionSection />
+          <Box sx={{ height: { sm: '240px', xs: '64px' } }} />
+        </Container>
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: 'background.paper',
+          color: 'text.primary',
+          px: { sm: '48px', xs: 0 },
+        }}
+      >
         <Footer />
-      </Container>
-    </Box>
+      </Box>
+    </>
   );
 };
 

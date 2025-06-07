@@ -27,7 +27,7 @@ const featureStyles = (theme: any, selected: boolean) => ({
   cursor: 'pointer',
   display: 'flex',
   gap: theme.spacing(2),
-  opacity: selected ? 1 : 0.6,
+  opacity: selected ? 1 : 0.5,
   p: theme.spacing(2),
   transition: 'background-color 0.3s, box-shadow 0.3s',
 });

@@ -65,7 +65,14 @@ const CommunitySection = (): JSX.Element => {
         {links.map(({ Icon, title, text, url }, idx) => (
           <FadeInOnView key={idx}>
             {/* Open community URL in new tab */}
-            <Button fullWidth onClick={() => window.open(url, '_blank')} sx={buttonStyles}>
+            <Button
+              fullWidth
+              onClick={() => window.open(url, '_blank')}
+              sx={{
+                display: isDesktop ? 'flex' : 'grid',
+                ...buttonStyles,
+              }}
+            >
               <Box sx={contentBoxStyles}>
                 {Icon}
                 <Box sx={textBoxStyles}>
@@ -73,7 +80,7 @@ const CommunitySection = (): JSX.Element => {
                   <Typography color="text.muted">{text}</Typography>
                 </Box>
               </Box>
-              <ArrowRight size={22} style={{ color: 'text.muted' }} />
+              <ArrowRight size={24} style={{ color: 'text.muted' }} />
             </Button>
           </FadeInOnView>
         ))}
@@ -87,14 +94,14 @@ export default CommunitySection;
 // Styles
 const buttonStyles = {
   alignItems: 'center',
+  justifyContent: 'space-between',
   border: '1px solid',
   borderColor: 'background.muted',
   borderRadius: '12px',
-  color: 'text.primary',
-  display: 'grid',
   gridTemplateColumns: '90% 10%',
-  p: 2,
-  px: 3,
+  color: 'text.primary',
+  p: 3,
+  px: '32px',
   textTransform: 'none',
 };
 

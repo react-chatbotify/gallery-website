@@ -132,7 +132,11 @@
       },
       {
         "title": "How to contribute",
-        "children": ["Getting started", "Open issues"]
+        "children": ["Become a Sponsor", "Code Contributions"]
+      },
+      {
+        "title": "Resources",
+        "children": ["Getting Started", "Plugins", "Themes"]
       },
       {
         "title": "Legal",

@@ -64,10 +64,10 @@ const FeatureCard = ({ item }: { item: SecondaryFeature }) => {
               borderRadius: '50%',
               color: 'text.primary',
               display: 'grid',
-              height: 48,
+              height: 56,
               mb: 2,
               placeItems: 'center',
-              width: 48,
+              width: 56,
             }}
           >
             <item.Icon size={24} />

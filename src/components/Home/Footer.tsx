@@ -29,7 +29,7 @@ const Footer = (): JSX.Element => {
                 {t('essentials.name')}
               </Typography>
             </Stack>
-            <Stack direction="row" spacing={3}>
+            <Stack direction="row" spacing={2.4}>
               <Link
                 sx={genericLinksStyles}
                 href={Endpoints.projectCoreDiscordUrl}
@@ -49,7 +49,7 @@ const Footer = (): JSX.Element => {
               </Link>
             </Stack>
           </Stack>
-          <Stack spacing={3}>
+          <Stack spacing={2.4}>
             <Typography fontWeight="bold" variant="h6">
               {footerLinks[0].title}
             </Typography>
@@ -60,9 +60,25 @@ const Footer = (): JSX.Element => {
               {footerLinks[0].children[1]}
             </Link>
           </Stack>
-          <Stack spacing={3}>
+          <Stack spacing={2.4}>
             <Typography fontWeight="bold" variant="h6">
               {footerLinks[1].title}
+            </Typography>
+            <Link
+              sx={genericLinksStyles}
+              href={Endpoints.gitHubCoreOrgSponsorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {footerLinks[1].children[0]}
+            </Link>
+            <Link sx={genericLinksStyles} href={Endpoints.gitHubCoreOrgUrl} target="_blank" rel="noopener noreferrer">
+              {footerLinks[1].children[1]}
+            </Link>
+          </Stack>
+          <Stack spacing={2.4}>
+            <Typography fontWeight="bold" variant="h6">
+              {footerLinks[2].title}
             </Typography>
             <Link
               sx={genericLinksStyles}
@@ -70,26 +86,24 @@ const Footer = (): JSX.Element => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {footerLinks[1].children[0]}
-            </Link>
-            <Link
-              sx={genericLinksStyles}
-              href={`${Endpoints.projectCoreRepoUrl}/issues`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {footerLinks[1].children[1]}
-            </Link>
-          </Stack>
-          <Stack spacing={3}>
-            <Typography fontWeight="bold" variant="h6">
-              {footerLinks[2].title}
-            </Typography>
-            <Link sx={genericLinksStyles} href="/terms-of-service">
               {footerLinks[2].children[0]}
             </Link>
-            <Link sx={genericLinksStyles} href="/privacy-policy">
+            <Link sx={genericLinksStyles} href="/plugins" target="_blank" rel="noopener noreferrer">
               {footerLinks[2].children[1]}
+            </Link>
+            <Link sx={genericLinksStyles} href="/themes" target="_blank" rel="noopener noreferrer">
+              {footerLinks[2].children[2]}
+            </Link>
+          </Stack>
+          <Stack spacing={2.4}>
+            <Typography fontWeight="bold" variant="h6">
+              {footerLinks[3].title}
+            </Typography>
+            <Link sx={genericLinksStyles} href="/terms-of-service">
+              {footerLinks[3].children[0]}
+            </Link>
+            <Link sx={genericLinksStyles} href="/privacy-policy">
+              {footerLinks[3].children[1]}
             </Link>
           </Stack>
         </Stack>
