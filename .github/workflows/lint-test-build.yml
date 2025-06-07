@@ -104,7 +104,7 @@ jobs:
         # Uploads build output
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ vars.PROJECT_NAME }}
+          name: ${{ vars.PROJECT_NAME }}-${{ inputs.target_env }}
           path: dist
           retention-days: 1 
 

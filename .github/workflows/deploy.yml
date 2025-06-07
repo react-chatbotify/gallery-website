@@ -35,7 +35,7 @@ jobs:
         # Downloads dist folder
         uses: actions/download-artifact@v4
         with:
-          name: ${{ vars.PROJECT_NAME }}
+          name: ${{ vars.PROJECT_NAME }}-${{ inputs.target_env }}
           path: ${{ vars.PROJECT_NAME }}
 
       - name: Deploy files to VPS
