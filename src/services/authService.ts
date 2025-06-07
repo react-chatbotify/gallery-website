@@ -9,7 +9,7 @@ const handleLogin = async () => {
   // save current location as redirect uri for later (post-login)
   localStorage.setItem('login_redirect_uri', window.location.href);
 
-  const resp = await galleryApiFetch(Endpoints.gitHubCoreOrgUrl, {
+  const resp = await galleryApiFetch(Endpoints.gitHubLoginUrl, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
