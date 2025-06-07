@@ -1,8 +1,6 @@
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
-import { Endpoints } from './constants/Endpoints';
-
 const fetchFile = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -70,6 +68,14 @@ const formatPreviewIdToTitleCase = (input: string): string => {
 };
 
 /**
+ * Reads the CSRF token out of the XSRF-TOKEN cookie.
+ */
+const getCsrfTokenFromCookie = (): string | null => {
+  const match = document.cookie.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
+/**
  * Wraps around the window fetch function to always include credentials and csrf token.
  *
  * @param url url to call
@@ -79,10 +85,10 @@ const galleryApiFetch = async (url: string, options: RequestInit = {}): Promise<
   // build headers object
   const headers = new Headers(options.headers || {});
 
-  // fetch csrf token from localStorage and set it
-  const storedToken = localStorage.getItem('csrf_token');
-  if (storedToken) {
-    headers.set('X-CSRF-Token', storedToken);
+  // grab the latest token from the cookie
+  const csrfToken = getCsrfTokenFromCookie();
+  if (csrfToken) {
+    headers.set('X-CSRF-Token', csrfToken);
   }
 
   // perform initial fetch with credentials included
@@ -91,42 +97,6 @@ const galleryApiFetch = async (url: string, options: RequestInit = {}): Promise<
     ...options,
     headers,
   });
-
-  // if the server returned 403, assume the CSRF token might be invalid
-  // attempt to clear, re-fetch a fresh CSRF token, and retry once
-  if (response.status === 403) {
-    // remove old token
-    localStorage.removeItem('csrf_token');
-
-    try {
-      // fetch a new CSRF token from the server
-      const tokenResponse = await fetch(Endpoints.fetchCsrfToken, {
-        credentials: 'include',
-      });
-      if (!tokenResponse.ok) {
-        // if can’t get a fresh token, return original 403
-        return response;
-      }
-      const tokenResult = await tokenResponse.json();
-      const { csrfToken: newToken } = tokenResult.data;
-      localStorage.setItem('csrf_token', newToken);
-
-      // update the token if successful
-      headers.set('X-CSRF-Token', newToken);
-
-      // retry original request with the new token
-      return fetch(url, {
-        credentials: 'include',
-        ...options,
-        headers,
-      });
-    } catch {
-      // for any other errors, return original 403
-      return response;
-    }
-  }
-
-  // return original response
   return response;
 };
 

@@ -21,7 +21,8 @@ const handleLogin = async () => {
     return;
   }
 
-  const { authorizationUrl } = await resp.json();
+  const result = await resp.json();
+  const { authorizationUrl } = result.data;
 
   // redirect user to login endpoint
   window.location.href = authorizationUrl;
