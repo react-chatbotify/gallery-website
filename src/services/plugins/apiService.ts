@@ -2,22 +2,10 @@ import { Endpoints } from '@/constants/Endpoints';
 import { Placeholders } from '@/constants/Placeholders';
 import { ApiPlugin } from '@/interfaces/ApiPlugin';
 import { Plugin } from '@/interfaces/Plugin';
+import { galleryApiFetch } from '@/utils';
 
 import { resetPluginsCache } from '../plugins/cacheService';
 import { getNpmPluginData } from './npmService';
-
-/**
- * Wraps around the window fetch function to always include credentials.
- *
- * @param url url to call
- * @param options additional options passed to fetch
- */
-const galleryApiFetch = (url: string, options = {}) => {
-  return fetch(url, {
-    ...options,
-    credentials: 'include',
-  });
-};
 
 const fetchPluginsFromApi = async (url: string): Promise<Plugin[]> => {
   try {
