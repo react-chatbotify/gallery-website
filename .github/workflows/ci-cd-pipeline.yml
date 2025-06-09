@@ -39,7 +39,7 @@ on:
 jobs:
   trigger-full-ci:
     name: CI
-    uses: ./.github/workflows/lint-test-build.yml
+    uses: ./.github/workflows/lint-and-test.yml
     secrets: inherit
     with:
       target_env: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref == 'refs/heads/development' && 'development' || 'invalid' }}

@@ -1,5 +1,5 @@
-name: Lint, Build & Test
-run-name: Lint, Build & Test
+name: Lint & Test
+run-name: Lint & Test
 
 permissions:
   contents: read
@@ -71,48 +71,11 @@ jobs:
         # Runs test cases
         run: npm run test
 
-  build:
-    needs: test
-    name: Run Build Process
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.target_env }}
-
-    steps:
-      - name: Checkout code
-        # Checks out the repository code.
-        uses: actions/checkout@v4
-
-      - name: Load env file
-        # Loads environment variables from file
-        run: echo "${{ secrets.APPLICATION_ENV_FILE }}" > .env
-      
-      - name: Setup Node.js ${{ inputs.node-version }}
-        # Sets up NodeJS environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-
-      - name: Install Dependencies
-        # Install dependencies
-        run: npm ci
-
-      - name: Build Project
-        # Builds project
-        run: npm run build --if-present
-
-      - name: Upload build artifact (dist)
-        # Uploads build output
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ vars.PROJECT_NAME }}-${{ inputs.target_env }}
-          path: dist
-          retention-days: 1 
-
   trigger-deploy:
-    needs: build
+    needs: test
     name: Deploy
     if: ${{ inputs.skip_deploy == false }}
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/build-and-deploy.yml
     secrets: inherit
     with:
       target_env: ${{ inputs.target_env }}

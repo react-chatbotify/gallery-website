@@ -1,5 +1,5 @@
-name: Deploy
-run-name: Deploy
+name: Build & Deploy
+run-name: Build & Deploy
 
 on:
   workflow_call:
@@ -10,6 +10,42 @@ on:
         type: string
 
 jobs:
+  build:
+    name: Run Build Process
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+
+    steps:
+      - name: Checkout code
+        # Checks out the repository code.
+        uses: actions/checkout@v4
+
+      - name: Load env file
+        # Loads environment variables from file
+        run: echo "${{ secrets.APPLICATION_ENV_FILE }}" > .env
+      
+      - name: Setup Node.js ${{ inputs.node-version }}
+        # Sets up NodeJS environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Install Dependencies
+        # Install dependencies
+        run: npm ci
+
+      - name: Build Project
+        # Builds project
+        run: npm run build --if-present
+
+      - name: Upload build artifact (dist)
+        # Uploads build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ vars.PROJECT_NAME }}-${{ inputs.target_env }}
+          path: dist
+          retention-days: 1 
+
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
