@@ -1,3 +1,4 @@
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import { Box, CardMedia, Link, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +33,7 @@ const UserFavoritePluginCard: React.FC<{
       {/* Image */}
       <CardMedia
         component="img"
-        src={imageUrl}
+        src={imageUrl || defaultPluginIcon}
         alt={name}
         sx={{
           borderRadius: 2,

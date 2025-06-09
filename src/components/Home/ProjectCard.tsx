@@ -124,9 +124,9 @@ const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.mem
                         count: contributors.length,
                       })}
                 </Typography>
-                <Button component={MuiLink} href={repoUrl} target="_blank" rel="noopener" sx={readMoreLinkStyles}>
+                <Box component={MuiLink} href={repoUrl} target="_blank" rel="noopener" sx={readMoreLinkStyles}>
                   {t('project_section.read_more')} <ArrowRight size={16} />
-                </Button>
+                </Box>
               </Box>
             </Box>
           </CardContent>
