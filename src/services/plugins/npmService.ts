@@ -14,10 +14,11 @@ const getNpmPluginData = async (plugin: ApiPlugin) => {
   }
 
   // fetch package data from npm registry
-  const response = await fetch(`${Endpoints.fetchNpmPlugins}/${encodeURIComponent(plugin.id)}`);
+  const response = await fetch(`${Endpoints.fetchNpmPlugins}/${encodeURIComponent(plugin.id)}/latest`);
   const pluginData = await response.json();
 
   const authorImg = `https://avatars.githubusercontent.com/${pluginData.author.name}`;
+  const imageUrl = pluginData.pluginLogo || '';
 
   return {
     authorImg,
@@ -27,14 +28,14 @@ const getNpmPluginData = async (plugin: ApiPlugin) => {
     favoritesCount: plugin.favoritesCount,
     github: pluginData.repository,
     id: plugin.id,
-    imageUrl: plugin.imageUrl,
+    imageUrl,
     isFavorite: plugin.isFavorite ?? false,
     keywords: pluginData.keywords,
     name: pluginData.name,
     packageUrl: plugin.packageUrl,
     updatedAt: plugin.updatedAt,
     userId: plugin.userId,
-    version: pluginData.latest,
+    version: pluginData.version,
   };
 };
 

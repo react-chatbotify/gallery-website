@@ -25,7 +25,7 @@ type MaybeYouCardProps = {
  * Styles align with TeamMemberCard for consistent layout.
  */
 const MaybeYouCard: React.FC<MaybeYouCardProps> = ({ title, text }) => {
-  const { t } = useTranslation('components/team');
+  const { t } = useTranslation('components/our-team');
   const isDesktop = useIsDesktop();
 
   // Match heights to TeamMemberCard

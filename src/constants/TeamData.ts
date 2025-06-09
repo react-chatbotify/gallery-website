@@ -1,6 +1,6 @@
-import member2Avatar from '@/assets/images/TeamsPage/deksu.webp';
-import member3Avatar from '@/assets/images/TeamsPage/hunxjunedo.webp';
-import member1Avatar from '@/assets/images/TeamsPage/tjtanjin.webp';
+import member2Avatar from '@/assets/images/OurTeamPage/deksu.webp';
+import member3Avatar from '@/assets/images/OurTeamPage/hunxjunedo.webp';
+import member1Avatar from '@/assets/images/OurTeamPage/tjtanjin.webp';
 import { TeamMember } from '@/interfaces/TeamMember';
 
 /**

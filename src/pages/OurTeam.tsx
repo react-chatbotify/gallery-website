@@ -3,16 +3,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import FadeInOnView from '@/components/FadeComponent/FadeInOnView';
-import MaybeYouCard from '@/components/Team/MaybeYouCard';
-import TeamMemberCard from '@/components/Team/TeamMemberCard';
+import MaybeYouCard from '@/components/OurTeam/MaybeYouCard';
+import TeamMemberCard from '@/components/OurTeam/TeamMemberCard';
 import { maybeYouCardData, teamMembers } from '@/constants/TeamData';
 
 /**
- * Teams page component.
+ * OurTeam page component.
  * Displays information about the team members and a call to action to contribute.
  */
-const Teams: React.FC = () => {
-  const { t } = useTranslation('pages/teams');
+const OurTeam: React.FC = () => {
+  const { t } = useTranslation('pages/our-team');
 
   return (
     <Box
@@ -71,4 +71,4 @@ const Teams: React.FC = () => {
   );
 };
 
-export default Teams;
+export default OurTeam;

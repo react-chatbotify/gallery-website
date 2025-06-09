@@ -13,9 +13,9 @@ import i18n from './i18n';
 import ErrorPage from './pages/Error';
 import HomePage from './pages/Home';
 import LoginProcessPage from './pages/LoginProcess';
+import OurTeamPage from './pages/OurTeam';
 import PluginsPage from './pages/Plugins';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import TeamsPage from './pages/Teams';
 import TermsOfService from './pages/TermsOfService';
 import ThemesPage from './pages/Themes';
 import UserProfilePage from './pages/UserProfile';
@@ -72,7 +72,7 @@ const App: React.FC = () => {
         { element: <PluginsPage />, path: '/plugins' },
         { element: <PrivacyPolicy />, path: '/privacy-policy' },
         { element: <ThemesPage />, path: '/themes' },
-        { element: <TeamsPage />, path: '/teams' },
+        { element: <OurTeamPage />, path: '/our-team' },
         { element: <TermsOfService />, path: '/terms-of-service' },
         {
           element: <ProtectedRoute element={<UserProfilePage />} />,

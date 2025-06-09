@@ -180,7 +180,7 @@ const NavigationBar: React.FC<{
             onClose={() => setAboutMenuAnchor(null)}
             sx={{ mt: 1, zIndex: 9001 }}
           >
-            <MenuItem component="a" href="/teams" onClick={() => setAboutMenuAnchor(null)}>
+            <MenuItem component="a" href="/our-team" onClick={() => setAboutMenuAnchor(null)}>
               <FaUserFriends style={{ marginRight: 8 }} />
               {t('navigation_bar.about_us.our_team')}
             </MenuItem>
