@@ -1,9 +1,9 @@
-import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import { Box, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 import { Plugin } from '../../interfaces/Plugin';

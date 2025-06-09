@@ -1,10 +1,11 @@
-import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, Box, Button, Chip, Grid, IconButton, Modal, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
+
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 
 import { Plugin } from '../../interfaces/Plugin';
 
