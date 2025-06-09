@@ -24,18 +24,17 @@ import FadeInOnView from '../FadeComponent/FadeInOnView';
  * @param description repository description text
  * @param repoUrl URL of the GitHub repository
  * @param contributors array of contributor objects (avatar_url, html_url, login)
- * @param totalCount total number of contributors
  * @param previewImg URL of the preview image to show
  * @param loading whether data is still loading (shows placeholders when true)
  */
 const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.memo(
-  ({ name, description, repoUrl, contributors, totalCount, previewImg, loading }) => {
+  ({ name, description, repoUrl, contributors, previewImg, loading }) => {
     // lazy loads translations
     const { t } = useTranslation('components/home');
 
     // show up to 10 avatars, then a “+N” overflow indicator
     const displayAvatars = contributors.slice(0, 10);
-    const extraCount = Math.max(0, totalCount - displayAvatars.length);
+    const extraCount = Math.max(0, contributors.length - displayAvatars.length);
 
     return (
       <FadeInOnView>
@@ -93,7 +92,7 @@ const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.mem
                 <>
                   {displayAvatars.map((c) => (
                     <MuiLink key={c.login} href={c.html_url} target="_blank" rel="noopener noreferrer">
-                      <Avatar sx={avatarStyles} src={c.avatar_url} alt={c.login} />
+                      <Avatar sx={avatarStyles} src={`${c.avatar_url}&s=32`} alt={c.login} />
                     </MuiLink>
                   ))}
                   {extraCount > 0 && (
@@ -122,12 +121,12 @@ const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.mem
                   {loading
                     ? ''
                     : t('project_section.contribution_sub_heading', {
-                        count: totalCount,
+                        count: contributors.length,
                       })}
                 </Typography>
-                <MuiLink sx={readMoreLinkStyles}>
+                <Button component={MuiLink} href={repoUrl} target="_blank" rel="noopener" sx={readMoreLinkStyles}>
                   {t('project_section.read_more')} <ArrowRight size={16} />
-                </MuiLink>
+                </Button>
               </Box>
             </Box>
           </CardContent>

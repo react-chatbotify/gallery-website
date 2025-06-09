@@ -11,10 +11,9 @@ import { RepositoryInfo } from '@/interfaces/repository/RepositoryInfo';
  * @param name user-friendly display name for the repo
  * @param fullRepo identifier in the form "owner/repo"
  */
-const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo => {
+const useFetchGitHubRepoInfo = (name: string, fullRepo: string, includeContributors = true): RepositoryInfo => {
   const repoUrl = `https://github.com/${fullRepo}`;
   const [contributors, setContributors] = useState<ProjectContributor[]>([]);
-  const [totalCount, setTotalCount] = useState(0);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
   const [description, setDescription] = useState<string>('');
@@ -30,7 +29,6 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
       try {
         const { contributors, stars, forks, description } = JSON.parse(cachedData);
         setContributors(contributors);
-        setTotalCount(contributors.length);
         setStars(stars);
         setForks(forks);
         setDescription(description);
@@ -78,19 +76,21 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
         const infoJson = await infoRes.json();
 
         // fetch contributors
-        const contribRes = await fetch(`https://api.github.com/repos/${fullRepo}/contributors?per_page=100`);
-        if (!contribRes.ok) throw new Error(contribRes.statusText);
-        const contribJson = await contribRes.json();
+        let formattedContributors: ProjectContributor[] = [];
+        if (includeContributors) {
+          const contribRes = await fetch(`https://api.github.com/repos/${fullRepo}/contributors?per_page=100`);
+          if (!contribRes.ok) throw new Error(contribRes.statusText);
+          const contribJson = await contribRes.json();
 
-        const formatted: ProjectContributor[] = contribJson.map((c: any) => ({
-          avatar_url: c.avatar_url,
-          html_url: c.html_url,
-          login: c.login,
-        }));
+          formattedContributors = contribJson.map((c: any) => ({
+            avatar_url: c.avatar_url,
+            html_url: c.html_url,
+            login: c.login,
+          }));
+        }
 
         // update state
-        setContributors(formatted);
-        setTotalCount(formatted.length);
+        setContributors(formattedContributors);
         setStars(infoJson.stargazers_count);
         setForks(infoJson.forks_count);
         setDescription(infoJson.description || '');
@@ -99,7 +99,7 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
         localStorage.setItem(
           cacheKey,
           JSON.stringify({
-            contributors: formatted,
+            contributors: formattedContributors,
             description: infoJson.description || '',
             forks: infoJson.forks_count,
             stars: infoJson.stargazers_count,
@@ -133,7 +133,6 @@ const useFetchGitHubRepoInfo = (name: string, fullRepo: string): RepositoryInfo 
     name,
     repoUrl,
     stars,
-    totalCount,
   };
 };
 

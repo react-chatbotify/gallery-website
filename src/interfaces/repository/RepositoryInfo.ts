@@ -6,7 +6,6 @@ type RepositoryInfo = {
   description: string;
   repoUrl: string;
   contributors: ProjectContributor[];
-  totalCount: number;
   stars: number;
   forks: number;
   loading: boolean;

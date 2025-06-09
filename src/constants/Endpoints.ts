@@ -23,7 +23,7 @@ const Endpoints = {
   projectCoreDiscordUrl: 'https://discord.gg/6R4DK4G5Zh',
   projectCoreNpmUrl: 'https://www.npmjs.com/package/react-chatbotify',
   projectCoreRepoUrl: 'https://github.com/tjtanjin/react-chatbotify',
-  projectPlaygroundUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/playground`,
+  projectPlaygroundUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/playground`,
   projectQuickStartUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/introduction/quickstart`,
   projectLlmExampleUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/examples/llm_conversation`,
   twitterCoreUrl: 'https://x.com/reactchatbotify',

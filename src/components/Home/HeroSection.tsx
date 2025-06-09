@@ -28,7 +28,11 @@ const HeroSection = (): JSX.Element => {
   const isDesktop = useIsDesktop();
   const [titleIndex, setTitleIndex] = useState(1);
 
-  const { stars, forks, repoUrl, loading } = useFetchGitHubRepoInfo('React ChatBotify', 'tjtanjin/react-chatbotify');
+  const { stars, forks, repoUrl, loading } = useFetchGitHubRepoInfo(
+    'React ChatBotify',
+    'tjtanjin/react-chatbotify',
+    false
+  );
 
   // rotates title every 4 seconds
   const numTitles = 5;
