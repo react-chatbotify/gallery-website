@@ -27,8 +27,8 @@ const App: React.FC = () => {
   const notify = useNotify();
 
   const [isLightMode, setIsLightMode] = useState<boolean>(() => {
-    const isLightMode = localStorage.getItem('RCBG_IS_LIGHT_MODE');
-    return isLightMode === 'true';
+    const isLightMode = localStorage.getItem('theme');
+    return isLightMode === 'light';
   });
 
   useEffect(() => {
@@ -47,7 +47,11 @@ const App: React.FC = () => {
 
   const toggleTheme = () => {
     setIsLightMode((prev) => {
-      localStorage.setItem('RCBG_IS_LIGHT_MODE', String(!prev));
+      if (prev) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
       return !prev;
     });
   };

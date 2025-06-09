@@ -43,7 +43,7 @@ const Plugins: React.FC = () => {
   const [queryParams, setQueryParams] = useState({
     page: 1,
     searchQuery: searchParams.get('searchQuery') || '',
-    sortBy: localStorage.getItem('RCBG_THEME_SORT_BY') ?? 'updatedAt',
+    sortBy: localStorage.getItem('RCBG_PLUGIN_SORT_BY') ?? 'updatedAt',
   });
 
   const [focusedPlugin, setFocusedPlugin] = useState<null | Plugin>(null);
@@ -167,7 +167,7 @@ const Plugins: React.FC = () => {
       page: 1,
       sortBy: field,
     }));
-    localStorage.setItem('RCBG_THEME_SORT_BY', field);
+    localStorage.setItem('RCBG_PLUGIN_SORT_BY', field);
     setNoMorePlugins(false);
     setAllPlugins([]);
   };
