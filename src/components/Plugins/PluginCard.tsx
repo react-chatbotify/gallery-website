@@ -1,3 +1,4 @@
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import { Box, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
 import React from 'react';
@@ -48,7 +49,7 @@ const PluginCard: React.FC<{
     >
       <CardMedia
         component="img"
-        image={plugin.imageUrl}
+        image={plugin.imageUrl || defaultPluginIcon}
         alt={plugin.name}
         sx={{
           borderRadius: 5,

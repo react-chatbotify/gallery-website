@@ -76,7 +76,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "build": "vite build",
-    "start": "vite",
+    "start": "vite --mode local-dev",
     "preview": "vite preview",
     "prepare": "husky install"
   },

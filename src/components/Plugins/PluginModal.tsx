@@ -1,3 +1,4 @@
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, Box, Button, Chip, Grid, IconButton, Modal, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
@@ -30,6 +31,8 @@ const PluginModal: React.FC<{
       updateFavorites(plugin, true);
     }
   };
+
+  console.log(plugin);
 
   const modalContent = (
     <Modal open onClose={onClose} aria-labelledby="plugin-modal-title">
@@ -230,7 +233,7 @@ const PluginModal: React.FC<{
           >
             <Box
               component="img"
-              src={plugin.imageUrl}
+              src={plugin.imageUrl || defaultPluginIcon}
               alt={plugin.name}
               sx={{
                 borderRadius: 2,

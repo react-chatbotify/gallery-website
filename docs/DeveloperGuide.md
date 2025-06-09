@@ -49,7 +49,7 @@ Setting up the project is relatively simple. Before you begin, ensure that you h
    npm run start
    ```
 
-**Note:** For internal developers, you will be provided with a `.env.development` file. It contains the variables for you to interact with the development environment APIs and make OAuth logins via the GitHub test application. For public contributors, you will have to setup your own backend API server and create your own GitHub application if necessary. However, for the majority of cases, this will **not be necessary**.
+**Note:** For internal developers, you will be provided with a `.env` file. It contains the variables for you to interact with the development environment APIs and make OAuth logins via the GitHub test application. For public contributors, you will have to setup your own backend API server and create your own GitHub application if necessary. However, for the majority of cases, this will **not be necessary**.
 
 ## Design
 
