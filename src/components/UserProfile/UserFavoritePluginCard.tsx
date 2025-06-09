@@ -1,8 +1,8 @@
-import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import { Box, CardMedia, Link, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
 import { Plugin } from '@/interfaces/Plugin';
 
 /**
