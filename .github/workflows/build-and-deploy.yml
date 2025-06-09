@@ -47,6 +47,7 @@ jobs:
           retention-days: 1 
 
   deploy:
+    needs: build
     name: Deploy
     runs-on: ubuntu-latest
     environment: ${{ inputs.target_env }}
