@@ -73,7 +73,7 @@ jobs:
 
   trigger-deploy:
     needs: test
-    name: Deploy
+    name: Build & Deploy
     if: ${{ inputs.skip_deploy == false }}
     uses: ./.github/workflows/build-and-deploy.yml
     secrets: inherit
