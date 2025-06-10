@@ -82,6 +82,7 @@ const HeroSection = (): JSX.Element => {
             'X-API-KEY': import.meta.env.VITE_RAG_QUERY_API_KEY,
           },
         }),
+        historySize: 20,
         outputType: 'character',
       },
       renderMarkdown: ['BOT'],
