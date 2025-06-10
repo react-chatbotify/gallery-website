@@ -1,8 +1,11 @@
 import { Box, Button, Link, Stack, Typography } from '@mui/material';
+import InputValidator, { InputValidatorBlock } from '@rcb-plugins/input-validator';
+import LlmConnector, { GeminiProvider, LlmConnectorBlock } from '@rcb-plugins/llm-connector';
+import MarkdownRenderer, { MarkdownRendererBlock } from '@rcb-plugins/markdown-renderer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import ChatBot from 'react-chatbotify';
+import ChatBot, { Flow } from 'react-chatbotify';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 
@@ -53,6 +56,42 @@ const HeroSection = (): JSX.Element => {
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText('npm install react-chatbotify');
   }, []);
+
+  // chatbot plugins
+  const plugins = useMemo(() => [LlmConnector(), MarkdownRenderer(), InputValidator()], []);
+
+  // chatbot flow
+  const flow: Flow = {
+    start: {
+      message: 'Hi there! 👋 Thank you for checking out React ChatBotify 😊 Ask me anything or explore how easy it is to build chatbots with React ChatBotify!',
+      chatDisabled: true,
+      transition: 0,
+      path: 'gemini',
+    },
+    gemini: {
+      llmConnector: {
+        // provider configuration guide:
+        // https://github.com/React-ChatBotify-Plugins/llm-connector/blob/main/docs/providers/Gemini.md
+        provider: new GeminiProvider({
+          mode: 'proxy',
+          baseUrl: import.meta.env.VITE_RAG_QUERY_API_URL,
+          model: 'gemini-2.0-flash-lite:streamGenerateContent',
+          responseFormat: 'stream',
+          headers: {
+            'X-API-KEY': import.meta.env.VITE_RAG_QUERY_API_KEY,
+          },
+        }),
+        outputType: 'character',
+      },
+      renderMarkdown: ["BOT"],
+      validateTextInput(userInput) {
+        if (userInput && userInput.length > 1000) {
+          return {success: false, promptContent: "Input characters must be less than 1000!", promptDuration: 3000, promptType: "error", highlightTextArea: true}
+        }
+        return {success: true}
+      },
+    } as LlmConnectorBlock & MarkdownRendererBlock & InputValidatorBlock,
+  };
 
   return (
     <Box
@@ -255,6 +294,8 @@ const HeroSection = (): JSX.Element => {
         >
           {isDesktop ? (
             <ChatBot
+              flow={flow}
+              plugins={plugins}
               settings={{
                 botBubble: { simulateStream: true },
                 chatHistory: { disabled: true },
@@ -264,6 +305,8 @@ const HeroSection = (): JSX.Element => {
           ) : (
             <Box sx={{ width: '88vw', maxHeight: '60vh' }}>
               <ChatBot
+                flow={flow}
+                plugins={plugins}
                 settings={{
                   botBubble: { simulateStream: true },
                   chatHistory: { disabled: true },
