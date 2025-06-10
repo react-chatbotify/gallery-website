@@ -48,6 +48,7 @@ export default ({ mode }) => {
 			deps: {
 				inline: ['react-chatbotify'],
 			},
+      pool: "vmThreads",
 		},
 	});
 };
