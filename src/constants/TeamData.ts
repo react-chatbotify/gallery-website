@@ -1,5 +1,7 @@
 import member2Avatar from '@/assets/images/OurTeamPage/deksu.webp';
+import googleJulesAvatar from '@/assets/images/OurTeamPage/google_jules.webp';
 import member3Avatar from '@/assets/images/OurTeamPage/hunxjunedo.webp';
+import openaiCodexAvatar from '@/assets/images/OurTeamPage/openai_codex.webp';
 import member1Avatar from '@/assets/images/OurTeamPage/tjtanjin.webp';
 import { TeamMember } from '@/interfaces/TeamMember';
 
@@ -42,6 +44,20 @@ export const teamMembers: TeamMember[] = [
       },
     ],
     avatarUrl: member3Avatar,
+  },
+  {
+    id: '4',
+    name: 'Google Jules',
+    githubUrl: 'https://jules.google/',
+    roles: [{ name: 'Intern', link: 'https://github.com/React-ChatBotify' }],
+    avatarUrl: googleJulesAvatar,
+  },
+  {
+    id: '5',
+    name: 'OpenAI Codex',
+    githubUrl: 'https://github.com/openai/codex',
+    roles: [{ name: 'Intern', link: 'https://github.com/React-ChatBotify' }],
+    avatarUrl: openaiCodexAvatar,
   },
 ];
 
