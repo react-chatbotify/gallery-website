@@ -63,7 +63,8 @@ const HeroSection = (): JSX.Element => {
   // chatbot flow
   const flow: Flow = {
     start: {
-      message: 'Hi there! 👋 Thank you for checking out React ChatBotify 😊 Ask me anything or explore how easy it is to build chatbots with React ChatBotify!',
+      message:
+        'Hi there! 👋 Thank you for checking out React ChatBotify 😊 Ask me anything or explore how easy it is to build chatbots with React ChatBotify!',
       chatDisabled: true,
       transition: 0,
       path: 'gemini',
@@ -83,12 +84,18 @@ const HeroSection = (): JSX.Element => {
         }),
         outputType: 'character',
       },
-      renderMarkdown: ["BOT"],
+      renderMarkdown: ['BOT'],
       validateTextInput(userInput) {
         if (userInput && userInput.length > 1000) {
-          return {success: false, promptContent: "Input characters must be less than 1000!", promptDuration: 3000, promptType: "error", highlightTextArea: true}
+          return {
+            success: false,
+            promptContent: 'Input characters must be less than 1000!',
+            promptDuration: 3000,
+            promptType: 'error',
+            highlightTextArea: true,
+          };
         }
-        return {success: true}
+        return { success: true };
       },
     } as LlmConnectorBlock & MarkdownRendererBlock & InputValidatorBlock,
   };
