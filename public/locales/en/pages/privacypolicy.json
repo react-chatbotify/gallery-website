@@ -14,7 +14,7 @@
     "02": {
       "title": "Information We Collect",
       "content": [
-        "OAuth Account Information: When you log in to React ChatBotify Gallery via third-party OAuth providers like GitHub or Google, we collect and store basic information provided by these services, such as your email address and username. We do not store or manage user passwords and rely solely on third-party OAuth providers for authentication.",
+        "OAuth Account Information: When you log in to React ChatBotify Gallery via third-party OAuth providers like GitHub, we collect and store basic information provided by these services, such as your email address and username. We do not store or manage user passwords and rely solely on third-party OAuth providers for authentication.",
         "User Associations: We maintain a simple table that associates users with their linked OAuth accounts. This information is used to manage your access to the platform and ensure that you can access your own themes and plugins.",
         "Themes and Plugins Ownership: We store information about the themes and plugins you upload to the platform, including ownership details.",
         "Favorites: We store information about the themes and plugins that you have favorited, allowing you to easily access and manage your preferred items."
@@ -52,7 +52,6 @@
     "07": {
       "title": "Your Rights",
       "content": [
-        "Access and Correction: You have the right to access and correct your personal information. You can do this through your account settings or by contacting us directly.",
         "Account Deletion: You can request the deletion of your account and associated data by contacting us. Please note that some information may be retained for legal or administrative purposes."
       ]
     },

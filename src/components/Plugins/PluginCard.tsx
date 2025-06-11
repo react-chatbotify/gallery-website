@@ -1,9 +1,11 @@
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
+import GalleryTooltip from '@/components/GalleryTooltip/GalleryTooltip';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 import { Plugin } from '../../interfaces/Plugin';
@@ -59,9 +61,16 @@ const PluginCard: React.FC<{
         }}
       />
       <CardContent>
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-          {plugin.name}
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {plugin.name.startsWith('@rcb-plugins/') && (
+            <GalleryTooltip content={t('plugin_card.official_plugin_verified')} placement="top">
+              <CheckCircleIcon color="primary" sx={{ fontSize: '1.25rem', mr: 1, mt: 1 }} />
+            </GalleryTooltip>
+          )}
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+            {plugin.name}
+          </Typography>
+        </Box>
         <Typography
           variant="body2"
           color="text.secondary"

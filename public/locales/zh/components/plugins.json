@@ -1,6 +1,7 @@
 {
   "plugin_card": {
-    "more_info": "更多信息"
+    "more_info": "更多信息",
+    "official_plugin_verified": "官方认证插件"
   },
   "plugin_modal": {
     "description": "描述",
@@ -9,6 +10,7 @@
     "author": "作者",
     "tags": "标签",
     "view_on_npm": "在 NPM 上查看",
-    "likes": "点赞"
+    "likes": "点赞",
+    "official_plugin_verified": "官方认证插件"
   }
 }

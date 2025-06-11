@@ -7,7 +7,7 @@
     "01": {
       "title": "Introduction",
       "content": [
-        "Welcome to React ChatBotify Gallery, a platform designed to facilitate the browsing, rating, sharing, and downloading of themes & plugins created by various authors.",
+        "Welcome to React ChatBotify, a platform designed to facilitate the browsing, rating, sharing, and downloading of themes & plugins created by various authors.",
         "We serve as a platform only and do not own or endorse any themes & plugins uploaded by users.",
         "By using our service, you agree to comply with and be bound by the following Terms of Service. If you do not agree with these terms, please do not use our service."
       ]
@@ -15,7 +15,7 @@
     "02": {
       "title": "Ownership of Themes & Plugins",
       "content": [
-        "All themes & plugins available on React ChatBotify Gallery are the intellectual property of their respective authors.",
+        "All themes & plugins available on React ChatBotify are the intellectual property of their respective authors.",
         "By uploading content, you represent and warrant that you have the necessary rights to grant us a license to host, distribute, and make available your content to others.",
         "We do not claim ownership of any themes & plugins provided through our platform.",
         "The rights to these themes & plugins, including any copyrights or trademarks, remain with the original authors."
@@ -33,23 +33,23 @@
     "04": {
       "title": "Disclaimer of Warranties",
       "content": [
-        { "point": "4.1", "text": "React ChatBotify Gallery provides themes & plugins on an 'as is' basis without warranties of any kind, either express or implied." },
+        { "point": "4.1", "text": "React ChatBotify provides themes & plugins on an 'as is' basis without warranties of any kind, either express or implied." },
         { "point": "4.2", "text": "We do not guarantee that the themes & plugins will meet your requirements, be error-free, or be compatible with your specific environment." },
-        { "point": "4.3", "text": "React ChatBotify Gallery does not vet or endorse any themes & plugins available on the platform, and users download and use them at their own risk." },
+        { "point": "4.3", "text": "React ChatBotify does not vet or endorse any themes & plugins available on the platform, and users download and use them at their own risk." },
         { "point": "4.4", "text": "We do not make any warranties regarding the security, reliability, or performance of the themes & plugins." }
       ]
     },
     "05": {
       "title": "Limitation of Liability",
       "content": [
-        { "point": "5.1", "text": "To the fullest extent permitted by law, React ChatBotify Gallery shall not be held liable for any direct, indirect, incidental, special, or consequential damages arising out of the use or inability to use the themes & plugins, even if we have been advised of the possibility of such damages." },
+        { "point": "5.1", "text": "To the fullest extent permitted by law, React ChatBotify shall not be held liable for any direct, indirect, incidental, special, or consequential damages arising out of the use or inability to use the themes & plugins, even if we have been advised of the possibility of such damages." },
         { "point": "5.2", "text": "This includes but is not limited to damages related to loss of data, profits, or business interruption." }
       ]
     },
     "06": {
       "title": "Indemnification",
       "content": [
-        "You agree to indemnify and hold harmless React ChatBotify Gallery, its affiliates, and its members from any claims, damages, losses, or legal fees arising from your use of the themes & plugins, your violation of these Terms of Service, or your violation of any rights of another."
+        "You agree to indemnify and hold harmless React ChatBotify, its affiliates, and its members from any claims, damages, losses, or legal fees arising from your use of the themes & plugins, your violation of these Terms of Service, or your violation of any rights of another."
       ]
     },
     "07": {
@@ -82,7 +82,7 @@
     "11": {
       "title": "Content Removal",
       "content": [
-        "React ChatBotify Gallery reserves the right to remove any content that violates these terms or is deemed inappropriate at our discretion, without notice."
+        "React ChatBotify reserves the right to remove any content that violates these terms or is deemed inappropriate at our discretion, without notice."
       ]
     },
     "12": {
@@ -96,12 +96,6 @@
       "title": "Termination",
       "content": [
         "We reserve the right to terminate or suspend your account at any time, with or without cause, and with or without notice, especially if you violate these terms."
-      ]
-    },
-    "14": {
-      "title": "Age Requirement",
-      "content": [
-        "By using React ChatBotify Gallery, you affirm that you are at least 13 years of age or older, or have parental consent if younger, in compliance with applicable laws."
       ]
     }
   }

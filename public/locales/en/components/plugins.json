@@ -1,6 +1,7 @@
 {
   "plugin_card": {
-    "more_info": "More Info"
+    "more_info": "More Info",
+    "official_plugin_verified": "Official Plugin Verified"
   },
   "plugin_modal": {
     "description": "Description",
@@ -9,6 +10,7 @@
     "author": "Author",
     "tags": "Tags",
     "view_on_npm": "View On NPM",
-    "likes": "likes"
+    "likes": "likes",
+    "official_plugin_verified": "Official Plugin Verified"
   }
 }

@@ -1,3 +1,4 @@
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, Box, Button, Chip, Grid, IconButton, Modal, Typography } from '@mui/material';
 import { Heart } from 'lucide-react';
@@ -6,6 +7,7 @@ import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 import defaultPluginIcon from '@/assets/images/PluginsPage/default_plugin_icon.webp';
+import GalleryTooltip from '@/components/GalleryTooltip/GalleryTooltip';
 
 import { Plugin } from '../../interfaces/Plugin';
 
@@ -79,17 +81,28 @@ const PluginModal: React.FC<{
             }}
             spacing={0}
           >
-            <Typography
-              id="plugin-modal-title"
-              variant="h5"
-              sx={{
-                color: 'text.primary',
-                fontWeight: 'bold',
-                mb: 1,
-              }}
-            >
-              {plugin.name}
-            </Typography>
+            <Box id="plugin-modal-title" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              {plugin.name.startsWith('@rcb-plugins/') && (
+                <GalleryTooltip content={t('plugin_card.official_plugin_verified')}>
+                  <CheckCircleIcon
+                    color="primary"
+                    sx={{
+                      fontSize: '1.75rem',
+                      marginRight: 1,
+                    }}
+                  />
+                </GalleryTooltip>
+              )}
+              <Typography
+                variant="h5"
+                sx={{
+                  color: 'text.primary',
+                  fontWeight: 'bold',
+                }}
+              >
+                {plugin.name}
+              </Typography>
+            </Box>
 
             <Box display="flex" alignItems="center" sx={{ mb: 2 }}>
               {plugin.authorImg && (
