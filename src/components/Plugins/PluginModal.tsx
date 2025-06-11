@@ -83,7 +83,7 @@ const PluginModal: React.FC<{
           >
             <Box id="plugin-modal-title" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               {plugin.name.startsWith('@rcb-plugins/') && (
-                <GalleryTooltip content={t('plugin_card.official_plugin_verified')}>
+                <GalleryTooltip content={t('plugin_modal.official_plugin_verified')}>
                   <CheckCircleIcon
                     color="primary"
                     sx={{
