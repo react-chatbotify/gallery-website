@@ -109,6 +109,19 @@ const RcbMarkdown = ({ children }: { children: React.ReactNode }) => {
               {props.children}
             </blockquote>
           ),
+
+          a: ({ href, children, ...props }) => (
+            <a
+              href={href}
+              style={{
+                color: '#ffffff',
+                textDecoration: 'underline',
+              }}
+              {...props}
+            >
+              {children}
+            </a>
+          ),
         }}
       >
         {markdownText}
