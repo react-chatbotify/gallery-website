@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
  *
  * @param children markdown text to render
  */
-const MarkdownWrapper = ({ children }: { children: React.ReactNode }) => {
+const RcbMarkdown = ({ children }: { children: React.ReactNode }) => {
   // Ensure children is a string
   const markdownText = typeof children === 'string' ? children : '';
 
@@ -117,4 +117,4 @@ const MarkdownWrapper = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default MarkdownWrapper;
+export default RcbMarkdown;

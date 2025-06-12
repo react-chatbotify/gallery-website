@@ -13,6 +13,7 @@ import logo from '@/assets/images/logo.webp';
 import { Endpoints } from '@/constants/Endpoints';
 import useFetchGitHubRepoInfo from '@/hooks/useFetchGitHubRepoInfo';
 import useIsDesktop from '@/hooks/useIsDesktop';
+import RcbMarkdown from '../RcbMarkdown/RcbMarkdown';
 
 const containerVariants = {
   hidden: {},
@@ -58,7 +59,10 @@ const HeroSection = (): JSX.Element => {
   }, []);
 
   // chatbot plugins
-  const plugins = useMemo(() => [LlmConnector(), MarkdownRenderer(), InputValidator()], []);
+  const plugins = useMemo(
+    () => [LlmConnector(), MarkdownRenderer({ markdownComponent: RcbMarkdown }), InputValidator()],
+    []
+  );
 
   // chatbot flow
   const flow: Flow = {
