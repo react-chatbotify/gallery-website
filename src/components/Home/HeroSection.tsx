@@ -13,6 +13,7 @@ import logo from '@/assets/images/logo.webp';
 import { Endpoints } from '@/constants/Endpoints';
 import useFetchGitHubRepoInfo from '@/hooks/useFetchGitHubRepoInfo';
 import useIsDesktop from '@/hooks/useIsDesktop';
+
 import RcbMarkdown from '../RcbMarkdown/RcbMarkdown';
 
 const containerVariants = {
