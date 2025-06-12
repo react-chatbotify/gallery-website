@@ -25,15 +25,15 @@ const OurTeam: React.FC = () => {
       }}
     >
       <Container maxWidth="lg" sx={{ flex: 1 }}>
-        <FadeInOnView>
-          {/* Title and Introduction Section */}
-          <Box
-            sx={{
-              mb: 4, // Margin bottom for spacing before the grid
-              mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 }, // Consistent with Plugins.tsx
-              textAlign: 'center', // Center align title and intro
-            }}
-          >
+        {/* Title and Introduction Section */}
+        <Box
+          sx={{
+            mb: 4, // Margin bottom for spacing before the grid
+            mt: { lg: 0, md: 5, sm: 5, xl: 0, xs: 5 }, // Consistent with Plugins.tsx
+            textAlign: 'center', // Center align title and intro
+          }}
+        >
+          <FadeInOnView>
             <Typography variant="h3" fontWeight="bold" color="text.primary" mb={2}>
               {t('teams_page.title', 'Meet Our Team')}
             </Typography>
@@ -43,19 +43,23 @@ const OurTeam: React.FC = () => {
                 "We're a passionate group of developers, designers, and enthusiasts dedicated to building an amazing open-source platform. Get to know the people behind the project."
               )}
             </Typography>
-          </Box>
+          </FadeInOnView>
+        </Box>
 
-          {/* Spacer - optional, can adjust or remove */}
-          <Box sx={{ height: { sm: '64px', xs: '32px' } }} />
+        {/* Spacer - optional, can adjust or remove */}
+        <Box sx={{ height: { sm: '64px', xs: '32px' } }} />
 
-          {/* Team Members and "Maybe You!" Card Grid */}
-          <Grid container spacing={4} justifyContent="center">
-            {teamMembers.map((member) => (
-              <Grid item key={member.id} xs={12} sm={6} md={4} lg={3}>
+        {/* Team Members and "Maybe You!" Card Grid */}
+        <Grid container spacing={4} justifyContent="center">
+          {teamMembers.map((member, index) => (
+            <Grid item key={member.id} xs={12} sm={6} md={4} lg={3}>
+              <FadeInOnView delay={index * 0.1}>
                 <TeamMemberCard member={member} />
-              </Grid>
-            ))}
-            <Grid item xs={12} sm={6} md={4} lg={3}>
+              </FadeInOnView>
+            </Grid>
+          ))}
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <FadeInOnView delay={teamMembers.length * 0.1}>
               <MaybeYouCard
                 title={t(maybeYouCardData.titleKey, 'Want to Join Us?')}
                 text={t(
@@ -63,9 +67,9 @@ const OurTeam: React.FC = () => {
                   "We're always looking for passionate individuals to contribute. Check out our contribution guidelines!"
                 )}
               />
-            </Grid>
+            </FadeInOnView>
           </Grid>
-        </FadeInOnView>
+        </Grid>
       </Container>
     </Box>
   );
