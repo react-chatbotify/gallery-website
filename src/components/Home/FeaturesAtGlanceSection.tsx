@@ -212,6 +212,7 @@ const FeaturesAtGlanceSection = (): JSX.Element => {
           >
             <Box
               component="img"
+              loading="lazy"
               src={placeholderGifs[selectedFeature]}
               alt={`Preview ${selectedFeature + 1}`}
               sx={{

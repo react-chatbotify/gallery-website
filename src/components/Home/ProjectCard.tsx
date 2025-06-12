@@ -41,7 +41,7 @@ const ProjectCard: React.FC<RepositoryInfo & { previewImg: string }> = React.mem
         <Card sx={cardStyles}>
           {/* Repository preview image */}
           <Box sx={imageWrapperStyles}>
-            <CardMedia sx={imageStyles} image={previewImg} />
+            <CardMedia sx={imageStyles} image={previewImg} component="img" loading="lazy" />
           </Box>
 
           <CardContent sx={cardContentStyles}>
