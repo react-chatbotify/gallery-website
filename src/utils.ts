@@ -68,10 +68,13 @@ const formatPreviewIdToTitleCase = (input: string): string => {
 };
 
 /**
- * Reads the CSRF token out of the XSRF-TOKEN cookie.
+ * Reads the CSRF token out of the csrf token cookie.
  */
 const getCsrfTokenFromCookie = (): string | null => {
-  const match = document.cookie.match(/(?:^|;\s*)XSRF-TOKEN=([^;]+)/);
+  const cookieName = import.meta.env.VITE_CSRF_TOKEN_IDENTIFIER || 'XSRF-TOKEN';
+  const escaped = cookieName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  const pattern = new RegExp(`(?:^|;\\s*)${escaped}=([^;]+)`);
+  const match = document.cookie.match(pattern);
   return match ? decodeURIComponent(match[1]) : null;
 };
 
