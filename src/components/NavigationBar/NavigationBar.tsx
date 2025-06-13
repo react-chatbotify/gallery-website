@@ -1,4 +1,10 @@
-import { DescriptionOutlined, ExtensionOutlined, InfoOutlined, PaletteOutlined } from '@mui/icons-material';
+import {
+  DescriptionOutlined,
+  ExtensionOutlined,
+  InfoOutlined,
+  PaletteOutlined,
+  PsychologyOutlined,
+} from '@mui/icons-material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 // import CodeIcon from '@mui/icons-material/Code';
@@ -166,6 +172,9 @@ const NavigationBar: React.FC<{
         </Button>
         <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t('navigation_bar.themes')}
+        </Button>
+        <Button component={Link} to="/playground" sx={generalNavLinkSx}>
+          {t('navigation_bar.playground')}
         </Button>
         <Box>
           <Button
@@ -434,6 +443,10 @@ const NavigationBar: React.FC<{
             <ListItem component={Link} to="/themes" sx={generalNavLinkSx}>
               <PaletteOutlined sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.themes')} />
+            </ListItem>
+            <ListItem component={Link} to="/playground" sx={generalNavLinkSx}>
+              <PsychologyOutlined sx={{ mr: 1 }} />
+              <ListItemText primary={t('navigation_bar.playground')} />
             </ListItem>
             {/* <ListItem component={Link} to="/theme-builder" sx={generalNavLinkSx}>
               <CodeIcon sx={{ mr: 1 }} />

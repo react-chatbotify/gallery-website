@@ -19,4 +19,5 @@ export type Theme = {
   tags: string[];
   github: string;
   content: ThemeContent;
+  isDataMissing?: boolean;
 };

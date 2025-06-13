@@ -15,4 +15,5 @@ export type Plugin = {
   userId: string;
   github: string;
   packageUrl: string;
+  isDataMissing?: boolean;
 };

@@ -7,7 +7,7 @@ import { galleryApiFetch } from '@/utils';
 import { resetThemesCache } from '../themes/cacheService';
 import { getGitHubThemeData } from '../themes/gitHubService';
 
-const fetchThemesFromApi = async (url: string): Promise<Theme[]> => {
+const fetchThemesFromApi = async (url: string): Promise<(Theme | Partial<Theme>)[]> => {
   try {
     let apiThemes = null;
 
@@ -35,9 +35,41 @@ const fetchThemesFromApi = async (url: string): Promise<Theme[]> => {
 /**
  * Fetches themes information from github (or more accurately, jsdelivr cache).
  */
-const fetchThemesFromGitHub = async (apiThemes: ApiTheme[]): Promise<Theme[]> => {
-  // todo: good to cache themes already fetched to reduce calls to cdn
-  return await Promise.all(apiThemes.map((apiTheme) => getGitHubThemeData(apiTheme)));
+const fetchThemesFromGitHub = async (apiThemes: ApiTheme[]): Promise<(Theme | Partial<Theme>)[]> => {
+  const settledResults = await Promise.allSettled(apiThemes.map((apiTheme) => getGitHubThemeData(apiTheme)));
+
+  return settledResults.map((result, index) => {
+    const apiTheme = apiThemes[index]; // Get the original apiTheme for fallback data
+
+    if (result.status === 'fulfilled') {
+      return result.value;
+    } else {
+      // Handle rejected promise from getGitHubThemeData
+      // This case should be rare if getGitHubThemeData's try/catch is effective
+      console.error(`Error processing theme ${apiTheme.id} after GitHub fetch attempt:`, result.reason);
+      // Construct a partial theme, similar to how getGitHubThemeData would in its catch block
+      return {
+        id: apiTheme.id,
+        name: apiTheme.name || apiTheme.id || 'Theme Name Unavailable',
+        authorName: 'N/A',
+        description: 'Theme details are currently unavailable due to an unexpected error.',
+        version: 'N/A',
+        isDataMissing: true,
+        favoritesCount: apiTheme.favoritesCount || 0,
+        isFavorite: apiTheme.isFavorite ?? false,
+        github: 'N/A',
+        tags: [],
+        content: {
+          cssStyles: '',
+          inlineStyles: '',
+          settings: '',
+        },
+        // Include other fields from apiTheme if necessary and available
+        createdAt: apiTheme.createdAt,
+        updatedAt: apiTheme.updatedAt,
+      };
+    }
+  });
 };
 
 const addThemeToFavorites = async (theme: Theme) => {

@@ -7,7 +7,7 @@ import { galleryApiFetch } from '@/utils';
 import { resetPluginsCache } from '../plugins/cacheService';
 import { getNpmPluginData } from './npmService';
 
-const fetchPluginsFromApi = async (url: string): Promise<Plugin[]> => {
+const fetchPluginsFromApi = async (url: string): Promise<(Plugin | Partial<Plugin>)[]> => {
   try {
     let apiPlugins = null;
 
@@ -35,9 +35,35 @@ const fetchPluginsFromApi = async (url: string): Promise<Plugin[]> => {
 /**
  * Fetches plugins information from npm.
  */
-const fetchPluginsFromNpm = async (apiPlugins: ApiPlugin[]): Promise<Plugin[]> => {
-  // todo: good to cache themes already fetched to reduce calls to cdn
-  return await Promise.all(apiPlugins.map((apiPlugin) => getNpmPluginData(apiPlugin)));
+const fetchPluginsFromNpm = async (apiPlugins: ApiPlugin[]): Promise<(Plugin | Partial<Plugin>)[]> => {
+  const settledResults = await Promise.allSettled(apiPlugins.map((apiPlugin) => getNpmPluginData(apiPlugin)));
+
+  return settledResults.map((result, index) => {
+    const apiPlugin = apiPlugins[index]; // Get the original apiPlugin for fallback data
+
+    if (result.status === 'fulfilled') {
+      return result.value;
+    } else {
+      // Handle rejected promise from getNpmPluginData
+      // This case should be rare if getNpmPluginData's try/catch is effective
+      console.error(`Error processing plugin ${apiPlugin.id} after NPM fetch attempt:`, result.reason);
+      return {
+        id: apiPlugin.id,
+        name: apiPlugin.name || apiPlugin.id || 'Plugin Name Unavailable',
+        authorName: 'N/A',
+        description: 'Plugin details are currently unavailable due to an unexpected error.',
+        version: 'N/A',
+        isDataMissing: true,
+        favoritesCount: apiPlugin.favoritesCount,
+        isFavorite: apiPlugin.isFavorite ?? false,
+        userId: apiPlugin.userId,
+        createdAt: apiPlugin.createdAt,
+        updatedAt: apiPlugin.updatedAt,
+        keywords: [],
+        packageUrl: apiPlugin.packageUrl,
+      };
+    }
+  });
 };
 
 const addPluginToFavorites = async (plugin: Plugin) => {
