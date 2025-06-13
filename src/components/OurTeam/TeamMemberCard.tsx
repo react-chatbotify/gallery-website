@@ -26,7 +26,7 @@ type TeamMemberCardProps = {
  * @param member member to show info for
  */
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
-  const { t } = useTranslation('components/our-team');
+  const { t } = useTranslation('components/ourteam');
   const isDesktop = useIsDesktop();
 
   const cardHeight = isDesktop ? 420 : 380;

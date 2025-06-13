@@ -12,7 +12,7 @@ import { maybeYouCardData, teamMembers } from '@/constants/TeamData';
  * Displays information about the team members and a call to action to contribute.
  */
 const OurTeam: React.FC = () => {
-  const { t } = useTranslation('pages/our-team');
+  const { t } = useTranslation('pages/ourteam');
 
   return (
     <Box
