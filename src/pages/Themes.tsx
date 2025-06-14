@@ -272,9 +272,9 @@ const Themes: React.FC = () => {
         {/* Themes Grid */}
         <Grid container spacing={2}>
           {isLoading && queryParams.page === 1 ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="100%">
+            <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" height="50vh">
               <CircularProgress size={80} />
-            </Box>
+            </Grid>
           ) : (
             allThemes.map((theme) => (
               <Grid item key={theme.id} xs={12} sm={6} md={4} xl={isPreviewVisible ? 4 : 3}>
@@ -298,9 +298,9 @@ const Themes: React.FC = () => {
           )}
 
           {isLoading && queryParams.page > 1 && (
-            <Box textAlign="center" width="100%" mt={2}>
+            <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" height="50vh" mt={2}>
               <CircularProgress size={24} />
-            </Box>
+            </Grid>
           )}
         </Grid>
       </Box>

@@ -233,9 +233,9 @@ const Plugins: React.FC = () => {
         {/* Plugins Grid */}
         <Grid container spacing={2}>
           {isLoading && queryParams.page === 1 ? (
-            <Box display="flex" justifyContent="center" alignItems="center" height="50vh" width="100%">
+            <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" height="50vh">
               <CircularProgress size={80} />
-            </Box>
+            </Grid>
           ) : (
             <>
               {allPlugins.map((plugin) => (
@@ -256,9 +256,9 @@ const Plugins: React.FC = () => {
                 </Grid>
               ))}
               {isLoading && queryParams.page > 1 && (
-                <Box textAlign="center" width="100%" mt={2}>
+                <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" height="50vh" mt={2}>
                   <CircularProgress size={24} />
-                </Box>
+                </Grid>
               )}
             </>
           )}
