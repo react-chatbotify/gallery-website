@@ -56,7 +56,7 @@ const TermsOfService: React.FC = () => {
               <Box
                 component="img"
                 src={logo}
-                alt="React ChatBotify Gallery Logo"
+                alt="React ChatBotify Logo"
                 sx={{
                   height: { xs: '96px', sm: '112px', md: '128px', lg: '160px', xl: '192px' },
                 }}
