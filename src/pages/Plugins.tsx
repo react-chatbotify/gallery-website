@@ -46,7 +46,7 @@ const Plugins: React.FC = () => {
     sortBy: localStorage.getItem('RCBG_PLUGIN_SORT_BY') ?? 'updatedAt',
   });
 
-  const [focusedPlugin, setFocusedPlugin] = useState<null | Plugin>(null);
+  const [focusedPlugin, setFocusedPlugin] = useState<null | Plugin | Partial<Plugin>>(null);
   const [allPlugins, setAllPlugins] = useState<Plugin[]>([]);
   const [noMorePlugins, setNoMorePlugins] = useState<boolean>(false);
 
@@ -79,7 +79,7 @@ const Plugins: React.FC = () => {
       )
     );
     setFocusedPlugin((prev) => {
-      if (prev != null) {
+      if (prev != null && prev.favoritesCount) {
         return {
           ...prev,
           favoritesCount: isFavoriting ? prev.favoritesCount + 1 : prev.favoritesCount - 1,
@@ -141,8 +141,10 @@ const Plugins: React.FC = () => {
     const loadFocusedPlugin = async () => {
       const focusedPluginId = searchParams.get('pluginId') || '';
       if (focusedPluginId) {
-        const plugin = await fetchPluginsFromApi(`${Endpoints.fetchApiPlugins}/${encodeURIComponent(focusedPluginId)}`);
-        setFocusedPlugin(plugin[0]);
+        const plugins = await fetchPluginsFromApi(
+          `${Endpoints.fetchApiPlugins}/${encodeURIComponent(focusedPluginId)}`
+        );
+        setFocusedPlugin(plugins[0]);
       }
     };
     loadFocusedPlugin();

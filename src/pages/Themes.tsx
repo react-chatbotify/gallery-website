@@ -56,7 +56,7 @@ const Themes: React.FC = () => {
   // theme data states
   const [allThemes, setAllThemes] = useState<Theme[]>([]);
   const [previewIds, setPreviewIds] = useState<string[]>([]);
-  const [focusedTheme, setFocusedTheme] = useState<Theme | null>(null);
+  const [focusedTheme, setFocusedTheme] = useState<Theme | Partial<Theme> | null>(null);
   const [noMoreThemes, setNoMoreThemes] = useState(false);
   const [isPreviewVisible, setIsPreviewVisible] = useState(
     () => localStorage.getItem('RCBG_THEME_PREVIEW_VISIBLE') === 'true'
@@ -92,7 +92,7 @@ const Themes: React.FC = () => {
           : item;
 
       setAllThemes((prev) => prev.map(updateCounts));
-      setFocusedTheme((prev) => (prev ? { ...updateCounts(prev) } : prev));
+      setFocusedTheme((prev) => (prev ? { ...updateCounts(prev as Theme) } : prev));
     },
     [isLoggedIn, notify, addQueue, removeQueue, setPromptLogin]
   );
@@ -368,7 +368,7 @@ const Themes: React.FC = () => {
       {/* Theme Details Modal */}
       {focusedTheme && (
         <ThemeModal
-          theme={focusedTheme}
+          theme={focusedTheme as Theme}
           updateFavorites={updateFavorites}
           onClose={() => {
             setSearchParams((params) => {
