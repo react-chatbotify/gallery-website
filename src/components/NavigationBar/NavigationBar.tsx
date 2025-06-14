@@ -173,7 +173,7 @@ const NavigationBar: React.FC<{
         <Button component={Link} to="/themes" sx={generalNavLinkSx}>
           {t('navigation_bar.themes')}
         </Button>
-        <Button component={Link} to={Endpoints.projectPlaygroundUrl} sx={generalNavLinkSx}>
+        <Button component={Link} to={Endpoints.projectPlaygroundUrl} target="_blank" sx={generalNavLinkSx}>
           {t('navigation_bar.playground')}
         </Button>
         <Box>
@@ -444,7 +444,7 @@ const NavigationBar: React.FC<{
               <PaletteOutlined sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.themes')} />
             </ListItem>
-            <ListItem component={Link} to={Endpoints.projectPlaygroundUrl} sx={generalNavLinkSx}>
+            <ListItem component="a" href={Endpoints.projectPlaygroundUrl} sx={generalNavLinkSx}>
               <PsychologyOutlined sx={{ mr: 1 }} />
               <ListItemText primary={t('navigation_bar.playground')} />
             </ListItem>
