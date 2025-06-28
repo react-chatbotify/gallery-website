@@ -95,7 +95,9 @@
     "instagram.heading": "在 Instagram 关注我们",
     "instagram.body_text": "获取幕后花絮、社区亮点和团队的视觉更新。",
     "twitter.heading": "在 X（Twitter）关注我们",
-    "twitter.body_text": "关注功能更新、公告以及实时动态，每条限制在 280 个字符以内。"
+    "twitter.body_text": "关注功能更新、公告以及实时动态，每条限制在 280 个字符以内。",
+    "youtube.heading": "订阅我们的 YouTube 频道",
+    "youtube.body_text": "在我们的官方 YouTube 频道观看教程、演示和功能展示。"
   },
   "testimonials_section": {
     "title": "用户评价",

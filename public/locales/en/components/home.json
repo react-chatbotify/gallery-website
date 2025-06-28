@@ -98,7 +98,9 @@
     "instagram.heading": "Follow us on Instagram",
     "instagram.body_text": "Get behind-the-scenes looks, community highlights, and visual updates directly from our team.",
     "twitter.heading": "Follow us on X (Twitter)",
-    "twitter.body_text": "Stay up to date with feature drops, announcements, and real-time updates in 280 characters or less."
+    "twitter.body_text": "Stay up to date with feature drops, announcements, and real-time updates in 280 characters or less.",
+    "youtube.heading": "Subscribe to our YouTube Channel",
+    "youtube.body_text": "Watch tutorials, demos, and feature showcases on our official YouTube channel."
   },
 
   "testimonials_section": {

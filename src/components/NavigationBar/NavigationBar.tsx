@@ -37,6 +37,7 @@ import {
   FaUserCog,
   FaUserFriends,
   FaUserSecret,
+  FaYoutube,
 } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -257,6 +258,15 @@ const NavigationBar: React.FC<{
               >
                 <FaTwitter style={{ marginRight: 8 }} />
                 {t('navigation_bar.community.twitter')}
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  window.open(Endpoints.youtubeCoreUrl);
+                  setCommunityMenuAnchor(null);
+                }}
+              >
+                <FaYoutube style={{ marginRight: 8 }} />
+                {t('navigation_bar.community.youtube')}
               </MenuItem>
             </Menu>
           </Box>

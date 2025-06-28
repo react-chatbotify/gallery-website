@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { FaDiscord, FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaGithub, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 import { Endpoints } from '@/constants/Endpoints';
 import useIsDesktop from '@/hooks/useIsDesktop';
@@ -43,6 +43,12 @@ const CommunitySection = (): JSX.Element => {
       text: t('community_section.twitter.body_text'),
       title: t('community_section.twitter.heading'),
       url: Endpoints.twitterCoreUrl,
+    },
+    {
+      Icon: <FaYoutube size={26} />,
+      text: t('community_section.youtube.body_text'),
+      title: t('community_section.youtube.heading'),
+      url: Endpoints.youtubeCoreUrl,
     },
   ];
 

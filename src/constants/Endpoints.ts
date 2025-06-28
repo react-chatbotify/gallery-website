@@ -27,6 +27,7 @@ const Endpoints = {
   projectQuickStartUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/v2/introduction/quickstart`,
   projectLlmExampleUrl: `${import.meta.env.VITE_GALLERY_WEBSITE_URL}/docs/v2/examples/llm_conversation`,
   twitterCoreUrl: 'https://x.com/reactchatbotify',
+  youtubeCoreUrl: 'https://www.youtube.com/@react-chatbotify',
 };
 
 export { Endpoints };
