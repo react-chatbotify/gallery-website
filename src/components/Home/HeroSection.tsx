@@ -51,7 +51,7 @@ const HeroSection = (): JSX.Element => {
   const currentTitle = t(`hero_section.title.${titleIndex}`);
   const link_buttons = useMemo(() => {
     const texts = t('hero_section.links', { returnObjects: true }) as string[];
-    const urls = [Endpoints.projectQuickStartUrl, Endpoints.projectPlaygroundUrl, '/plugins', '/themes'];
+    const urls = [Endpoints.projectQuickStartUrl, Endpoints.youtubeCoreUrl, Endpoints.projectPlaygroundUrl, '/plugins'];
     return texts.map((text, i) => ({ text, url: urls[i] ?? '#' }));
   }, [t]);
 
