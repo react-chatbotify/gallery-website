@@ -5,6 +5,7 @@
 
 <p align="center">
   <a href="https://github.com/react-chatbotify/gallery-website/actions/workflows/ci-cd-pipeline.yml"> <img src="https://github.com/react-chatbotify/gallery-website/actions/workflows/ci-cd-pipeline.yml/badge.svg" /> </a>
+  <a href="https://status.react-chatbotify.com"> <img src="https://uptime.betterstack.com/status-badges/v3/monitor/21byp.svg" /> </a>
 </p>
 
 ## Table of Contents
