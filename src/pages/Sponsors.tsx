@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import MonthlyTab from '@/components/Sponsors/MonthlyTab';
 import OneTimeTab from '@/components/Sponsors/OneTimeTab';
+import Steps from '@/components/Sponsors/Steps';
 
 const Footer = lazy(() => import('@/components/Home/Footer'));
 
@@ -108,6 +109,7 @@ const Sponsors: React.FC = () => {
       </Box>
       {currentSponsorCategory === 0 ? <MonthlyTab /> : null}
       {currentSponsorCategory === 1 ? <OneTimeTab /> : null}
+      <Steps />
       <Suspense fallback={<Skeleton variant="rectangular" height={200} />}>
         <Footer />
       </Suspense>
