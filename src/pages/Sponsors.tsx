@@ -2,6 +2,7 @@ import { Box, Skeleton, Tab, Tabs, Typography } from '@mui/material';
 import React, { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import FAQ from '@/components/Sponsors/FAQ';
 import MonthlyTab from '@/components/Sponsors/MonthlyTab';
 import OneTimeTab from '@/components/Sponsors/OneTimeTab';
 import Steps from '@/components/Sponsors/Steps';
@@ -110,6 +111,7 @@ const Sponsors: React.FC = () => {
       {currentSponsorCategory === 0 ? <MonthlyTab /> : null}
       {currentSponsorCategory === 1 ? <OneTimeTab /> : null}
       <Steps />
+      <FAQ />
       <Suspense fallback={<Skeleton variant="rectangular" height={200} />}>
         <Footer />
       </Suspense>
