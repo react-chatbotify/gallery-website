@@ -65,7 +65,7 @@ const Sponsors: React.FC = () => {
           onChange={handleCategoryChange}
         >
           <Tab
-            label={t('categories.monthly')}
+            label={t('segments.monthly')}
             disableRipple
             sx={{
               color: `${currentSponsorCategory === 0 ? 'white !important' : '#A7AFB8'}`,
@@ -79,7 +79,7 @@ const Sponsors: React.FC = () => {
             }}
           />
           <Tab
-            label={t('categories.one_time')}
+            label={t('segments.one_time')}
             disableRipple
             sx={{
               color: `${currentSponsorCategory === 1 ? 'white !important' : '#A7AFB8'}`,
@@ -93,7 +93,7 @@ const Sponsors: React.FC = () => {
             }}
           />
           <Tab
-            label={t('categories.existing')}
+            label={t('segments.existing')}
             disableRipple
             sx={{
               color: `${currentSponsorCategory === 2 ? 'white !important' : '#A7AFB8'}`,

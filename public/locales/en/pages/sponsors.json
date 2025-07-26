@@ -3,7 +3,7 @@
         "header":"Supported by awesome sponsors worldwide",
         "description":"Our open source project is made possible with the support of awesome organizations and companies."
     },
-    "categories":{
+    "segments":{
         "monthly":"Monthly sponsorship",
         "one_time":"One-time sponsorship",
         "existing":"Existing sponsors"

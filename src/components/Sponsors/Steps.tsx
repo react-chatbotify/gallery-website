@@ -70,10 +70,12 @@ const Steps: React.FC = () => {
           >
             We are active on our Discord and it’s the best way to stay in touch with us and follow our work.
           </Typography>
-          <Link target="_blank" rel="noopener noreferrer" href={Endpoints.projectCoreDiscordUrl} underline="none">
-            Join our Discord
-            <ArrowRight size={12} />
-          </Link>
+          <Box>
+            <Link target="_blank" rel="noopener noreferrer" href={Endpoints.projectCoreDiscordUrl} underline="none">
+              Join our Discord
+              <ArrowRight size={16} style={{ marginLeft: '5px' }} />
+            </Link>
+          </Box>
         </Grid>
         <Grid item xl={3} sx={{ justifyContent: 'center', maxWidth: { md: '400px' } }}>
           <Typography

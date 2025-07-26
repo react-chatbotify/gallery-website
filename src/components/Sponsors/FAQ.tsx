@@ -13,7 +13,7 @@ const FAQ: React.FC = () => {
         Got questions? Hit us up <Link> on our Discord</Link> or check the most common ones below.
       </Typography>
       <Box mt={4} sx={{ maxWidth: { md: 640 }, justifySelf: 'center' }}>
-        <Accordion>
+        <Accordion defaultExpanded>
           <AccordionSummary expandIcon={<ChevronDown />}>
             <Typography sx={{ fontWeight: 600, fontSize: '18px', lineHeight: 1.5 }}>
               What is the minimum monetary amount to start sponsoring you?
