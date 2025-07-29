@@ -1,0 +1,41 @@
+{
+    "buttonLabel": "Talk to us to get started",
+    "tiers": {
+        "bronze": {
+            "title": "Bronze",
+            "price": "Starting at $5 per month",
+            "description": "For individuals or small companies that wish contribute to our project.",
+            "checklist": [
+                "Addition to our sponsors’ list",
+                "Discord badge"
+            ]
+        },
+        "silver": {
+            "title": "Silver",
+            "price": "Starting at $20 per month",
+            "description": "Meant for small-to-medium sized companies.",
+            "checklist": [
+                "Secondary level support via Discord",
+                "A second additional perk"
+            ]
+        },
+        "gold": {
+            "title": "Gold",
+            "price": "Starting at $50 per month",
+            "description": "Meant for medium sized companies.",
+            "checklist": [
+                "First level support via Discord",
+                "A second additional perk"
+            ]
+        },
+        "platinum": {
+            "title": "Platinum",
+            "price": "Starting at $200 per month",
+            "description": "Meant for large companies that want this OSS project to shine.",
+            "checklist": [
+                "Priority support via Discord",
+                "A second additional perk"
+            ]
+        }
+    }
+}
