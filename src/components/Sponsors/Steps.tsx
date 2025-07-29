@@ -1,10 +1,28 @@
 import { Box, Grid, Grid2, Link, Typography } from '@mui/material';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Endpoints } from '@/constants/Endpoints';
 
+type StepItem = {
+  number: string;
+  step: string;
+  step_description: string;
+  link_text?: string;
+};
+
+type Steps = {
+  [step: string]: StepItem;
+};
+
 const Steps: React.FC = () => {
+  const { t } = useTranslation('components/steps');
+
+  const steps = t('steps', { returnObjects: true }) as Steps;
+
+  const sortedSteps = Object.keys(steps).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
   return (
     <Box mt={8}>
       <Typography
@@ -13,12 +31,12 @@ const Steps: React.FC = () => {
           fontSize: '60px',
           letterSpacing: '-0.75%',
           lineHeight: 1.2,
-          color: '#F8FAFC',
+          color: 'accent.50',
           textAlign: 'center',
           justifySelf: 'center',
         }}
       >
-        Steps to becoming a sponsor
+        {t('heading')}
       </Typography>
       <Typography
         mt={2}
@@ -26,7 +44,7 @@ const Steps: React.FC = () => {
           fontWeight: 400,
           fontSize: '16px',
           lineHeight: 1.75,
-          color: '#A7AFB8',
+          color: 'text.tertiary',
           textAlign: 'center',
           justifySelf: 'center',
           maxWidth: {
@@ -34,96 +52,64 @@ const Steps: React.FC = () => {
           },
         }}
       >
-        We prefer to talk directly with each of our potential sponsor as we hope that our core values align and that we
-        are truly a fitting match.
+        {t('description')}
       </Typography>
       <Grid2 container spacing={1} sx={{ justifySelf: 'center', mt: 8 }}>
-        <Grid
-          item
-          xl={3}
-          sx={{
-            justifyContent: 'center',
-            textAlign: 'center',
-            maxWidth: {
-              md: '400px',
-            },
-          }}
-        >
-          <Typography
+        {sortedSteps.map((step) => (
+          <Grid
+            item
+            xl={3}
             sx={{
-              opacity: 0.5,
-              fontWeight: 600,
-              color: '#A7AFB8',
-              lineHeight: '100%',
-              textAlign: 'center',
-              fontSize: '32px',
               justifyContent: 'center',
-            }}
-          >
-            01
-          </Typography>
-          <Typography sx={{ fontSize: '18px', lineHeight: 1.5, textAlign: 'center', fontWeight: 600 }}>
-            Send us a message on our Discord server
-          </Typography>
-          <Typography
-            sx={{ fontSize: '16px', fontWeight: 400, color: '#A7AFB8', lineHeight: 1.75, textAlign: 'center', mt: 2 }}
-          >
-            We are active on our Discord and it’s the best way to stay in touch with us and follow our work.
-          </Typography>
-          <Box>
-            <Link target="_blank" rel="noopener noreferrer" href={Endpoints.projectCoreDiscordUrl} underline="none">
-              Join our Discord
-              <ArrowRight size={16} style={{ marginLeft: '5px' }} />
-            </Link>
-          </Box>
-        </Grid>
-        <Grid item xl={3} sx={{ justifyContent: 'center', maxWidth: { md: '400px' } }}>
-          <Typography
-            sx={{
-              opacity: 0.5,
-              fontWeight: 600,
-              color: '#A7AFB8',
-              lineHeight: '100%',
               textAlign: 'center',
-              fontSize: '32px',
-              justifyContent: 'center',
+              maxWidth: {
+                md: '400px',
+              },
             }}
+            key={steps[step].number}
           >
-            02
-          </Typography>
-          <Typography sx={{ fontSize: '18px', lineHeight: 1.5, textAlign: 'center', fontWeight: 600 }}>
-            Apply as a sponsor by filling out a form
-          </Typography>
-          <Typography
-            sx={{ fontSize: '16px', fontWeight: 400, color: '#A7AFB8', lineHeight: 1.75, textAlign: 'center', mt: 2 }}
-          >
-            If our preliminary chat goes well according to both you and us, we’ll give you a link to a form that you can
-            fill out.
-          </Typography>
-        </Grid>
-        <Grid item xl={3} sx={{ justifyContent: 'center', maxWidth: { md: '400px' } }}>
-          <Typography
-            sx={{
-              opacity: 0.5,
-              fontWeight: 600,
-              color: '#A7AFB8',
-              lineHeight: '100%',
-              textAlign: 'center',
-              fontSize: '32px',
-              justifyContent: 'center',
-            }}
-          >
-            03
-          </Typography>
-          <Typography sx={{ fontSize: '18px', lineHeight: 1.5, textAlign: 'center', fontWeight: 600 }}>
-            Wait for confirmation (and our huge thanks!)
-          </Typography>
-          <Typography
-            sx={{ fontSize: '16px', fontWeight: 400, color: '#A7AFB8', lineHeight: 1.75, textAlign: 'center', mt: 2 }}
-          >
-            We will contact you via Discord or email and let you know if everything is in order for the sponsorship.
-          </Typography>
-        </Grid>
+            <Typography
+              sx={{
+                opacity: 0.5,
+                fontWeight: 600,
+                color: 'text.tertiary',
+                lineHeight: '100%',
+                textAlign: 'center',
+                fontSize: '32px',
+                justifyContent: 'center',
+              }}
+            >
+              {steps[step].number}
+            </Typography>
+            <Typography sx={{ fontSize: '18px', lineHeight: 1.5, textAlign: 'center', fontWeight: 600 }}>
+              {steps[step].step}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: '16px',
+                fontWeight: 400,
+                color: 'text.tertiary',
+                lineHeight: 1.75,
+                textAlign: 'center',
+                mt: 2,
+              }}
+            >
+              {steps[step].step_description}
+            </Typography>
+            {steps[step].link_text ? (
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={Endpoints.projectCoreDiscordUrl}
+                underline="none"
+                sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifySelf: 'center' }}
+              >
+                <Typography sx={{ marginRight: '5px' }}>{steps[step].link_text}</Typography>
+                <ArrowRight size={16} />
+              </Link>
+            ) : null}
+          </Grid>
+        ))}
       </Grid2>
     </Box>
   );

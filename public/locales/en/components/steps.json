@@ -1,12 +1,12 @@
 {
-    "section":{
         "heading":"Steps to becoming a sponsor",
         "description":"We prefer to talk directly with each of our potential sponsor as we hope that our core values align and that we are truly a fitting match.",
         "steps":{
             "01":{
                 "number":"01",
                 "step":"Send us a message on our Discord server",
-                "step_description":"We are active on our Discord and it’s the best way to stay in touch with us and follow our work."
+                "step_description":"We are active on our Discord and it’s the best way to stay in touch with us and follow our work.",
+                "link_text":"Join our Discord"
             },
             "02":{
                 "number":"02",
@@ -19,5 +19,4 @@
                 "step_description":"We will contact you via Discord or email and let you know if everything is in order for the sponsorship."
             }
         }
-    }
 }

@@ -77,7 +77,7 @@ const MonthlyTab: React.FC = () => {
                 <Typography
                   fontWeight="normal"
                   fontSize="16px"
-                  color="#A7AFB8"
+                  color="text.tertiary"
                   lineHeight={1.75}
                   alignSelf="center"
                   sx={{

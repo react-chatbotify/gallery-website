@@ -2,6 +2,7 @@ import { Box, Skeleton, Tab, Tabs, Typography } from '@mui/material';
 import React, { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import ExistingTab from '@/components/Sponsors/ExistingTab';
 import FAQ from '@/components/Sponsors/FAQ';
 import MonthlyTab from '@/components/Sponsors/MonthlyTab';
 import OneTimeTab from '@/components/Sponsors/OneTimeTab';
@@ -40,7 +41,7 @@ const Sponsors: React.FC = () => {
         fontWeight="normal"
         lineHeight={1.4}
         sx={{
-          color: '#A7AFB8',
+          color: 'text.tertiary',
           textAlign: 'center',
           lineHeight: 1.4,
           maxWidth: {
@@ -55,7 +56,7 @@ const Sponsors: React.FC = () => {
       <Box mt="20px" justifySelf="center">
         <Tabs
           sx={{
-            backgroundColor: '#27272A54',
+            backgroundColor: 'background.muted',
             border: '1px solid #27272A',
             borderRadius: '12px',
             textTransform: 'none',
@@ -68,7 +69,7 @@ const Sponsors: React.FC = () => {
             label={t('segments.monthly')}
             disableRipple
             sx={{
-              color: `${currentSponsorCategory === 0 ? 'white !important' : '#A7AFB8'}`,
+              color: `${currentSponsorCategory === 0 ? 'white !important' : 'text.tertiary'}`,
               textTransform: 'none',
               fontWeight: 'bold',
               backgroundColor: `${currentSponsorCategory === 0 ? '#3B3B3B80' : null}`,
@@ -82,7 +83,7 @@ const Sponsors: React.FC = () => {
             label={t('segments.one_time')}
             disableRipple
             sx={{
-              color: `${currentSponsorCategory === 1 ? 'white !important' : '#A7AFB8'}`,
+              color: `${currentSponsorCategory === 1 ? 'white !important' : 'text.tertiary'}`,
               textTransform: 'none',
               fontWeight: 'bold',
               backgroundColor: `${currentSponsorCategory === 1 ? '#3B3B3B80' : null}`,
@@ -96,7 +97,7 @@ const Sponsors: React.FC = () => {
             label={t('segments.existing')}
             disableRipple
             sx={{
-              color: `${currentSponsorCategory === 2 ? 'white !important' : '#A7AFB8'}`,
+              color: `${currentSponsorCategory === 2 ? 'white !important' : 'text.tertiary'}`,
               textTransform: 'none',
               fontWeight: 'bold',
               backgroundColor: `${currentSponsorCategory === 2 ? '#3B3B3B80' : null}`,
@@ -110,6 +111,7 @@ const Sponsors: React.FC = () => {
       </Box>
       {currentSponsorCategory === 0 ? <MonthlyTab /> : null}
       {currentSponsorCategory === 1 ? <OneTimeTab /> : null}
+      {currentSponsorCategory === 2 ? <ExistingTab /> : null}
       <Steps />
       <FAQ />
       <Suspense fallback={<Skeleton variant="rectangular" height={200} />}>

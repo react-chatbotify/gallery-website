@@ -36,7 +36,7 @@ const OneTimeTab: React.FC = () => {
           <Typography fontWeight={600} fontSize="30px" lineHeight={1.2}>
             {t('one_time.title')}
           </Typography>
-          <Typography sx={{ mt: '16px', fontSize: '16px', lineHeight: 1.75, color: '#A7AFB8' }}>
+          <Typography sx={{ mt: '16px', fontSize: '16px', lineHeight: 1.75, color: 'text.tertiary' }}>
             {t('one_time.description')}
           </Typography>
           <List sx={{ mt: '4px' }}>
