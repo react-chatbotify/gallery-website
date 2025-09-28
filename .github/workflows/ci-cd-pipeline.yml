@@ -21,6 +21,8 @@ on:
       - ".eslintrc" # ignore eslint changes
       - ".gitignore" # ignore git ignore changes
       - "__tests__/**" # ignore test files
+      - "**/*.test.ts" # ignore test files
+      - "**/*.test.tsx" # ignore test files
   pull_request:
     branches: ["main", "development"]
     paths-ignore:
@@ -36,6 +38,8 @@ on:
       - ".eslintrc" # ignore eslint changes
       - ".gitignore" # ignore git ignore changes
       - "__tests__/**" # ignore test files
+      - "**/*.test.ts" # ignore test files
+      - "**/*.test.tsx" # ignore test files
   workflow_dispatch:
 
 jobs:
