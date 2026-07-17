@@ -15,8 +15,8 @@
             "price": "Starting at $20 per month",
             "description": "Meant for small-to-medium sized companies.",
             "checklist": [
-                "Secondary level support via Discord",
-                "A second additional perk"
+                "Everything in bronze",
+                "Priority support via Discord"
             ]
         },
         "gold": {
@@ -24,8 +24,8 @@
             "price": "Starting at $50 per month",
             "description": "Meant for medium sized companies.",
             "checklist": [
-                "First level support via Discord",
-                "A second additional perk"
+                "Everything in silver",
+                "Priority support via Discord"
             ]
         },
         "platinum": {
@@ -33,8 +33,8 @@
             "price": "Starting at $200 per month",
             "description": "Meant for large companies that want this OSS project to shine.",
             "checklist": [
-                "Priority support via Discord",
-                "A second additional perk"
+                "Everything in gold",
+                "Priority Feature Request"
             ]
         }
     }

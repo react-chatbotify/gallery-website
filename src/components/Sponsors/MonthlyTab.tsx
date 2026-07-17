@@ -7,6 +7,7 @@ import {
   CardMedia,
   Grid,
   Grid2,
+  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -15,6 +16,8 @@ import {
 import { Check } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { Endpoints } from '@/constants/Endpoints';
 
 import bronzeSponsor from '../../assets/images/SponsorsPage/bronze_sponsor.jpg';
 import goldSponsor from '../../assets/images/SponsorsPage/gold_sponsor.jpg';
@@ -33,6 +36,7 @@ type MonthlyTabTranslation = {
 };
 
 const MonthlyTab: React.FC = () => {
+  const genericLinksStyles = { ':hover': { color: 'text.primary' }, color: 'text.muted', textDecoration: 'none' };
   const { t } = useTranslation('components/monthlytab');
 
   const monthlyTiers = t('tiers', { returnObjects: true }) as MonthlyTabTranslation;
@@ -116,7 +120,9 @@ const MonthlyTab: React.FC = () => {
                     fontWeight: 500,
                   }}
                 >
-                  {t('buttonLabel')}
+                  <Link sx={genericLinksStyles} href={Endpoints.projectCoreDiscordUrl}>
+                    {t('buttonLabel')}
+                  </Link>
                 </Button>
               </CardActions>
             </Card>

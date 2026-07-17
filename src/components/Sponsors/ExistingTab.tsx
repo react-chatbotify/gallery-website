@@ -3,6 +3,8 @@ import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Endpoints } from '@/constants/Endpoints';
+
 const ExistingTab: React.FC = () => {
   const { t } = useTranslation('components/existingtab');
   return (
@@ -36,7 +38,9 @@ const ExistingTab: React.FC = () => {
                   </Box>
                 </Box>
                 <Link sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }} underline="none">
-                  <Typography sx={{ mr: '5px' }}>{t('link_text')}</Typography>
+                  <Typography sx={{ mr: '5px' }}>
+                    <Link href={Endpoints.projectBaseUrl}>{t('link_text')}</Link>
+                  </Typography>
                   <ArrowRight size={16} />
                 </Link>
               </Box>

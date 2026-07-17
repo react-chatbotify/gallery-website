@@ -3,6 +3,8 @@ import { ChevronDown } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Endpoints } from '@/constants/Endpoints';
+
 type FAQ = {
   question: string;
   answer?: string;
@@ -18,7 +20,7 @@ const FAQ: React.FC = () => {
       <Typography
         sx={{ fontWeight: 400, fontSize: '16px', lineHeight: 1.75, color: 'text.tertiary', textAlign: 'center', mt: 3 }}
       >
-        {t('text_part_1')} <Link>{t('link_text')}</Link> {t('text_part_2')}
+        {t('text_part_1')} <Link href={Endpoints.projectCoreDiscordUrl}>{t('link_text')}</Link> {t('text_part_2')}
       </Typography>
       <Box mt={4} sx={{ maxWidth: { md: 640 }, justifySelf: 'center' }}>
         {faqs.map((faq) => (
