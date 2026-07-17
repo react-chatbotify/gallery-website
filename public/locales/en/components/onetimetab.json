@@ -1,0 +1,12 @@
+{
+    "one_time": {
+        "title": "One-time sponsorship",
+        "description": "Want to support is with a singular support payment?",
+        "checklist": [
+            "No monthly/yearly payments",
+            "Discord badge",
+            "Discord badge"
+        ]
+    },
+    "buttonLabel": "Talk to us to get started"
+}

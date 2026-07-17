@@ -1,0 +1,24 @@
+{
+    "heading": "Frequently asked",
+    "text_part_1": "Got questions? Hit us up",
+    "link_text": "on our Discord",
+    "text_part_2": "or check the most common ones below.",
+    "faqs": [
+        {
+            "question": "What is the minimum monetary amount to start sponsoring you?",
+            "answer": "The bare minimum is one (1) USD per month. So with 12 dollars, you can contribute to this project for a whole year and get listed as a bronze-tier supporter."
+        },
+        {
+            "question": "Why should our company sponsor your project?"
+        },
+        {
+            "question": "Can I down- or upgrade sponsor tiers? How and when?"
+        },
+        {
+            "question": "Do you have any kind of collaboration deals with educational orgs?"
+        },
+        {
+            "question": "What if the project ends - will I be refunded somehow?"
+        }
+    ]
+}

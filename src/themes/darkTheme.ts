@@ -76,6 +76,7 @@ const darkTheme = createTheme({
       secondary: '#A1A1AA',
       secondaryBtn: '#FAFAFA',
       secondaryBtnHover: '#D1D5DB',
+      tertiary: '#A7AFB8',
     },
   },
   typography: {

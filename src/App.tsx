@@ -16,6 +16,7 @@ import LoginProcessPage from './pages/LoginProcess';
 import OurTeamPage from './pages/OurTeam';
 import PluginsPage from './pages/Plugins';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Sponsors from './pages/Sponsors';
 import TermsOfService from './pages/TermsOfService';
 import ThemesPage from './pages/Themes';
 import UserProfilePage from './pages/UserProfile';
@@ -76,6 +77,7 @@ const App: React.FC = () => {
         { element: <PluginsPage />, path: '/plugins' },
         { element: <PrivacyPolicy />, path: '/privacy-policy' },
         { element: <ThemesPage />, path: '/themes' },
+        { element: <Sponsors />, path: '/sponsors' },
         { element: <OurTeamPage />, path: '/our-team' },
         { element: <TermsOfService />, path: '/terms-of-service' },
         {

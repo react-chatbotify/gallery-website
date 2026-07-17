@@ -64,12 +64,7 @@ const Footer = (): JSX.Element => {
             <Typography fontWeight="bold" variant="h6">
               {footerLinks[1].title}
             </Typography>
-            <Link
-              sx={genericLinksStyles}
-              href={Endpoints.gitHubCoreOrgSponsorUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link sx={genericLinksStyles} href="/sponsors">
               {footerLinks[1].children[0]}
             </Link>
             <Link sx={genericLinksStyles} href={Endpoints.gitHubCoreOrgUrl} target="_blank" rel="noopener noreferrer">
